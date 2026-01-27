@@ -35,7 +35,7 @@ export default function Header() {
               <img
                 src="/images/logo.png"
                 alt="Etienne Agency"
-                className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+                className="w-44 h-auto transition-transform duration-300 group-hover:scale-105"
               />
             </div>
           </Link>

@@ -66,7 +66,7 @@ export default function Hero() {
               <p className="text-lg md:text-xl text-foreground/70 leading-relaxed max-w-3xl">
                 We handle the busywork so you don't have to. Our 24/7 Revenue
                 Recovery Framework captures every lead, books every appointment,
-                and follows up automatically—so your team can focus on what
+                and follows up automatically, so your team can focus on what
                 actually grows your business.
               </p>
 

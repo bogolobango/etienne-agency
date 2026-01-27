@@ -96,11 +96,11 @@ export default function IndustriesSection() {
         >
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
             Built for Businesses That{" "}
-            <span className="text-primary">Live and Die by the Phone</span>
+            <span className="text-primary">Are Inbound Leads Heavy</span>
           </h2>
           <p className="text-lg md:text-xl text-foreground/70 leading-relaxed">
             We specialize in service businesses with 3-25 locations where every
-            missed call has a real dollar cost.
+            missed call, text and DM could cost hundreds to thousands of dollars.
           </p>
         </div>
 

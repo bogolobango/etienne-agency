@@ -10,6 +10,7 @@ import Hero from "@/components/Hero";
 import ProblemSection from "@/components/ProblemSection";
 import SolutionSection from "@/components/SolutionSection";
 import SocialProofSection from "@/components/SocialProofSection";
+import IndustriesSection from "@/components/IndustriesSection";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <ProblemSection />
       <SolutionSection />
       <SocialProofSection />
+      <IndustriesSection />
     </div>
   );
 }

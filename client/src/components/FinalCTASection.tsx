@@ -37,7 +37,7 @@ export default function FinalCTASection() {
   return (
     <section
       id="final-cta-section"
-      className="relative py-24 md:py-32 overflow-hidden"
+      className="relative py-16 md:py-24 lg:py-32 overflow-hidden"
     >
       {/* Background with dynamic gradient */}
       <div className="absolute inset-0">
@@ -59,18 +59,18 @@ export default function FinalCTASection() {
           }`}
         >
           {/* Large glassmorphic card */}
-          <div className="relative bg-card/70 backdrop-blur-xl rounded-3xl border border-border/50 shadow-2xl p-12 md:p-16 hover:shadow-3xl transition-all duration-500">
+          <div className="relative bg-card/70 backdrop-blur-xl rounded-3xl border border-border/50 shadow-2xl p-6 sm:p-8 md:p-12 lg:p-16 hover:shadow-3xl transition-all duration-500">
             {/* Subtle glow effect */}
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/10 via-transparent to-transparent pointer-events-none" />
 
             <div className="relative space-y-8">
               {/* Headline */}
               <div className="text-center space-y-4">
-                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
                   Let's Talk About What{" "}
                   <span className="text-primary">You're Losing</span>
                 </h2>
-                <p className="text-xl md:text-2xl text-foreground/70">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground/70">
                   A 15-minute call. No pitch deck. Just an honest conversation
                   about whether this makes sense for your business.
                 </p>

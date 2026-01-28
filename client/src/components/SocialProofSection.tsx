@@ -57,7 +57,7 @@ function AnimatedStat({ icon: Icon, value, suffix, label, description, delay }: 
   return (
     <div
       ref={statRef}
-      className="group relative bg-card/60 backdrop-blur-xl rounded-2xl border border-border/50 p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+      className="group relative bg-card/60 backdrop-blur-xl rounded-2xl border border-border/50 p-6 sm:p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
       style={{ transitionDelay: `${delay}ms` }}
     >
       {/* Subtle glow on hover */}
@@ -71,11 +71,11 @@ function AnimatedStat({ icon: Icon, value, suffix, label, description, delay }: 
 
         {/* Animated number */}
         <div className="space-y-1">
-          <div className="font-mono text-5xl md:text-6xl font-bold text-primary">
+          <div className="font-mono text-4xl sm:text-5xl md:text-6xl font-bold text-primary">
             {count}
-            <span className="text-4xl md:text-5xl">{suffix}</span>
+            <span className="text-3xl sm:text-4xl md:text-5xl">{suffix}</span>
           </div>
-          <div className="font-semibold text-lg text-foreground">{label}</div>
+          <div className="font-semibold text-base sm:text-lg text-foreground">{label}</div>
         </div>
 
         {/* Description */}
@@ -144,7 +144,7 @@ export default function SocialProofSection() {
   return (
     <section
       id="social-proof-section"
-      className="relative py-24 md:py-32 overflow-hidden"
+      className="relative py-16 md:py-24 lg:py-32 overflow-hidden"
     >
       {/* Background with stats visualization */}
       <div className="absolute inset-0">
@@ -161,14 +161,14 @@ export default function SocialProofSection() {
       <div className="container relative z-10">
         {/* Section header */}
         <div
-          className={`max-w-3xl mx-auto text-center mb-16 transition-all duration-1000 ${
+          className={`max-w-3xl mx-auto text-center mb-12 md:mb-16 transition-all duration-1000 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
             The Numbers <span className="text-primary">Don't Lie</span>
           </h2>
-          <p className="text-lg md:text-xl text-foreground/70 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-foreground/70 leading-relaxed">
             Industry benchmarks from businesses using automated response and
             booking systems:
           </p>
@@ -176,7 +176,7 @@ export default function SocialProofSection() {
 
         {/* Stats grid */}
         <div
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto transition-all duration-1000 ${
+          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-7xl mx-auto transition-all duration-1000 ${
             inView ? "opacity-100" : "opacity-0"
           }`}
         >

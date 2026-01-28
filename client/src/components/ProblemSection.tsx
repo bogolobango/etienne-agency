@@ -53,7 +53,7 @@ export default function ProblemSection() {
   return (
     <section
       id="problem-section"
-      className="relative py-24 md:py-32 overflow-hidden"
+      className="relative py-16 md:py-24 lg:py-32 overflow-hidden"
     >
       {/* Background with problem visualization image */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background">
@@ -69,15 +69,15 @@ export default function ProblemSection() {
       <div className="container relative z-10">
         {/* Section intro */}
         <div
-          className={`max-w-3xl mx-auto text-center mb-16 transition-all duration-1000 ${
+          className={`max-w-3xl mx-auto text-center mb-12 md:mb-16 transition-all duration-1000 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
             Every Missed Call Is{" "}
             <span className="text-primary">Money Walking Out the Door</span>
           </h2>
-          <p className="text-lg md:text-xl text-foreground/70 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-foreground/70 leading-relaxed">
             You know the feeling. The phone rings during a procedure. A lead
             submits a form at 9pm. Your front desk is slammed and a potential
             $5,000 client hangs up after the third ring.
@@ -90,7 +90,7 @@ export default function ProblemSection() {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <p className="text-xl font-semibold text-foreground mb-2">
+          <p className="text-lg sm:text-xl font-semibold text-foreground mb-2">
             Here's what that costs you:
           </p>
         </div>
@@ -102,7 +102,7 @@ export default function ProblemSection() {
             return (
               <div
                 key={index}
-                className={`group relative bg-card/60 backdrop-blur-xl rounded-2xl border border-border/50 p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${
+                className={`group relative bg-card/60 backdrop-blur-xl rounded-2xl border border-border/50 p-6 sm:p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${
                   inView
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
@@ -121,7 +121,7 @@ export default function ProblemSection() {
                   </div>
 
                   {/* Statistic */}
-                  <div className="font-mono text-4xl md:text-5xl font-bold text-primary">
+                  <div className="font-mono text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
                     {problem.stat}
                   </div>
 

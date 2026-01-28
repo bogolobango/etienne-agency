@@ -11,9 +11,9 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-gradient-to-b from-background to-muted/20 border-t border-border/50">
-      <div className="container py-16 md:py-20">
+      <div className="container py-12 md:py-16 lg:py-20">
         {/* Main footer content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12">
           {/* Brand column */}
           <div className="space-y-4">
             <Link href="/">

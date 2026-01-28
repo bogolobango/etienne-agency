@@ -85,33 +85,33 @@ export default function IndustriesSection() {
   return (
     <section
       id="industries-section"
-      className="relative py-24 md:py-32 overflow-hidden bg-gradient-to-b from-background via-muted/10 to-background"
+      className="relative py-16 md:py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-background via-muted/10 to-background"
     >
       <div className="container relative z-10">
         {/* Section header */}
         <div
-          className={`max-w-3xl mx-auto text-center mb-16 transition-all duration-1000 ${
+          className={`max-w-3xl mx-auto text-center mb-12 md:mb-16 transition-all duration-1000 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
             Built for Businesses That{" "}
             <span className="text-primary">Are Inbound Leads Heavy</span>
           </h2>
-          <p className="text-lg md:text-xl text-foreground/70 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-foreground/70 leading-relaxed">
             We specialize in service businesses with 3-25 locations where every
             missed call, text and DM could cost hundreds to thousands of dollars.
           </p>
         </div>
 
         {/* Industries grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-7xl mx-auto mb-12">
           {industries.map((industry, index) => {
             const Icon = industry.icon;
             return (
               <div
                 key={index}
-                className={`group relative bg-card/60 backdrop-blur-xl rounded-2xl border border-border/50 p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer ${
+                className={`group relative bg-card/60 backdrop-blur-xl rounded-2xl border border-border/50 p-6 sm:p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer ${
                   inView
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"

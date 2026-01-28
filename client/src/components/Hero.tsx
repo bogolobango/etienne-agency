@@ -50,20 +50,20 @@ export default function Hero() {
           }`}
         >
           {/* Glassmorphic card */}
-          <div className="relative bg-card/60 backdrop-blur-xl rounded-3xl border border-border/50 shadow-2xl p-12 md:p-16 hover:shadow-3xl transition-all duration-500 hover:-translate-y-1">
+          <div className="relative bg-card/60 backdrop-blur-xl rounded-3xl border border-border/50 shadow-2xl p-6 sm:p-8 md:p-12 lg:p-16 hover:shadow-3xl transition-all duration-500 hover:-translate-y-1">
             {/* Subtle glow effect */}
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/5 via-transparent to-transparent pointer-events-none" />
 
             <div className="relative space-y-8">
               {/* Headline */}
-              <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.1] tracking-tight">
+              <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-[1.15] tracking-tight">
                 Stop Losing Revenue to{" "}
                 <span className="text-primary">Missed Calls</span> and{" "}
                 <span className="text-primary">Slow Responses</span>
               </h1>
 
               {/* Subheadline */}
-              <p className="text-lg md:text-xl text-foreground/70 leading-relaxed max-w-3xl">
+              <p className="text-base sm:text-lg md:text-xl text-foreground/70 leading-relaxed max-w-3xl">
                 We handle the busywork so you don't have to. Our 24/7 Revenue
                 Recovery Framework captures every lead, books every appointment,
                 and follows up automatically, so your team can focus on what
@@ -91,8 +91,8 @@ export default function Hero() {
               </div>
 
               {/* Trust indicator */}
-              <div className="pt-8 border-t border-border/50">
-                <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
+              <div className="pt-6 md:pt-8 border-t border-border/50">
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4 md:gap-6 text-xs sm:text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                     <span className="font-mono font-medium">4-week implementation</span>

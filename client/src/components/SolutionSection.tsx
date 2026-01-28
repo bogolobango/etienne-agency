@@ -30,20 +30,20 @@ export default function SolutionSection() {
   return (
     <section
       id="solution-section"
-      className="relative py-24 md:py-32 overflow-hidden bg-gradient-to-b from-background to-muted/20"
+      className="relative py-16 md:py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-background to-muted/20"
     >
       <div className="container relative z-10">
         {/* Section header */}
         <div
-          className={`max-w-4xl mx-auto text-center mb-16 transition-all duration-1000 ${
+          className={`max-w-4xl mx-auto text-center mb-12 md:mb-16 transition-all duration-1000 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
             The{" "}
             <span className="text-primary">24/7 Revenue Recovery Framework</span>
           </h2>
-          <p className="text-lg md:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto">
             We plug directly into your existing systems and start recovering
             lost revenue within weeks—not months. No ripping out what works. No
             learning curve for your team.
@@ -54,7 +54,7 @@ export default function SolutionSection() {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Card 1: Instant Response */}
           <div
-            className={`group relative bg-card/60 backdrop-blur-xl rounded-3xl border border-border/50 p-8 md:p-10 hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 ${
+            className={`group relative bg-card/60 backdrop-blur-xl rounded-3xl border border-border/50 p-6 sm:p-8 md:p-10 hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 ${
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
             style={{ transitionDelay: "200ms" }}
@@ -68,7 +68,7 @@ export default function SolutionSection() {
               </div>
 
               {/* Title */}
-              <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground">
+              <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-foreground">
                 Instant Response
               </h3>
 
@@ -96,7 +96,7 @@ export default function SolutionSection() {
 
           {/* Card 2: Smart Scheduling */}
           <div
-            className={`group relative bg-card/60 backdrop-blur-xl rounded-3xl border border-border/50 p-8 md:p-10 hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 ${
+            className={`group relative bg-card/60 backdrop-blur-xl rounded-3xl border border-border/50 p-6 sm:p-8 md:p-10 hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 ${
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
             style={{ transitionDelay: "300ms" }}
@@ -110,7 +110,7 @@ export default function SolutionSection() {
               </div>
 
               {/* Title */}
-              <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground">
+              <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-foreground">
                 Smart Scheduling
               </h3>
 
@@ -147,7 +147,7 @@ export default function SolutionSection() {
 
           {/* Card 3: Intelligent Escalation */}
           <div
-            className={`group relative bg-card/60 backdrop-blur-xl rounded-3xl border border-border/50 p-8 md:p-10 hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 ${
+            className={`group relative bg-card/60 backdrop-blur-xl rounded-3xl border border-border/50 p-6 sm:p-8 md:p-10 hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 ${
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
             style={{ transitionDelay: "400ms" }}
@@ -161,7 +161,7 @@ export default function SolutionSection() {
               </div>
 
               {/* Title */}
-              <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground">
+              <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-foreground">
                 Intelligent Escalation
               </h3>
 

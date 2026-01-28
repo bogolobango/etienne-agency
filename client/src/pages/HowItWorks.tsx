@@ -104,17 +104,17 @@ export default function HowItWorks() {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+      <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-20 md:pt-40 md:pb-28 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-background to-background" />
         </div>
 
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
               From Overwhelmed to <span className="text-primary">Automated</span> in 4 Weeks
             </h1>
-            <p className="text-xl md:text-2xl text-foreground/70 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground/70 leading-relaxed max-w-3xl mx-auto">
               No six-month implementations. No ripping out your existing systems. We plug into what you already use and start recovering lost revenue fast.
             </p>
           </div>
@@ -122,9 +122,9 @@ export default function HowItWorks() {
       </section>
 
       {/* Timeline Section */}
-      <section className="relative py-20 md:py-28">
+      <section className="relative py-12 md:py-20 lg:py-28">
         <div className="container">
-          <div className="max-w-6xl mx-auto space-y-12">
+          <div className="max-w-6xl mx-auto space-y-8 md:space-y-12">
             {timeline.map((phase, index) => {
               const Icon = phase.icon;
               return (
@@ -142,7 +142,7 @@ export default function HowItWorks() {
                     <div className="absolute left-8 top-24 w-0.5 h-full bg-gradient-to-b from-primary/50 to-transparent hidden md:block" />
                   )}
 
-                  <div className="relative bg-card/60 backdrop-blur-xl rounded-3xl border border-border/50 p-8 md:p-12 hover:shadow-2xl transition-all duration-500 group">
+                  <div className="relative bg-card/60 backdrop-blur-xl rounded-3xl border border-border/50 p-6 sm:p-8 md:p-12 hover:shadow-2xl transition-all duration-500 group">
                     {/* Gradient overlay */}
                     <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${phase.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
 
@@ -229,15 +229,15 @@ export default function HowItWorks() {
       </section>
 
       {/* ROI Math Section */}
-      <section className="relative py-20 md:py-28">
+      <section className="relative py-12 md:py-20 lg:py-28">
         <div className="container">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-card/70 backdrop-blur-xl rounded-3xl border border-border/50 p-12 md:p-16 shadow-2xl">
+            <div className="bg-card/70 backdrop-blur-xl rounded-3xl border border-border/50 p-6 sm:p-8 md:p-12 lg:p-16 shadow-2xl">
               <div className="text-center mb-12">
-                <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
+                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6">
                   The Math That <span className="text-primary">Matters</span>
                 </h2>
-                <p className="text-xl text-foreground/70">
+                <p className="text-base sm:text-lg md:text-xl text-foreground/70">
                   The question isn't whether you can afford this. It's whether you can afford not to.
                 </p>
               </div>
@@ -272,7 +272,7 @@ export default function HowItWorks() {
               </div>
 
               <div className="mt-12 text-center">
-                <p className="text-lg font-semibold text-foreground mb-2">
+                <p className="text-base sm:text-lg font-semibold text-foreground mb-2">
                   That's the 24/7 Revenue Recovery Framework.
                 </p>
                 <p className="text-base text-foreground/60">

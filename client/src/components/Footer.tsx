@@ -20,7 +20,7 @@ export default function Footer() {
               <img
                 src="/images/logo.png"
                 alt="Etienne Agency"
-                className="h-12 w-auto cursor-pointer hover:opacity-80 transition-opacity"
+                className="w-32 h-auto cursor-pointer hover:opacity-80 transition-opacity"
               />
             </Link>
             <p className="text-sm text-foreground/60 leading-relaxed max-w-xs">

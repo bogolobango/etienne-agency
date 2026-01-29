@@ -7,6 +7,8 @@
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { usePageView } from "@/hooks/usePageView";
+import { useScrollTracking } from "@/hooks/useScrollTracking";
 import { Button } from "@/components/ui/button";
 import { 
   Zap, 
@@ -17,6 +19,9 @@ import {
 } from "lucide-react";
 
 export default function About() {
+  usePageView('About');
+  useScrollTracking('About');
+  
   const [inView, setInView] = useState(false);
 
   useEffect(() => {

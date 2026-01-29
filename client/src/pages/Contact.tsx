@@ -26,8 +26,14 @@ import {
   ArrowRight
 } from "lucide-react";
 import { toast } from "sonner";
+import { usePageView } from "@/hooks/usePageView";
+import { useScrollTracking } from "@/hooks/useScrollTracking";
+import { trackFormSubmit, trackFormFieldFocus } from "@/lib/analytics";
 
 export default function Contact() {
+  usePageView('Contact');
+  useScrollTracking('Contact');
+  
   const [inView, setInView] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -45,6 +51,14 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Track form submission
+    trackFormSubmit('Discovery Call Form', {
+      industry: formData.industry,
+      locations: formData.locations,
+      has_challenge: formData.challenge.length > 0
+    });
+    
     // Form submission logic would go here
     toast.success("Thank you! We'll be in touch within 2 hours.");
     console.log("Form submitted:", formData);

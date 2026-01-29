@@ -13,8 +13,13 @@ import SocialProofSection from "@/components/SocialProofSection";
 import IndustriesSection from "@/components/IndustriesSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
+import { usePageView } from "@/hooks/usePageView";
+import { useScrollTracking } from "@/hooks/useScrollTracking";
 
 export default function Home() {
+  usePageView('Homepage');
+  useScrollTracking('Homepage');
+  
   return (
     <div className="min-h-screen">
       <Header />

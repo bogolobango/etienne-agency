@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
+import { trackNavigationClick, trackCTAClick } from "@/lib/analytics";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -63,22 +64,34 @@ export default function Header() {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-8">
               <Link href="/how-it-works">
-                <span className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors cursor-pointer">
+                <span 
+                  className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors cursor-pointer"
+                  onClick={() => trackNavigationClick('How It Works', '/how-it-works', 'header')}
+                >
                   How It Works
                 </span>
               </Link>
               <Link href="/industries">
-                <span className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors cursor-pointer">
+                <span 
+                  className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors cursor-pointer"
+                  onClick={() => trackNavigationClick('Industries', '/industries', 'header')}
+                >
                   Industries
                 </span>
               </Link>
               <Link href="/about">
-                <span className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors cursor-pointer">
+                <span 
+                  className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors cursor-pointer"
+                  onClick={() => trackNavigationClick('About', '/about', 'header')}
+                >
                   About
                 </span>
               </Link>
               <Link href="/contact">
-                <span className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors cursor-pointer">
+                <span 
+                  className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors cursor-pointer"
+                  onClick={() => trackNavigationClick('Contact', '/contact', 'header')}
+                >
                   Contact
                 </span>
               </Link>
@@ -88,6 +101,7 @@ export default function Header() {
             <Button
               className="hidden md:inline-flex bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
               size="lg"
+              onClick={() => trackCTAClick('Schedule a Call', 'Header', 'primary')}
             >
               Schedule a Call
             </Button>
@@ -155,28 +169,28 @@ export default function Header() {
           <nav className="flex-1 overflow-y-auto p-6">
             <ul className="space-y-2">
               <li>
-                <Link href="/how-it-works" onClick={handleLinkClick}>
+                <Link href="/how-it-works" onClick={() => { handleLinkClick(); trackNavigationClick('How It Works', '/how-it-works', 'mobile_menu'); }}>
                   <span className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors cursor-pointer">
                     How It Works
                   </span>
                 </Link>
               </li>
               <li>
-                <Link href="/industries" onClick={handleLinkClick}>
+                <Link href="/industries" onClick={() => { handleLinkClick(); trackNavigationClick('Industries', '/industries', 'mobile_menu'); }}>
                   <span className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors cursor-pointer">
                     Industries
                   </span>
                 </Link>
               </li>
               <li>
-                <Link href="/about" onClick={handleLinkClick}>
+                <Link href="/about" onClick={() => { handleLinkClick(); trackNavigationClick('About', '/about', 'mobile_menu'); }}>
                   <span className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors cursor-pointer">
                     About
                   </span>
                 </Link>
               </li>
               <li>
-                <Link href="/contact" onClick={handleLinkClick}>
+                <Link href="/contact" onClick={() => { handleLinkClick(); trackNavigationClick('Contact', '/contact', 'mobile_menu'); }}>
                   <span className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors cursor-pointer">
                     Contact
                   </span>
@@ -190,7 +204,7 @@ export default function Header() {
             <Button
               className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg"
               size="lg"
-              onClick={handleLinkClick}
+              onClick={() => { handleLinkClick(); trackCTAClick('Schedule a Call', 'Mobile Menu', 'primary'); }}
             >
               Schedule a Call
             </Button>

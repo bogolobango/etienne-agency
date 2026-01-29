@@ -8,6 +8,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
 import { useEffect, useState } from "react";
+import { trackCTAClick } from "@/lib/analytics";
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -75,6 +76,7 @@ export default function Hero() {
                 <Button
                   size="lg"
                   className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 text-base px-8 py-6 h-auto"
+                  onClick={() => trackCTAClick('See How It Works', 'Hero Section', 'primary')}
                 >
                   See How It Works
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -84,6 +86,7 @@ export default function Hero() {
                   size="lg"
                   variant="outline"
                   className="bg-transparent border-2 border-border hover:bg-card text-foreground shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 text-base px-8 py-6 h-auto"
+                  onClick={() => trackCTAClick('Watch 2-Minute Demo', 'Hero Section', 'secondary')}
                 >
                   <Play className="mr-2 h-5 w-5" />
                   Watch 2-Minute Demo

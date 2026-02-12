@@ -59,7 +59,7 @@ export default function ProblemSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background">
         <div className="absolute inset-0 flex items-center justify-center opacity-20">
           <img
-            src="/images/problem-visual.png"
+            src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663030063122/KpDowGDVvjjnMMPb.png"
             alt=""
             className="w-full max-w-4xl h-auto object-contain"
           />

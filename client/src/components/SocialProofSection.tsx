@@ -151,7 +151,7 @@ export default function SocialProofSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-background to-background" />
         <div className="absolute inset-0 flex items-center justify-center opacity-10">
           <img
-            src="/images/stats-background.png"
+            src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663030063122/DUIaqfpRlmmhVLfr.png"
             alt=""
             className="w-full max-w-5xl h-auto object-contain"
           />

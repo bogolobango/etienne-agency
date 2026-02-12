@@ -33,7 +33,7 @@ export default function Hero() {
       {/* Floating background image */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <img
-          src="/images/hero-main.png"
+          src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663030063122/FtClfDncbdVKzIHc.png"
           alt=""
           className={`w-full max-w-6xl h-auto object-contain opacity-40 transition-all duration-1000 ${
             mounted ? "scale-100 opacity-40" : "scale-95 opacity-0"

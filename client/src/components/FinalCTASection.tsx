@@ -44,7 +44,7 @@ export default function FinalCTASection() {
         <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
         <div className="absolute inset-0 flex items-center justify-center opacity-20">
           <img
-            src="/images/cta-accent.png"
+            src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663030063122/PzfLcmoQgLxgXgJV.png"
             alt=""
             className="w-full max-w-4xl h-auto object-contain"
           />

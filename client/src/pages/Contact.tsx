@@ -1,5 +1,5 @@
 /**
- * Contact Page - Kinetic Minimalism Design
+ * Contact Page - Technical Mono Design
  * Discovery call scheduling form with contact options
  * Typography: Sora for headlines, Inter for body
  */
@@ -117,14 +117,14 @@ export default function Contact() {
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-20 md:pt-40 md:pb-28 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-background to-background" />
+          <div className="absolute inset-0 bg-background" />
         </div>
 
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
               Let's Talk About{" "}
-              <span className="text-primary">Your Business</span>
+              <span className="underline decoration-2 underline-offset-4">Your Business</span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground/70 leading-relaxed max-w-3xl mx-auto">
               15 minutes. No pitch deck. Just an honest conversation about whether we can help.
@@ -139,7 +139,7 @@ export default function Contact() {
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6">
-                What to <span className="text-primary">Expect</span>
+                What to <span className="underline decoration-2 underline-offset-4">Expect</span>
               </h2>
               <p className="text-base sm:text-lg text-foreground/70">
                 When you schedule a call, here's what we'll cover:
@@ -152,14 +152,14 @@ export default function Contact() {
                 return (
                   <div
                     key={index}
-                    className="bg-card/60 backdrop-blur-xl rounded-2xl border border-border/50 p-6 hover:shadow-xl transition-all duration-300"
+                    className="bg-card rounded-sm border border-border p-6 hover:shadow-sm transition-all duration-300"
                     style={{
                       opacity: inView ? 1 : 0,
                       transform: inView ? 'translateY(0)' : 'translateY(20px)',
                       transitionDelay: `${index * 100}ms`
                     }}
                   >
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-foreground mb-4">
                       <Icon className="w-5 h-5" />
                     </div>
                     <h3 className="font-display text-lg sm:text-xl font-bold text-foreground mb-2">
@@ -177,10 +177,10 @@ export default function Contact() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="relative py-12 md:py-20 bg-gradient-to-b from-background via-muted/10 to-background">
+      <section className="relative py-12 md:py-20 bg-background">
         <div className="container">
           <div className="max-w-3xl mx-auto">
-            <div className="bg-card/70 backdrop-blur-xl rounded-3xl border border-border/50 p-6 sm:p-8 md:p-12 shadow-2xl">
+            <div className="bg-card rounded-sm border border-border p-6 sm:p-8 md:p-12 shadow-sm">
               <div className="text-center mb-8">
                 <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3">
                   Schedule Your Discovery Call
@@ -309,7 +309,7 @@ export default function Contact() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-sm transition-all duration-300"
                 >
                   Schedule My Call
                   <ArrowRight className="ml-2 w-5 h-5" />
@@ -343,7 +343,7 @@ export default function Contact() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-                Quick <span className="text-primary">FAQs</span>
+                Quick <span className="underline decoration-2 underline-offset-4">FAQs</span>
               </h2>
             </div>
 
@@ -351,7 +351,7 @@ export default function Contact() {
               {faqs.map((faq, index) => (
                 <div
                   key={index}
-                  className="bg-card/60 backdrop-blur-xl rounded-2xl border border-border/50 p-6 sm:p-8"
+                  className="bg-card rounded-sm border border-border p-6 sm:p-8"
                 >
                   <h3 className="font-display text-lg sm:text-xl font-bold text-foreground mb-3">
                     {faq.question}
@@ -367,18 +367,18 @@ export default function Contact() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-12 md:py-20 bg-gradient-to-b from-background via-primary/5 to-background">
+      <section className="relative py-12 md:py-20 bg-background">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Ready When <span className="text-primary">You Are</span>
+              Ready When <span className="underline decoration-2 underline-offset-4">You Are</span>
             </h2>
             <p className="text-base sm:text-lg text-foreground/70 mb-8">
               Pick a time that works for you. We'll take it from there.
             </p>
             <Button
               size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-sm transition-all duration-300"
               onClick={() => {
                 // Scroll to form
                 document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });

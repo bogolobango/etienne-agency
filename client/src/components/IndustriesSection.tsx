@@ -1,20 +1,18 @@
 /**
- * Industries Section Component - Kinetic Minimalism Design
+ * Industries Section Component - Technical Mono Design
  * Showcases the 7 industries served with grid layout
- * Features: Hover effects, industry-specific icons, compelling copy
- * Typography: Sora for headlines, Inter for descriptions
  */
 
 import { useEffect, useState } from "react";
-import { 
-  Sparkles, 
-  Smile, 
-  Scale, 
-  Building2, 
-  Calculator, 
-  Sparkle, 
+import {
+  Sparkles,
+  Smile,
+  Scale,
+  Building2,
+  Calculator,
+  Sparkle,
   Trophy,
-  ArrowRight 
+  ArrowRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -85,20 +83,20 @@ export default function IndustriesSection() {
   return (
     <section
       id="industries-section"
-      className="relative py-16 md:py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-background via-muted/10 to-background"
+      className="relative py-16 md:py-24 lg:py-32 border-t border-border"
     >
-      <div className="container relative z-10">
+      <div className="container">
         {/* Section header */}
         <div
-          className={`max-w-3xl mx-auto text-center mb-12 md:mb-16 transition-all duration-1000 ${
+          className={`max-w-3xl mx-auto text-center mb-12 md:mb-16 transition-all duration-700 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
             Built for Businesses That{" "}
-            <span className="text-primary">Are Inbound Leads Heavy</span>
+            <span className="underline decoration-2 underline-offset-4">Are Inbound Leads Heavy</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-foreground/70 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
             We specialize in service businesses with 3-25 locations where every
             missed call, text and DM could cost hundreds to thousands of dollars.
           </p>
@@ -111,7 +109,7 @@ export default function IndustriesSection() {
             return (
               <div
                 key={index}
-                className={`group relative bg-card/60 backdrop-blur-xl rounded-2xl border border-border/50 p-6 sm:p-8 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer ${
+                className={`bg-card rounded-sm border border-border p-6 sm:p-8 transition-all duration-500 cursor-pointer hover:border-foreground ${
                   inView
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
@@ -120,36 +118,28 @@ export default function IndustriesSection() {
                   transitionDelay: `${100 + index * 50}ms`,
                 }}
               >
-                {/* Subtle glow on hover */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                <div className="relative space-y-4">
+                <div className="space-y-4">
                   {/* Icon */}
-                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="w-7 h-7" />
+                  <div className="w-12 h-12 rounded-sm bg-secondary flex items-center justify-center text-foreground">
+                    <Icon className="w-6 h-6" />
                   </div>
 
                   {/* Industry name */}
-                  <h3 className="font-display text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                  <h3 className="font-display text-xl font-bold text-foreground">
                     {industry.name}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-sm text-foreground/70 leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     {industry.description}
                   </p>
 
                   {/* Highlight badge */}
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20">
-                    <span className="font-mono text-xs font-semibold text-primary">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-secondary border border-border">
+                    <span className="font-mono text-xs font-semibold text-foreground">
                       {industry.highlight}
                     </span>
                   </div>
-                </div>
-
-                {/* Hover arrow */}
-                <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <ArrowRight className="w-5 h-5 text-primary" />
                 </div>
               </div>
             );
@@ -158,14 +148,14 @@ export default function IndustriesSection() {
 
         {/* CTA */}
         <div
-          className={`text-center transition-all duration-1000 delay-500 ${
+          className={`text-center transition-all duration-700 delay-500 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           <Button
             size="lg"
             variant="outline"
-            className="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 text-base px-8 py-6 h-auto"
+            className="border-2 text-base px-8 py-6 h-auto"
           >
             See Your Industry
             <ArrowRight className="ml-2 h-5 w-5" />

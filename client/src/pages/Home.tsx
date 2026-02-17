@@ -1,5 +1,5 @@
 /**
- * Home Page - Kinetic Minimalism with Spatial Depth
+ * Home Page - Technical Mono with Spatial Depth
  * Design: Floating cards, generous negative space, physics-based interactions
  * Color: Near-monochromatic (off-white, warm gray, slate) + electric blue accents
  * Typography: Sora (display), Inter (body), JetBrains Mono (data)

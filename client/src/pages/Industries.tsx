@@ -1,5 +1,5 @@
 /**
- * Industries Page - Kinetic Minimalism Design
+ * Industries Page - Technical Mono Design
  * Detailed breakdown of industries served with pain points and solutions
  * Typography: Sora for headlines, Inter for body, JetBrains Mono for stats
  */
@@ -145,14 +145,14 @@ export default function Industries() {
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-20 md:pt-40 md:pb-28 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-background to-background" />
+          <div className="absolute inset-0 bg-background" />
         </div>
 
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
               We Specialize in Businesses Where Every{" "}
-              <span className="text-primary">Missed Call Has a Dollar Sign</span>
+              <span className="underline decoration-2 underline-offset-4">Missed Call Has a Dollar Sign</span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground/70 leading-relaxed max-w-3xl mx-auto">
               Multi-location service businesses with high call volume and real booking value. If a slow response means lost revenue, we built this for you.
@@ -177,22 +177,20 @@ export default function Industries() {
                     transitionDelay: `${index * 100}ms`
                   }}
                 >
-                  <div className="relative bg-card/60 backdrop-blur-xl rounded-3xl border border-border/50 p-6 sm:p-8 md:p-12 hover:shadow-2xl transition-all duration-500 group">
-                    {/* Gradient overlay */}
-                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  <div className="relative bg-card rounded-sm border border-border p-6 sm:p-8 md:p-12 hover:shadow-sm transition-all duration-500 group">
 
                     <div className="relative space-y-6">
                       {/* Header */}
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                         <div className="flex items-start gap-4">
-                          <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                          <div className="w-14 h-14 rounded-sm bg-secondary flex items-center justify-center text-foreground flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
                             <Icon className="w-7 h-7" />
                           </div>
                           <div>
                             <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2">
                               {industry.name}
                             </h2>
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-mono font-semibold">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-secondary text-foreground text-sm font-mono font-semibold">
                               {industry.highlight}
                             </div>
                           </div>
@@ -217,7 +215,7 @@ export default function Industries() {
                         <ul className="space-y-2">
                           {industry.stats.map((stat, statIndex) => (
                             <li key={statIndex} className="flex items-start gap-3">
-                              <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                              <CheckCircle2 className="w-5 h-5 text-foreground flex-shrink-0 mt-0.5" />
                               <span className="text-sm sm:text-base text-foreground/70">
                                 {stat}
                               </span>
@@ -227,8 +225,8 @@ export default function Industries() {
                       </div>
 
                       {/* Solution */}
-                      <div className="space-y-3 pt-4 border-t border-border/50">
-                        <h3 className="text-sm font-semibold text-primary uppercase tracking-wider">
+                      <div className="space-y-3 pt-4 border-t border-border">
+                        <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">
                           Our Solution
                         </h3>
                         <p className="text-base sm:text-lg text-foreground/80 leading-relaxed">
@@ -245,12 +243,12 @@ export default function Industries() {
       </section>
 
       {/* Ideal Fit Section */}
-      <section className="relative py-12 md:py-20 lg:py-28 bg-gradient-to-b from-background via-muted/10 to-background">
+      <section className="relative py-12 md:py-20 lg:py-28 bg-background">
         <div className="container">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6">
-                Who We're <span className="text-primary">Best For</span>
+                Who We're <span className="underline decoration-2 underline-offset-4">Best For</span>
               </h2>
               <p className="text-base sm:text-lg md:text-xl text-foreground/70">
                 We built this for multi-location service businesses:
@@ -261,7 +259,7 @@ export default function Industries() {
               {idealFit.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-card/60 backdrop-blur-xl rounded-2xl border border-border/50 p-6 sm:p-8 hover:shadow-xl transition-all duration-300"
+                  className="bg-card rounded-sm border border-border p-6 sm:p-8 hover:shadow-sm transition-all duration-300"
                 >
                   <h3 className="font-display text-xl sm:text-2xl font-bold text-foreground mb-2">
                     {item.title}
@@ -275,7 +273,7 @@ export default function Industries() {
 
             {/* CTA */}
             <div className="text-center">
-              <div className="bg-card/70 backdrop-blur-xl rounded-3xl border border-border/50 p-8 md:p-12 shadow-xl">
+              <div className="bg-card rounded-sm border border-border p-8 md:p-12 shadow-xl">
                 <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
                   Not Sure If You're a Fit?
                 </h3>
@@ -284,7 +282,7 @@ export default function Industries() {
                 </p>
                 <Button
                   size="lg"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-sm transition-all duration-300"
                 >
                   Schedule a Call
                   <ArrowRight className="ml-2 w-5 h-5" />

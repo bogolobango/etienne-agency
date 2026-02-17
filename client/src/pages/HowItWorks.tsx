@@ -1,8 +1,6 @@
 /**
- * How It Works Page - Kinetic Minimalism Design
+ * How It Works Page - Technical Mono Design
  * 4-week implementation timeline with detailed breakdown
- * Color: Near-monochromatic (off-white, warm gray, slate) + electric blue accents
- * Typography: Sora (display), Inter (body), JetBrains Mono (data)
  */
 
 import { useEffect, useState } from "react";
@@ -44,7 +42,7 @@ export default function HowItWorks() {
         "Your true cost of slow response (usually eye-opening)",
         "The integration roadmap tailored to your stack"
       ],
-      color: "from-blue-500/20 to-blue-600/20"
+      color: "from-primary/10 to-primary/15"
     },
     {
       week: "Week 2",
@@ -57,7 +55,7 @@ export default function HowItWorks() {
         "Automated booking with real-time calendar sync",
         "Multi-channel reminder sequences to kill no-shows"
       ],
-      color: "from-primary/20 to-blue-500/20"
+      color: "from-primary/10 to-primary/20"
     },
     {
       week: "Week 3",
@@ -111,13 +109,13 @@ export default function HowItWorks() {
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-20 md:pt-40 md:pb-28 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-background to-background" />
+          <div className="absolute inset-0 bg-background" />
         </div>
 
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
-              From Overwhelmed to <span className="text-primary">Automated</span> in 4 Weeks
+              From Overwhelmed to <span className="underline decoration-2 underline-offset-4">Automated</span> in 4 Weeks
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground/70 leading-relaxed max-w-3xl mx-auto">
               No six-month implementations. No ripping out your existing systems. We plug into what you already use and start recovering lost revenue fast.
@@ -147,17 +145,17 @@ export default function HowItWorks() {
                     <div className="absolute left-8 top-24 w-0.5 h-full bg-gradient-to-b from-primary/50 to-transparent hidden md:block" />
                   )}
 
-                  <div className="relative bg-card/60 backdrop-blur-xl rounded-3xl border border-border/50 p-6 sm:p-8 md:p-12 hover:shadow-2xl transition-all duration-500 group">
+                  <div className="relative bg-card rounded-sm border border-border p-6 sm:p-8 md:p-12 hover:shadow-sm transition-all duration-500 group">
                     {/* Gradient overlay */}
-                    <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${phase.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
+                    <div className={`absolute inset-0 rounded-sm bg-gradient-to-br ${phase.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
 
                     <div className="relative grid md:grid-cols-[auto,1fr] gap-8">
                       {/* Icon & Week */}
                       <div className="flex flex-col items-center md:items-start gap-4">
-                        <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-16 h-16 rounded-sm bg-primary/10 flex items-center justify-center text-foreground group-hover:scale-105 transition-transform duration-300">
                           <Icon className="w-8 h-8" />
                         </div>
-                        <div className="font-mono text-sm font-semibold text-primary px-4 py-1.5 rounded-lg bg-primary/10 border border-primary/20">
+                        <div className="font-mono text-sm font-semibold text-foreground px-4 py-1.5 rounded-lg bg-secondary border border-border">
                           {phase.week}
                         </div>
                       </div>
@@ -180,7 +178,7 @@ export default function HowItWorks() {
                           </p>
                           {phase.outcomes.map((outcome, i) => (
                             <div key={i} className="flex items-start gap-3">
-                              <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                              <CheckCircle2 className="w-5 h-5 text-foreground flex-shrink-0 mt-0.5" />
                               <p className="text-sm text-foreground/70 leading-relaxed">
                                 {outcome}
                               </p>
@@ -198,11 +196,11 @@ export default function HowItWorks() {
       </section>
 
       {/* Integrations Section */}
-      <section className="relative py-20 md:py-28 bg-gradient-to-b from-background via-muted/10 to-background">
+      <section className="relative py-20 md:py-28 bg-background">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center mb-16">
             <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-              What We <span className="text-primary">Integrate With</span>
+              What We <span className="underline decoration-2 underline-offset-4">Integrate With</span>
             </h2>
             <p className="text-lg md:text-xl text-foreground/70 leading-relaxed">
               We work with your existing tools—no rip and replace.
@@ -213,7 +211,7 @@ export default function HowItWorks() {
             {integrations.map((integration, index) => (
               <div
                 key={index}
-                className="bg-card/60 backdrop-blur-xl rounded-2xl border border-border/50 p-8 hover:shadow-xl transition-all duration-300"
+                className="bg-card rounded-sm border border-border p-8 hover:shadow-sm transition-all duration-300"
               >
                 <h3 className="font-display text-xl font-bold text-foreground mb-3">
                   {integration.category}
@@ -237,10 +235,10 @@ export default function HowItWorks() {
       <section className="relative py-12 md:py-20 lg:py-28">
         <div className="container">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-card/70 backdrop-blur-xl rounded-3xl border border-border/50 p-6 sm:p-8 md:p-12 lg:p-16 shadow-2xl">
+            <div className="bg-card rounded-sm border border-border p-6 sm:p-8 md:p-12 lg:p-16 shadow-sm">
               <div className="text-center mb-12">
                 <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6">
-                  The Math That <span className="text-primary">Matters</span>
+                  The Math That <span className="underline decoration-2 underline-offset-4">Matters</span>
                 </h2>
                 <p className="text-base sm:text-lg md:text-xl text-foreground/70">
                   The question isn't whether you can afford this. It's whether you can afford not to.
@@ -249,29 +247,29 @@ export default function HowItWorks() {
 
               <div className="space-y-6 max-w-2xl mx-auto">
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="font-mono text-sm font-bold text-primary">1</span>
+                  <div className="w-8 h-8 rounded-sm bg-secondary flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="font-mono text-sm font-bold text-foreground">1</span>
                   </div>
                   <p className="text-base text-foreground/70 leading-relaxed">
-                    If you get <span className="font-semibold text-foreground">100 inquiries per month</span> and lose <span className="font-semibold text-foreground">20% to slow response</span>, that's <span className="font-semibold text-primary">20 lost opportunities</span>.
+                    If you get <span className="font-semibold text-foreground">100 inquiries per month</span> and lose <span className="font-semibold text-foreground">20% to slow response</span>, that's <span className="font-semibold text-foreground underline decoration-1 underline-offset-2">20 lost opportunities</span>.
                   </p>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="font-mono text-sm font-bold text-primary">2</span>
+                  <div className="w-8 h-8 rounded-sm bg-secondary flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="font-mono text-sm font-bold text-foreground">2</span>
                   </div>
                   <p className="text-base text-foreground/70 leading-relaxed">
-                    If your average customer is worth <span className="font-semibold text-foreground">$1,000</span>, that's <span className="font-semibold text-primary">$20,000 in monthly lost revenue</span>.
+                    If your average customer is worth <span className="font-semibold text-foreground">$1,000</span>, that's <span className="font-semibold text-foreground underline decoration-1 underline-offset-2">$20,000 in monthly lost revenue</span>.
                   </p>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="font-mono text-sm font-bold text-primary">3</span>
+                  <div className="w-8 h-8 rounded-sm bg-secondary flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="font-mono text-sm font-bold text-foreground">3</span>
                   </div>
                   <p className="text-base text-foreground/70 leading-relaxed">
-                    Recover even half of those, and you've added <span className="font-semibold text-primary">$10,000/month</span> to your top line.
+                    Recover even half of those, and you've added <span className="font-semibold text-foreground underline decoration-1 underline-offset-2">$10,000/month</span> to your top line.
                   </p>
                 </div>
               </div>
@@ -290,18 +288,18 @@ export default function HowItWorks() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-20 md:py-28 bg-gradient-to-b from-background via-primary/5 to-background">
+      <section className="relative py-20 md:py-28 bg-background">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center space-y-8">
             <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">
-              Ready to <span className="text-primary">Stop the Bleeding?</span>
+              Ready to <span className="underline decoration-2 underline-offset-4">Stop the Bleeding?</span>
             </h2>
             <p className="text-xl text-foreground/70">
               Let's look at your numbers together. 15 minutes, no pressure, just data.
             </p>
             <Button
               size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 text-lg px-12 py-8 h-auto"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl hover:shadow-sm transition-all duration-300 text-lg px-12 py-8 h-auto"
             >
               Schedule Your Discovery Call
               <ArrowRight className="ml-2 h-6 w-6" />

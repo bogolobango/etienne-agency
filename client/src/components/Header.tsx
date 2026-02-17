@@ -1,7 +1,6 @@
 /**
- * Header Component - Kinetic Minimalism Design
- * Floating glassmorphic header with subtle backdrop blur and mobile menu
- * Typography: Sora for logo, Inter for nav items
+ * Header Component - Technical Mono Design
+ * Fixed header with solid background on scroll and clean mobile drawer
  */
 
 import { Button } from "@/components/ui/button";
@@ -42,9 +41,9 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
           scrolled
-            ? "bg-background/80 backdrop-blur-xl border-b border-border shadow-sm"
+            ? "bg-background border-b border-border"
             : "bg-transparent"
         }`}
       >
@@ -52,11 +51,11 @@ export default function Header() {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link href="/" onClick={handleLinkClick}>
-              <div className="flex items-center gap-3 cursor-pointer group">
+              <div className="flex items-center gap-3 cursor-pointer">
                 <img
                   src="/images/logo.png"
                   alt="Etienne Agency"
-                  className="w-44 h-auto transition-transform duration-300 group-hover:scale-105"
+                  className="w-44 h-auto"
                 />
               </div>
             </Link>
@@ -64,32 +63,32 @@ export default function Header() {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-8">
               <Link href="/how-it-works">
-                <span 
-                  className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors cursor-pointer"
+                <span
+                  className="text-sm font-mono font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                   onClick={() => trackNavigationClick('How It Works', '/how-it-works', 'header')}
                 >
                   How It Works
                 </span>
               </Link>
               <Link href="/industries">
-                <span 
-                  className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors cursor-pointer"
+                <span
+                  className="text-sm font-mono font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                   onClick={() => trackNavigationClick('Industries', '/industries', 'header')}
                 >
                   Industries
                 </span>
               </Link>
               <Link href="/about">
-                <span 
-                  className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors cursor-pointer"
+                <span
+                  className="text-sm font-mono font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                   onClick={() => trackNavigationClick('About', '/about', 'header')}
                 >
                   About
                 </span>
               </Link>
               <Link href="/contact">
-                <span 
-                  className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors cursor-pointer"
+                <span
+                  className="text-sm font-mono font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                   onClick={() => trackNavigationClick('Contact', '/contact', 'header')}
                 >
                   Contact
@@ -99,7 +98,7 @@ export default function Header() {
 
             {/* Desktop CTA Button */}
             <Button
-              className="hidden md:inline-flex bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+              className="hidden md:inline-flex"
               size="lg"
               onClick={() => trackCTAClick('Schedule a Call', 'Header', 'primary')}
             >
@@ -133,7 +132,7 @@ export default function Header() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-background/80 backdrop-blur-sm z-[60] transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 bg-foreground/20 z-[60] transition-opacity duration-200 md:hidden ${
           mobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMobileMenuOpen(false)}
@@ -141,13 +140,13 @@ export default function Header() {
 
       {/* Mobile Menu Drawer */}
       <div
-        className={`fixed top-0 right-0 bottom-0 w-full max-w-sm bg-card/95 backdrop-blur-xl border-l border-border shadow-2xl z-[70] transition-transform duration-300 ease-out md:hidden ${
+        className={`fixed top-0 right-0 bottom-0 w-full max-w-sm bg-card border-l border-border z-[70] transition-transform duration-200 ease-out md:hidden ${
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex flex-col h-full">
           {/* Mobile Menu Header */}
-          <div className="flex items-center justify-between p-6 border-b border-border/50">
+          <div className="flex items-center justify-between p-6 border-b border-border">
             <Link href="/" onClick={handleLinkClick}>
               <img
                 src="/images/logo.png"
@@ -170,28 +169,28 @@ export default function Header() {
             <ul className="space-y-2">
               <li>
                 <Link href="/how-it-works" onClick={() => { handleLinkClick(); trackNavigationClick('How It Works', '/how-it-works', 'mobile_menu'); }}>
-                  <span className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors cursor-pointer">
+                  <span className="block px-4 py-3 text-base font-mono font-medium text-foreground hover:bg-muted rounded-sm transition-colors cursor-pointer">
                     How It Works
                   </span>
                 </Link>
               </li>
               <li>
                 <Link href="/industries" onClick={() => { handleLinkClick(); trackNavigationClick('Industries', '/industries', 'mobile_menu'); }}>
-                  <span className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors cursor-pointer">
+                  <span className="block px-4 py-3 text-base font-mono font-medium text-foreground hover:bg-muted rounded-sm transition-colors cursor-pointer">
                     Industries
                   </span>
                 </Link>
               </li>
               <li>
                 <Link href="/about" onClick={() => { handleLinkClick(); trackNavigationClick('About', '/about', 'mobile_menu'); }}>
-                  <span className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors cursor-pointer">
+                  <span className="block px-4 py-3 text-base font-mono font-medium text-foreground hover:bg-muted rounded-sm transition-colors cursor-pointer">
                     About
                   </span>
                 </Link>
               </li>
               <li>
                 <Link href="/contact" onClick={() => { handleLinkClick(); trackNavigationClick('Contact', '/contact', 'mobile_menu'); }}>
-                  <span className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors cursor-pointer">
+                  <span className="block px-4 py-3 text-base font-mono font-medium text-foreground hover:bg-muted rounded-sm transition-colors cursor-pointer">
                     Contact
                   </span>
                 </Link>
@@ -200,16 +199,16 @@ export default function Header() {
           </nav>
 
           {/* Mobile Menu Footer with CTA */}
-          <div className="p-6 border-t border-border/50">
+          <div className="p-6 border-t border-border">
             <Button
-              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg"
+              className="w-full"
               size="lg"
               onClick={() => { handleLinkClick(); trackCTAClick('Schedule a Call', 'Mobile Menu', 'primary'); }}
             >
               Schedule a Call
             </Button>
-            <p className="text-xs text-center text-foreground/60 mt-4">
-              15-minute call • No pitch deck
+            <p className="text-xs text-center text-muted-foreground mt-4">
+              15-minute call · No pitch deck
             </p>
           </div>
         </div>

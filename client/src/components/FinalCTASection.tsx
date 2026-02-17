@@ -1,8 +1,6 @@
 /**
- * Final CTA Section Component - Kinetic Minimalism Design
+ * Final CTA Section Component - Technical Mono Design
  * Closing call-to-action with consultation details
- * Features: Large floating card, prominent CTA, value proposition list
- * Typography: Sora for headline, Inter for body
  */
 
 import { useEffect, useState } from "react";
@@ -37,40 +35,24 @@ export default function FinalCTASection() {
   return (
     <section
       id="final-cta-section"
-      className="relative py-16 md:py-24 lg:py-32 overflow-hidden"
+      className="relative py-16 md:py-24 lg:py-32 border-t border-border"
     >
-      {/* Background with dynamic gradient */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
-        <div className="absolute inset-0 flex items-center justify-center opacity-20">
-          <img
-            src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663030063122/PzfLcmoQgLxgXgJV.png"
-            alt=""
-            className="w-full max-w-4xl h-auto object-contain"
-          />
-        </div>
-      </div>
-
-      <div className="container relative z-10">
+      <div className="container">
         {/* Main CTA card */}
         <div
-          className={`max-w-4xl mx-auto transition-all duration-1000 ${
+          className={`max-w-4xl mx-auto transition-all duration-700 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          {/* Large glassmorphic card */}
-          <div className="relative bg-card/70 backdrop-blur-xl rounded-3xl border border-border/50 shadow-2xl p-6 sm:p-8 md:p-12 lg:p-16 hover:shadow-3xl transition-all duration-500">
-            {/* Subtle glow effect */}
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/10 via-transparent to-transparent pointer-events-none" />
-
-            <div className="relative space-y-8">
+          <div className="bg-card rounded-sm border border-border p-6 sm:p-8 md:p-12 lg:p-16">
+            <div className="space-y-8">
               {/* Headline */}
               <div className="text-center space-y-4">
                 <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
                   Let's Talk About What{" "}
-                  <span className="text-primary">You're Losing</span>
+                  <span className="underline decoration-2 underline-offset-4">You're Losing</span>
                 </h2>
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground/70">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground">
                   A 15-minute call. No pitch deck. Just an honest conversation
                   about whether this makes sense for your business.
                 </p>
@@ -84,15 +66,15 @@ export default function FinalCTASection() {
                 {benefits.map((benefit, index) => (
                   <div
                     key={index}
-                    className="flex items-start gap-3 group"
+                    className={`flex items-start gap-3 transition-all duration-500 ${
+                      inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+                    }`}
                     style={{
-                      animation: inView
-                        ? `fadeIn 0.5s ease-out ${0.3 + index * 0.1}s both`
-                        : "none",
+                      transitionDelay: `${300 + index * 100}ms`,
                     }}
                   >
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300" />
-                    <p className="text-base text-foreground/70 leading-relaxed">
+                    <CheckCircle2 className="w-5 h-5 text-foreground flex-shrink-0 mt-0.5" />
+                    <p className="text-base text-muted-foreground leading-relaxed">
                       {benefit}
                     </p>
                   </div>
@@ -103,7 +85,7 @@ export default function FinalCTASection() {
               <div className="flex justify-center pt-4">
                 <Button
                   size="lg"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 text-lg px-12 py-8 h-auto"
+                  className="text-lg px-12 py-8 h-auto"
                 >
                   Schedule Your Call
                   <ArrowRight className="ml-2 h-6 w-6" />
@@ -111,19 +93,19 @@ export default function FinalCTASection() {
               </div>
 
               {/* Trust indicators */}
-              <div className="pt-8 border-t border-border/50">
+              <div className="pt-8 border-t border-border">
                 <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-primary" />
-                    <span>15 minutes, no pressure</span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-foreground" />
+                    <span className="font-mono">15 minutes, no pressure</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-primary" />
-                    <span>Honest assessment</span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-foreground" />
+                    <span className="font-mono">Honest assessment</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-primary" />
-                    <span>Clear next steps</span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-foreground" />
+                    <span className="font-mono">Clear next steps</span>
                   </div>
                 </div>
               </div>
@@ -131,20 +113,6 @@ export default function FinalCTASection() {
           </div>
         </div>
       </div>
-
-      {/* Add fadeIn animation */}
-      <style>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </section>
   );
 }

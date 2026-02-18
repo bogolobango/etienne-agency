@@ -106,31 +106,31 @@ export default function SocialProofSection() {
       value: 391,
       suffix: "%",
       label: "Higher Conversion",
-      description: "When responding within 1 minute vs. 1 hour (Velocify)",
+      description: "Leads contacted within 1 minute convert 391% more than those contacted after 1 hour (Velocify)",
       delay: 0,
     },
     {
       icon: Users,
       value: 60,
       suffix: "%",
-      label: "Automated Inquiries",
-      description: "Routine questions handled without human intervention (Arena Sports)",
+      label: "Inquiries Automated",
+      description: "Routine questions handled by AI — no human needed (Arena Sports case study)",
       delay: 100,
     },
     {
       icon: Clock,
       value: 75,
       suffix: "%",
-      label: "Time Saved",
-      description: "Leasing staff time saved on initial inquiry handling (Zumper)",
+      label: "Staff Time Saved",
+      description: "Front desk and leasing staff freed from repetitive inquiry handling (Zumper)",
       delay: 200,
     },
     {
       icon: Target,
       value: 35,
       suffix: "%",
-      label: "Fewer No-Shows",
-      description: "Reduction with automated multi-channel reminders",
+      label: "No-Show Reduction",
+      description: "Fewer no-shows with automated multi-channel reminders and one-click rescheduling",
       delay: 300,
     },
   ];
@@ -148,11 +148,10 @@ export default function SocialProofSection() {
           }`}
         >
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
-            The Numbers <span className="underline decoration-2 underline-offset-4">Don't Lie</span>
+            What Service Business Automation <span className="underline decoration-2 underline-offset-4">Actually Delivers</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
-            Industry benchmarks from businesses using automated response and
-            booking systems:
+            Real results from businesses using AI receptionist and smart scheduling systems:
           </p>
         </div>
 

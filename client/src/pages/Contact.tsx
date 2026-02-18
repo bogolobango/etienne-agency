@@ -33,7 +33,7 @@ import { trackFormSubmit, trackFormFieldFocus } from "@/lib/analytics";
 export default function Contact() {
   usePageView('Contact');
   useScrollTracking('Contact');
-  
+
   const [inView, setInView] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -46,6 +46,7 @@ export default function Contact() {
   });
 
   useEffect(() => {
+    document.title = "Book a Free Discovery Call | AI Scheduling Audit | Etienne Agency";
     setInView(true);
   }, []);
 
@@ -60,7 +61,7 @@ export default function Contact() {
     });
     
     // Form submission logic would go here
-    toast.success("Thank you! We'll be in touch within 2 hours.");
+    toast.success("Got it! We'll reach out within 2 hours to schedule your discovery call.");
     console.log("Form submitted:", formData);
   };
 
@@ -71,42 +72,46 @@ export default function Contact() {
   const expectations = [
     {
       icon: MessageCircle,
-      title: "Your current situation",
-      description: "How are leads coming in? Where are the gaps?"
+      title: "Your lead response time",
+      description: "How fast do you respond to missed calls, texts, and web forms? Where are leads falling through?"
     },
     {
       icon: CheckCircle2,
-      title: "Quick ROI assessment",
-      description: "Based on your numbers, what's the potential recovery?"
+      title: "Quick ROI estimate",
+      description: "Based on your call volume and no-show rate, how much revenue can smart scheduling recover?"
     },
     {
       icon: Clock,
       title: "Fit evaluation",
-      description: "Are we the right solution for your specific situation?"
+      description: "Does the 24/7 Revenue Recovery Framework match your business? Not every company is right for this."
     },
     {
       icon: ArrowRight,
-      title: "Next steps (if any)",
-      description: "If it makes sense, we'll discuss what comes next. If not, no hard feelings."
+      title: "Clear next steps",
+      description: "If it makes sense, we'll show you the 4-week setup. If not, no hard feelings."
     }
   ];
 
   const faqs = [
     {
-      question: "How long is the call?",
-      answer: "15 minutes. We respect your time."
+      question: "How long is the discovery call?",
+      answer: "15 minutes. No more. We respect your time."
     },
     {
       question: "Is this a sales pitch?",
-      answer: "No. It's a conversation. We'll ask about your business, share what we've seen work, and give you an honest assessment of whether we can help. If we can't, we'll tell you."
+      answer: "No. We ask about your missed calls, lead response time, and no-show rates. Then we give you an honest take on whether our AI receptionist can help. If it can't, we'll say so."
     },
     {
       question: "What if I'm not ready to commit?",
-      answer: "That's fine. Most people aren't after one call. We're happy to answer questions and let you decide on your timeline."
+      answer: "That's fine. Most people aren't after one call. You'll walk away knowing what appointment scheduling automation could do for your numbers."
     },
     {
       question: "What size business do you work with?",
-      answer: "We're best for service businesses with 3-25 locations. Smaller operations usually don't have enough volume to justify the investment. Larger enterprises typically have in-house teams."
+      answer: "Multi-location service businesses with 3–25 locations. Smaller operations usually don't have the volume to justify the investment. Larger enterprises often have in-house teams already."
+    },
+    {
+      question: "What does the virtual receptionist actually do?",
+      answer: "It answers calls, texts, and web forms in under 60 seconds. It books appointments, sends automated reminders to reduce no-shows, and follows up with leads who don't book right away. All 24/7."
     }
   ];
 
@@ -123,11 +128,11 @@ export default function Contact() {
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
-              Let's Talk About{" "}
-              <span className="underline decoration-2 underline-offset-4">Your Business</span>
+              Book a Free Call to Stop{" "}
+              <span className="underline decoration-2 underline-offset-4">Missed Calls and Lost Revenue</span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground/70 leading-relaxed max-w-3xl mx-auto">
-              15 minutes. No pitch deck. Just an honest conversation about whether we can help.
+              15 minutes. No pitch deck. Find out how an AI receptionist and appointment scheduling automation can recover the revenue you're losing today.
             </p>
           </div>
         </div>
@@ -139,10 +144,10 @@ export default function Contact() {
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6">
-                What to <span className="underline decoration-2 underline-offset-4">Expect</span>
+                What Happens on the <span className="underline decoration-2 underline-offset-4">Call</span>
               </h2>
               <p className="text-base sm:text-lg text-foreground/70">
-                When you schedule a call, here's what we'll cover:
+                Here's exactly what your 15-minute discovery call covers:
               </p>
             </div>
 
@@ -177,16 +182,16 @@ export default function Contact() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="relative py-12 md:py-20 bg-background">
+      <section id="contact-form" className="relative py-12 md:py-20 bg-background">
         <div className="container">
           <div className="max-w-3xl mx-auto">
             <div className="bg-card rounded-sm border border-border p-6 sm:p-8 md:p-12 shadow-sm">
               <div className="text-center mb-8">
                 <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3">
-                  Schedule Your Discovery Call
+                  Schedule Your Free Revenue Audit
                 </h2>
                 <p className="text-sm sm:text-base text-foreground/60">
-                  Fill out the form below and we'll be in touch within 2 hours
+                  Fill out the form. We respond within 2 hours.
                 </p>
               </div>
 
@@ -294,12 +299,12 @@ export default function Contact() {
 
                 {/* Challenge */}
                 <div className="space-y-2">
-                  <Label htmlFor="challenge">What's your biggest challenge right now? (Optional)</Label>
+                  <Label htmlFor="challenge">What's your biggest challenge? (Optional)</Label>
                   <Textarea
                     id="challenge"
                     value={formData.challenge}
                     onChange={(e) => handleChange("challenge", e.target.value)}
-                    placeholder="Tell us about your current situation..."
+                    placeholder="e.g. Missing calls after hours, high no-show rate, slow follow-up..."
                     rows={4}
                     className="bg-background/50 resize-none"
                   />
@@ -311,7 +316,7 @@ export default function Contact() {
                   size="lg"
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-sm transition-all duration-300"
                 >
-                  Schedule My Call
+                  Book My Free Discovery Call
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </form>
@@ -343,7 +348,7 @@ export default function Contact() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-                Quick <span className="underline decoration-2 underline-offset-4">FAQs</span>
+                Common Questions About Our AI Receptionist <span className="underline decoration-2 underline-offset-4">Service</span>
               </h2>
             </div>
 
@@ -371,20 +376,19 @@ export default function Contact() {
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Ready When <span className="underline decoration-2 underline-offset-4">You Are</span>
+              Stop Losing Revenue to <span className="underline decoration-2 underline-offset-4">Slow Responses</span>
             </h2>
             <p className="text-base sm:text-lg text-foreground/70 mb-8">
-              Pick a time that works for you. We'll take it from there.
+              Every day without an instant response system is revenue walking out the door. Let's fix that.
             </p>
             <Button
               size="lg"
               className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-sm transition-all duration-300"
               onClick={() => {
-                // Scroll to form
                 document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" });
               }}
             >
-              View Calendar & Book
+              Fill Out the Form Above
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </div>

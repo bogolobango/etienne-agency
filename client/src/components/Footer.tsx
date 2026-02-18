@@ -23,8 +23,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              24/7 Revenue Recovery Framework for multi-location service
-              businesses.
+              AI receptionist and appointment scheduling automation for multi-location service businesses. Powered by the 24/7 Revenue Recovery Framework.
             </p>
           </div>
 
@@ -68,16 +67,16 @@ export default function Footer() {
           {/* Industries column */}
           <div className="space-y-4">
             <h3 className="font-mono text-sm font-semibold text-foreground uppercase tracking-wider">
-              Industries
+              Industries We Serve
             </h3>
             <ul className="space-y-3">
-              <li className="text-sm text-muted-foreground">Med Spas</li>
-              <li className="text-sm text-muted-foreground">Dental Practices</li>
-              <li className="text-sm text-muted-foreground">Law Firms</li>
-              <li className="text-sm text-muted-foreground">Property Management</li>
-              <li className="text-sm text-muted-foreground">Accounting & CPA</li>
-              <li className="text-sm text-muted-foreground">Cleaning Companies</li>
-              <li className="text-sm text-muted-foreground">Sports Facilities</li>
+              <li><Link href="/industries"><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Med Spa Scheduling</span></Link></li>
+              <li><Link href="/industries"><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Dental Practice Automation</span></Link></li>
+              <li><Link href="/industries"><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Law Firm Lead Management</span></Link></li>
+              <li><Link href="/industries"><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Property Management</span></Link></li>
+              <li><Link href="/industries"><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Accounting Firm Scheduling</span></Link></li>
+              <li><Link href="/industries"><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Cleaning Companies</span></Link></li>
+              <li><Link href="/industries"><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Sports Facilities</span></Link></li>
             </ul>
           </div>
 

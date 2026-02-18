@@ -10,10 +10,11 @@ import Footer from "@/components/Footer";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
 import { Button } from "@/components/ui/button";
-import { 
-  Zap, 
-  Link2, 
-  Target, 
+import { Link } from "wouter";
+import {
+  Zap,
+  Link2,
+  Target,
   MessageSquare,
   ArrowRight
 } from "lucide-react";
@@ -21,10 +22,11 @@ import {
 export default function About() {
   usePageView('About');
   useScrollTracking('About');
-  
+
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
+    document.title = "About Etienne Agency | AI Receptionist for Service Businesses";
     setInView(true);
   }, []);
 
@@ -53,16 +55,16 @@ export default function About() {
 
   const strengths = [
     {
-      title: "Enterprise AI Experience, Applied to Your Business",
-      description: "Our founding team has sold and implemented AI solutions for some of the largest companies in the world. We've seen what actually works at scale—and more importantly, what doesn't. We took that knowledge and distilled it into something practical: the 24/7 Revenue Recovery Framework."
+      title: "Enterprise AI, Built for Local Business",
+      description: "Our founding team sold and ran AI systems for Fortune 500 companies. The same technology that large corporations pay millions for now powers your AI receptionist and automated follow-up system — through the 24/7 Revenue Recovery Framework."
     },
     {
-      title: "Deep Integration Architecture",
-      description: "Our technical team comes from data startups where integration is everything. We don't just bolt a chatbot onto your website. We connect deeply with your existing CRM, scheduling software, phone system, and communication channels—so everything flows seamlessly."
+      title: "Deep Integration, Not a Bolt-On",
+      description: "Our technical team comes from data startups where integration is everything. This isn't a chatbot on your website. Your conversational AI connects to your CRM, scheduling software, phone system, and every communication channel — so nothing falls through the cracks."
     },
     {
       title: "Results-Obsessed Mindset",
-      description: "We don't measure success by how cool the technology is. We measure it by how much revenue we help you recover. Period. If the numbers don't work, nothing else matters."
+      description: "Success isn't about the technology. It's about how much revenue you recover. If the numbers don't improve, nothing else matters. Every decision ties back to your bottom line."
     }
   ];
 
@@ -79,12 +81,12 @@ export default function About() {
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
-              We've Seen What Works{" "}
-              <span className="underline decoration-2 underline-offset-4">(And What Doesn't)</span>{" "}
-              at the Highest Levels
+              The Team Behind Your{" "}
+              <span className="underline decoration-2 underline-offset-4">AI Appointment Scheduling</span>{" "}
+              System
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground/70 leading-relaxed max-w-3xl mx-auto">
-              Etienne Agency was built by operators who spent years selling AI solutions to Fortune 500 companies—and realized the same technology could transform local service businesses.
+              Etienne Agency was built by operators who sold AI to Fortune 500 companies — and realized the same technology could stop missed calls and slow responses for local service businesses.
             </p>
           </div>
         </div>
@@ -101,17 +103,17 @@ export default function About() {
               
               <div className="space-y-6 text-base sm:text-lg text-foreground/80 leading-relaxed">
                 <p>
-                  We didn't start by building software. We started by watching small businesses bleed money.
+                  Small businesses lose money every day to missed calls, slow follow-up, and no-shows. Their front desks are overwhelmed. Their leads call competitors.
                 </p>
-                
+
                 <p>
-                  After years of selling enterprise AI systems to massive corporations, we noticed something: the same technology that Fortune 500 companies pay millions for could solve problems that local businesses face every day. Missed calls. Slow follow-up. No-shows. Overwhelmed front desks.
+                  After years selling enterprise AI systems, we saw that Fortune 500 technology could fix these problems. But local businesses couldn't afford a $500,000 setup and a 12-month rollout.
                 </p>
-                
+
                 <p>
-                  The difference? Those businesses couldn't afford a $500,000 implementation and a 12-month rollout. They needed something that worked now, fit their existing systems, and actually delivered ROI in weeks—not years.
+                  They needed a virtual receptionist that worked now. One that fit their current tools. One that delivered ROI in weeks — not years.
                 </p>
-                
+
                 <p className="text-foreground font-semibold text-xl sm:text-2xl">
                   So we built it.
                 </p>
@@ -164,7 +166,7 @@ export default function About() {
                 Our <span className="underline decoration-2 underline-offset-4">Approach</span>
               </h2>
               <p className="text-base sm:text-lg md:text-xl text-foreground/70">
-                We believe in:
+                Four rules guide every project:
               </p>
             </div>
 
@@ -204,18 +206,20 @@ export default function About() {
           <div className="max-w-4xl mx-auto">
             <div className="bg-card rounded-sm border border-border p-8 md:p-12 lg:p-16 shadow-sm text-center">
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6">
-                Let's See If We Can <span className="underline decoration-2 underline-offset-4">Help</span>
+                See If the 24/7 Revenue Recovery Framework <span className="underline decoration-2 underline-offset-4">Fits Your Business</span>
               </h2>
               <p className="text-base sm:text-lg md:text-xl text-foreground/70 mb-8 max-w-2xl mx-auto">
-                No pressure, no pitch deck. Just an honest conversation about your business and whether our approach makes sense for you.
+                No pressure. No pitch deck. 15 minutes to find out if we can recover the revenue you're losing to missed calls and slow responses.
               </p>
-              <Button
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-sm transition-all duration-300"
-              >
-                Schedule a Call
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
+              <Link href="/contact">
+                <Button
+                  size="lg"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-sm transition-all duration-300"
+                >
+                  Book a Free Discovery Call
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

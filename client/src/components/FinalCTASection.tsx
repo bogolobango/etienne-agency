@@ -6,6 +6,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { Link } from "wouter";
 
 export default function FinalCTASection() {
   const [inView, setInView] = useState(false);
@@ -27,9 +28,9 @@ export default function FinalCTASection() {
   }, []);
 
   const benefits = [
-    "Your current response times and where leads are falling through the cracks",
-    "What recovery looks like for your specific situation",
-    "Whether we're the right fit (sometimes we're not, and we'll tell you)",
+    "Your current lead response time and where missed calls cost you the most",
+    "A quick ROI estimate based on your call volume and no-show rate",
+    "Whether the 24/7 Revenue Recovery Framework fits your business (sometimes it doesn't, and we'll say so)",
   ];
 
   return (
@@ -49,12 +50,11 @@ export default function FinalCTASection() {
               {/* Headline */}
               <div className="text-center space-y-4">
                 <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                  Let's Talk About What{" "}
-                  <span className="underline decoration-2 underline-offset-4">You're Losing</span>
+                  Find Out What{" "}
+                  <span className="underline decoration-2 underline-offset-4">Missed Calls Cost You</span>
                 </h2>
                 <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground">
-                  A 15-minute call. No pitch deck. Just an honest conversation
-                  about whether this makes sense for your business.
+                  15-minute call. No pitch deck. Just an honest look at your numbers.
                 </p>
               </div>
 
@@ -83,13 +83,15 @@ export default function FinalCTASection() {
 
               {/* CTA Button */}
               <div className="flex justify-center pt-4">
-                <Button
-                  size="lg"
-                  className="text-lg px-12 py-8 h-auto"
-                >
-                  Schedule Your Call
-                  <ArrowRight className="ml-2 h-6 w-6" />
-                </Button>
+                <Link href="/contact">
+                  <Button
+                    size="lg"
+                    className="text-lg px-12 py-8 h-auto"
+                  >
+                    Get Your Free Revenue Audit
+                    <ArrowRight className="ml-2 h-6 w-6" />
+                  </Button>
+                </Link>
               </div>
 
               {/* Trust indicators */}

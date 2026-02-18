@@ -5,6 +5,7 @@
  * Typography: Sora (display), Inter (body), JetBrains Mono (data)
  */
 
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import ProblemSection from "@/components/ProblemSection";
@@ -19,7 +20,11 @@ import { useScrollTracking } from "@/hooks/useScrollTracking";
 export default function Home() {
   usePageView('Homepage');
   useScrollTracking('Homepage');
-  
+
+  useEffect(() => {
+    document.title = "AI Appointment Scheduling & Virtual Receptionist | Etienne Agency";
+  }, []);
+
   return (
     <div className="min-h-screen">
       <Header />

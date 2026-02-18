@@ -97,13 +97,15 @@ export default function Header() {
             </nav>
 
             {/* Desktop CTA Button */}
-            <Button
-              className="hidden md:inline-flex"
-              size="lg"
-              onClick={() => trackCTAClick('Schedule a Call', 'Header', 'primary')}
-            >
-              Schedule a Call
-            </Button>
+            <Link href="/contact">
+              <Button
+                className="hidden md:inline-flex"
+                size="lg"
+                onClick={() => trackCTAClick('Book a Free Call', 'Header', 'primary')}
+              >
+                Book a Free Call
+              </Button>
+            </Link>
 
             {/* Mobile Menu Button */}
             <Button
@@ -200,13 +202,15 @@ export default function Header() {
 
           {/* Mobile Menu Footer with CTA */}
           <div className="p-6 border-t border-border">
-            <Button
-              className="w-full"
-              size="lg"
-              onClick={() => { handleLinkClick(); trackCTAClick('Schedule a Call', 'Mobile Menu', 'primary'); }}
-            >
-              Schedule a Call
-            </Button>
+            <Link href="/contact" onClick={handleLinkClick}>
+              <Button
+                className="w-full"
+                size="lg"
+                onClick={() => trackCTAClick('Book a Free Call', 'Mobile Menu', 'primary')}
+              >
+                Book a Free Call
+              </Button>
+            </Link>
             <p className="text-xs text-center text-muted-foreground mt-4">
               15-minute call · No pitch deck
             </p>

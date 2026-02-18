@@ -4,8 +4,9 @@
  */
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Link } from "wouter";
 import { trackCTAClick } from "@/lib/analytics";
 
 export default function Hero() {
@@ -48,32 +49,36 @@ export default function Hero() {
 
               {/* Subheadline */}
               <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl">
-                We handle the busywork so you don't have to. Our 24/7 Revenue
-                Recovery Framework captures every lead, books every appointment,
-                and follows up automatically, so your team can focus on what
-                actually grows your business.
+                Our AI receptionist answers every call in under 60 seconds. It books appointments, sends reminders, and follows up with leads — 24/7. No extra staff needed.
+              </p>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-3xl">
+                Built for med spas, dental offices, law firms, and property managers with 3–25 locations.
               </p>
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Button
-                  size="lg"
-                  className="text-base px-8 py-6 h-auto"
-                  onClick={() => trackCTAClick('See How It Works', 'Hero Section', 'primary')}
-                >
-                  See How It Works
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
+                <Link href="/contact">
+                  <Button
+                    size="lg"
+                    className="text-base px-8 py-6 h-auto w-full sm:w-auto"
+                    onClick={() => trackCTAClick('Book a Free Discovery Call', 'Hero Section', 'primary')}
+                  >
+                    Book a Free Discovery Call
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
 
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-2 text-base px-8 py-6 h-auto"
-                  onClick={() => trackCTAClick('Watch 2-Minute Demo', 'Hero Section', 'secondary')}
-                >
-                  <Play className="mr-2 h-5 w-5" />
-                  Watch 2-Minute Demo
-                </Button>
+                <Link href="/how-it-works">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-2 text-base px-8 py-6 h-auto w-full sm:w-auto"
+                    onClick={() => trackCTAClick('See How It Works', 'Hero Section', 'secondary')}
+                  >
+                    See How It Works
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
               </div>
 
               {/* Trust indicator */}
@@ -81,15 +86,15 @@ export default function Hero() {
                 <div className="flex flex-wrap items-center gap-3 sm:gap-4 md:gap-6 text-xs sm:text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-foreground" />
-                    <span className="font-mono font-medium">4-week implementation</span>
+                    <span className="font-mono font-medium">Live in 4 weeks</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-foreground" />
-                    <span className="font-mono font-medium">No rip & replace</span>
+                    <span className="font-mono font-medium">Works with your current tools</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-foreground" />
-                    <span className="font-mono font-medium">24/7 automated response</span>
+                    <span className="font-mono font-medium">AI appointment scheduling 24/7</span>
                   </div>
                 </div>
               </div>

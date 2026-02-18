@@ -15,6 +15,7 @@ import {
   ArrowRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 export default function IndustriesSection() {
   const [inView, setInView] = useState(false);
@@ -93,12 +94,11 @@ export default function IndustriesSection() {
           }`}
         >
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
-            Built for Businesses That{" "}
-            <span className="underline decoration-2 underline-offset-4">Are Inbound Leads Heavy</span>
+            Built for{" "}
+            <span className="underline decoration-2 underline-offset-4">Multi-Location Service Businesses</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
-            We specialize in service businesses with 3-25 locations where every
-            missed call, text and DM could cost hundreds to thousands of dollars.
+            3–25 locations. High call volume. Real booking value. If a missed call costs you hundreds, our virtual receptionist was built for you.
           </p>
         </div>
 
@@ -152,14 +152,16 @@ export default function IndustriesSection() {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <Button
-            size="lg"
-            variant="outline"
-            className="border-2 text-base px-8 py-6 h-auto"
-          >
-            See Your Industry
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          <Link href="/industries">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-2 text-base px-8 py-6 h-auto"
+            >
+              See How It Works for Your Industry
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

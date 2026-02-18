@@ -40,7 +40,7 @@ export default function HowItWorks() {
       outcomes: [
         "Exactly how many leads you're losing and why",
         "Your true cost of slow response (usually eye-opening)",
-        "The integration roadmap tailored to your stack"
+        "The integration roadmap built for your stack"
       ],
       color: "from-primary/10 to-primary/15"
     },

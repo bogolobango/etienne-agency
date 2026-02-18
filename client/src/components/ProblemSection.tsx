@@ -29,22 +29,22 @@ export default function ProblemSection() {
     {
       icon: PhoneOff,
       stat: "78%",
-      description: "of customers choose the first business that responds. If you're not first, you're last.",
+      description: "of customers book with the first business that responds. Slow lead response time hands them to your competitor.",
     },
     {
       icon: Clock,
       stat: "100x",
-      description: "more likely to connect with leads when responding within 5 minutes vs. 30 minutes.",
+      description: "more likely to connect when you respond in 5 minutes vs. 30. An instant response system closes the gap.",
     },
     {
       icon: TrendingDown,
       stat: "42 hours",
-      description: "average response time to a lead. By then, your competitor already closed the deal.",
+      description: "is the average lead response time. Your competitor already closed the deal by then.",
     },
     {
       icon: CalendarX,
-      stat: "20-40%",
-      description: "of appointments become no-shows without proper reminder systems.",
+      stat: "20–40%",
+      description: "of appointments become no-shows without automated reminders. That's thousands in lost revenue each month.",
     },
   ];
 
@@ -62,12 +62,10 @@ export default function ProblemSection() {
         >
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
             Every Missed Call Is{" "}
-            <span className="underline decoration-2 underline-offset-4">Money Walking Out the Door</span>
+            <span className="underline decoration-2 underline-offset-4">Revenue Lost Forever</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
-            You know the feeling. The phone rings during a procedure. A lead
-            submits a form at 9pm. Your front desk is slammed and a potential
-            $5,000 client hangs up after the third ring.
+            The phone rings during a procedure. A lead submits a form at 9pm. Your front desk is slammed. A $5,000 client hangs up after three rings. Without an AI receptionist, that money goes to your competitor.
           </p>
         </div>
 
@@ -127,7 +125,7 @@ export default function ProblemSection() {
         >
           <p className="text-xl md:text-2xl font-semibold text-foreground">
             You didn't build your business to babysit a phone.{" "}
-            <span className="underline decoration-2 underline-offset-4">Let's fix this.</span>
+            <span className="underline decoration-2 underline-offset-4">A virtual receptionist fixes this.</span>
           </p>
         </div>
       </div>

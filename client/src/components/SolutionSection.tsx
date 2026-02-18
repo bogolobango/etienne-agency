@@ -42,9 +42,7 @@ export default function SolutionSection() {
             <span className="underline decoration-2 underline-offset-4">24/7 Revenue Recovery Framework</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            We plug directly into your existing systems and start recovering
-            lost revenue within weeks—not months. No ripping out what works. No
-            learning curve for your team.
+            Our conversational AI plugs into your current tools and starts recovering lost revenue in weeks — not months. No ripping out what works. No learning curve.
           </p>
         </div>
 
@@ -63,7 +61,7 @@ export default function SolutionSection() {
               </div>
 
               <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-foreground">
-                Instant Response
+                Instant Response System
               </h3>
 
               {/* Visual element */}
@@ -77,9 +75,7 @@ export default function SolutionSection() {
               </div>
 
               <p className="text-base text-muted-foreground leading-relaxed">
-                Every inquiry gets answered in under 60 seconds. Calls, texts,
-                web forms, social messages—24 hours a day, 7 days a week. Your
-                leads never wait, never wonder, never wander to a competitor.
+                Your AI receptionist answers every call, text, web form, and social message in under 60 seconds. 24/7, 365 days a year. Leads never wait. They never call your competitor.
               </p>
             </div>
           </div>
@@ -123,9 +119,7 @@ export default function SolutionSection() {
               </div>
 
               <p className="text-base text-muted-foreground leading-relaxed">
-                Qualified leads get booked directly into your calendar.
-                Automated reminders at 24 hours and 2 hours cut no-shows by
-                30-40%. One-click rescheduling keeps appointments on the books.
+                AI appointment scheduling books qualified leads right into your calendar. Automated reminders at 24 hours and 2 hours cut no-shows by 30–40%. One-click rescheduling keeps appointments on the books.
               </p>
             </div>
           </div>
@@ -164,9 +158,7 @@ export default function SolutionSection() {
               </div>
 
               <p className="text-base text-muted-foreground leading-relaxed">
-                Routine questions get handled automatically. High-value
-                opportunities and urgent issues get routed to your team with
-                full context. You focus on what moves the needle.
+                Routine questions get handled automatically. High-value leads and urgent issues get routed to your team with full context. Your staff focuses on work that grows revenue.
               </p>
             </div>
           </div>
@@ -181,11 +173,10 @@ export default function SolutionSection() {
             <div className="space-y-6 h-full flex flex-col justify-between">
               <div className="space-y-4">
                 <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground">
-                  Seamless Integration
+                  Plug-In Integration
                 </h3>
                 <p className="text-base text-muted-foreground leading-relaxed">
-                  Works with your existing CRM, scheduling software, and phone
-                  system. No rip and replace.
+                  Connects to your CRM, scheduling software, and phone system in days. No rip and replace. Your automated follow-up system runs on the tools you already use.
                 </p>
               </div>
 

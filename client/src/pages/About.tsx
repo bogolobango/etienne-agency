@@ -72,7 +72,7 @@ export default function About() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 overflow-hidden">
+      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 overflow-hidden section-gradient-hero">
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.1] mb-6">
@@ -80,34 +80,60 @@ export default function About() {
               <span className="highlight-purple">AI appointment scheduling</span>{" "}
               system
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-12">
               Etienne Agency was built by operators who sold AI to Fortune 500 companies — and realized the same technology could stop missed calls and slow responses for local service businesses.
             </p>
+            {/* Team photo */}
+            <div className="max-w-2xl mx-auto">
+              <div className="rounded-2xl overflow-hidden shadow-xl border border-white/60" style={{ aspectRatio: '16/7' }}>
+                <img
+                  src="/images/team-workspace.jpg"
+                  alt="Etienne Agency team"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Story Section */}
-      <section className="relative py-20 md:py-28 lg:py-36 bg-section-alt">
+      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt">
         <div className="container">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground text-center mb-10">
-              Our Story
-            </h2>
-
-            <div className="space-y-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
-              <p>
-                Small businesses lose money every day to missed calls, slow follow-up, and no-shows. Their front desks are overwhelmed. Their leads call competitors.
-              </p>
-              <p>
-                After years selling enterprise AI systems, we saw that Fortune 500 technology could fix these problems. But local businesses couldn't afford a $500,000 setup and a 12-month rollout.
-              </p>
-              <p>
-                They needed a virtual receptionist that worked now. One that fit their current tools. One that delivered ROI in weeks — not years.
-              </p>
-              <p className="font-display text-2xl sm:text-3xl text-foreground italic text-center pt-4">
-                So we built it.
-              </p>
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+              {/* Left: story text */}
+              <div>
+                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-10">
+                  Our Story
+                </h2>
+                <div className="space-y-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
+                  <p>
+                    Small businesses lose money every day to missed calls, slow follow-up, and no-shows. Their front desks are overwhelmed. Their leads call competitors.
+                  </p>
+                  <p>
+                    After years selling enterprise AI systems, we saw that Fortune 500 technology could fix these problems. But local businesses couldn't afford a $500,000 setup and a 12-month rollout.
+                  </p>
+                  <p>
+                    They needed a virtual receptionist that worked now. One that fit their current tools. One that delivered ROI in weeks — not years.
+                  </p>
+                  <p className="font-display text-2xl sm:text-3xl text-foreground italic text-center pt-4">
+                    So we built it.
+                  </p>
+                </div>
+              </div>
+              {/* Right: sidebar accent photo */}
+              <div className="hidden md:block">
+                <div className="rounded-2xl overflow-hidden shadow-lg border border-border/30" style={{ aspectRatio: '4/5' }}>
+                  <img
+                    src="/images/about-story.jpg"
+                    alt="Planning session"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -128,7 +154,7 @@ export default function About() {
               {strengths.map((strength, index) => (
                 <div
                   key={index}
-                  className="bg-background rounded-2xl border border-border/50 p-6 sm:p-8 transition-all duration-500 hover:shadow-md"
+                  className="card-premium p-6 sm:p-8 transition-all duration-500"
                   style={{
                     opacity: inView ? 1 : 0,
                     transform: inView ? 'translateY(0)' : 'translateY(20px)',
@@ -149,7 +175,7 @@ export default function About() {
       </section>
 
       {/* Our Approach Section */}
-      <section className="relative py-20 md:py-28 lg:py-36 bg-section-alt">
+      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-cta">
         <div className="container">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16 md:mb-20">
@@ -168,14 +194,14 @@ export default function About() {
                 return (
                   <div
                     key={index}
-                    className="bg-background rounded-2xl border border-border/50 p-6 sm:p-8 transition-all duration-500 hover:shadow-md"
+                    className="card-on-alt p-6 sm:p-8 transition-all duration-500"
                     style={{
                       opacity: inView ? 1 : 0,
                       transform: inView ? 'translateY(0)' : 'translateY(20px)',
                       transitionDelay: `${index * 100}ms`
                     }}
                   >
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
+                    <div className="icon-container-lg mb-4">
                       <Icon className="w-5 h-5" />
                     </div>
                     <h3 className="font-display text-lg sm:text-xl text-foreground mb-3">
@@ -205,7 +231,7 @@ export default function About() {
             </p>
             <Link href="/contact">
               <Button
-                className="rounded-full px-8 py-6 h-auto text-base bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25"
+                className="rounded-full px-8 py-6 h-auto text-base bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl shadow-primary/30 btn-primary-pill"
               >
                 Book a Free Discovery Call
                 <ArrowRight className="ml-2 w-4 h-4" />

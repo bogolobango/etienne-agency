@@ -46,8 +46,21 @@ export default function ProblemSection() {
   return (
     <section
       id="problem-section"
-      className="relative py-20 md:py-28 lg:py-36 bg-section-alt"
+      className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden"
     >
+      {/* Decorative front-desk photo accent */}
+      <div className="absolute right-0 top-0 w-72 h-full pointer-events-none hidden xl:block" aria-hidden="true">
+        <div
+          style={{
+            backgroundImage: "url('/images/front-desk.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.06,
+            position: "absolute",
+            inset: 0,
+          }}
+        />
+      </div>
       <div className="container">
         {/* Section intro */}
         <div
@@ -80,7 +93,7 @@ export default function ProblemSection() {
           {problems.map((problem, index) => (
             <div
               key={index}
-              className={`bg-background rounded-2xl p-6 sm:p-8 shadow-sm border border-border/30 hover:border-primary/20 hover:shadow-md transition-all duration-500 ${
+              className={`card-on-alt p-6 sm:p-8 transition-all duration-500 ${
                 inView
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"

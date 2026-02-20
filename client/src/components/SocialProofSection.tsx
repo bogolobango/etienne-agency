@@ -52,7 +52,7 @@ function AnimatedStat({ value, suffix, label, description, delay }: StatProps) {
   return (
     <div
       ref={statRef}
-      className="bg-background rounded-2xl p-6 sm:p-8 shadow-sm transition-all duration-500"
+      className="bg-background rounded-2xl p-6 sm:p-8 shadow-sm border border-border/30 hover:border-primary/20 hover:shadow-md transition-all duration-500"
       style={{ transitionDelay: `${delay}ms` }}
     >
       <div className="space-y-3">
@@ -150,7 +150,7 @@ export default function SocialProofSection() {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <div className="relative">
+          <div className="relative bg-primary/[0.03] rounded-2xl p-8 sm:p-10">
             <div className="quote-mark text-center leading-none mb-[-1.5rem]">&ldquo;</div>
             <blockquote className="font-display italic text-xl sm:text-2xl md:text-3xl text-foreground leading-snug mb-4">
               The AI handles 60% of our routine inquiries now. My front desk team finally has time to deliver great service instead of answering the same five questions on repeat.

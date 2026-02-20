@@ -123,7 +123,7 @@ export default function SolutionSection() {
 
                   {/* Visual placeholder — rounded corners + soft shadow */}
                   <div className={isEven ? '' : 'md:[direction:ltr]'}>
-                    <div className="bg-section-alt rounded-2xl p-8 md:p-12 shadow-sm">
+                    <div className="bg-section-alt rounded-2xl p-8 md:p-12 shadow-sm border border-border/30">
                       <div className="flex items-center justify-center h-40 md:h-48">
                         <div className="text-center">
                           <Icon className="w-12 h-12 text-primary/60 mx-auto mb-4" />

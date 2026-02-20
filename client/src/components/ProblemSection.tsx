@@ -80,7 +80,7 @@ export default function ProblemSection() {
           {problems.map((problem, index) => (
             <div
               key={index}
-              className={`bg-background rounded-2xl p-6 sm:p-8 shadow-sm transition-all duration-500 ${
+              className={`bg-background rounded-2xl p-6 sm:p-8 shadow-sm border border-border/30 hover:border-primary/20 hover:shadow-md transition-all duration-500 ${
                 inView
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"

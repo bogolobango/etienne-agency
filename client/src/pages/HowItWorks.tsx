@@ -97,7 +97,7 @@ export default function HowItWorks() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div id="main-content" className="min-h-screen">
       <Header />
 
       {/* Hero Section */}

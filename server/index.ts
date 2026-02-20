@@ -2,15 +2,161 @@ import express from "express";
 import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
+import fs from "fs";
+import helmet from "helmet";
+import cors from "cors";
+import rateLimit from "express-rate-limit";
+import morgan from "morgan";
+import nodemailer from "nodemailer";
+import { contactSchema, type ContactFormData } from "./contact.schema.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// ---------------------------------------------------------------------------
+// Email notification helper
+// ---------------------------------------------------------------------------
+async function sendNotificationEmail(data: ContactFormData) {
+  if (!process.env.SMTP_HOST) return;
+
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: parseInt(process.env.SMTP_PORT || "587"),
+    secure: process.env.SMTP_SECURE === "true",
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
+
+  const industryLabels: Record<string, string> = {
+    medspa: "Med Spa",
+    dental: "Dental",
+    law: "Law Firm",
+    property: "Property Management",
+    accounting: "Accounting",
+    cleaning: "Cleaning",
+    sports: "Sports Facility",
+    other: "Other",
+  };
+
+  await transporter.sendMail({
+    from: process.env.SMTP_FROM || "noreply@etienneagency.com",
+    to: process.env.NOTIFY_EMAIL || "jim@etienneagency.com",
+    subject: `New Discovery Call Request: ${data.name} — ${data.company}`,
+    html: `
+      <div style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #7C3AED;">New Discovery Call Request</h2>
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr><td style="padding: 8px 0; color: #6B7280; width: 140px;">Name</td><td style="padding: 8px 0; font-weight: 600;">${data.name}</td></tr>
+          <tr><td style="padding: 8px 0; color: #6B7280;">Email</td><td style="padding: 8px 0;"><a href="mailto:${data.email}">${data.email}</a></td></tr>
+          <tr><td style="padding: 8px 0; color: #6B7280;">Phone</td><td style="padding: 8px 0;"><a href="tel:${data.phone}">${data.phone}</a></td></tr>
+          <tr><td style="padding: 8px 0; color: #6B7280;">Company</td><td style="padding: 8px 0;">${data.company}</td></tr>
+          <tr><td style="padding: 8px 0; color: #6B7280;">Industry</td><td style="padding: 8px 0;">${industryLabels[data.industry] || data.industry}</td></tr>
+          <tr><td style="padding: 8px 0; color: #6B7280;">Locations</td><td style="padding: 8px 0;">${data.locations}</td></tr>
+          ${data.challenge ? `<tr><td style="padding: 8px 0; color: #6B7280; vertical-align: top;">Challenge</td><td style="padding: 8px 0;">${data.challenge}</td></tr>` : ""}
+        </table>
+        <hr style="margin: 24px 0; border: none; border-top: 1px solid #E5E7EB;" />
+        <p style="color: #9CA3AF; font-size: 12px;">Submitted at ${new Date().toISOString()}</p>
+      </div>
+    `,
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Server bootstrap
+// ---------------------------------------------------------------------------
 async function startServer() {
   const app = express();
   const server = createServer(app);
 
-  // Serve static files from dist/public in production
+  // --- Logging ---
+  app.use(
+    morgan(process.env.NODE_ENV === "production" ? "combined" : "dev")
+  );
+
+  // --- Security headers ---
+  app.use(
+    helmet({
+      contentSecurityPolicy: false, // Vite injects inline scripts; CSP breaks them
+    })
+  );
+
+  // --- CORS ---
+  app.use(
+    cors({
+      origin: process.env.CORS_ORIGIN || true,
+      credentials: true,
+    })
+  );
+
+  // --- Body parsing ---
+  app.use(express.json({ limit: "100kb" }));
+
+  // --- Health check (fix #9) ---
+  app.get("/api/health", (_req, res) => {
+    res.json({ status: "ok", timestamp: new Date().toISOString() });
+  });
+
+  // --- Contact form rate limiter (fix #3) ---
+  const contactLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 5, // 5 submissions per window per IP
+    message: { error: "Too many submissions. Please try again later." },
+    standardHeaders: true,
+    legacyHeaders: false,
+  });
+
+  // --- Contact form endpoint (fixes #1 + #4) ---
+  app.post("/api/contact", contactLimiter, async (req, res) => {
+    const result = contactSchema.safeParse(req.body);
+
+    if (!result.success) {
+      res.status(400).json({
+        error: "Validation failed",
+        details: result.error.issues.map((i) => ({
+          field: i.path.join("."),
+          message: i.message,
+        })),
+      });
+      return;
+    }
+
+    const data = result.data;
+    const submission = {
+      ...data,
+      submittedAt: new Date().toISOString(),
+      ip: req.ip,
+    };
+
+    // Persist to local JSON log (works even without a DB)
+    try {
+      const dataDir = path.resolve(__dirname, "..", "data");
+      if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
+      const logFile = path.join(dataDir, "contact-submissions.json");
+      const existing = fs.existsSync(logFile)
+        ? JSON.parse(fs.readFileSync(logFile, "utf-8"))
+        : [];
+      existing.push(submission);
+      fs.writeFileSync(logFile, JSON.stringify(existing, null, 2));
+    } catch (err) {
+      console.error("Failed to save submission to file:", err);
+    }
+
+    // Send email notification (silent-fail if SMTP not configured)
+    try {
+      await sendNotificationEmail(data);
+    } catch (err) {
+      console.error("Failed to send email notification:", err);
+    }
+
+    res.json({
+      success: true,
+      message: "Thank you! We'll reach out within 2 hours.",
+    });
+  });
+
+  // --- Static files ---
   const staticPath =
     process.env.NODE_ENV === "production"
       ? path.resolve(__dirname, "public")
@@ -18,13 +164,12 @@ async function startServer() {
 
   app.use(express.static(staticPath));
 
-  // Handle client-side routing - serve index.html for all routes
+  // --- SPA fallback ---
   app.get("*", (_req, res) => {
     res.sendFile(path.join(staticPath, "index.html"));
   });
 
   const port = process.env.PORT || 3000;
-
   server.listen(port, () => {
     console.log(`Server running on http://localhost:${port}/`);
   });

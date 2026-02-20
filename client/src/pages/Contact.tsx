@@ -49,15 +49,38 @@ export default function Contact() {
     setInView(true);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    trackFormSubmit('Discovery Call Form', {
-      industry: formData.industry,
-      locations: formData.locations,
-      has_challenge: formData.challenge.length > 0
-    });
-    toast.success("Got it! We'll reach out within 2 hours to schedule your discovery call.");
-    console.log("Form submitted:", formData);
+    setSubmitting(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        toast.error(result.error || "Something went wrong. Please try again.");
+        return;
+      }
+
+      trackFormSubmit('Discovery Call Form', {
+        industry: formData.industry,
+        locations: formData.locations,
+        has_challenge: formData.challenge.length > 0
+      });
+      toast.success("Got it! We'll reach out within 2 hours to schedule your discovery call.");
+      setFormData({ name: "", email: "", phone: "", company: "", industry: "", locations: "", challenge: "" });
+    } catch {
+      toast.error("Network error. Please check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleChange = (field: string, value: string) => {
@@ -80,7 +103,7 @@ export default function Contact() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div id="main-content" className="min-h-screen">
       <Header />
 
       {/* Hero */}
@@ -217,9 +240,9 @@ export default function Contact() {
                   <Label htmlFor="challenge" className="font-sans text-sm">What's your biggest challenge? (Optional)</Label>
                   <Textarea id="challenge" value={formData.challenge} onChange={(e) => handleChange("challenge", e.target.value)} placeholder="e.g. Missing calls after hours, high no-show rate, slow follow-up..." rows={4} className="rounded-lg resize-none" />
                 </div>
-                <Button type="submit" className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25 py-6 h-auto text-base">
-                  Book My Free Discovery Call
-                  <ArrowRight className="ml-2 w-4 h-4" />
+                <Button type="submit" disabled={submitting} className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25 py-6 h-auto text-base disabled:opacity-60">
+                  {submitting ? "Sending..." : "Book My Free Discovery Call"}
+                  {!submitting && <ArrowRight className="ml-2 w-4 h-4" />}
                 </Button>
               </form>
             </div>

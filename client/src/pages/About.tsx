@@ -68,7 +68,7 @@ export default function About() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div id="main-content" className="min-h-screen">
       <Header />
 
       {/* Hero Section */}

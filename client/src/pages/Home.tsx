@@ -16,16 +16,49 @@ import Footer from "@/components/Footer";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Etienne Agency",
+  description:
+    "AI receptionist and appointment scheduling automation for multi-location service businesses.",
+  url: "https://etienneagency.com",
+  email: "jim@etienneagency.com",
+  areaServed: "US",
+  serviceType: [
+    "AI Receptionist",
+    "Appointment Scheduling Automation",
+    "Lead Response Automation",
+  ],
+  knowsAbout: [
+    "Med Spas",
+    "Dental Practices",
+    "Law Firms",
+    "Property Management",
+    "Accounting Firms",
+  ],
+};
+
 export default function Home() {
   usePageView('Homepage');
   useScrollTracking('Homepage');
 
   useEffect(() => {
     document.title = "AI Appointment Scheduling & Virtual Receptionist | Etienne Agency";
+
+    // Inject JSON-LD structured data
+    const existing = document.getElementById("json-ld-home");
+    if (!existing) {
+      const script = document.createElement("script");
+      script.id = "json-ld-home";
+      script.type = "application/ld+json";
+      script.textContent = JSON.stringify(jsonLd);
+      document.head.appendChild(script);
+    }
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div id="main-content" className="min-h-screen">
       <Header />
       <Hero />
       <ProblemSection />

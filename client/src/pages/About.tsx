@@ -1,7 +1,6 @@
 /**
- * About Page - Technical Mono Design
+ * About Page - Tango Editorial Design
  * Company story, team background, and approach philosophy
- * Typography: Sora for headlines, Inter for body
  */
 
 import { useEffect, useState } from "react";
@@ -73,19 +72,15 @@ export default function About() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-20 md:pt-40 md:pb-28 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-background" />
-        </div>
-
+      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 overflow-hidden">
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
-              The Team Behind Your{" "}
-              <span className="underline decoration-2 underline-offset-4">AI Appointment Scheduling</span>{" "}
-              System
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.1] mb-6">
+              The team behind your{" "}
+              <span className="highlight-purple">AI appointment scheduling</span>{" "}
+              system
             </h1>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground/70 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
               Etienne Agency was built by operators who sold AI to Fortune 500 companies — and realized the same technology could stop missed calls and slow responses for local service businesses.
             </p>
           </div>
@@ -93,61 +88,57 @@ export default function About() {
       </section>
 
       {/* Story Section */}
-      <section className="relative py-12 md:py-20 lg:py-28">
+      <section className="relative py-20 md:py-28 lg:py-36 bg-section-alt">
         <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-card rounded-sm border border-border p-6 sm:p-8 md:p-12 lg:p-16 shadow-xl">
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6 md:mb-8">
-                Our Story
-              </h2>
-              
-              <div className="space-y-6 text-base sm:text-lg text-foreground/80 leading-relaxed">
-                <p>
-                  Small businesses lose money every day to missed calls, slow follow-up, and no-shows. Their front desks are overwhelmed. Their leads call competitors.
-                </p>
+          <div className="max-w-3xl mx-auto">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground text-center mb-10">
+              Our Story
+            </h2>
 
-                <p>
-                  After years selling enterprise AI systems, we saw that Fortune 500 technology could fix these problems. But local businesses couldn't afford a $500,000 setup and a 12-month rollout.
-                </p>
-
-                <p>
-                  They needed a virtual receptionist that worked now. One that fit their current tools. One that delivered ROI in weeks — not years.
-                </p>
-
-                <p className="text-foreground font-semibold text-xl sm:text-2xl">
-                  So we built it.
-                </p>
-              </div>
+            <div className="space-y-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
+              <p>
+                Small businesses lose money every day to missed calls, slow follow-up, and no-shows. Their front desks are overwhelmed. Their leads call competitors.
+              </p>
+              <p>
+                After years selling enterprise AI systems, we saw that Fortune 500 technology could fix these problems. But local businesses couldn't afford a $500,000 setup and a 12-month rollout.
+              </p>
+              <p>
+                They needed a virtual receptionist that worked now. One that fit their current tools. One that delivered ROI in weeks — not years.
+              </p>
+              <p className="font-display text-2xl sm:text-3xl text-foreground italic text-center pt-4">
+                So we built it.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* What We Bring Section */}
-      <section className="relative py-12 md:py-20 lg:py-28 bg-background">
+      <section className="relative py-20 md:py-28 lg:py-36">
         <div className="container">
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12 md:mb-16">
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6">
-                What We Bring to the <span className="underline decoration-2 underline-offset-4">Table</span>
+            <div className="text-center mb-16 md:mb-20">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
+                What we bring to the{" "}
+                <span className="highlight-coral">table</span>
               </h2>
             </div>
 
-            <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {strengths.map((strength, index) => (
                 <div
                   key={index}
-                  className="bg-card rounded-sm border border-border p-6 sm:p-8 hover:shadow-sm transition-all duration-500"
+                  className="bg-background rounded-2xl border border-border/50 p-6 sm:p-8 transition-all duration-500 hover:shadow-md"
                   style={{
                     opacity: inView ? 1 : 0,
                     transform: inView ? 'translateY(0)' : 'translateY(20px)',
                     transitionDelay: `${index * 150}ms`
                   }}
                 >
-                  <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-4">
+                  <h3 className="font-display text-xl sm:text-2xl text-foreground mb-4">
                     {strength.title}
                   </h3>
-                  <p className="text-base sm:text-lg text-foreground/70 leading-relaxed">
+                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                     {strength.description}
                   </p>
                 </div>
@@ -158,38 +149,39 @@ export default function About() {
       </section>
 
       {/* Our Approach Section */}
-      <section className="relative py-12 md:py-20 lg:py-28">
+      <section className="relative py-20 md:py-28 lg:py-36 bg-section-alt">
         <div className="container">
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12 md:mb-16">
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6">
-                Our <span className="underline decoration-2 underline-offset-4">Approach</span>
+            <div className="text-center mb-16 md:mb-20">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
+                Our{" "}
+                <span className="highlight-green">approach</span>
               </h2>
-              <p className="text-base sm:text-lg md:text-xl text-foreground/70">
+              <p className="text-base sm:text-lg text-muted-foreground">
                 Four rules guide every project:
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {principles.map((principle, index) => {
                 const Icon = principle.icon;
                 return (
                   <div
                     key={index}
-                    className="group bg-card rounded-sm border border-border p-6 sm:p-8 hover:shadow-sm transition-all duration-500"
+                    className="bg-background rounded-2xl border border-border/50 p-6 sm:p-8 transition-all duration-500 hover:shadow-md"
                     style={{
                       opacity: inView ? 1 : 0,
                       transform: inView ? 'translateY(0)' : 'translateY(20px)',
                       transitionDelay: `${index * 100}ms`
                     }}
                   >
-                    <div className="w-12 h-12 rounded-sm bg-secondary flex items-center justify-center text-foreground mb-4 group-hover:scale-105 transition-transform duration-300">
-                      <Icon className="w-6 h-6" />
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
+                      <Icon className="w-5 h-5" />
                     </div>
-                    <h3 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-foreground mb-3">
+                    <h3 className="font-display text-lg sm:text-xl text-foreground mb-3">
                       {principle.title}
                     </h3>
-                    <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                       {principle.description}
                     </p>
                   </div>
@@ -201,26 +193,24 @@ export default function About() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-12 md:py-20 lg:py-28 bg-background">
+      <section className="relative py-20 md:py-28 lg:py-36">
         <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-card rounded-sm border border-border p-8 md:p-12 lg:p-16 shadow-sm text-center">
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6">
-                See If the 24/7 Revenue Recovery Framework <span className="underline decoration-2 underline-offset-4">Fits Your Business</span>
-              </h2>
-              <p className="text-base sm:text-lg md:text-xl text-foreground/70 mb-8 max-w-2xl mx-auto">
-                No pressure. No pitch deck. 15 minutes to find out if we can recover the revenue you're losing to missed calls and slow responses.
-              </p>
-              <Link href="/contact">
-                <Button
-                  size="lg"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-sm transition-all duration-300"
-                >
-                  Book a Free Discovery Call
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              </Link>
-            </div>
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
+              See if the 24/7 Revenue Recovery Framework{" "}
+              <span className="highlight-purple">fits your business</span>
+            </h2>
+            <p className="text-base sm:text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
+              No pressure. No pitch deck. 15 minutes to find out if we can recover the revenue you're losing to missed calls and slow responses.
+            </p>
+            <Link href="/contact">
+              <Button
+                className="rounded-full px-8 py-6 h-auto text-base bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25"
+              >
+                Book a Free Discovery Call
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

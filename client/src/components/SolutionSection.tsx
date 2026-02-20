@@ -1,10 +1,11 @@
 /**
- * Solution Section Component - Technical Mono Design
- * 24/7 Revenue Recovery Framework with three pillars
+ * Solution Section Component - Tango Editorial Design
+ * Step-based feature sections with editorial headlines, colored keyword highlights,
+ * visual placeholders with rounded corners and soft shadows
  */
 
 import { useEffect, useState } from "react";
-import { Zap, Calendar, ArrowUpRight } from "lucide-react";
+import { Zap, Calendar, ArrowUpRight, Plug } from "lucide-react";
 
 export default function SolutionSection() {
   const [inView, setInView] = useState(false);
@@ -16,7 +17,7 @@ export default function SolutionSection() {
           setInView(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
 
     const element = document.getElementById("solution-section");
@@ -25,176 +26,116 @@ export default function SolutionSection() {
     return () => observer.disconnect();
   }, []);
 
+  const steps = [
+    {
+      step: "Step 1",
+      title: "Instant",
+      titleRest: " response system",
+      highlightClass: "highlight-purple",
+      icon: Zap,
+      description: "Your AI receptionist answers every call, text, web form, and social message in under 60 seconds. 24/7, 365 days a year. Leads never wait. They never call your competitor.",
+      visual: "< 60 seconds response time",
+    },
+    {
+      step: "Step 2",
+      title: "Smart",
+      titleRest: " scheduling",
+      highlightClass: "highlight-coral",
+      icon: Calendar,
+      description: "AI appointment scheduling books qualified leads right into your calendar. Automated reminders at 24 hours and 2 hours cut no-shows by 30–40%. One-click rescheduling keeps appointments on the books.",
+      visual: "Auto-booked & confirmed",
+    },
+    {
+      step: "Step 3",
+      title: "Intelligent",
+      titleRest: " escalation",
+      highlightClass: "highlight-green",
+      icon: ArrowUpRight,
+      description: "Routine questions get handled automatically. High-value leads and urgent issues get routed to your team with full context. Your staff focuses on work that grows revenue.",
+      visual: "Smart routing to your team",
+    },
+    {
+      step: "Step 4",
+      title: "Plug-in",
+      titleRest: " integration",
+      highlightClass: "highlight-purple",
+      icon: Plug,
+      description: "Connects to your CRM, scheduling software, and phone system in days. No rip and replace. Your automated follow-up system runs on the tools you already use.",
+      visual: "CRM · Calendar · Phone · SMS · Email",
+    },
+  ];
+
   return (
     <section
       id="solution-section"
-      className="relative py-16 md:py-24 lg:py-32 border-t border-border"
+      className="relative py-20 md:py-28 lg:py-36"
     >
       <div className="container">
         {/* Section header */}
         <div
-          className={`max-w-4xl mx-auto text-center mb-12 md:mb-16 transition-all duration-700 ${
+          className={`max-w-3xl mx-auto text-center mb-16 md:mb-24 transition-all duration-700 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] text-foreground leading-[1.1] mb-6">
             The{" "}
-            <span className="underline decoration-2 underline-offset-4">24/7 Revenue Recovery Framework</span>
+            <span className="highlight-purple">24/7 Revenue Recovery</span>{" "}
+            Framework
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             Our conversational AI plugs into your current tools and starts recovering lost revenue in weeks — not months. No ripping out what works. No learning curve.
           </p>
         </div>
 
-        {/* Grid layout - 2x2 */}
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Card 1: Instant Response */}
-          <div
-            className={`bg-card rounded-sm border border-border p-6 sm:p-8 md:p-10 transition-all duration-500 ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-            style={{ transitionDelay: "200ms" }}
-          >
-            <div className="space-y-6">
-              <div className="inline-flex items-center justify-center w-10 h-10 rounded-sm bg-secondary text-foreground font-mono font-bold text-lg">
-                1
-              </div>
-
-              <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-foreground">
-                Instant Response System
-              </h3>
-
-              {/* Visual element */}
-              <div className="relative h-32 bg-secondary rounded-sm p-6 overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <Zap className="w-12 h-12 text-foreground" />
-                </div>
-                <div className="absolute bottom-4 left-6 font-mono text-xs text-foreground font-semibold">
-                  &lt; 60 seconds
-                </div>
-              </div>
-
-              <p className="text-base text-muted-foreground leading-relaxed">
-                Your AI receptionist answers every call, text, web form, and social message in under 60 seconds. 24/7, 365 days a year. Leads never wait. They never call your competitor.
-              </p>
-            </div>
-          </div>
-
-          {/* Card 2: Smart Scheduling */}
-          <div
-            className={`bg-card rounded-sm border border-border p-6 sm:p-8 md:p-10 transition-all duration-500 ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-            style={{ transitionDelay: "300ms" }}
-          >
-            <div className="space-y-6">
-              <div className="inline-flex items-center justify-center w-10 h-10 rounded-sm bg-secondary text-foreground font-mono font-bold text-lg">
-                2
-              </div>
-
-              <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-foreground">
-                Smart Scheduling
-              </h3>
-
-              {/* Visual element - Calendar grid */}
-              <div className="relative h-32 bg-secondary rounded-sm p-6">
-                <div className="grid grid-cols-4 gap-2">
-                  {[...Array(12)].map((_, i) => (
-                    <div
-                      key={i}
-                      className={`h-6 rounded-sm ${
-                        i === 4 || i === 7
-                          ? "bg-foreground"
-                          : "bg-border"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <div className="absolute bottom-4 right-6 flex items-center gap-1 text-foreground">
-                  <Calendar className="w-4 h-4" />
-                  <span className="font-mono text-xs font-semibold">
-                    Auto-booked
+        {/* Step-based feature sections */}
+        <div className="max-w-5xl mx-auto space-y-20 md:space-y-28">
+          {steps.map((item, index) => {
+            const Icon = item.icon;
+            const isEven = index % 2 === 0;
+            return (
+              <div
+                key={index}
+                className={`transition-all duration-700 ${
+                  inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                }`}
+                style={{ transitionDelay: `${200 + index * 150}ms` }}
+              >
+                {/* Step label */}
+                <div className="text-center mb-6">
+                  <span className="text-sm uppercase tracking-wider text-muted-foreground font-medium">
+                    {item.step}
                   </span>
                 </div>
-              </div>
 
-              <p className="text-base text-muted-foreground leading-relaxed">
-                AI appointment scheduling books qualified leads right into your calendar. Automated reminders at 24 hours and 2 hours cut no-shows by 30–40%. One-click rescheduling keeps appointments on the books.
-              </p>
-            </div>
-          </div>
+                {/* Headline */}
+                <h3 className="font-display text-2xl sm:text-3xl md:text-4xl text-foreground text-center leading-[1.15] mb-8">
+                  <span className={item.highlightClass}>{item.title}</span>
+                  {item.titleRest}
+                </h3>
 
-          {/* Card 3: Intelligent Escalation */}
-          <div
-            className={`bg-card rounded-sm border border-border p-6 sm:p-8 md:p-10 transition-all duration-500 ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-            style={{ transitionDelay: "400ms" }}
-          >
-            <div className="space-y-6">
-              <div className="inline-flex items-center justify-center w-10 h-10 rounded-sm bg-secondary text-foreground font-mono font-bold text-lg">
-                3
-              </div>
-
-              <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-foreground">
-                Intelligent Escalation
-              </h3>
-
-              {/* Visual element - Flow diagram */}
-              <div className="relative h-32 bg-secondary rounded-sm p-6">
-                <div className="flex items-center justify-between h-full">
-                  <div className="flex flex-col gap-2">
-                    <div className="h-3 w-16 bg-border rounded-sm" />
-                    <div className="h-3 w-12 bg-border rounded-sm" />
-                    <div className="h-3 w-14 bg-border rounded-sm" />
+                {/* Content grid: text + visual */}
+                <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center ${isEven ? '' : 'md:[direction:rtl]'}`}>
+                  <div className={isEven ? '' : 'md:[direction:ltr]'}>
+                    <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
-                  <ArrowUpRight className="w-8 h-8 text-foreground" />
-                  <div className="flex items-center justify-center w-16 h-16 rounded-sm bg-foreground text-background">
-                    <span className="text-xs font-mono font-bold">
-                      VIP
-                    </span>
+
+                  {/* Visual placeholder — rounded corners + soft shadow */}
+                  <div className={isEven ? '' : 'md:[direction:ltr]'}>
+                    <div className="bg-section-alt rounded-2xl p-8 md:p-12 shadow-sm">
+                      <div className="flex items-center justify-center h-40 md:h-48">
+                        <div className="text-center">
+                          <Icon className="w-12 h-12 text-primary/60 mx-auto mb-4" />
+                          <p className="text-sm font-medium text-muted-foreground">{item.visual}</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <p className="text-base text-muted-foreground leading-relaxed">
-                Routine questions get handled automatically. High-value leads and urgent issues get routed to your team with full context. Your staff focuses on work that grows revenue.
-              </p>
-            </div>
-          </div>
-
-          {/* Card 4: Integration highlight */}
-          <div
-            className={`bg-secondary rounded-sm border border-border p-8 md:p-10 transition-all duration-500 ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-            style={{ transitionDelay: "500ms" }}
-          >
-            <div className="space-y-6 h-full flex flex-col justify-between">
-              <div className="space-y-4">
-                <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground">
-                  Plug-In Integration
-                </h3>
-                <p className="text-base text-muted-foreground leading-relaxed">
-                  Connects to your CRM, scheduling software, and phone system in days. No rip and replace. Your automated follow-up system runs on the tools you already use.
-                </p>
-              </div>
-
-              {/* Integration icons grid */}
-              <div className="grid grid-cols-3 gap-3">
-                {["CRM", "Cal", "Phone", "SMS", "Email", "Web"].map(
-                  (label, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center justify-center h-14 rounded-sm bg-card border border-border text-xs font-mono font-semibold text-muted-foreground hover:text-foreground hover:border-foreground transition-colors duration-200"
-                    >
-                      {label}
-                    </div>
-                  )
-                )}
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

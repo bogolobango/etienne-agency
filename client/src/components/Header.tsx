@@ -1,6 +1,6 @@
 /**
- * Header Component - Technical Mono Design
- * Fixed header with solid background on scroll and clean mobile drawer
+ * Header Component - Tango Editorial Design
+ * Minimal sticky nav with logo left, plain text links, pill CTA right
  */
 
 import { Button } from "@/components/ui/button";
@@ -21,12 +21,10 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when clicking a link
   const handleLinkClick = () => {
     setMobileMenuOpen(false);
   };
 
-  // Prevent body scroll when menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -41,21 +39,21 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-background border-b border-border"
+            ? "bg-background/95 backdrop-blur-sm shadow-sm"
             : "bg-transparent"
         }`}
       >
         <div className="container">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-[68px]">
             {/* Logo */}
             <Link href="/" onClick={handleLinkClick}>
               <div className="flex items-center gap-3 cursor-pointer">
                 <img
                   src="/images/logo.png"
                   alt="Etienne Agency"
-                  className="w-44 h-auto"
+                  className="w-36 h-auto"
                 />
               </div>
             </Link>
@@ -64,7 +62,7 @@ export default function Header() {
             <nav className="hidden md:flex items-center gap-8">
               <Link href="/how-it-works">
                 <span
-                  className="text-sm font-mono font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                   onClick={() => trackNavigationClick('How It Works', '/how-it-works', 'header')}
                 >
                   How It Works
@@ -72,7 +70,7 @@ export default function Header() {
               </Link>
               <Link href="/industries">
                 <span
-                  className="text-sm font-mono font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                   onClick={() => trackNavigationClick('Industries', '/industries', 'header')}
                 >
                   Industries
@@ -80,7 +78,7 @@ export default function Header() {
               </Link>
               <Link href="/about">
                 <span
-                  className="text-sm font-mono font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                   onClick={() => trackNavigationClick('About', '/about', 'header')}
                 >
                   About
@@ -88,7 +86,7 @@ export default function Header() {
               </Link>
               <Link href="/contact">
                 <span
-                  className="text-sm font-mono font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                   onClick={() => trackNavigationClick('Contact', '/contact', 'header')}
                 >
                   Contact
@@ -96,22 +94,20 @@ export default function Header() {
               </Link>
             </nav>
 
-            {/* Desktop CTA Button */}
+            {/* Desktop CTA Button — pill shape */}
             <Link href="/contact">
               <Button
-                className="hidden md:inline-flex"
-                size="lg"
-                onClick={() => trackCTAClick('Book a Free Call', 'Header', 'primary')}
+                className="hidden md:inline-flex rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/90"
+                size="default"
+                onClick={() => trackCTAClick('Get Started', 'Header', 'primary')}
               >
-                Book a Free Call
+                Get Started
               </Button>
             </Link>
 
             {/* Mobile Menu Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
+            <button
+              className="md:hidden p-2 text-foreground"
               onClick={() => setMobileMenuOpen(true)}
             >
               <svg
@@ -123,18 +119,18 @@ export default function Header() {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={2}
+                  strokeWidth={1.5}
                   d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
-            </Button>
+            </button>
           </div>
         </div>
       </header>
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-foreground/20 z-[60] transition-opacity duration-200 md:hidden ${
+        className={`fixed inset-0 bg-black/20 z-[60] transition-opacity duration-300 md:hidden ${
           mobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMobileMenuOpen(false)}
@@ -142,7 +138,7 @@ export default function Header() {
 
       {/* Mobile Menu Drawer */}
       <div
-        className={`fixed top-0 right-0 bottom-0 w-full max-w-sm bg-card border-l border-border z-[70] transition-transform duration-200 ease-out md:hidden ${
+        className={`fixed top-0 right-0 bottom-0 w-full max-w-sm bg-background z-[70] transition-transform duration-300 ease-out md:hidden ${
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -153,46 +149,44 @@ export default function Header() {
               <img
                 src="/images/logo.png"
                 alt="Etienne Agency"
-                className="h-10 w-auto"
+                className="h-8 w-auto"
               />
             </Link>
-            <Button
-              variant="ghost"
-              size="icon"
+            <button
               onClick={() => setMobileMenuOpen(false)}
-              className="hover:bg-muted"
+              className="p-2 text-muted-foreground hover:text-foreground transition-colors"
             >
-              <X className="w-6 h-6" />
-            </Button>
+              <X className="w-5 h-5" />
+            </button>
           </div>
 
           {/* Mobile Navigation Links */}
           <nav className="flex-1 overflow-y-auto p-6">
-            <ul className="space-y-2">
+            <ul className="space-y-1">
               <li>
                 <Link href="/how-it-works" onClick={() => { handleLinkClick(); trackNavigationClick('How It Works', '/how-it-works', 'mobile_menu'); }}>
-                  <span className="block px-4 py-3 text-base font-mono font-medium text-foreground hover:bg-muted rounded-sm transition-colors cursor-pointer">
+                  <span className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors cursor-pointer">
                     How It Works
                   </span>
                 </Link>
               </li>
               <li>
                 <Link href="/industries" onClick={() => { handleLinkClick(); trackNavigationClick('Industries', '/industries', 'mobile_menu'); }}>
-                  <span className="block px-4 py-3 text-base font-mono font-medium text-foreground hover:bg-muted rounded-sm transition-colors cursor-pointer">
+                  <span className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors cursor-pointer">
                     Industries
                   </span>
                 </Link>
               </li>
               <li>
                 <Link href="/about" onClick={() => { handleLinkClick(); trackNavigationClick('About', '/about', 'mobile_menu'); }}>
-                  <span className="block px-4 py-3 text-base font-mono font-medium text-foreground hover:bg-muted rounded-sm transition-colors cursor-pointer">
+                  <span className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors cursor-pointer">
                     About
                   </span>
                 </Link>
               </li>
               <li>
                 <Link href="/contact" onClick={() => { handleLinkClick(); trackNavigationClick('Contact', '/contact', 'mobile_menu'); }}>
-                  <span className="block px-4 py-3 text-base font-mono font-medium text-foreground hover:bg-muted rounded-sm transition-colors cursor-pointer">
+                  <span className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors cursor-pointer">
                     Contact
                   </span>
                 </Link>
@@ -204,16 +198,13 @@ export default function Header() {
           <div className="p-6 border-t border-border">
             <Link href="/contact" onClick={handleLinkClick}>
               <Button
-                className="w-full"
+                className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
                 size="lg"
-                onClick={() => trackCTAClick('Book a Free Call', 'Mobile Menu', 'primary')}
+                onClick={() => trackCTAClick('Get Started', 'Mobile Menu', 'primary')}
               >
-                Book a Free Call
+                Get Started
               </Button>
             </Link>
-            <p className="text-xs text-center text-muted-foreground mt-4">
-              15-minute call · No pitch deck
-            </p>
           </div>
         </div>
       </div>

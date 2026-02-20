@@ -39,15 +39,24 @@ export default function Hero() {
             Our AI receptionist answers every call in under 60 seconds. It books appointments, sends reminders, and follows up with leads — 24/7. No extra staff needed.
           </p>
 
-          {/* CTA Button — centered pill */}
-          <div className="flex justify-center mb-8">
+          {/* CTA Buttons — primary pill + secondary outline pill */}
+          <div className="flex flex-col sm:flex-row justify-center gap-3 mb-8">
             <Link href="/contact">
               <Button
                 className="rounded-full px-8 py-6 h-auto text-base bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25"
-                onClick={() => trackCTAClick('Book a Free Discovery Call', 'Hero Section', 'primary')}
+                onClick={() => trackCTAClick('Get Started', 'Hero Section', 'primary')}
               >
-                Book a Free Discovery Call
+                Get Started
                 <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button
+                variant="outline"
+                className="rounded-full px-8 py-6 h-auto text-base border-2 border-border hover:bg-muted"
+                onClick={() => trackCTAClick('Book a Demo', 'Hero Section', 'secondary')}
+              >
+                Book a Demo
               </Button>
             </Link>
           </div>

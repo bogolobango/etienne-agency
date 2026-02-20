@@ -88,7 +88,7 @@
   --highlight-purple: #7C3AED;
   --highlight-coral: #F87171;
   --highlight-green: #10B981;
-  --section-alt: #F9FAFB;
+  --section-alt: #F9F8FC;
 }
 
 .dark {
@@ -208,9 +208,9 @@
     left: 0;
     right: 0;
     bottom: 2px;
-    height: 6px;
+    height: 8px;
     background: var(--highlight-purple);
-    opacity: 0.3;
+    opacity: 0.35;
     border-radius: 2px;
   }
 
@@ -224,9 +224,9 @@
     left: 0;
     right: 0;
     bottom: 2px;
-    height: 6px;
+    height: 8px;
     background: var(--highlight-coral);
-    opacity: 0.3;
+    opacity: 0.35;
     border-radius: 2px;
   }
 
@@ -240,9 +240,9 @@
     left: 0;
     right: 0;
     bottom: 2px;
-    height: 6px;
+    height: 8px;
     background: var(--highlight-green);
-    opacity: 0.3;
+    opacity: 0.35;
     border-radius: 2px;
   }
 
@@ -252,6 +252,6 @@
     font-size: 6rem;
     line-height: 1;
     color: var(--highlight-purple);
-    opacity: 0.2;
+    opacity: 0.25;
   }
 }

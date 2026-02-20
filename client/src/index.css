@@ -40,78 +40,94 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Tango Editorial — accent palette */
+  --color-highlight-purple: var(--highlight-purple);
+  --color-highlight-coral: var(--highlight-coral);
+  --color-highlight-green: var(--highlight-green);
+  --color-section-alt: var(--section-alt);
 }
 
 :root {
-  /* Technical Mono — High-contrast achromatic with sharp geometry */
-  --primary: oklch(0.145 0 0); /* Near-black */
-  --primary-foreground: oklch(0.985 0 0); /* White */
-  --sidebar-primary: oklch(0.145 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --chart-1: oklch(0.25 0 0);
-  --chart-2: oklch(0.40 0 0);
-  --chart-3: oklch(0.55 0 0);
-  --chart-4: oklch(0.70 0 0);
-  --chart-5: oklch(0.85 0 0);
-  --radius: 0.25rem;
-  --background: oklch(0.985 0 0); /* Clean white */
-  --foreground: oklch(0.145 0 0); /* Near-black */
-  --card: oklch(1 0 0); /* Solid white — no transparency */
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --secondary: oklch(0.96 0 0); /* Very light gray */
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.46 0 0);
-  --accent: oklch(0.96 0 0);
-  --accent-foreground: oklch(0.145 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.87 0 0); /* Visible hairline border */
-  --input: oklch(0.87 0 0);
-  --ring: oklch(0.145 0 0);
-  --sidebar: oklch(0.98 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-accent: oklch(0.96 0 0);
-  --sidebar-accent-foreground: oklch(0.145 0 0);
-  --sidebar-border: oklch(0.87 0 0);
-  --sidebar-ring: oklch(0.145 0 0);
+  /* Tango Editorial — Clean, airy SaaS-editorial */
+  --primary: #7C3AED;
+  --primary-foreground: #ffffff;
+  --sidebar-primary: #7C3AED;
+  --sidebar-primary-foreground: #ffffff;
+  --chart-1: #7C3AED;
+  --chart-2: #F87171;
+  --chart-3: #10B981;
+  --chart-4: #6366F1;
+  --chart-5: #F59E0B;
+  --radius: 0.75rem;
+  --background: #ffffff;
+  --foreground: #111827;
+  --card: #ffffff;
+  --card-foreground: #111827;
+  --popover: #ffffff;
+  --popover-foreground: #111827;
+  --secondary: #F9FAFB;
+  --secondary-foreground: #1F2937;
+  --muted: #F3F4F6;
+  --muted-foreground: #6B7280;
+  --accent: #F9FAFB;
+  --accent-foreground: #111827;
+  --destructive: #EF4444;
+  --destructive-foreground: #ffffff;
+  --border: #E5E7EB;
+  --input: #E5E7EB;
+  --ring: #7C3AED;
+  --sidebar: #F9FAFB;
+  --sidebar-foreground: #111827;
+  --sidebar-accent: #F3F4F6;
+  --sidebar-accent-foreground: #111827;
+  --sidebar-border: #E5E7EB;
+  --sidebar-ring: #7C3AED;
+
+  /* Highlight colors for keyword accents */
+  --highlight-purple: #7C3AED;
+  --highlight-coral: #F87171;
+  --highlight-green: #10B981;
+  --section-alt: #F9FAFB;
 }
 
 .dark {
-  --primary: oklch(0.985 0 0); /* White on dark */
-  --primary-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.985 0 0);
-  --sidebar-primary-foreground: oklch(0.145 0 0);
-  --background: oklch(0.10 0 0);
-  --foreground: oklch(0.93 0 0);
-  --card: oklch(0.14 0 0);
-  --card-foreground: oklch(0.93 0 0);
-  --popover: oklch(0.14 0 0);
-  --popover-foreground: oklch(0.93 0 0);
-  --secondary: oklch(0.18 0 0);
-  --secondary-foreground: oklch(0.93 0 0);
-  --muted: oklch(0.18 0 0);
-  --muted-foreground: oklch(0.60 0 0);
-  --accent: oklch(0.18 0 0);
-  --accent-foreground: oklch(0.93 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.25 0 0);
-  --input: oklch(0.25 0 0);
-  --ring: oklch(0.985 0 0);
-  --chart-1: oklch(0.93 0 0);
-  --chart-2: oklch(0.75 0 0);
-  --chart-3: oklch(0.58 0 0);
-  --chart-4: oklch(0.40 0 0);
-  --chart-5: oklch(0.25 0 0);
-  --sidebar: oklch(0.14 0 0);
-  --sidebar-foreground: oklch(0.93 0 0);
-  --sidebar-accent: oklch(0.18 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.25 0 0);
-  --sidebar-ring: oklch(0.985 0 0);
+  --primary: #A78BFA;
+  --primary-foreground: #111827;
+  --sidebar-primary: #A78BFA;
+  --sidebar-primary-foreground: #111827;
+  --background: #0F172A;
+  --foreground: #F1F5F9;
+  --card: #1E293B;
+  --card-foreground: #F1F5F9;
+  --popover: #1E293B;
+  --popover-foreground: #F1F5F9;
+  --secondary: #1E293B;
+  --secondary-foreground: #F1F5F9;
+  --muted: #334155;
+  --muted-foreground: #94A3B8;
+  --accent: #1E293B;
+  --accent-foreground: #F1F5F9;
+  --destructive: #F87171;
+  --destructive-foreground: #ffffff;
+  --border: #334155;
+  --input: #334155;
+  --ring: #A78BFA;
+  --chart-1: #A78BFA;
+  --chart-2: #FCA5A5;
+  --chart-3: #6EE7B7;
+  --chart-4: #818CF8;
+  --chart-5: #FCD34D;
+  --sidebar: #1E293B;
+  --sidebar-foreground: #F1F5F9;
+  --sidebar-accent: #334155;
+  --sidebar-accent-foreground: #F1F5F9;
+  --sidebar-border: #334155;
+  --sidebar-ring: #A78BFA;
+  --highlight-purple: #A78BFA;
+  --highlight-coral: #FCA5A5;
+  --highlight-green: #6EE7B7;
+  --section-alt: #1E293B;
 }
 
 @layer base {
@@ -120,21 +136,24 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'DM Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     letter-spacing: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'JetBrains Mono', 'Space Grotesk', monospace;
-    letter-spacing: -0.02em;
-    font-weight: 600;
+    font-family: 'Instrument Serif', 'Georgia', serif;
+    letter-spacing: -0.01em;
+    font-weight: 400;
   }
   .font-display {
-    font-family: 'JetBrains Mono', 'Space Grotesk', monospace;
+    font-family: 'Instrument Serif', 'Georgia', serif;
+  }
+  .font-sans {
+    font-family: 'DM Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   }
   .font-mono {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'DM Sans', monospace;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -150,24 +169,11 @@
 }
 
 @layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
+    padding-left: 1rem;
     padding-right: 1rem;
   }
 
@@ -178,16 +184,74 @@
 
   @media (min-width: 640px) {
     .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
 
   @media (min-width: 1024px) {
     .container {
-      padding-left: 2rem; /* 32px - desktop padding */
+      padding-left: 2rem;
       padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
+      max-width: 1200px;
     }
+  }
+
+  /* Keyword highlight styles */
+  .highlight-purple {
+    position: relative;
+    display: inline;
+  }
+  .highlight-purple::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2px;
+    height: 6px;
+    background: var(--highlight-purple);
+    opacity: 0.3;
+    border-radius: 2px;
+  }
+
+  .highlight-coral {
+    position: relative;
+    display: inline;
+  }
+  .highlight-coral::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2px;
+    height: 6px;
+    background: var(--highlight-coral);
+    opacity: 0.3;
+    border-radius: 2px;
+  }
+
+  .highlight-green {
+    position: relative;
+    display: inline;
+  }
+  .highlight-green::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2px;
+    height: 6px;
+    background: var(--highlight-green);
+    opacity: 0.3;
+    border-radius: 2px;
+  }
+
+  /* Decorative quotation mark */
+  .quote-mark {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 6rem;
+    line-height: 1;
+    color: var(--highlight-purple);
+    opacity: 0.2;
   }
 }

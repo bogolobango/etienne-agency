@@ -1,6 +1,6 @@
 /**
- * Final CTA Section Component - Technical Mono Design
- * Closing call-to-action with consultation details
+ * Final CTA Section Component - Tango Editorial Design
+ * Centered editorial CTA with pill button and trust indicators
  */
 
 import { useEffect, useState } from "react";
@@ -36,82 +36,65 @@ export default function FinalCTASection() {
   return (
     <section
       id="final-cta-section"
-      className="relative py-16 md:py-24 lg:py-32 border-t border-border"
+      className="relative py-20 md:py-28 lg:py-36 bg-section-alt"
     >
       <div className="container">
-        {/* Main CTA card */}
         <div
-          className={`max-w-4xl mx-auto transition-all duration-700 ${
+          className={`max-w-3xl mx-auto text-center transition-all duration-700 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <div className="bg-card rounded-sm border border-border p-6 sm:p-8 md:p-12 lg:p-16">
-            <div className="space-y-8">
-              {/* Headline */}
-              <div className="text-center space-y-4">
-                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                  Find Out What{" "}
-                  <span className="underline decoration-2 underline-offset-4">Missed Calls Cost You</span>
-                </h2>
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground">
-                  15-minute call. No pitch deck. Just an honest look at your numbers.
+          {/* Headline */}
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] text-foreground leading-[1.1] mb-6">
+            Find out what{" "}
+            <span className="highlight-coral">missed calls</span> cost you
+          </h2>
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-12">
+            15-minute call. No pitch deck. Just an honest look at your numbers.
+          </p>
+
+          {/* Benefits list */}
+          <div className="space-y-4 max-w-xl mx-auto text-left mb-12">
+            <p className="text-sm uppercase tracking-wider text-muted-foreground font-medium text-center">
+              We'll walk through
+            </p>
+            {benefits.map((benefit, index) => (
+              <div
+                key={index}
+                className={`flex items-start gap-3 transition-all duration-500 ${
+                  inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+                }`}
+                style={{
+                  transitionDelay: `${300 + index * 100}ms`,
+                }}
+              >
+                <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <p className="text-base text-muted-foreground leading-relaxed">
+                  {benefit}
                 </p>
               </div>
+            ))}
+          </div>
 
-              {/* Benefits list */}
-              <div className="space-y-4 max-w-2xl mx-auto">
-                <p className="text-lg font-semibold text-foreground">
-                  We'll walk through:
-                </p>
-                {benefits.map((benefit, index) => (
-                  <div
-                    key={index}
-                    className={`flex items-start gap-3 transition-all duration-500 ${
-                      inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-                    }`}
-                    style={{
-                      transitionDelay: `${300 + index * 100}ms`,
-                    }}
-                  >
-                    <CheckCircle2 className="w-5 h-5 text-foreground flex-shrink-0 mt-0.5" />
-                    <p className="text-base text-muted-foreground leading-relaxed">
-                      {benefit}
-                    </p>
-                  </div>
-                ))}
-              </div>
+          {/* CTA Button — pill */}
+          <div className="flex justify-center mb-10">
+            <Link href="/contact">
+              <Button
+                className="rounded-full px-10 py-7 h-auto text-lg bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25"
+              >
+                Get Your Free Revenue Audit
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
 
-              {/* CTA Button */}
-              <div className="flex justify-center pt-4">
-                <Link href="/contact">
-                  <Button
-                    size="lg"
-                    className="text-lg px-12 py-8 h-auto"
-                  >
-                    Get Your Free Revenue Audit
-                    <ArrowRight className="ml-2 h-6 w-6" />
-                  </Button>
-                </Link>
-              </div>
-
-              {/* Trust indicators */}
-              <div className="pt-8 border-t border-border">
-                <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-foreground" />
-                    <span className="font-mono">15 minutes, no pressure</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-foreground" />
-                    <span className="font-mono">Honest assessment</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-foreground" />
-                    <span className="font-mono">Clear next steps</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Trust indicators */}
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
+            <span>15 minutes, no pressure</span>
+            <span className="w-1 h-1 rounded-full bg-border" />
+            <span>Honest assessment</span>
+            <span className="w-1 h-1 rounded-full bg-border" />
+            <span>Clear next steps</span>
           </div>
         </div>
       </div>

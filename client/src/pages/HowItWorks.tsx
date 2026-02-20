@@ -1,6 +1,6 @@
 /**
- * How It Works Page - Technical Mono Design
- * 4-week implementation timeline with detailed breakdown
+ * How It Works Page - Tango Editorial Design
+ * 4-week implementation timeline with editorial styling
  */
 
 import { useEffect, useState } from "react";
@@ -9,22 +9,20 @@ import Footer from "@/components/Footer";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
 import { Button } from "@/components/ui/button";
-import { 
-  ArrowRight, 
-  Search, 
-  Wrench, 
-  Rocket, 
+import { Link } from "wouter";
+import {
+  ArrowRight,
+  Search,
+  Wrench,
+  Rocket,
   TrendingUp,
   CheckCircle2,
-  Calendar,
-  MessageSquare,
-  Zap
 } from "lucide-react";
 
 export default function HowItWorks() {
   usePageView('How It Works');
   useScrollTracking('How It Works');
-  
+
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
@@ -42,7 +40,6 @@ export default function HowItWorks() {
         "Your true cost of slow response (usually eye-opening)",
         "The integration roadmap built for your stack"
       ],
-      color: "from-primary/10 to-primary/15"
     },
     {
       week: "Week 2",
@@ -55,7 +52,6 @@ export default function HowItWorks() {
         "Automated booking with real-time calendar sync",
         "Multi-channel reminder sequences to kill no-shows"
       ],
-      color: "from-primary/10 to-primary/20"
     },
     {
       week: "Week 3",
@@ -67,7 +63,6 @@ export default function HowItWorks() {
         "Daily optimization based on real conversations",
         "Performance dashboard so you see every metric"
       ],
-      color: "from-primary/20 to-primary/30"
     },
     {
       week: "Week 4",
@@ -79,7 +74,6 @@ export default function HowItWorks() {
         "Continuous response optimization",
         "Direct access to our team for adjustments"
       ],
-      color: "from-primary/30 to-primary/20"
     }
   ];
 
@@ -105,19 +99,16 @@ export default function HowItWorks() {
   return (
     <div className="min-h-screen">
       <Header />
-      
-      {/* Hero Section */}
-      <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-20 md:pt-40 md:pb-28 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-background" />
-        </div>
 
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 overflow-hidden">
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
-              From Overwhelmed to <span className="underline decoration-2 underline-offset-4">Automated</span> in 4 Weeks
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.1] mb-6">
+              From overwhelmed to{" "}
+              <span className="highlight-purple">automated</span> in 4 weeks
             </h1>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-foreground/70 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
               No six-month implementations. No ripping out your existing systems. We plug into what you already use and start recovering lost revenue fast.
             </p>
           </div>
@@ -125,61 +116,51 @@ export default function HowItWorks() {
       </section>
 
       {/* Timeline Section */}
-      <section className="relative py-12 md:py-20 lg:py-28">
+      <section className="relative py-20 md:py-28 lg:py-36 bg-section-alt">
         <div className="container">
-          <div className="max-w-6xl mx-auto space-y-8 md:space-y-12">
+          <div className="max-w-4xl mx-auto space-y-12 md:space-y-16">
             {timeline.map((phase, index) => {
               const Icon = phase.icon;
               return (
                 <div
                   key={index}
-                  className={`relative transition-all duration-1000 delay-${index * 100}`}
+                  className="relative"
                   style={{
                     opacity: inView ? 1 : 0,
                     transform: inView ? 'translateY(0)' : 'translateY(30px)',
+                    transition: 'all 0.7s ease',
                     transitionDelay: `${index * 150}ms`
                   }}
                 >
-                  {/* Connecting line */}
-                  {index < timeline.length - 1 && (
-                    <div className="absolute left-8 top-24 w-0.5 h-full bg-gradient-to-b from-primary/50 to-transparent hidden md:block" />
-                  )}
-
-                  <div className="relative bg-card rounded-sm border border-border p-6 sm:p-8 md:p-12 hover:shadow-sm transition-all duration-500 group">
-                    {/* Gradient overlay */}
-                    <div className={`absolute inset-0 rounded-sm bg-gradient-to-br ${phase.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
-
-                    <div className="relative grid md:grid-cols-[auto,1fr] gap-8">
-                      {/* Icon & Week */}
-                      <div className="flex flex-col items-center md:items-start gap-4">
-                        <div className="w-16 h-16 rounded-sm bg-primary/10 flex items-center justify-center text-foreground group-hover:scale-105 transition-transform duration-300">
-                          <Icon className="w-8 h-8" />
+                  <div className="bg-background rounded-2xl border border-border/50 p-6 sm:p-8 md:p-10 transition-all duration-300 hover:shadow-md">
+                    <div className="flex flex-col md:flex-row md:items-start gap-6">
+                      {/* Icon & Week badge */}
+                      <div className="flex md:flex-col items-center md:items-start gap-4">
+                        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                          <Icon className="w-6 h-6" />
                         </div>
-                        <div className="font-mono text-sm font-semibold text-foreground px-4 py-1.5 rounded-lg bg-secondary border border-border">
+                        <span className="text-sm font-medium text-muted-foreground bg-muted px-3 py-1 rounded-full">
                           {phase.week}
-                        </div>
+                        </span>
                       </div>
 
                       {/* Content */}
-                      <div className="space-y-6">
-                        <div>
-                          <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
-                            {phase.title}
-                          </h3>
-                          <p className="text-base md:text-lg text-foreground/70 leading-relaxed">
-                            {phase.description}
-                          </p>
-                        </div>
+                      <div className="space-y-4 flex-1">
+                        <h3 className="font-display text-2xl md:text-3xl text-foreground">
+                          {phase.title}
+                        </h3>
+                        <p className="text-base text-muted-foreground leading-relaxed">
+                          {phase.description}
+                        </p>
 
-                        {/* Outcomes */}
-                        <div className="space-y-3">
-                          <p className="font-semibold text-foreground">
+                        <div className="space-y-2 pt-2">
+                          <p className="text-sm font-semibold text-foreground font-sans">
                             What you'll get:
                           </p>
                           {phase.outcomes.map((outcome, i) => (
                             <div key={i} className="flex items-start gap-3">
-                              <CheckCircle2 className="w-5 h-5 text-foreground flex-shrink-0 mt-0.5" />
-                              <p className="text-sm text-foreground/70 leading-relaxed">
+                              <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                              <p className="text-sm text-muted-foreground leading-relaxed">
                                 {outcome}
                               </p>
                             </div>
@@ -196,35 +177,36 @@ export default function HowItWorks() {
       </section>
 
       {/* Integrations Section */}
-      <section className="relative py-20 md:py-28 bg-background">
+      <section className="relative py-20 md:py-28 lg:py-36">
         <div className="container">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-6">
-              What We <span className="underline decoration-2 underline-offset-4">Integrate With</span>
+          <div className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
+              What we{" "}
+              <span className="highlight-green">integrate with</span>
             </h2>
-            <p className="text-lg md:text-xl text-foreground/70 leading-relaxed">
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
               We work with your existing tools—no rip and replace.
             </p>
           </div>
 
-          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
             {integrations.map((integration, index) => (
               <div
                 key={index}
-                className="bg-card rounded-sm border border-border p-8 hover:shadow-sm transition-all duration-300"
+                className="bg-section-alt rounded-2xl p-6 sm:p-8"
               >
-                <h3 className="font-display text-xl font-bold text-foreground mb-3">
+                <h3 className="font-display text-xl text-foreground mb-3">
                   {integration.category}
                 </h3>
-                <p className="text-sm text-foreground/70 leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {integration.tools}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="max-w-4xl mx-auto text-center mt-12">
-            <p className="text-base text-foreground/60">
+          <div className="text-center mt-10">
+            <p className="text-sm text-muted-foreground">
               Don't see your tools? Ask us—we probably integrate with it.
             </p>
           </div>
@@ -232,78 +214,63 @@ export default function HowItWorks() {
       </section>
 
       {/* ROI Math Section */}
-      <section className="relative py-12 md:py-20 lg:py-28">
+      <section className="relative py-20 md:py-28 lg:py-36 bg-section-alt">
         <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-card rounded-sm border border-border p-6 sm:p-8 md:p-12 lg:p-16 shadow-sm">
-              <div className="text-center mb-12">
-                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6">
-                  The Math That <span className="underline decoration-2 underline-offset-4">Matters</span>
-                </h2>
-                <p className="text-base sm:text-lg md:text-xl text-foreground/70">
-                  The question isn't whether you can afford this. It's whether you can afford not to.
-                </p>
-              </div>
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
+              The math that{" "}
+              <span className="highlight-coral">matters</span>
+            </h2>
+            <p className="text-base sm:text-lg text-muted-foreground mb-12">
+              The question isn't whether you can afford this. It's whether you can afford not to.
+            </p>
 
-              <div className="space-y-6 max-w-2xl mx-auto">
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-sm bg-secondary flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="font-mono text-sm font-bold text-foreground">1</span>
+            <div className="space-y-6 max-w-xl mx-auto text-left mb-12">
+              {[
+                { num: "1", text: <>If you get <strong className="text-foreground">100 inquiries per month</strong> and lose <strong className="text-foreground">20% to slow response</strong>, that's <strong className="text-foreground">20 lost opportunities</strong>.</> },
+                { num: "2", text: <>If your average customer is worth <strong className="text-foreground">$1,000</strong>, that's <strong className="text-foreground">$20,000 in monthly lost revenue</strong>.</> },
+                { num: "3", text: <>Recover even half of those, and you've added <strong className="text-foreground">$10,000/month</strong> to your top line.</> },
+              ].map((item) => (
+                <div key={item.num} className="flex items-start gap-4">
+                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <span className="text-sm font-semibold text-primary">{item.num}</span>
                   </div>
-                  <p className="text-base text-foreground/70 leading-relaxed">
-                    If you get <span className="font-semibold text-foreground">100 inquiries per month</span> and lose <span className="font-semibold text-foreground">20% to slow response</span>, that's <span className="font-semibold text-foreground underline decoration-1 underline-offset-2">20 lost opportunities</span>.
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    {item.text}
                   </p>
                 </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-sm bg-secondary flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="font-mono text-sm font-bold text-foreground">2</span>
-                  </div>
-                  <p className="text-base text-foreground/70 leading-relaxed">
-                    If your average customer is worth <span className="font-semibold text-foreground">$1,000</span>, that's <span className="font-semibold text-foreground underline decoration-1 underline-offset-2">$20,000 in monthly lost revenue</span>.
-                  </p>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-sm bg-secondary flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="font-mono text-sm font-bold text-foreground">3</span>
-                  </div>
-                  <p className="text-base text-foreground/70 leading-relaxed">
-                    Recover even half of those, and you've added <span className="font-semibold text-foreground underline decoration-1 underline-offset-2">$10,000/month</span> to your top line.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-12 text-center">
-                <p className="text-base sm:text-lg font-semibold text-foreground mb-2">
-                  That's the 24/7 Revenue Recovery Framework.
-                </p>
-                <p className="text-base text-foreground/60">
-                  We help you capture money that's already trying to reach you.
-                </p>
-              </div>
+              ))}
             </div>
+
+            <p className="font-display text-xl sm:text-2xl text-foreground italic mb-2">
+              That's the 24/7 Revenue Recovery Framework.
+            </p>
+            <p className="text-sm text-muted-foreground">
+              We help you capture money that's already trying to reach you.
+            </p>
           </div>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-20 md:py-28 bg-background">
+      <section className="relative py-20 md:py-28 lg:py-36">
         <div className="container">
-          <div className="max-w-3xl mx-auto text-center space-y-8">
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">
-              Ready to <span className="underline decoration-2 underline-offset-4">Stop the Bleeding?</span>
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
+              Ready to{" "}
+              <span className="highlight-coral">stop the bleeding?</span>
             </h2>
-            <p className="text-xl text-foreground/70">
+            <p className="text-base sm:text-lg text-muted-foreground mb-10">
               Let's look at your numbers together. 15 minutes, no pressure, just data.
             </p>
-            <Button
-              size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl hover:shadow-sm transition-all duration-300 text-lg px-12 py-8 h-auto"
-            >
-              Schedule Your Discovery Call
-              <ArrowRight className="ml-2 h-6 w-6" />
-            </Button>
+            <Link href="/contact">
+              <Button
+                className="rounded-full px-10 py-7 h-auto text-lg bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25"
+              >
+                Schedule Your Discovery Call
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

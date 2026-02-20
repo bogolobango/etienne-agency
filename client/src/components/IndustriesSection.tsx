@@ -1,6 +1,6 @@
 /**
- * Industries Section Component - Technical Mono Design
- * Showcases the 7 industries served with grid layout
+ * Industries Section Component - Tango Editorial Design
+ * Editorial headline with highlights, card grid, alternating accent colors
  */
 
 import { useEffect, useState } from "react";
@@ -84,32 +84,32 @@ export default function IndustriesSection() {
   return (
     <section
       id="industries-section"
-      className="relative py-16 md:py-24 lg:py-32 border-t border-border"
+      className="relative py-20 md:py-28 lg:py-36"
     >
       <div className="container">
         {/* Section header */}
         <div
-          className={`max-w-3xl mx-auto text-center mb-12 md:mb-16 transition-all duration-700 ${
+          className={`max-w-3xl mx-auto text-center mb-16 md:mb-20 transition-all duration-700 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] text-foreground leading-[1.1] mb-6">
             Built for{" "}
-            <span className="underline decoration-2 underline-offset-4">Multi-Location Service Businesses</span>
+            <span className="highlight-purple">multi-location</span> service businesses
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             3–25 locations. High call volume. Real booking value. If a missed call costs you hundreds, our virtual receptionist was built for you.
           </p>
         </div>
 
         {/* Industries grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-7xl mx-auto mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto mb-16">
           {industries.map((industry, index) => {
             const Icon = industry.icon;
             return (
               <div
                 key={index}
-                className={`bg-card rounded-sm border border-border p-6 sm:p-8 transition-all duration-500 cursor-pointer hover:border-foreground ${
+                className={`bg-background rounded-2xl border border-border/50 p-6 sm:p-8 transition-all duration-500 hover:shadow-md hover:border-primary/20 ${
                   inView
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
@@ -119,27 +119,21 @@ export default function IndustriesSection() {
                 }}
               >
                 <div className="space-y-4">
-                  {/* Icon */}
-                  <div className="w-12 h-12 rounded-sm bg-secondary flex items-center justify-center text-foreground">
-                    <Icon className="w-6 h-6" />
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                    <Icon className="w-5 h-5" />
                   </div>
 
-                  {/* Industry name */}
-                  <h3 className="font-display text-xl font-bold text-foreground">
+                  <h3 className="font-display text-xl text-foreground">
                     {industry.name}
                   </h3>
 
-                  {/* Description */}
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {industry.description}
                   </p>
 
-                  {/* Highlight badge */}
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-secondary border border-border">
-                    <span className="font-mono text-xs font-semibold text-foreground">
-                      {industry.highlight}
-                    </span>
-                  </div>
+                  <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-xs font-medium text-primary">
+                    {industry.highlight}
+                  </span>
                 </div>
               </div>
             );
@@ -154,12 +148,11 @@ export default function IndustriesSection() {
         >
           <Link href="/industries">
             <Button
-              size="lg"
+              className="rounded-full px-8 py-6 h-auto text-base border-2 border-foreground/20 bg-transparent text-foreground hover:bg-muted"
               variant="outline"
-              className="border-2 text-base px-8 py-6 h-auto"
             >
               See How It Works for Your Industry
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
         </div>

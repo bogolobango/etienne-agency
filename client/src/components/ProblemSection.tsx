@@ -1,10 +1,9 @@
 /**
- * Problem Section Component - Technical Mono Design
- * Highlights the pain points and costs of missed calls
+ * Problem Section Component - Tango Editorial Design
+ * Stats grid with editorial headline, colored keyword highlights, generous spacing
  */
 
 import { useEffect, useState } from "react";
-import { PhoneOff, Clock, TrendingDown, CalendarX } from "lucide-react";
 
 export default function ProblemSection() {
   const [inView, setInView] = useState(false);
@@ -27,22 +26,18 @@ export default function ProblemSection() {
 
   const problems = [
     {
-      icon: PhoneOff,
       stat: "78%",
       description: "of customers book with the first business that responds. Slow lead response time hands them to your competitor.",
     },
     {
-      icon: Clock,
       stat: "100x",
       description: "more likely to connect when you respond in 5 minutes vs. 30. An instant response system closes the gap.",
     },
     {
-      icon: TrendingDown,
       stat: "42 hours",
       description: "is the average lead response time. Your competitor already closed the deal by then.",
     },
     {
-      icon: CalendarX,
       stat: "20–40%",
       description: "of appointments become no-shows without automated reminders. That's thousands in lost revenue each month.",
     },
@@ -51,81 +46,70 @@ export default function ProblemSection() {
   return (
     <section
       id="problem-section"
-      className="relative py-16 md:py-24 lg:py-32"
+      className="relative py-20 md:py-28 lg:py-36 bg-section-alt"
     >
       <div className="container">
         {/* Section intro */}
         <div
-          className={`max-w-3xl mx-auto text-center mb-12 md:mb-16 transition-all duration-700 ${
+          className={`max-w-3xl mx-auto text-center mb-16 md:mb-20 transition-all duration-700 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 leading-tight">
-            Every Missed Call Is{" "}
-            <span className="underline decoration-2 underline-offset-4">Revenue Lost Forever</span>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] text-foreground leading-[1.1] mb-6">
+            Every missed call is{" "}
+            <span className="highlight-coral">revenue lost</span> forever
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             The phone rings during a procedure. A lead submits a form at 9pm. Your front desk is slammed. A $5,000 client hangs up after three rings. Without an AI receptionist, that money goes to your competitor.
           </p>
         </div>
 
-        {/* Problem statement */}
+        {/* Step label */}
         <div
-          className={`max-w-2xl mx-auto text-center mb-12 transition-all duration-700 delay-200 ${
+          className={`text-center mb-10 transition-all duration-700 delay-200 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <p className="text-lg sm:text-xl font-semibold text-foreground mb-2">
-            Here's what that costs you:
+          <p className="text-sm uppercase tracking-wider text-muted-foreground font-medium">
+            Here's what that costs you
           </p>
         </div>
 
         {/* Statistics grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {problems.map((problem, index) => {
-            const Icon = problem.icon;
-            return (
-              <div
-                key={index}
-                className={`bg-card rounded-sm border border-border p-6 sm:p-8 transition-all duration-500 ${
-                  inView
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
-                }`}
-                style={{
-                  transitionDelay: `${300 + index * 100}ms`,
-                }}
-              >
-                <div className="space-y-4">
-                  {/* Icon */}
-                  <div className="w-10 h-10 rounded-sm bg-secondary flex items-center justify-center text-foreground">
-                    <Icon className="w-5 h-5" />
-                  </div>
-
-                  {/* Statistic */}
-                  <div className="font-mono text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">
-                    {problem.stat}
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-base text-muted-foreground leading-relaxed">
-                    {problem.description}
-                  </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          {problems.map((problem, index) => (
+            <div
+              key={index}
+              className={`bg-background rounded-2xl p-6 sm:p-8 shadow-sm transition-all duration-500 ${
+                inView
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
+              style={{
+                transitionDelay: `${300 + index * 100}ms`,
+              }}
+            >
+              <div className="space-y-3">
+                <div className="font-display text-4xl sm:text-5xl text-foreground">
+                  {problem.stat}
                 </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {problem.description}
+                </p>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
-        {/* Closing statement */}
+        {/* Closing quote */}
         <div
-          className={`max-w-2xl mx-auto text-center mt-16 transition-all duration-700 delay-700 ${
+          className={`max-w-2xl mx-auto text-center mt-16 md:mt-20 transition-all duration-700 delay-700 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <p className="text-xl md:text-2xl font-semibold text-foreground">
+          <p className="font-display text-xl md:text-2xl lg:text-3xl text-foreground italic">
             You didn't build your business to babysit a phone.{" "}
-            <span className="underline decoration-2 underline-offset-4">A virtual receptionist fixes this.</span>
+            <span className="highlight-green">A virtual receptionist fixes this.</span>
           </p>
         </div>
       </div>

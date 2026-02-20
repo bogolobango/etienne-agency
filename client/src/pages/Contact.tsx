@@ -107,7 +107,7 @@ export default function Contact() {
       <Header />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28">
+      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-gradient-hero overflow-hidden">
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.1] mb-6">
@@ -122,7 +122,7 @@ export default function Contact() {
       </section>
 
       {/* What to Expect */}
-      <section className="relative py-16 md:py-24 bg-section-alt">
+      <section className="relative py-16 md:py-24 section-gradient-alt">
         <div className="container">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12 md:mb-16">
@@ -138,11 +138,11 @@ export default function Contact() {
                 return (
                   <div
                     key={index}
-                    className="bg-background rounded-2xl border border-border/50 p-6 transition-all duration-300 hover:shadow-md"
+                    className="card-on-alt p-6 transition-all duration-300"
                     style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(20px)', transition: 'all 0.5s ease', transitionDelay: `${index * 100}ms` }}
                   >
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
-                      <Icon className="w-5 h-5" />
+                    <div className="icon-container-lg mb-4">
+                      <Icon className="w-5 h-5 text-primary" />
                     </div>
                     <h3 className="font-display text-lg sm:text-xl text-foreground mb-2">{item.title}</h3>
                     <p className="text-sm text-muted-foreground">{item.description}</p>
@@ -157,8 +157,35 @@ export default function Contact() {
       {/* Contact Form */}
       <section id="contact-form" className="relative py-16 md:py-24">
         <div className="container">
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-background rounded-2xl border border-border/50 p-6 sm:p-8 md:p-10 shadow-sm">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-16 items-start">
+              {/* Left sidebar: photo + trust signals */}
+              <div className="hidden md:flex flex-col gap-6 md:col-span-2">
+                <div className="rounded-2xl overflow-hidden shadow-lg border border-border/30" style={{ aspectRatio: '3/4' }}>
+                  <img
+                    src="/images/contact-office.jpg"
+                    alt="Discovery call"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="card-premium p-5 space-y-3">
+                  <p className="text-sm font-semibold text-foreground">What you'll get</p>
+                  {[
+                    "Honest assessment of your lead flow",
+                    "Quick ROI estimate for your business",
+                    "Clear next steps — no pressure",
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                      <p className="text-xs text-muted-foreground">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {/* Right: form */}
+              <div className="md:col-span-3">
+            <div className="card-premium p-6 sm:p-8 md:p-10">
               <div className="text-center mb-8">
                 <h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-foreground mb-3">Schedule your free revenue audit</h2>
                 <p className="text-sm text-muted-foreground">Fill out the form. We respond within 2 hours.</p>
@@ -227,12 +254,14 @@ export default function Contact() {
               </a>
               <p className="text-xs text-muted-foreground mt-2">We typically respond within 2 hours during business hours.</p>
             </div>
+              </div>{/* end right col */}
+            </div>{/* end grid */}
           </div>
         </div>
       </section>
 
       {/* FAQs */}
-      <section className="relative py-16 md:py-24 bg-section-alt">
+      <section className="relative py-16 md:py-24 section-gradient-alt">
         <div className="container">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
@@ -243,7 +272,7 @@ export default function Contact() {
             </div>
             <div className="space-y-4">
               {faqs.map((faq, index) => (
-                <div key={index} className="bg-background rounded-2xl border border-border/50 p-6 sm:p-8">
+                <div key={index} className="card-on-alt p-6 sm:p-8">
                   <h3 className="font-display text-lg sm:text-xl text-foreground mb-3">{faq.question}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{faq.answer}</p>
                 </div>
@@ -263,7 +292,7 @@ export default function Contact() {
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground mb-8">Every day without an instant response system is revenue walking out the door. Let's fix that.</p>
             <Button
-              className="rounded-full px-8 py-6 h-auto text-base bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25"
+                className="rounded-full px-8 py-6 h-auto text-base bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl shadow-primary/30 btn-primary-pill"
               onClick={() => { document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" }); }}
             >
               Fill Out the Form Above

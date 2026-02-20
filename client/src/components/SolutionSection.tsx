@@ -100,8 +100,9 @@ export default function SolutionSection() {
                 }`}
                 style={{ transitionDelay: `${200 + index * 150}ms` }}
               >
-                {/* Step label */}
-                <div className="text-center mb-6">
+                {/* Step label with numbered badge */}
+                <div className="text-center mb-6 flex items-center justify-center gap-3">
+                  <div className="step-number">{index + 1}</div>
                   <span className="text-sm uppercase tracking-wider text-muted-foreground font-medium">
                     {item.step}
                   </span>
@@ -121,13 +122,22 @@ export default function SolutionSection() {
                     </p>
                   </div>
 
-                  {/* Visual placeholder — rounded corners + soft shadow */}
+                  {/* Visual container — polished icon with frosted glass effect */}
                   <div className={isEven ? '' : 'md:[direction:ltr]'}>
-                    <div className="bg-section-alt rounded-2xl p-8 md:p-12 shadow-sm border border-border/30">
-                      <div className="flex items-center justify-center h-40 md:h-48">
+                    <div className="step-visual p-8 md:p-12">
+                      {/* Faint dot pattern background */}
+                      <div className="absolute inset-0 section-dot-pattern opacity-40 rounded-2xl" aria-hidden="true" />
+                      <div className="relative flex items-center justify-center h-40 md:h-48">
                         <div className="text-center">
-                          <Icon className="w-12 h-12 text-primary/60 mx-auto mb-4" />
-                          <p className="text-sm font-medium text-muted-foreground">{item.visual}</p>
+                          {/* Decorative rings behind icon */}
+                          <div className="relative inline-flex items-center justify-center mb-6">
+                            <div className="absolute w-24 h-24 rounded-full border border-primary/10" />
+                            <div className="absolute w-32 h-32 rounded-full border border-primary/06" />
+                            <div className="icon-container-glass">
+                              <Icon className="w-7 h-7 text-primary" />
+                            </div>
+                          </div>
+                          <p className="text-sm font-semibold text-foreground/70 tracking-wide">{item.visual}</p>
                         </div>
                       </div>
                     </div>

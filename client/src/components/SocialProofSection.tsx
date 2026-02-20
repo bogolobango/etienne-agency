@@ -52,7 +52,7 @@ function AnimatedStat({ value, suffix, label, description, delay }: StatProps) {
   return (
     <div
       ref={statRef}
-      className="bg-background rounded-2xl p-6 sm:p-8 shadow-sm border border-border/30 hover:border-primary/20 hover:shadow-md transition-all duration-500"
+      className="card-on-alt p-6 sm:p-8 transition-all duration-500"
       style={{ transitionDelay: `${delay}ms` }}
     >
       <div className="space-y-3">
@@ -115,7 +115,7 @@ export default function SocialProofSection() {
   return (
     <section
       id="social-proof-section"
-      className="relative py-20 md:py-28 lg:py-36 bg-section-alt"
+      className="relative py-20 md:py-28 lg:py-36 section-gradient-alt"
     >
       <div className="container">
         {/* Section header */}
@@ -150,14 +150,20 @@ export default function SocialProofSection() {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <div className="relative bg-primary/[0.03] rounded-2xl p-8 sm:p-10">
-            <div className="quote-mark text-center leading-none mb-[-1.5rem]">&ldquo;</div>
-            <blockquote className="font-display italic text-xl sm:text-2xl md:text-3xl text-foreground leading-snug mb-4">
-              The AI handles 60% of our routine inquiries now. My front desk team finally has time to deliver great service instead of answering the same five questions on repeat.
-            </blockquote>
-            <p className="text-sm text-muted-foreground">
-              <span className="font-semibold text-foreground">Marcus Rivera</span> · Operations Director, Arena Sports
-            </p>
+          <div className="testimonial-card text-left">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                <span className="font-display text-2xl text-primary/60 leading-none" style={{ marginTop: '-4px' }}>&ldquo;</span>
+              </div>
+              <div>
+                <blockquote className="font-display italic text-xl sm:text-2xl text-foreground leading-snug mb-4">
+                  The AI handles 60% of our routine inquiries now. My front desk team finally has time to deliver great service instead of answering the same five questions on repeat.
+                </blockquote>
+                <p className="text-sm text-muted-foreground">
+                  <span className="font-semibold text-foreground">Marcus Rivera</span> · Operations Director, Arena Sports
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 

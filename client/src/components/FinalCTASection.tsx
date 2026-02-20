@@ -36,7 +36,7 @@ export default function FinalCTASection() {
   return (
     <section
       id="final-cta-section"
-      className="relative py-20 md:py-28 lg:py-36 bg-section-alt"
+      className="relative py-20 md:py-28 lg:py-36 section-gradient-cta"
     >
       <div className="container">
         <div
@@ -80,7 +80,7 @@ export default function FinalCTASection() {
           <div className="flex justify-center mb-10">
             <Link href="/contact">
               <Button
-                className="rounded-full px-10 py-7 h-auto text-lg bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25"
+                className="rounded-full px-10 py-7 h-auto text-lg bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl shadow-primary/30 btn-primary-pill"
               >
                 Get Your Free Revenue Audit
                 <ArrowRight className="ml-2 h-5 w-5" />

@@ -104,22 +104,38 @@ export default function Industries() {
       <Header />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28">
+      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-gradient-hero overflow-hidden">
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.1] mb-6">
               AI appointment scheduling for industries where every{" "}
               <span className="highlight-coral">missed call has a dollar sign</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-12">
               Our virtual receptionist handles calls, books appointments, and follows up — built for multi-location service businesses where slow responses cost real money.
             </p>
+            {/* Industry photo collage strip */}
+            <div className="flex flex-wrap justify-center gap-3">
+              {[
+                { src: "/images/medspa.jpg", label: "Med Spa" },
+                { src: "/images/dental.jpg", label: "Dental" },
+                { src: "/images/law.jpg", label: "Law" },
+                { src: "/images/property.jpg", label: "Property" },
+              ].map((item) => (
+                <div key={item.label} className="flex flex-col items-center gap-2">
+                  <div className="w-20 h-20 rounded-2xl overflow-hidden border-2 border-white shadow-md">
+                    <img src={item.src} alt={item.label} className="w-full h-full object-cover" loading="lazy" />
+                  </div>
+                  <span className="text-xs text-muted-foreground font-medium">{item.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Industries Detail */}
-      <section className="relative py-20 md:py-28 lg:py-36 bg-section-alt">
+      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt">
         <div className="container">
           <div className="max-w-4xl mx-auto space-y-12 md:space-y-16">
             {industries.map((industry, index) => {
@@ -127,7 +143,7 @@ export default function Industries() {
               return (
                 <div
                   key={index}
-                  className="bg-background rounded-2xl border border-border/50 p-6 sm:p-8 md:p-10 transition-all duration-500 hover:shadow-md"
+                  className="card-on-alt p-6 sm:p-8 md:p-10 transition-all duration-500"
                   style={{
                     opacity: inView ? 1 : 0,
                     transform: inView ? 'translateY(0)' : 'translateY(30px)',
@@ -137,8 +153,8 @@ export default function Industries() {
                 >
                   <div className="space-y-6">
                     <div className="flex flex-col sm:flex-row sm:items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
-                        <Icon className="w-6 h-6" />
+                      <div className="icon-container-xl flex-shrink-0">
+                        <Icon className="w-6 h-6 text-primary" />
                       </div>
                       <div>
                         <h2 className="font-display text-2xl sm:text-3xl text-foreground mb-2">{industry.name}</h2>
@@ -185,8 +201,13 @@ export default function Industries() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16">
               {idealFit.map((item, index) => (
-                <div key={index} className="bg-section-alt rounded-2xl p-6 sm:p-8">
-                  <h3 className="font-display text-xl sm:text-2xl text-foreground mb-2">{item.title}</h3>
+                <div key={index} className="card-premium p-6 sm:p-8">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                      <CheckCircle2 className="w-4 h-4 text-primary" />
+                    </div>
+                    <h3 className="font-display text-xl sm:text-2xl text-foreground">{item.title}</h3>
+                  </div>
                   <p className="text-sm text-muted-foreground">{item.description}</p>
                 </div>
               ))}
@@ -195,7 +216,7 @@ export default function Industries() {
               <h3 className="font-display text-2xl sm:text-3xl text-foreground mb-4">Not sure if you're a fit?</h3>
               <p className="text-base text-muted-foreground mb-8 max-w-lg mx-auto">15-minute call. No commitment. We'll tell you if we can help — or point you somewhere better.</p>
               <Link href="/contact">
-                <Button className="rounded-full px-8 py-6 h-auto text-base bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25">
+                <Button className="rounded-full px-8 py-6 h-auto text-base bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl shadow-primary/30 btn-primary-pill">
                   Book a Free Discovery Call
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>

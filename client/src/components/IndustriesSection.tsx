@@ -42,42 +42,49 @@ export default function IndustriesSection() {
       name: "Med Spas & Aesthetic Clinics",
       description: "Where a single missed Botox inquiry costs $500+",
       highlight: "$500+ per missed call",
+      photo: "/images/medspa.jpg",
     },
     {
       icon: Smile,
       name: "Dental Practices",
       description: "Where every no-show is $350 in lost chair time",
       highlight: "$350 per no-show",
+      photo: "/images/dental.jpg",
     },
     {
       icon: Scale,
       name: "Law Firms",
       description: "Where after-hours callers become someone else's client",
       highlight: "24/7 case intake",
+      photo: "/images/law.jpg",
     },
     {
       icon: Building2,
       name: "Property Management",
       description: "Where vacant days cost hundreds per unit",
       highlight: "Fill vacancies faster",
+      photo: "/images/property.jpg",
     },
     {
       icon: Calculator,
       name: "Accounting & CPA Firms",
       description: "Where tax season inquiries can't wait until Monday",
       highlight: "Scale with demand",
+      photo: "/images/accounting.jpg",
     },
     {
       icon: Sparkle,
       name: "Cleaning Companies",
       description: "Where instant quotes win the job",
       highlight: "$2,800 LTV",
+      photo: "/images/cleaning.jpg",
     },
     {
       icon: Trophy,
       name: "Sports Facilities",
       description: "Where booking friction kills repeat business",
       highlight: "60% automation rate",
+      photo: "/images/sports.jpg",
     },
   ];
 
@@ -109,7 +116,7 @@ export default function IndustriesSection() {
             return (
               <div
                 key={index}
-                className={`bg-background rounded-2xl border border-border/50 p-6 sm:p-8 transition-all duration-500 hover:shadow-md hover:border-primary/20 ${
+                className={`card-premium p-6 sm:p-8 transition-all duration-500 ${
                   inView
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
@@ -119,8 +126,18 @@ export default function IndustriesSection() {
                 }}
               >
                 <div className="space-y-4">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                    <Icon className="w-5 h-5" />
+                  <div className="flex items-center gap-3">
+                    <div className="icon-container-lg">
+                      <Icon className="w-5 h-5 text-primary" />
+                    </div>
+                    {industry.photo && (
+                      <img
+                        src={industry.photo}
+                        alt={industry.name}
+                        className="industry-photo"
+                        loading="lazy"
+                      />
+                    )}
                   </div>
 
                   <h3 className="font-display text-xl text-foreground">

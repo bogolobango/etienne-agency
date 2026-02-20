@@ -101,7 +101,17 @@ export default function HowItWorks() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 overflow-hidden">
+      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 overflow-hidden section-gradient-hero">
+        {/* Calm office photo — the "after" state */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
+          style={{
+            backgroundImage: "url('/images/calm-office.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.04,
+            filter: "blur(2px)",
+          }}
+        />
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.1] mb-6">
@@ -116,15 +126,15 @@ export default function HowItWorks() {
       </section>
 
       {/* Timeline Section */}
-      <section className="relative py-20 md:py-28 lg:py-36 bg-section-alt">
+      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt">
         <div className="container">
-          <div className="max-w-4xl mx-auto space-y-12 md:space-y-16">
+          <div className="max-w-4xl mx-auto">
             {timeline.map((phase, index) => {
               const Icon = phase.icon;
               return (
                 <div
                   key={index}
-                  className="relative"
+                  className="relative mb-12 md:mb-16"
                   style={{
                     opacity: inView ? 1 : 0,
                     transform: inView ? 'translateY(0)' : 'translateY(30px)',
@@ -132,14 +142,18 @@ export default function HowItWorks() {
                     transitionDelay: `${index * 150}ms`
                   }}
                 >
-                  <div className="bg-background rounded-2xl border border-border/50 p-6 sm:p-8 md:p-10 transition-all duration-300 hover:shadow-md">
+                  {/* Timeline connector */}
+                  {index < timeline.length - 1 && (
+                    <div className="absolute left-6 md:left-10 bottom-0 translate-y-full h-12 md:h-16 timeline-connector z-10" aria-hidden="true" />
+                  )}
+                  <div className="card-on-alt p-6 sm:p-8 md:p-10 transition-all duration-300">
                     <div className="flex flex-col md:flex-row md:items-start gap-6">
                       {/* Icon & Week badge */}
                       <div className="flex md:flex-col items-center md:items-start gap-4">
-                        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
-                          <Icon className="w-6 h-6" />
+                        <div className="icon-container-xl flex-shrink-0">
+                          <Icon className="w-6 h-6 text-primary" />
                         </div>
-                        <span className="text-sm font-medium text-muted-foreground bg-muted px-3 py-1 rounded-full">
+                        <span className="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/15">
                           {phase.week}
                         </span>
                       </div>
@@ -193,14 +207,18 @@ export default function HowItWorks() {
             {integrations.map((integration, index) => (
               <div
                 key={index}
-                className="bg-section-alt rounded-2xl p-6 sm:p-8"
+                className="card-premium p-6 sm:p-8"
               >
-                <h3 className="font-display text-xl text-foreground mb-3">
+                <h3 className="font-display text-xl text-foreground mb-4">
                   {integration.category}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {integration.tools}
-                </p>
+                <div className="flex flex-wrap gap-2">
+                  {integration.tools.split(', ').map((tool, i) => (
+                    <span key={i} className="tool-pill">
+                      {tool}
+                    </span>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -214,7 +232,8 @@ export default function HowItWorks() {
       </section>
 
       {/* ROI Math Section */}
-      <section className="relative py-20 md:py-28 lg:py-36 bg-section-alt">
+      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
+        <div className="absolute inset-0 section-dot-pattern opacity-60" aria-hidden="true" />
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
@@ -232,9 +251,7 @@ export default function HowItWorks() {
                 { num: "3", text: <>Recover even half of those, and you've added <strong className="text-foreground">$10,000/month</strong> to your top line.</> },
               ].map((item) => (
                 <div key={item.num} className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-sm font-semibold text-primary">{item.num}</span>
-                  </div>
+                  <div className="step-number flex-shrink-0 mt-0.5">{item.num}</div>
                   <p className="text-base text-muted-foreground leading-relaxed">
                     {item.text}
                   </p>
@@ -265,7 +282,7 @@ export default function HowItWorks() {
             </p>
             <Link href="/contact">
               <Button
-                className="rounded-full px-10 py-7 h-auto text-lg bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25"
+                className="rounded-full px-10 py-7 h-auto text-lg bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl shadow-primary/30 btn-primary-pill"
               >
                 Schedule Your Discovery Call
                 <ArrowRight className="ml-2 h-5 w-5" />

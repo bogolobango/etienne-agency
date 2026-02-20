@@ -155,6 +155,23 @@ export function trackSectionView(sectionName: string, pageName: string) {
 }
 
 /**
+ * Dynamically load the Umami analytics script if env vars are configured.
+ * Call this once at app startup (e.g. in main.tsx).
+ */
+export function initUmamiAnalytics() {
+  const endpoint = import.meta.env.VITE_ANALYTICS_ENDPOINT;
+  const websiteId = import.meta.env.VITE_ANALYTICS_WEBSITE_ID;
+
+  if (endpoint && websiteId && typeof window !== 'undefined') {
+    const script = document.createElement('script');
+    script.defer = true;
+    script.src = `${endpoint}/umami`;
+    script.dataset.websiteId = websiteId;
+    document.body.appendChild(script);
+  }
+}
+
+/**
  * Hook to track page views automatically
  */
 export function usePageTracking(pageName: string, path: string) {

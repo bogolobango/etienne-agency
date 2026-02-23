@@ -21,6 +21,23 @@ class ErrorBoundary extends Component<Props, State> {
     return { hasError: true, error };
   }
 
+  componentDidCatch(error: Error, info: { componentStack?: string | null }) {
+    // Report to server in production
+    if (import.meta.env.PROD) {
+      fetch("/api/error", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: error.message,
+          stack: error.stack,
+          componentStack: info.componentStack,
+          url: window.location.href,
+          timestamp: new Date().toISOString(),
+        }),
+      }).catch(() => {});
+    }
+  }
+
   render() {
     if (this.state.hasError) {
       return (

@@ -26,6 +26,7 @@ export default function HowItWorks() {
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
+    document.title = "How It Works | 4-Week AI Receptionist Setup | Etienne Agency";
     setInView(true);
   }, []);
 

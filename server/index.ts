@@ -14,6 +14,20 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // ---------------------------------------------------------------------------
+// Industry key → Airtable display label mapping
+// ---------------------------------------------------------------------------
+const industryLabels: Record<string, string> = {
+  medspa: "Med Spa",
+  dental: "Dental",
+  law: "Law Firm",
+  property: "Property Management",
+  accounting: "Accounting",
+  cleaning: "Cleaning",
+  sports: "Sports Facility",
+  other: "Other",
+};
+
+// ---------------------------------------------------------------------------
 // Email notification helper
 // ---------------------------------------------------------------------------
 async function sendNotificationEmail(data: ContactFormData) {
@@ -28,17 +42,6 @@ async function sendNotificationEmail(data: ContactFormData) {
       pass: process.env.SMTP_PASS,
     },
   });
-
-  const industryLabels: Record<string, string> = {
-    medspa: "Med Spa",
-    dental: "Dental",
-    law: "Law Firm",
-    property: "Property Management",
-    accounting: "Accounting",
-    cleaning: "Cleaning",
-    sports: "Sports Facility",
-    other: "Other",
-  };
 
   await transporter.sendMail({
     from: process.env.SMTP_FROM || "noreply@etienneagency.com",
@@ -64,6 +67,49 @@ async function sendNotificationEmail(data: ContactFormData) {
 }
 
 // ---------------------------------------------------------------------------
+// Airtable integration helper
+// ---------------------------------------------------------------------------
+async function createAirtableRecord(data: ContactFormData, submittedAt: string) {
+  const token = process.env.AIRTABLE_PAT;
+  const baseId = process.env.AIRTABLE_BASE_ID;
+  const tableId = process.env.AIRTABLE_TABLE_ID || "Discovery Call Submissions";
+
+  if (!token || !baseId) return;
+
+  const url = `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableId)}`;
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      fields: {
+        Name: data.name,
+        Email: data.email,
+        Phone: data.phone,
+        Company: data.company,
+        Industry: industryLabels[data.industry] || data.industry,
+        Locations: data.locations,
+        Challenge: data.challenge || "",
+        "Submitted At": submittedAt,
+        Status: "New",
+        Source: "Website",
+      },
+      typecast: true, // auto-create select options if they don't exist yet
+    }),
+  });
+
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`Airtable API ${res.status}: ${body}`);
+  }
+
+  return res.json();
+}
+
+// ---------------------------------------------------------------------------
 // Server bootstrap
 // ---------------------------------------------------------------------------
 function validateEnv() {
@@ -72,6 +118,8 @@ function validateEnv() {
     if (!process.env.CORS_ORIGIN) warnings.push("CORS_ORIGIN not set — defaulting to https://etienneagency.com");
     if (!process.env.SMTP_HOST) warnings.push("SMTP_HOST not set — email notifications disabled");
     if (!process.env.NOTIFY_EMAIL) warnings.push("NOTIFY_EMAIL not set — using default recipient");
+    if (!process.env.AIRTABLE_PAT) warnings.push("AIRTABLE_PAT not set — Airtable integration disabled");
+    if (!process.env.AIRTABLE_BASE_ID) warnings.push("AIRTABLE_BASE_ID not set — Airtable integration disabled");
   }
   for (const w of warnings) console.warn(`[env] ${w}`);
 }
@@ -196,6 +244,13 @@ async function startServer() {
       await sendNotificationEmail(data);
     } catch (err) {
       console.error("Failed to send email notification:", err);
+    }
+
+    // Push to Airtable (silent-fail if not configured)
+    try {
+      await createAirtableRecord(data, submission.submittedAt);
+    } catch (err) {
+      console.error("Failed to create Airtable record:", err);
     }
 
     res.json({

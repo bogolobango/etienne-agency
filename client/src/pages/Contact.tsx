@@ -167,13 +167,11 @@ export default function Contact() {
             <p className="text-base sm:text-lg text-muted-foreground mb-8">
               Book your 15-minute discovery call directly. No back-and-forth.
             </p>
-            {/* TODO: Replace with Calendly embed. Get embed code from https://calendly.com */}
-            {/* <div className="calendly-inline-widget" data-url="https://calendly.com/jim-etienneagency/discovery" style={{ minWidth: '320px', height: '630px' }} /> */}
-            <div className="card-premium p-8 sm:p-12 text-center">
-              <Clock className="w-10 h-10 text-primary mx-auto mb-4" />
-              <p className="font-display text-xl text-foreground mb-2">Calendar booking coming soon</p>
-              <p className="text-sm text-muted-foreground">Use the form below to request your discovery call and we'll send you a booking link.</p>
-            </div>
+            <div
+              className="calendly-inline-widget rounded-2xl overflow-hidden"
+              data-url="https://calendly.com/jim-etienneagency/30min"
+              style={{ minWidth: '320px', height: '700px' }}
+            />
             <div className="mt-8">
               <div className="flex items-center gap-4 max-w-xs mx-auto">
                 <div className="flex-1 h-px bg-border" />

@@ -256,19 +256,23 @@
   }
 
   /* ─── Section gradient backgrounds ──────────────────────────── */
-  /* Hero: very subtle radial emanating from center */
+  /* Hero: very subtle radial emanating from center, fades to white at bottom */
   .section-gradient-hero {
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124, 58, 237, 0.05) 0%, rgba(255,255,255,0) 70%);
+    background:
+      linear-gradient(180deg, transparent 0%, transparent 80%, #ffffff 100%),
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124, 58, 237, 0.05) 0%, rgba(255,255,255,0) 70%);
   }
 
-  /* Alt sections: top-to-bottom lavender tint to white */
+  /* Alt sections: fades from white → lavender → white at edges for seamless blending */
   .section-gradient-alt {
-    background: linear-gradient(180deg, #F9F8FC 0%, #ffffff 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #F9F8FC 10%, #F9F8FC 90%, #ffffff 100%);
   }
 
-  /* CTA closing section: slightly deeper lavender */
+  /* CTA closing section: diagonal lavender with white edge fades */
   .section-gradient-cta {
-    background: linear-gradient(135deg, #F3EFFE 0%, #F9F8FC 50%, #EEF2FF 100%);
+    background:
+      linear-gradient(180deg, #ffffff 0%, transparent 10%, transparent 90%, #ffffff 100%),
+      linear-gradient(135deg, #F3EFFE 0%, #F9F8FC 50%, #EEF2FF 100%);
   }
 
   /* Subtle dot pattern for data/analytics feel */

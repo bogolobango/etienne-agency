@@ -74,7 +74,11 @@ export default function GradientOrbs({ orbs }: GradientOrbsProps) {
       ref={containerRef}
       className="absolute inset-0 pointer-events-none overflow-hidden"
       aria-hidden="true"
-      style={{ zIndex: 0 }}
+      style={{
+        zIndex: 0,
+        maskImage: "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)",
+      }}
     >
       {orbs.map((orb, i) => {
         const floatClass = `gradient-orb-float-${(i % 3) + 1}`;

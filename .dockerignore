@@ -1,0 +1,7 @@
+node_modules
+dist
+.manus-logs
+data
+.env
+.env.local
+.git

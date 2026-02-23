@@ -17,7 +17,7 @@ const __dirname = path.dirname(__filename);
 // Email notification helper
 // ---------------------------------------------------------------------------
 async function sendNotificationEmail(data: ContactFormData) {
-  if (!process.env.SMTP_HOST) return;
+  if (!process.env.SMTP_HOST || !process.env.NOTIFY_EMAIL) return;
 
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -42,7 +42,7 @@ async function sendNotificationEmail(data: ContactFormData) {
 
   await transporter.sendMail({
     from: process.env.SMTP_FROM || "noreply@etienneagency.com",
-    to: process.env.NOTIFY_EMAIL || "jim@etienneagency.com",
+    to: process.env.NOTIFY_EMAIL!,
     subject: `New Discovery Call Request: ${data.name} — ${data.company}`,
     html: `
       <div style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -66,7 +66,19 @@ async function sendNotificationEmail(data: ContactFormData) {
 // ---------------------------------------------------------------------------
 // Server bootstrap
 // ---------------------------------------------------------------------------
+function validateEnv() {
+  const warnings: string[] = [];
+  if (process.env.NODE_ENV === "production") {
+    if (!process.env.CORS_ORIGIN) warnings.push("CORS_ORIGIN not set — defaulting to https://etienneagency.com");
+    if (!process.env.SMTP_HOST) warnings.push("SMTP_HOST not set — email notifications disabled");
+    if (!process.env.NOTIFY_EMAIL) warnings.push("NOTIFY_EMAIL not set — using default recipient");
+  }
+  for (const w of warnings) console.warn(`[env] ${w}`);
+}
+
 async function startServer() {
+  validateEnv();
+
   const app = express();
   const server = createServer(app);
 
@@ -78,14 +90,31 @@ async function startServer() {
   // --- Security headers ---
   app.use(
     helmet({
-      contentSecurityPolicy: false, // Vite injects inline scripts; CSP breaks them
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          scriptSrc: ["'self'", "'unsafe-inline'"], // Vite injects inline scripts
+          styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+          fontSrc: ["'self'", "https://fonts.gstatic.com"],
+          imgSrc: ["'self'", "data:", "https:"],
+          connectSrc: ["'self'", "https:"],
+          frameSrc: ["'none'"],
+          objectSrc: ["'none'"],
+          baseUri: ["'self'"],
+          formAction: ["'self'"],
+        },
+      },
     })
   );
 
   // --- CORS ---
+  const allowedOrigin = process.env.CORS_ORIGIN || "https://etienneagency.com";
   app.use(
     cors({
-      origin: process.env.CORS_ORIGIN || true,
+      origin:
+        process.env.NODE_ENV === "production"
+          ? allowedOrigin
+          : true, // allow all in dev only
       credentials: true,
     })
   );
@@ -93,12 +122,25 @@ async function startServer() {
   // --- Body parsing ---
   app.use(express.json({ limit: "100kb" }));
 
-  // --- Health check (fix #9) ---
+  // --- Health check ---
   app.get("/api/health", (_req, res) => {
     res.json({ status: "ok", timestamp: new Date().toISOString() });
   });
 
-  // --- Contact form rate limiter (fix #3) ---
+  // --- Client error logging endpoint ---
+  const errorLimiter = rateLimit({
+    windowMs: 60 * 1000,
+    max: 10,
+    standardHeaders: true,
+    legacyHeaders: false,
+  });
+  app.post("/api/error", errorLimiter, (req, res) => {
+    const { message, stack, url, timestamp } = req.body || {};
+    console.error(`[client-error] ${timestamp} ${url}: ${message}\n${stack || ""}`);
+    res.status(204).end();
+  });
+
+  // --- Contact form rate limiter ---
   const contactLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 5, // 5 submissions per window per IP
@@ -109,6 +151,13 @@ async function startServer() {
 
   // --- Contact form endpoint (fixes #1 + #4) ---
   app.post("/api/contact", contactLimiter, async (req, res) => {
+    // CSRF: reject requests missing the custom header (browsers block
+    // cross-origin requests with custom headers via preflight)
+    if (req.header("X-Requested-With") !== "fetch") {
+      res.status(403).json({ error: "Forbidden" });
+      return;
+    }
+
     const result = contactSchema.safeParse(req.body);
 
     if (!result.success) {
@@ -126,7 +175,6 @@ async function startServer() {
     const submission = {
       ...data,
       submittedAt: new Date().toISOString(),
-      ip: req.ip,
     };
 
     // Persist to local JSON log (works even without a DB)

@@ -107,3 +107,6 @@ temp/
 
 # Contact form submissions (local file store)
 data/
+
+# Manus debug logs
+.manus-logs/

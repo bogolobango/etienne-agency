@@ -491,7 +491,51 @@
   .skip-to-content:focus {
     left: 0;
   }
+
+  /* ─── Gradient orb backgrounds ──────────────────────────────── */
+  .gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform, opacity;
+  }
+
+  .gradient-orb-parallax {
+    position: absolute;
+    will-change: transform;
+    pointer-events: none;
+    z-index: 0;
+  }
 }
+
+/* ─── Gradient orb floating keyframes ──────────────────────── */
+@keyframes orb-float-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -25px) scale(1.05); }
+  50% { transform: translate(-15px, 20px) scale(0.97); }
+  75% { transform: translate(25px, 10px) scale(1.03); }
+}
+
+@keyframes orb-float-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  20% { transform: translate(-25px, 15px) scale(1.04); }
+  40% { transform: translate(15px, -30px) scale(0.96); }
+  60% { transform: translate(-20px, -10px) scale(1.02); }
+  80% { transform: translate(30px, 20px) scale(0.98); }
+}
+
+@keyframes orb-float-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  30% { transform: translate(20px, 30px) scale(0.95); }
+  60% { transform: translate(-30px, -15px) scale(1.06); }
+  80% { transform: translate(10px, -25px) scale(0.98); }
+}
+
+.gradient-orb-float-1 { animation: orb-float-1 ease-in-out infinite; }
+.gradient-orb-float-2 { animation: orb-float-2 ease-in-out infinite; }
+.gradient-orb-float-3 { animation: orb-float-3 ease-in-out infinite; }
 
 /* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {

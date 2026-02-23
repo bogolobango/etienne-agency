@@ -4,6 +4,12 @@
  */
 
 import { useEffect, useState, useRef } from "react";
+import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
+
+const socialOrbs: OrbConfig[] = [
+  { size: 450, color: "#FF8C42", x: "-5%", y: "-10%", opacity: 0.35, duration: 13, delay: 2, parallaxFactor: 45 },
+  { size: 400, color: "#00D4AA", x: "75%", y: "60%", opacity: 0.4, duration: 11, delay: 5, parallaxFactor: -35 },
+];
 
 interface StatProps {
   value: number;
@@ -115,9 +121,12 @@ export default function SocialProofSection() {
   return (
     <section
       id="social-proof-section"
-      className="relative py-20 md:py-28 lg:py-36 section-gradient-alt"
+      className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden"
     >
-      <div className="container">
+      {/* Animated gradient orbs */}
+      <GradientOrbs orbs={socialOrbs} />
+
+      <div className="container relative z-10">
         {/* Section header */}
         <div
           className={`max-w-3xl mx-auto text-center mb-16 md:mb-20 transition-all duration-700 ${

@@ -9,6 +9,13 @@ import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { trackCTAClick } from "@/lib/analytics";
+import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
+
+const heroOrbs: OrbConfig[] = [
+  { size: 500, color: "#2D5BFF", x: "-8%", y: "-10%", opacity: 0.45, duration: 14, delay: 0, parallaxFactor: 50 },
+  { size: 400, color: "#00D4AA", x: "70%", y: "55%", opacity: 0.4, duration: 12, delay: 3, parallaxFactor: -35 },
+  { size: 350, color: "#7B61FF", x: "75%", y: "-15%", opacity: 0.35, duration: 15, delay: 6, parallaxFactor: 30 },
+];
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -19,6 +26,9 @@ export default function Hero() {
 
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 lg:pt-48 lg:pb-36 overflow-hidden section-gradient-hero">
+      {/* Animated gradient orbs */}
+      <GradientOrbs orbs={heroOrbs} />
+
       {/* Faint background lifestyle photo — med spa reception, heavily blurred */}
       <div
         className="absolute inset-0 pointer-events-none"

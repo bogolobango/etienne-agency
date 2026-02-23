@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
+import { useCanonical } from "@/hooks/useCanonical";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import {
@@ -21,11 +22,12 @@ import {
 export default function About() {
   usePageView('About');
   useScrollTracking('About');
+  useCanonical('/about');
 
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
-    document.title = "About Etienne Agency | AI Receptionist for Service Businesses";
+    document.title = "The Team Behind the 24/7 Revenue Recovery Framework | Etienne Agency";
     setInView(true);
   }, []);
 
@@ -110,16 +112,16 @@ export default function About() {
                 </h2>
                 <div className="space-y-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
                   <p>
-                    Small businesses lose money every day to missed calls, slow follow-up, and no-shows. Their front desks are overwhelmed. Their leads call competitors.
+                    After years selling enterprise AI systems to Fortune 500 companies, I (Jim, founder of Etienne Agency) kept seeing the same pattern: the technology that large corporations pay millions for could solve real, urgent problems for local service businesses — missed calls, slow follow-up, no-shows.
                   </p>
                   <p>
-                    After years selling enterprise AI systems, we saw that Fortune 500 technology could fix these problems. But local businesses couldn't afford a $500,000 setup and a 12-month rollout.
+                    But local businesses couldn't afford a $500,000 setup and a 12-month rollout. They needed a virtual receptionist that worked now. One that fit their current tools. One that delivered ROI in weeks — not years.
                   </p>
                   <p>
-                    They needed a virtual receptionist that worked now. One that fit their current tools. One that delivered ROI in weeks — not years.
+                    That's why I started Etienne Agency: to bring enterprise-grade AI to the businesses that need it most — med spas, dental practices, law firms, and property management companies losing revenue every single day to problems that technology solved years ago.
                   </p>
                   <p className="font-display text-2xl sm:text-3xl text-foreground italic text-center pt-4">
-                    So we built it.
+                    The technology exists. Now it's accessible.
                   </p>
                 </div>
               </div>

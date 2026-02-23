@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
+import { useCanonical } from "@/hooks/useCanonical";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import {
@@ -25,11 +26,12 @@ import {
 export default function Industries() {
   usePageView('Industries');
   useScrollTracking('Industries');
+  useCanonical('/industries');
 
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
-    document.title = "AI Scheduling by Industry | Med Spa, Dental, Law Firm | Etienne Agency";
+    document.title = "AI for Your Industry | Med Spa · Dental · Law · Property | Etienne Agency";
     setInView(true);
   }, []);
 

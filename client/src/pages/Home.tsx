@@ -13,8 +13,10 @@ import SocialProofSection from "@/components/SocialProofSection";
 import IndustriesSection from "@/components/IndustriesSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
+import ScrollCTA from "@/components/ScrollCTA";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
+import { useCanonical } from "@/hooks/useCanonical";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -42,9 +44,10 @@ const jsonLd = {
 export default function Home() {
   usePageView('Homepage');
   useScrollTracking('Homepage');
+  useCanonical('/');
 
   useEffect(() => {
-    document.title = "AI Appointment Scheduling & Virtual Receptionist | Etienne Agency";
+    document.title = "Stop Losing Revenue to Missed Calls | AI for Multi-Location Businesses | Etienne Agency";
 
     // Inject JSON-LD structured data
     const existing = document.getElementById("json-ld-home");
@@ -67,6 +70,7 @@ export default function Home() {
       <IndustriesSection />
       <FinalCTASection />
       <Footer />
+      <ScrollCTA />
     </div>
   );
 }

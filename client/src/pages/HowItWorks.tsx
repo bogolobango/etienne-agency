@@ -19,6 +19,33 @@ import {
   TrendingUp,
   CheckCircle2,
 } from "lucide-react";
+import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
+
+const hiwHeroOrbs: OrbConfig[] = [
+  { size: 480, color: "#2D5BFF", x: "-6%", y: "-8%", opacity: 0.4, duration: 14, delay: 0, parallaxFactor: 50 },
+  { size: 380, color: "#00D4AA", x: "72%", y: "50%", opacity: 0.35, duration: 12, delay: 3, parallaxFactor: -30 },
+  { size: 320, color: "#7B61FF", x: "80%", y: "-12%", opacity: 0.3, duration: 15, delay: 6, parallaxFactor: 35 },
+];
+
+const hiwTimelineOrbs: OrbConfig[] = [
+  { size: 420, color: "#FF8C42", x: "-8%", y: "20%", opacity: 0.3, duration: 13, delay: 1, parallaxFactor: 40 },
+  { size: 380, color: "#7B61FF", x: "82%", y: "65%", opacity: 0.3, duration: 11, delay: 5, parallaxFactor: -25 },
+];
+
+const hiwIntegrationsOrbs: OrbConfig[] = [
+  { size: 400, color: "#00D4AA", x: "75%", y: "10%", opacity: 0.3, duration: 14, delay: 2, parallaxFactor: 35 },
+  { size: 350, color: "#2D5BFF", x: "-5%", y: "60%", opacity: 0.3, duration: 12, delay: 6, parallaxFactor: -30 },
+];
+
+const hiwRoiOrbs: OrbConfig[] = [
+  { size: 450, color: "#FF8C42", x: "70%", y: "-5%", opacity: 0.35, duration: 13, delay: 0, parallaxFactor: 45 },
+  { size: 380, color: "#7B61FF", x: "-8%", y: "55%", opacity: 0.3, duration: 15, delay: 4, parallaxFactor: -35 },
+];
+
+const hiwCtaOrbs: OrbConfig[] = [
+  { size: 400, color: "#2D5BFF", x: "65%", y: "-10%", opacity: 0.35, duration: 14, delay: 2, parallaxFactor: 40 },
+  { size: 350, color: "#FF8C42", x: "-5%", y: "50%", opacity: 0.3, duration: 11, delay: 5, parallaxFactor: -30 },
+];
 
 export default function HowItWorks() {
   usePageView('How It Works');
@@ -105,6 +132,7 @@ export default function HowItWorks() {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 overflow-hidden section-gradient-hero">
+        <GradientOrbs orbs={hiwHeroOrbs} />
         {/* Calm office photo — the "after" state */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
           style={{
@@ -129,8 +157,9 @@ export default function HowItWorks() {
       </section>
 
       {/* Timeline Section */}
-      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt">
-        <div className="container">
+      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
+        <GradientOrbs orbs={hiwTimelineOrbs} />
+        <div className="container relative z-10">
           <div className="max-w-4xl mx-auto">
             {timeline.map((phase, index) => {
               const Icon = phase.icon;
@@ -194,8 +223,9 @@ export default function HowItWorks() {
       </section>
 
       {/* Integrations Section */}
-      <section className="relative py-20 md:py-28 lg:py-36">
-        <div className="container">
+      <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+        <GradientOrbs orbs={hiwIntegrationsOrbs} />
+        <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
               What we{" "}
@@ -236,8 +266,9 @@ export default function HowItWorks() {
 
       {/* ROI Math Section */}
       <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
+        <GradientOrbs orbs={hiwRoiOrbs} />
         <div className="absolute inset-0 section-dot-pattern opacity-60" aria-hidden="true" />
-        <div className="container">
+        <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
               The math that{" "}
@@ -273,8 +304,9 @@ export default function HowItWorks() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-20 md:py-28 lg:py-36">
-        <div className="container">
+      <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+        <GradientOrbs orbs={hiwCtaOrbs} />
+        <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
               Ready to{" "}

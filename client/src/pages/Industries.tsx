@@ -22,6 +22,24 @@ import {
   ArrowRight,
   CheckCircle2
 } from "lucide-react";
+import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
+
+const indHeroOrbs: OrbConfig[] = [
+  { size: 500, color: "#7B61FF", x: "-6%", y: "-10%", opacity: 0.4, duration: 14, delay: 0, parallaxFactor: 50 },
+  { size: 380, color: "#00D4AA", x: "75%", y: "45%", opacity: 0.35, duration: 12, delay: 3, parallaxFactor: -35 },
+  { size: 340, color: "#FF8C42", x: "70%", y: "-8%", opacity: 0.3, duration: 15, delay: 6, parallaxFactor: 30 },
+];
+
+const indDetailOrbs: OrbConfig[] = [
+  { size: 450, color: "#2D5BFF", x: "-8%", y: "15%", opacity: 0.3, duration: 13, delay: 1, parallaxFactor: 45 },
+  { size: 400, color: "#FF8C42", x: "80%", y: "55%", opacity: 0.3, duration: 11, delay: 4, parallaxFactor: -30 },
+  { size: 320, color: "#00D4AA", x: "40%", y: "85%", opacity: 0.25, duration: 15, delay: 7, parallaxFactor: 25 },
+];
+
+const indFitOrbs: OrbConfig[] = [
+  { size: 420, color: "#7B61FF", x: "70%", y: "5%", opacity: 0.3, duration: 14, delay: 2, parallaxFactor: 40 },
+  { size: 380, color: "#2D5BFF", x: "-5%", y: "60%", opacity: 0.3, duration: 12, delay: 5, parallaxFactor: -30 },
+];
 
 export default function Industries() {
   usePageView('Industries');
@@ -107,6 +125,7 @@ export default function Industries() {
 
       {/* Hero */}
       <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-gradient-hero overflow-hidden">
+        <GradientOrbs orbs={indHeroOrbs} />
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.1] mb-6">
@@ -137,8 +156,9 @@ export default function Industries() {
       </section>
 
       {/* Industries Detail */}
-      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt">
-        <div className="container">
+      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
+        <GradientOrbs orbs={indDetailOrbs} />
+        <div className="container relative z-10">
           <div className="max-w-4xl mx-auto space-y-12 md:space-y-16">
             {industries.map((industry, index) => {
               const Icon = industry.icon;
@@ -191,8 +211,9 @@ export default function Industries() {
       </section>
 
       {/* Ideal Fit */}
-      <section className="relative py-20 md:py-28 lg:py-36">
-        <div className="container">
+      <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+        <GradientOrbs orbs={indFitOrbs} />
+        <div className="container relative z-10">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16 md:mb-20">
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">

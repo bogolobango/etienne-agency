@@ -13,6 +13,33 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
 import { useCanonical } from "@/hooks/useCanonical";
+import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
+
+const idHeroOrbs: OrbConfig[] = [
+  { size: 500, color: "#2D5BFF", x: "-8%", y: "-10%", opacity: 0.4, duration: 14, delay: 0, parallaxFactor: 50 },
+  { size: 380, color: "#00D4AA", x: "74%", y: "50%", opacity: 0.35, duration: 12, delay: 3, parallaxFactor: -35 },
+  { size: 340, color: "#7B61FF", x: "78%", y: "-15%", opacity: 0.3, duration: 15, delay: 6, parallaxFactor: 30 },
+];
+
+const idProblemOrbs: OrbConfig[] = [
+  { size: 420, color: "#FF8C42", x: "-6%", y: "15%", opacity: 0.3, duration: 13, delay: 1, parallaxFactor: 40 },
+  { size: 380, color: "#7B61FF", x: "80%", y: "60%", opacity: 0.3, duration: 11, delay: 5, parallaxFactor: -25 },
+];
+
+const idStatsOrbs: OrbConfig[] = [
+  { size: 400, color: "#00D4AA", x: "72%", y: "8%", opacity: 0.3, duration: 14, delay: 2, parallaxFactor: 35 },
+  { size: 350, color: "#2D5BFF", x: "-5%", y: "55%", opacity: 0.3, duration: 12, delay: 6, parallaxFactor: -30 },
+];
+
+const idSolutionOrbs: OrbConfig[] = [
+  { size: 450, color: "#7B61FF", x: "68%", y: "-5%", opacity: 0.3, duration: 13, delay: 0, parallaxFactor: 45 },
+  { size: 380, color: "#FF8C42", x: "-8%", y: "50%", opacity: 0.3, duration: 15, delay: 4, parallaxFactor: -35 },
+];
+
+const idCtaOrbs: OrbConfig[] = [
+  { size: 400, color: "#2D5BFF", x: "65%", y: "-10%", opacity: 0.35, duration: 14, delay: 2, parallaxFactor: 40 },
+  { size: 350, color: "#00D4AA", x: "-5%", y: "55%", opacity: 0.3, duration: 11, delay: 5, parallaxFactor: -30 },
+];
 
 interface IndustryPageData {
   name: string;
@@ -152,6 +179,7 @@ export default function IndustryDetail() {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-gradient-hero overflow-hidden">
+        <GradientOrbs orbs={idHeroOrbs} />
         {/* Background image with subtle opacity */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -200,8 +228,9 @@ export default function IndustryDetail() {
       </section>
 
       {/* The Problem Section */}
-      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt">
-        <div className="container">
+      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
+        <GradientOrbs orbs={idProblemOrbs} />
+        <div className="container relative z-10">
           <div
             className="max-w-4xl mx-auto transition-all duration-700"
             style={{
@@ -225,8 +254,9 @@ export default function IndustryDetail() {
       </section>
 
       {/* Stats Section */}
-      <section className="relative py-20 md:py-28 lg:py-36">
-        <div className="container">
+      <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+        <GradientOrbs orbs={idStatsOrbs} />
+        <div className="container relative z-10">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
@@ -261,8 +291,9 @@ export default function IndustryDetail() {
       </section>
 
       {/* Our Solution Section */}
-      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt">
-        <div className="container">
+      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
+        <GradientOrbs orbs={idSolutionOrbs} />
+        <div className="container relative z-10">
           <div
             className="max-w-4xl mx-auto transition-all duration-700"
             style={{
@@ -304,8 +335,9 @@ export default function IndustryDetail() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 md:py-28 lg:py-36">
-        <div className="container">
+      <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+        <GradientOrbs orbs={idCtaOrbs} />
+        <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
               See what AI scheduling can do for{" "}

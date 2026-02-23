@@ -29,6 +29,38 @@ import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
 import { useCanonical } from "@/hooks/useCanonical";
 import { trackFormSubmit } from "@/lib/analytics";
+import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
+
+const contactHeroOrbs: OrbConfig[] = [
+  { size: 480, color: "#7B61FF", x: "-6%", y: "-8%", opacity: 0.4, duration: 14, delay: 0, parallaxFactor: 50 },
+  { size: 400, color: "#2D5BFF", x: "72%", y: "45%", opacity: 0.35, duration: 12, delay: 3, parallaxFactor: -30 },
+  { size: 320, color: "#00D4AA", x: "78%", y: "-12%", opacity: 0.3, duration: 15, delay: 6, parallaxFactor: 35 },
+];
+
+const contactExpectOrbs: OrbConfig[] = [
+  { size: 420, color: "#FF8C42", x: "-6%", y: "15%", opacity: 0.3, duration: 13, delay: 1, parallaxFactor: 40 },
+  { size: 360, color: "#7B61FF", x: "80%", y: "60%", opacity: 0.3, duration: 11, delay: 5, parallaxFactor: -25 },
+];
+
+const contactCalendlyOrbs: OrbConfig[] = [
+  { size: 400, color: "#00D4AA", x: "70%", y: "5%", opacity: 0.3, duration: 14, delay: 2, parallaxFactor: 35 },
+  { size: 350, color: "#2D5BFF", x: "-5%", y: "55%", opacity: 0.25, duration: 12, delay: 6, parallaxFactor: -30 },
+];
+
+const contactFormOrbs: OrbConfig[] = [
+  { size: 450, color: "#7B61FF", x: "75%", y: "-5%", opacity: 0.3, duration: 13, delay: 0, parallaxFactor: 45 },
+  { size: 380, color: "#FF8C42", x: "-8%", y: "50%", opacity: 0.3, duration: 15, delay: 4, parallaxFactor: -35 },
+];
+
+const contactFaqOrbs: OrbConfig[] = [
+  { size: 400, color: "#2D5BFF", x: "-5%", y: "10%", opacity: 0.3, duration: 14, delay: 2, parallaxFactor: 40 },
+  { size: 350, color: "#00D4AA", x: "78%", y: "60%", opacity: 0.3, duration: 11, delay: 5, parallaxFactor: -30 },
+];
+
+const contactCtaOrbs: OrbConfig[] = [
+  { size: 400, color: "#FF8C42", x: "65%", y: "-10%", opacity: 0.35, duration: 13, delay: 1, parallaxFactor: 40 },
+  { size: 350, color: "#7B61FF", x: "-5%", y: "50%", opacity: 0.3, duration: 15, delay: 5, parallaxFactor: -30 },
+];
 
 export default function Contact() {
   usePageView('Contact');
@@ -110,6 +142,7 @@ export default function Contact() {
 
       {/* Hero */}
       <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-gradient-hero overflow-hidden">
+        <GradientOrbs orbs={contactHeroOrbs} />
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.1] mb-6">
@@ -124,8 +157,9 @@ export default function Contact() {
       </section>
 
       {/* What to Expect */}
-      <section className="relative py-16 md:py-24 section-gradient-alt">
-        <div className="container">
+      <section className="relative py-16 md:py-24 section-gradient-alt overflow-hidden">
+        <GradientOrbs orbs={contactExpectOrbs} />
+        <div className="container relative z-10">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
@@ -157,8 +191,9 @@ export default function Contact() {
       </section>
 
       {/* Calendly Booking — Primary CTA */}
-      <section className="relative py-16 md:py-24">
-        <div className="container">
+      <section className="relative py-16 md:py-24 overflow-hidden">
+        <GradientOrbs orbs={contactCalendlyOrbs} />
+        <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-4">
               Pick a time that{" "}
@@ -184,8 +219,9 @@ export default function Contact() {
       </section>
 
       {/* Contact Form */}
-      <section id="contact-form" className="relative py-16 md:py-24">
-        <div className="container">
+      <section id="contact-form" className="relative py-16 md:py-24 overflow-hidden">
+        <GradientOrbs orbs={contactFormOrbs} />
+        <div className="container relative z-10">
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-16 items-start">
               {/* Left sidebar: photo + trust signals */}
@@ -290,8 +326,9 @@ export default function Contact() {
       </section>
 
       {/* FAQs */}
-      <section className="relative py-16 md:py-24 section-gradient-alt">
-        <div className="container">
+      <section className="relative py-16 md:py-24 section-gradient-alt overflow-hidden">
+        <GradientOrbs orbs={contactFaqOrbs} />
+        <div className="container relative z-10">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-4">
@@ -312,8 +349,9 @@ export default function Contact() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-16 md:py-24">
-        <div className="container">
+      <section className="relative py-16 md:py-24 overflow-hidden">
+        <GradientOrbs orbs={contactCtaOrbs} />
+        <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
               Stop losing revenue to{" "}

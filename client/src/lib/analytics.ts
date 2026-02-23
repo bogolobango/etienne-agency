@@ -1,11 +1,13 @@
 /**
  * Analytics Tracking Utility
  * Tracks form submissions, button clicks, and page views
- * Compatible with Google Analytics, Mixpanel, and other analytics platforms
+ * Uses Vercel Analytics (hardcoded) with optional Google Analytics fallback
  */
 
+import { track } from "@vercel/analytics";
+
 // Event types for type safety
-export type AnalyticsEvent = 
+export type AnalyticsEvent =
   | 'page_view'
   | 'button_click'
   | 'form_submit'
@@ -21,33 +23,24 @@ interface EventProperties {
 
 /**
  * Track an analytics event
- * Sends to both Google Analytics (gtag) and custom analytics endpoint
+ * Sends to Vercel Analytics and Google Analytics (if available)
  */
 export function trackEvent(
   eventName: AnalyticsEvent,
   properties?: EventProperties
 ) {
   // Log to console in development
-  if (process.env.NODE_ENV === 'development') {
+  if (import.meta.env.DEV) {
     console.log('[Analytics]', eventName, properties);
   }
+
+  // Send to Vercel Analytics
+  track(eventName, properties as Record<string, string | number | boolean>);
 
   // Send to Google Analytics if available
   if (typeof window !== 'undefined' && (window as any).gtag) {
     (window as any).gtag('event', eventName, properties);
   }
-
-  // Send to custom analytics endpoint if available
-  if (typeof window !== 'undefined' && (window as any).umami) {
-    (window as any).umami.track(eventName, properties);
-  }
-
-  // You can also send to your own backend analytics endpoint
-  // fetch('/api/analytics', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({ event: eventName, properties, timestamp: Date.now() })
-  // }).catch(console.error);
 }
 
 /**

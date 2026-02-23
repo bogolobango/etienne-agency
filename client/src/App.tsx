@@ -4,6 +4,8 @@ import { Route, Switch } from "wouter";
 import { lazy, Suspense } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 // Lazy-loaded page components (code-split per route)
 const Home = lazy(() => import("./pages/Home"));
@@ -57,6 +59,8 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <Router />
+          <Analytics />
+          <SpeedInsights />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

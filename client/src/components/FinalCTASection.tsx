@@ -7,6 +7,13 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "wouter";
+import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
+
+const ctaOrbs: OrbConfig[] = [
+  { size: 450, color: "#2D5BFF", x: "70%", y: "-10%", opacity: 0.4, duration: 13, delay: 1, parallaxFactor: 45 },
+  { size: 500, color: "#7B61FF", x: "-10%", y: "50%", opacity: 0.45, duration: 15, delay: 4, parallaxFactor: -40 },
+  { size: 350, color: "#FF8C42", x: "50%", y: "70%", opacity: 0.35, duration: 11, delay: 7, parallaxFactor: 30 },
+];
 
 export default function FinalCTASection() {
   const [inView, setInView] = useState(false);
@@ -36,9 +43,12 @@ export default function FinalCTASection() {
   return (
     <section
       id="final-cta-section"
-      className="relative py-20 md:py-28 lg:py-36 section-gradient-cta"
+      className="relative py-20 md:py-28 lg:py-36 section-gradient-cta overflow-hidden"
     >
-      <div className="container">
+      {/* Animated gradient orbs */}
+      <GradientOrbs orbs={ctaOrbs} />
+
+      <div className="container relative z-10">
         <div
           className={`max-w-3xl mx-auto text-center transition-all duration-700 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"

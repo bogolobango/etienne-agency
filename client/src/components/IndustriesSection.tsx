@@ -4,6 +4,7 @@
  */
 
 import { useEffect, useState } from "react";
+import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
 import {
   Sparkles,
   Smile,
@@ -16,6 +17,12 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+
+const industryOrbs: OrbConfig[] = [
+  { size: 500, color: "#7B61FF", x: "-8%", y: "5%", opacity: 0.35, duration: 14, delay: 0, parallaxFactor: 50 },
+  { size: 380, color: "#00D4AA", x: "80%", y: "40%", opacity: 0.3, duration: 12, delay: 4, parallaxFactor: -30 },
+  { size: 320, color: "#FF8C42", x: "10%", y: "75%", opacity: 0.35, duration: 15, delay: 7, parallaxFactor: 35 },
+];
 
 export default function IndustriesSection() {
   const [inView, setInView] = useState(false);
@@ -91,9 +98,12 @@ export default function IndustriesSection() {
   return (
     <section
       id="industries-section"
-      className="relative py-20 md:py-28 lg:py-36"
+      className="relative py-20 md:py-28 lg:py-36 overflow-hidden"
     >
-      <div className="container">
+      {/* Animated gradient orbs */}
+      <GradientOrbs orbs={industryOrbs} />
+
+      <div className="container relative z-10">
         {/* Section header */}
         <div
           className={`max-w-3xl mx-auto text-center mb-16 md:mb-20 transition-all duration-700 ${

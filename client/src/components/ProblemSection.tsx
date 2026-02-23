@@ -4,6 +4,13 @@
  */
 
 import { useEffect, useState } from "react";
+import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
+
+const problemOrbs: OrbConfig[] = [
+  { size: 450, color: "#FF8C42", x: "-10%", y: "15%", opacity: 0.4, duration: 13, delay: 2, parallaxFactor: 45 },
+  { size: 380, color: "#7B61FF", x: "80%", y: "60%", opacity: 0.35, duration: 11, delay: 5, parallaxFactor: -30 },
+  { size: 320, color: "#2D5BFF", x: "40%", y: "85%", opacity: 0.3, duration: 15, delay: 8, parallaxFactor: 25 },
+];
 
 export default function ProblemSection() {
   const [inView, setInView] = useState(false);
@@ -48,6 +55,9 @@ export default function ProblemSection() {
       id="problem-section"
       className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden"
     >
+      {/* Animated gradient orbs */}
+      <GradientOrbs orbs={problemOrbs} />
+
       {/* Decorative front-desk photo accent */}
       <div className="absolute right-0 top-0 w-72 h-full pointer-events-none hidden xl:block" aria-hidden="true">
         <div
@@ -61,7 +71,7 @@ export default function ProblemSection() {
           }}
         />
       </div>
-      <div className="container">
+      <div className="container relative z-10">
         {/* Section intro */}
         <div
           className={`max-w-3xl mx-auto text-center mb-16 md:mb-20 transition-all duration-700 ${

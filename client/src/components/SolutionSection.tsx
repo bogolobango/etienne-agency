@@ -6,6 +6,13 @@
 
 import { useEffect, useState } from "react";
 import { Zap, Calendar, ArrowUpRight, Plug } from "lucide-react";
+import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
+
+const solutionOrbs: OrbConfig[] = [
+  { size: 500, color: "#00D4AA", x: "75%", y: "5%", opacity: 0.35, duration: 14, delay: 1, parallaxFactor: 55 },
+  { size: 420, color: "#2D5BFF", x: "-10%", y: "50%", opacity: 0.4, duration: 12, delay: 4, parallaxFactor: -40 },
+  { size: 300, color: "#7B61FF", x: "60%", y: "70%", opacity: 0.3, duration: 15, delay: 7, parallaxFactor: 30 },
+];
 
 export default function SolutionSection() {
   const [inView, setInView] = useState(false);
@@ -68,9 +75,12 @@ export default function SolutionSection() {
   return (
     <section
       id="solution-section"
-      className="relative py-20 md:py-28 lg:py-36"
+      className="relative py-20 md:py-28 lg:py-36 overflow-hidden"
     >
-      <div className="container">
+      {/* Animated gradient orbs */}
+      <GradientOrbs orbs={solutionOrbs} />
+
+      <div className="container relative z-10">
         {/* Section header */}
         <div
           className={`max-w-3xl mx-auto text-center mb-16 md:mb-24 transition-all duration-700 ${

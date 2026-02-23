@@ -27,11 +27,13 @@ import {
 import { toast } from "sonner";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
+import { useCanonical } from "@/hooks/useCanonical";
 import { trackFormSubmit } from "@/lib/analytics";
 
 export default function Contact() {
   usePageView('Contact');
   useScrollTracking('Contact');
+  useCanonical('/contact');
 
   const [inView, setInView] = useState(false);
   const [formData, setFormData] = useState({
@@ -45,7 +47,7 @@ export default function Contact() {
   });
 
   useEffect(() => {
-    document.title = "Book a Free Discovery Call | AI Scheduling Audit | Etienne Agency";
+    document.title = "Book Your Free Revenue Audit | 15 Minutes, No Pitch | Etienne Agency";
     setInView(true);
   }, []);
 
@@ -149,6 +151,33 @@ export default function Contact() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Calendly Booking — Primary CTA */}
+      <section className="relative py-16 md:py-24">
+        <div className="container">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-4">
+              Pick a time that{" "}
+              <span className="highlight-green">works</span>
+            </h2>
+            <p className="text-base sm:text-lg text-muted-foreground mb-8">
+              Book your 15-minute discovery call directly. No back-and-forth.
+            </p>
+            <div
+              className="calendly-inline-widget rounded-2xl overflow-hidden"
+              data-url="https://calendly.com/jim-etienneagency/30min"
+              style={{ minWidth: '320px', height: '700px' }}
+            />
+            <div className="mt-8">
+              <div className="flex items-center gap-4 max-w-xs mx-auto">
+                <div className="flex-1 h-px bg-border" />
+                <p className="text-sm text-muted-foreground">or use the form</p>
+                <div className="flex-1 h-px bg-border" />
+              </div>
             </div>
           </div>
         </div>

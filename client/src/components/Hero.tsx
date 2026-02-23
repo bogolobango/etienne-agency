@@ -53,7 +53,7 @@ export default function Hero() {
 
           {/* Subtitle */}
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
-            Our AI receptionist answers every call in under 60 seconds. It books appointments, sends reminders, and follows up with leads — 24/7. No extra staff needed.
+            You're losing thousands every month to calls that go to voicemail, leads that get a response tomorrow, and appointments that no-show. We fix that in 4 weeks — without replacing a single tool you already use.
           </p>
 
           {/* CTA Buttons — primary pill + secondary outline pill */}
@@ -91,7 +91,7 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* Social proof quote — premium testimonial card */}
+          {/* Social proof — industry stat */}
           <div className="max-w-2xl mx-auto">
             <div className="testimonial-card text-left">
               <div className="flex items-start gap-4">
@@ -100,10 +100,10 @@ export default function Hero() {
                 </div>
                 <div>
                   <blockquote className="font-display italic text-xl sm:text-2xl text-foreground leading-snug mb-4">
-                    We were losing 30% of leads to after-hours calls. Now every inquiry gets an instant response — and our bookings are up 40%.
+                    78% of customers buy from the first business that responds to their inquiry.
                   </blockquote>
                   <p className="text-sm text-muted-foreground">
-                    <span className="font-semibold text-foreground">Sarah Chen</span> · Med Spa Owner, 6 Locations
+                    <span className="font-semibold text-foreground">Lead Response Study</span> · Velocify / InsideSales.com
                   </p>
                 </div>
               </div>

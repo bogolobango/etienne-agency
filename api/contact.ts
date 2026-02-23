@@ -102,6 +102,12 @@ async function sendNotificationEmail(data: ContactFormData) {
 // Handler
 // ---------------------------------------------------------------------------
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  console.log("[contact] Incoming request", {
+    method: req.method,
+    hasBody: !!req.body,
+    timestamp: new Date().toISOString(),
+  });
+
   // Only allow POST
   if (req.method === "OPTIONS") {
     res.setHeader("Access-Control-Allow-Origin", process.env.CORS_ORIGIN || "https://etienneagency.com");
@@ -148,6 +154,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   } catch (err) {
     console.error("Failed to create Airtable record:", err);
   }
+
+  console.log("[contact] Submission processed successfully", {
+    name: data.name,
+    company: data.company,
+    industry: data.industry,
+    submittedAt,
+  });
 
   return res.json({
     success: true,

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { contactSchema } from "./contact.schema.js";
+import { contactSchema, escapeHtml, sanitizeHeader } from "./contact.schema.js";
 
 const validPayload = {
   name: "Jane Doe",
@@ -72,5 +72,56 @@ describe("contactSchema", () => {
       const result = contactSchema.safeParse({ ...validPayload, locations: loc });
       expect(result.success).toBe(true);
     }
+  });
+
+  it("rejects whitespace-only name after trim", () => {
+    const result = contactSchema.safeParse({ ...validPayload, name: "   " });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects whitespace-only phone after trim", () => {
+    const result = contactSchema.safeParse({ ...validPayload, phone: "   " });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects whitespace-only company after trim", () => {
+    const result = contactSchema.safeParse({ ...validPayload, company: "   " });
+    expect(result.success).toBe(false);
+  });
+});
+
+describe("escapeHtml", () => {
+  it("escapes HTML special characters", () => {
+    expect(escapeHtml('<script>alert("xss")</script>')).toBe(
+      "&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;"
+    );
+  });
+
+  it("escapes ampersands", () => {
+    expect(escapeHtml("Tom & Jerry")).toBe("Tom &amp; Jerry");
+  });
+
+  it("escapes single quotes", () => {
+    expect(escapeHtml("it's")).toBe("it&#39;s");
+  });
+
+  it("passes through safe strings unchanged", () => {
+    expect(escapeHtml("Hello World")).toBe("Hello World");
+  });
+});
+
+describe("sanitizeHeader", () => {
+  it("strips newlines to prevent header injection", () => {
+    expect(sanitizeHeader("Name\r\nBcc: attacker@evil.com")).toBe(
+      "Name  Bcc: attacker@evil.com"
+    );
+  });
+
+  it("strips tabs", () => {
+    expect(sanitizeHeader("Name\tCompany")).toBe("Name Company");
+  });
+
+  it("trims whitespace", () => {
+    expect(sanitizeHeader("  Hello  ")).toBe("Hello");
   });
 });

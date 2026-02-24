@@ -53,8 +53,7 @@ describe("contactSchema — XSS / injection edge cases", () => {
 
   it("rejects phone with only spaces", () => {
     const result = contactSchema.safeParse({ ...valid, phone: "   " });
-    // Has content but it's whitespace — still min(1) passes since length > 0
-    // This is acceptable; rate limiting prevents abuse
-    expect(result.success).toBe(true);
+    // trim() now strips whitespace before min(1) check, so this correctly fails
+    expect(result.success).toBe(false);
   });
 });

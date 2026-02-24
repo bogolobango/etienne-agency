@@ -49,7 +49,8 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <!-- Calendly widget.js is loaded dynamically by the Contact page component
+         so it initialises after the SPA route renders the container div. -->
   </body>
 
 </html>

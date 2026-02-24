@@ -9,6 +9,13 @@ import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { trackCTAClick } from "@/lib/analytics";
+import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
+
+const heroOrbs: OrbConfig[] = [
+  { size: 500, color: "#2D5BFF", x: "-8%", y: "-10%", opacity: 0.45, duration: 14, delay: 0, parallaxFactor: 50 },
+  { size: 400, color: "#00D4AA", x: "70%", y: "55%", opacity: 0.4, duration: 12, delay: 3, parallaxFactor: -35 },
+  { size: 350, color: "#7B61FF", x: "75%", y: "-15%", opacity: 0.35, duration: 15, delay: 6, parallaxFactor: 30 },
+];
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -19,6 +26,9 @@ export default function Hero() {
 
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 lg:pt-48 lg:pb-36 overflow-hidden section-gradient-hero">
+      {/* Animated gradient orbs */}
+      <GradientOrbs orbs={heroOrbs} />
+
       {/* Faint background lifestyle photo — med spa reception, heavily blurred */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -53,7 +63,7 @@ export default function Hero() {
 
           {/* Subtitle */}
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
-            Our AI receptionist answers every call in under 60 seconds. It books appointments, sends reminders, and follows up with leads — 24/7. No extra staff needed.
+            You're losing thousands every month to calls that go to voicemail, leads that get a response tomorrow, and appointments that no-show. We fix that in 4 weeks — without replacing a single tool you already use.
           </p>
 
           {/* CTA Buttons — primary pill + secondary outline pill */}
@@ -91,7 +101,7 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* Social proof quote — premium testimonial card */}
+          {/* Social proof — industry stat */}
           <div className="max-w-2xl mx-auto">
             <div className="testimonial-card text-left">
               <div className="flex items-start gap-4">
@@ -100,10 +110,10 @@ export default function Hero() {
                 </div>
                 <div>
                   <blockquote className="font-display italic text-xl sm:text-2xl text-foreground leading-snug mb-4">
-                    We were losing 30% of leads to after-hours calls. Now every inquiry gets an instant response — and our bookings are up 40%.
+                    78% of customers buy from the first business that responds to their inquiry.
                   </blockquote>
                   <p className="text-sm text-muted-foreground">
-                    <span className="font-semibold text-foreground">Sarah Chen</span> · Med Spa Owner, 6 Locations
+                    <span className="font-semibold text-foreground">Lead Response Study</span> · Velocify / InsideSales.com
                   </p>
                 </div>
               </div>

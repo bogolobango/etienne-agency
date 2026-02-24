@@ -109,6 +109,7 @@ export default function Header() {
             <button
               className="md:hidden p-2 text-foreground"
               onClick={() => setMobileMenuOpen(true)}
+              aria-label="Open menu"
             >
               <svg
                 className="w-6 h-6"
@@ -134,6 +135,7 @@ export default function Header() {
           mobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMobileMenuOpen(false)}
+        aria-hidden="true"
       />
 
       {/* Mobile Menu Drawer */}
@@ -155,6 +157,7 @@ export default function Header() {
             <button
               onClick={() => setMobileMenuOpen(false)}
               className="p-2 text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Close menu"
             >
               <X className="w-5 h-5" />
             </button>

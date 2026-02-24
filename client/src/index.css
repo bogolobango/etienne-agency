@@ -256,25 +256,36 @@
   }
 
   /* ─── Section gradient backgrounds ──────────────────────────── */
-  /* Hero: very subtle radial emanating from center */
+  /* Hero: very subtle radial emanating from center, fades to white at bottom */
   .section-gradient-hero {
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124, 58, 237, 0.05) 0%, rgba(255,255,255,0) 70%);
+    background:
+      linear-gradient(180deg, transparent 0%, transparent 80%, #ffffff 100%),
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124, 58, 237, 0.05) 0%, rgba(255,255,255,0) 70%);
   }
 
-  /* Alt sections: top-to-bottom lavender tint to white */
+  /* Alt sections: fades from white → lavender → white at edges for seamless blending */
   .section-gradient-alt {
-    background: linear-gradient(180deg, #F9F8FC 0%, #ffffff 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #F9F8FC 10%, #F9F8FC 90%, #ffffff 100%);
   }
 
-  /* CTA closing section: slightly deeper lavender */
+  /* CTA closing section: diagonal lavender with white edge fades */
   .section-gradient-cta {
-    background: linear-gradient(135deg, #F3EFFE 0%, #F9F8FC 50%, #EEF2FF 100%);
+    background:
+      linear-gradient(180deg, #ffffff 0%, transparent 10%, transparent 90%, #ffffff 100%),
+      linear-gradient(135deg, #F3EFFE 0%, #F9F8FC 50%, #EEF2FF 100%);
   }
 
   /* Subtle dot pattern for data/analytics feel */
   .section-dot-pattern {
     background-image: radial-gradient(circle, rgba(124, 58, 237, 0.08) 1px, transparent 1px);
     background-size: 24px 24px;
+  }
+
+  /* ─── Calendly embed — let the iframe fill its container ───── */
+  .calendly-embed-container iframe {
+    width: 100% !important;
+    min-width: 0 !important;
+    border: none;
   }
 
   /* ─── Premium card styles ────────────────────────────────────── */
@@ -472,5 +483,79 @@
     border: 1px solid rgba(229, 231, 235, 0.6);
     box-shadow: 0 4px 24px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
     padding: 2.5rem;
+  }
+
+  /* ─── Skip-to-content link (accessibility) ─────────────────── */
+  .skip-to-content {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 9999;
+    padding: 0.75rem 1.5rem;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0 0 0.5rem 0;
+  }
+  .skip-to-content:focus {
+    left: 0;
+  }
+
+  /* ─── Gradient orb backgrounds ──────────────────────────────── */
+  .gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform, opacity;
+  }
+
+  .gradient-orb-parallax {
+    position: absolute;
+    will-change: transform;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+/* ─── Gradient orb floating keyframes ──────────────────────── */
+@keyframes orb-float-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -25px) scale(1.05); }
+  50% { transform: translate(-15px, 20px) scale(0.97); }
+  75% { transform: translate(25px, 10px) scale(1.03); }
+}
+
+@keyframes orb-float-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  20% { transform: translate(-25px, 15px) scale(1.04); }
+  40% { transform: translate(15px, -30px) scale(0.96); }
+  60% { transform: translate(-20px, -10px) scale(1.02); }
+  80% { transform: translate(30px, 20px) scale(0.98); }
+}
+
+@keyframes orb-float-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  30% { transform: translate(20px, 30px) scale(0.95); }
+  60% { transform: translate(-30px, -15px) scale(1.06); }
+  80% { transform: translate(10px, -25px) scale(0.98); }
+}
+
+.gradient-orb-float-1 { animation: orb-float-1 ease-in-out infinite; }
+.gradient-orb-float-2 { animation: orb-float-2 ease-in-out infinite; }
+.gradient-orb-float-3 { animation: orb-float-3 ease-in-out infinite; }
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

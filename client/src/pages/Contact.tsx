@@ -3,7 +3,7 @@
  * Discovery call scheduling form with editorial styling
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -27,11 +27,139 @@ import {
 import { toast } from "sonner";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
+import { useCanonical } from "@/hooks/useCanonical";
 import { trackFormSubmit } from "@/lib/analytics";
+import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
+
+const contactHeroOrbs: OrbConfig[] = [
+  { size: 480, color: "#7B61FF", x: "-6%", y: "-8%", opacity: 0.4, duration: 14, delay: 0, parallaxFactor: 50 },
+  { size: 400, color: "#2D5BFF", x: "72%", y: "45%", opacity: 0.35, duration: 12, delay: 3, parallaxFactor: -30 },
+  { size: 320, color: "#00D4AA", x: "78%", y: "-12%", opacity: 0.3, duration: 15, delay: 6, parallaxFactor: 35 },
+];
+
+const contactExpectOrbs: OrbConfig[] = [
+  { size: 420, color: "#FF8C42", x: "-6%", y: "15%", opacity: 0.3, duration: 13, delay: 1, parallaxFactor: 40 },
+  { size: 360, color: "#7B61FF", x: "80%", y: "60%", opacity: 0.3, duration: 11, delay: 5, parallaxFactor: -25 },
+];
+
+const contactCalendlyOrbs: OrbConfig[] = [
+  { size: 400, color: "#00D4AA", x: "70%", y: "5%", opacity: 0.3, duration: 14, delay: 2, parallaxFactor: 35 },
+  { size: 350, color: "#2D5BFF", x: "-5%", y: "55%", opacity: 0.25, duration: 12, delay: 6, parallaxFactor: -30 },
+];
+
+const contactFormOrbs: OrbConfig[] = [
+  { size: 450, color: "#7B61FF", x: "75%", y: "-5%", opacity: 0.3, duration: 13, delay: 0, parallaxFactor: 45 },
+  { size: 380, color: "#FF8C42", x: "-8%", y: "50%", opacity: 0.3, duration: 15, delay: 4, parallaxFactor: -35 },
+];
+
+const contactFaqOrbs: OrbConfig[] = [
+  { size: 400, color: "#2D5BFF", x: "-5%", y: "10%", opacity: 0.3, duration: 14, delay: 2, parallaxFactor: 40 },
+  { size: 350, color: "#00D4AA", x: "78%", y: "60%", opacity: 0.3, duration: 11, delay: 5, parallaxFactor: -30 },
+];
+
+const contactCtaOrbs: OrbConfig[] = [
+  { size: 400, color: "#FF8C42", x: "65%", y: "-10%", opacity: 0.35, duration: 13, delay: 1, parallaxFactor: 40 },
+  { size: 350, color: "#7B61FF", x: "-5%", y: "50%", opacity: 0.3, duration: 15, delay: 5, parallaxFactor: -30 },
+];
+
+// ---------------------------------------------------------------------------
+// Calendly embed — loads script on mount and initialises the inline widget
+// with site-matched color theming so it blends with the page.
+// ---------------------------------------------------------------------------
+const CALENDLY_URL =
+  "https://calendly.com/jim-etienneagency/30min" +
+  "?background_color=ffffff" +
+  "&text_color=111827" +
+  "&primary_color=7c3aed" +
+  "&hide_gdpr_banner=1";
+
+function CalendlySection({ inView, orbs }: { inView: boolean; orbs: OrbConfig[] }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    // If the global Calendly object already exists (script cached), init immediately
+    const win = window as unknown as Record<string, unknown>;
+    if (win.Calendly) {
+      initWidget();
+      return;
+    }
+
+    // Dynamically load the Calendly widget script
+    const existing = document.querySelector<HTMLScriptElement>(
+      'script[src*="assets.calendly.com"]'
+    );
+    if (existing) {
+      existing.addEventListener("load", initWidget);
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.async = true;
+    script.onload = initWidget;
+    document.head.appendChild(script);
+
+    function initWidget() {
+      if (!containerRef.current) return;
+      const C = (window as unknown as Record<string, unknown>).Calendly as
+        | { initInlineWidget?: (opts: Record<string, unknown>) => void }
+        | undefined;
+      if (C?.initInlineWidget) {
+        C.initInlineWidget({
+          url: CALENDLY_URL,
+          parentElement: containerRef.current,
+        });
+      }
+      setLoaded(true);
+    }
+  }, []);
+
+  return (
+    <section className="relative py-16 md:py-24 overflow-hidden">
+      <GradientOrbs orbs={orbs} />
+      <div className="container relative z-10">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-4">
+            Pick a time that{" "}
+            <span className="highlight-green">works</span>
+          </h2>
+          <p className="text-base sm:text-lg text-muted-foreground mb-8">
+            Book your 15-minute discovery call directly. No back-and-forth.
+          </p>
+
+          {/* Calendly iframe container — no overflow clipping so the
+              widget can size itself via its internal postMessage resizer */}
+          <div className="rounded-2xl border border-border/40 bg-white shadow-sm">
+            <div
+              ref={containerRef}
+              className="calendly-embed-container"
+              style={{ minHeight: 950, opacity: loaded ? 1 : 0, transition: "opacity 0.4s ease" }}
+            />
+            {!loaded && (
+              <div className="flex items-center justify-center" style={{ height: 950 }}>
+                <div className="animate-pulse text-muted-foreground text-sm">Loading calendar…</div>
+              </div>
+            )}
+          </div>
+
+          <div className="mt-8">
+            <div className="flex items-center gap-4 max-w-xs mx-auto">
+              <div className="flex-1 h-px bg-border" />
+              <p className="text-sm text-muted-foreground">or use the form</p>
+              <div className="flex-1 h-px bg-border" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Contact() {
   usePageView('Contact');
   useScrollTracking('Contact');
+  useCanonical('/contact');
 
   const [inView, setInView] = useState(false);
   const [formData, setFormData] = useState({
@@ -45,19 +173,42 @@ export default function Contact() {
   });
 
   useEffect(() => {
-    document.title = "Book a Free Discovery Call | AI Scheduling Audit | Etienne Agency";
+    document.title = "Book Your Free Revenue Audit | 15 Minutes, No Pitch | Etienne Agency";
     setInView(true);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    trackFormSubmit('Discovery Call Form', {
-      industry: formData.industry,
-      locations: formData.locations,
-      has_challenge: formData.challenge.length > 0
-    });
-    toast.success("Got it! We'll reach out within 2 hours to schedule your discovery call.");
-    console.log("Form submitted:", formData);
+    setSubmitting(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Requested-With": "fetch" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        toast.error(result.error || "Something went wrong. Please try again.");
+        return;
+      }
+
+      trackFormSubmit('Discovery Call Form', {
+        industry: formData.industry,
+        locations: formData.locations,
+        has_challenge: formData.challenge.length > 0
+      });
+      toast.success("Got it! We'll reach out within 2 hours to schedule your discovery call.");
+      setFormData({ name: "", email: "", phone: "", company: "", industry: "", locations: "", challenge: "" });
+    } catch {
+      toast.error("Network error. Please check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleChange = (field: string, value: string) => {
@@ -80,11 +231,12 @@ export default function Contact() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div id="main-content" className="min-h-screen">
       <Header />
 
       {/* Hero */}
       <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-gradient-hero overflow-hidden">
+        <GradientOrbs orbs={contactHeroOrbs} />
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.1] mb-6">
@@ -99,8 +251,9 @@ export default function Contact() {
       </section>
 
       {/* What to Expect */}
-      <section className="relative py-16 md:py-24 section-gradient-alt">
-        <div className="container">
+      <section className="relative py-16 md:py-24 section-gradient-alt overflow-hidden">
+        <GradientOrbs orbs={contactExpectOrbs} />
+        <div className="container relative z-10">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
@@ -131,9 +284,13 @@ export default function Contact() {
         </div>
       </section>
 
+      {/* Calendly Booking — Primary CTA */}
+      <CalendlySection inView={inView} orbs={contactCalendlyOrbs} />
+
       {/* Contact Form */}
-      <section id="contact-form" className="relative py-16 md:py-24">
-        <div className="container">
+      <section id="contact-form" className="relative py-16 md:py-24 overflow-hidden">
+        <GradientOrbs orbs={contactFormOrbs} />
+        <div className="container relative z-10">
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-16 items-start">
               {/* Left sidebar: photo + trust signals */}
@@ -217,9 +374,9 @@ export default function Contact() {
                   <Label htmlFor="challenge" className="font-sans text-sm">What's your biggest challenge? (Optional)</Label>
                   <Textarea id="challenge" value={formData.challenge} onChange={(e) => handleChange("challenge", e.target.value)} placeholder="e.g. Missing calls after hours, high no-show rate, slow follow-up..." rows={4} className="rounded-lg resize-none" />
                 </div>
-                <Button type="submit" className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25 py-6 h-auto text-base">
-                  Book My Free Discovery Call
-                  <ArrowRight className="ml-2 w-4 h-4" />
+                <Button type="submit" disabled={submitting} className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25 py-6 h-auto text-base disabled:opacity-60">
+                  {submitting ? "Sending..." : "Book My Free Discovery Call"}
+                  {!submitting && <ArrowRight className="ml-2 w-4 h-4" />}
                 </Button>
               </form>
             </div>
@@ -238,8 +395,9 @@ export default function Contact() {
       </section>
 
       {/* FAQs */}
-      <section className="relative py-16 md:py-24 section-gradient-alt">
-        <div className="container">
+      <section className="relative py-16 md:py-24 section-gradient-alt overflow-hidden">
+        <GradientOrbs orbs={contactFaqOrbs} />
+        <div className="container relative z-10">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-4">
@@ -260,8 +418,9 @@ export default function Contact() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-16 md:py-24">
-        <div className="container">
+      <section className="relative py-16 md:py-24 overflow-hidden">
+        <GradientOrbs orbs={contactCtaOrbs} />
+        <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
               Stop losing revenue to{" "}

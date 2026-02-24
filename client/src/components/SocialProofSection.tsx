@@ -4,6 +4,12 @@
  */
 
 import { useEffect, useState, useRef } from "react";
+import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
+
+const socialOrbs: OrbConfig[] = [
+  { size: 450, color: "#FF8C42", x: "-5%", y: "-10%", opacity: 0.35, duration: 13, delay: 2, parallaxFactor: 45 },
+  { size: 400, color: "#00D4AA", x: "75%", y: "60%", opacity: 0.4, duration: 11, delay: 5, parallaxFactor: -35 },
+];
 
 interface StatProps {
   value: number;
@@ -100,7 +106,7 @@ export default function SocialProofSection() {
       value: 60,
       suffix: "%",
       label: "Inquiries Automated",
-      description: "Routine questions handled by AI — no human needed (Arena Sports case study)",
+      description: "Routine questions handled by AI — no human needed (based on industry benchmarks for AI-assisted inquiry handling)",
       delay: 100,
     },
     {
@@ -115,9 +121,12 @@ export default function SocialProofSection() {
   return (
     <section
       id="social-proof-section"
-      className="relative py-20 md:py-28 lg:py-36 section-gradient-alt"
+      className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden"
     >
-      <div className="container">
+      {/* Animated gradient orbs */}
+      <GradientOrbs orbs={socialOrbs} />
+
+      <div className="container relative z-10">
         {/* Section header */}
         <div
           className={`max-w-3xl mx-auto text-center mb-16 md:mb-20 transition-all duration-700 ${
@@ -144,24 +153,26 @@ export default function SocialProofSection() {
           ))}
         </div>
 
-        {/* Testimonial quote block */}
+        {/* Key outcomes preview */}
         <div
-          className={`max-w-3xl mx-auto text-center transition-all duration-700 delay-300 ${
+          className={`max-w-3xl mx-auto transition-all duration-700 delay-300 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <div className="testimonial-card text-left">
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                <span className="font-display text-2xl text-primary/60 leading-none" style={{ marginTop: '-4px' }}>&ldquo;</span>
+          <div className="testimonial-card">
+            <p className="text-sm font-semibold text-foreground mb-4 text-center font-sans">What our clients can expect</p>
+            <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-10">
+              <div className="text-center">
+                <div className="font-display text-2xl text-foreground">&lt; 60s</div>
+                <p className="text-xs text-muted-foreground mt-1">Response time</p>
               </div>
-              <div>
-                <blockquote className="font-display italic text-xl sm:text-2xl text-foreground leading-snug mb-4">
-                  The AI handles 60% of our routine inquiries now. My front desk team finally has time to deliver great service instead of answering the same five questions on repeat.
-                </blockquote>
-                <p className="text-sm text-muted-foreground">
-                  <span className="font-semibold text-foreground">Marcus Rivera</span> · Operations Director, Arena Sports
-                </p>
+              <div className="text-center">
+                <div className="font-display text-2xl text-foreground">30–40%</div>
+                <p className="text-xs text-muted-foreground mt-1">Fewer no-shows</p>
+              </div>
+              <div className="text-center">
+                <div className="font-display text-2xl text-foreground">60%</div>
+                <p className="text-xs text-muted-foreground mt-1">Inquiries automated</p>
               </div>
             </div>
           </div>
@@ -174,7 +185,7 @@ export default function SocialProofSection() {
           }`}
         >
           <p className="text-xs text-muted-foreground">
-            Data from Velocify, Arena Sports, Zumper, and industry studies
+            Data from Velocify, Zumper, and industry studies
           </p>
         </div>
       </div>

@@ -13,19 +13,55 @@ import SocialProofSection from "@/components/SocialProofSection";
 import IndustriesSection from "@/components/IndustriesSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
+import ScrollCTA from "@/components/ScrollCTA";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
+import { useCanonical } from "@/hooks/useCanonical";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Etienne Agency",
+  description:
+    "AI receptionist and appointment scheduling automation for multi-location service businesses.",
+  url: "https://etienneagency.com",
+  email: "jim@etienneagency.com",
+  areaServed: "US",
+  serviceType: [
+    "AI Receptionist",
+    "Appointment Scheduling Automation",
+    "Lead Response Automation",
+  ],
+  knowsAbout: [
+    "Med Spas",
+    "Dental Practices",
+    "Law Firms",
+    "Property Management",
+    "Accounting Firms",
+  ],
+};
 
 export default function Home() {
   usePageView('Homepage');
   useScrollTracking('Homepage');
+  useCanonical('/');
 
   useEffect(() => {
-    document.title = "AI Appointment Scheduling & Virtual Receptionist | Etienne Agency";
+    document.title = "Stop Losing Revenue to Missed Calls | AI for Multi-Location Businesses | Etienne Agency";
+
+    // Inject JSON-LD structured data
+    const existing = document.getElementById("json-ld-home");
+    if (!existing) {
+      const script = document.createElement("script");
+      script.id = "json-ld-home";
+      script.type = "application/ld+json";
+      script.textContent = JSON.stringify(jsonLd);
+      document.head.appendChild(script);
+    }
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div id="main-content" className="min-h-screen">
       <Header />
       <Hero />
       <ProblemSection />
@@ -34,6 +70,7 @@ export default function Home() {
       <IndustriesSection />
       <FinalCTASection />
       <Footer />
+      <ScrollCTA />
     </div>
   );
 }

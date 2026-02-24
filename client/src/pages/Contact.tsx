@@ -3,7 +3,7 @@
  * Discovery call scheduling form with editorial styling
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -61,6 +61,98 @@ const contactCtaOrbs: OrbConfig[] = [
   { size: 400, color: "#FF8C42", x: "65%", y: "-10%", opacity: 0.35, duration: 13, delay: 1, parallaxFactor: 40 },
   { size: 350, color: "#7B61FF", x: "-5%", y: "50%", opacity: 0.3, duration: 15, delay: 5, parallaxFactor: -30 },
 ];
+
+// ---------------------------------------------------------------------------
+// Calendly embed — loads script on mount and initialises the inline widget
+// with site-matched color theming so it blends with the page.
+// ---------------------------------------------------------------------------
+const CALENDLY_URL =
+  "https://calendly.com/jim-etienneagency/30min" +
+  "?background_color=ffffff" +
+  "&text_color=111827" +
+  "&primary_color=7c3aed" +
+  "&hide_gdpr_banner=1";
+
+function CalendlySection({ inView, orbs }: { inView: boolean; orbs: OrbConfig[] }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    // If the global Calendly object already exists (script cached), init immediately
+    const win = window as unknown as Record<string, unknown>;
+    if (win.Calendly) {
+      initWidget();
+      return;
+    }
+
+    // Dynamically load the Calendly widget script
+    const existing = document.querySelector<HTMLScriptElement>(
+      'script[src*="assets.calendly.com"]'
+    );
+    if (existing) {
+      existing.addEventListener("load", initWidget);
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.async = true;
+    script.onload = initWidget;
+    document.head.appendChild(script);
+
+    function initWidget() {
+      if (!containerRef.current) return;
+      const C = (window as unknown as Record<string, unknown>).Calendly as
+        | { initInlineWidget?: (opts: Record<string, unknown>) => void }
+        | undefined;
+      if (C?.initInlineWidget) {
+        C.initInlineWidget({
+          url: CALENDLY_URL,
+          parentElement: containerRef.current,
+        });
+      }
+      setLoaded(true);
+    }
+  }, []);
+
+  return (
+    <section className="relative py-16 md:py-24 overflow-hidden">
+      <GradientOrbs orbs={orbs} />
+      <div className="container relative z-10">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-4">
+            Pick a time that{" "}
+            <span className="highlight-green">works</span>
+          </h2>
+          <p className="text-base sm:text-lg text-muted-foreground mb-8">
+            Book your 15-minute discovery call directly. No back-and-forth.
+          </p>
+
+          {/* Widget container — styled to match site card aesthetic */}
+          <div className="card-premium rounded-2xl overflow-hidden p-0">
+            <div
+              ref={containerRef}
+              style={{ minHeight: 700, opacity: loaded ? 1 : 0, transition: "opacity 0.4s ease" }}
+            />
+            {!loaded && (
+              <div className="flex items-center justify-center" style={{ height: 700 }}>
+                <div className="animate-pulse text-muted-foreground text-sm">Loading calendar…</div>
+              </div>
+            )}
+          </div>
+
+          <div className="mt-8">
+            <div className="flex items-center gap-4 max-w-xs mx-auto">
+              <div className="flex-1 h-px bg-border" />
+              <p className="text-sm text-muted-foreground">or use the form</p>
+              <div className="flex-1 h-px bg-border" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Contact() {
   usePageView('Contact');
@@ -191,32 +283,7 @@ export default function Contact() {
       </section>
 
       {/* Calendly Booking — Primary CTA */}
-      <section className="relative py-16 md:py-24 overflow-hidden">
-        <GradientOrbs orbs={contactCalendlyOrbs} />
-        <div className="container relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-4">
-              Pick a time that{" "}
-              <span className="highlight-green">works</span>
-            </h2>
-            <p className="text-base sm:text-lg text-muted-foreground mb-8">
-              Book your 15-minute discovery call directly. No back-and-forth.
-            </p>
-            <div
-              className="calendly-inline-widget rounded-2xl overflow-hidden"
-              data-url="https://calendly.com/jim-etienneagency/30min"
-              style={{ minWidth: '320px', height: '700px' }}
-            />
-            <div className="mt-8">
-              <div className="flex items-center gap-4 max-w-xs mx-auto">
-                <div className="flex-1 h-px bg-border" />
-                <p className="text-sm text-muted-foreground">or use the form</p>
-                <div className="flex-1 h-px bg-border" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CalendlySection inView={inView} orbs={contactCalendlyOrbs} />
 
       {/* Contact Form */}
       <section id="contact-form" className="relative py-16 md:py-24 overflow-hidden">

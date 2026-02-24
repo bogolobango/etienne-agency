@@ -62,7 +62,6 @@ const contactCtaOrbs: OrbConfig[] = [
   { size: 350, color: "#7B61FF", x: "-5%", y: "50%", opacity: 0.3, duration: 15, delay: 5, parallaxFactor: -30 },
 ];
 
-// ---------------------------------------------------------------------------
 // Calendly embed — uses the standard calendly-inline-widget class so
 // widget.js auto-detects and sizes the iframe correctly.
 // ---------------------------------------------------------------------------

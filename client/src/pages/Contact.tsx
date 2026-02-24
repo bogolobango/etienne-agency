@@ -3,7 +3,7 @@
  * Discovery call scheduling form with editorial styling
  */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -62,9 +62,8 @@ const contactCtaOrbs: OrbConfig[] = [
   { size: 350, color: "#7B61FF", x: "-5%", y: "50%", opacity: 0.3, duration: 15, delay: 5, parallaxFactor: -30 },
 ];
 
-// ---------------------------------------------------------------------------
-// Calendly embed — loads script on mount and initialises the inline widget
-// with site-matched color theming so it blends with the page.
+// Calendly embed — uses the standard calendly-inline-widget class so
+// widget.js auto-detects and sizes the iframe correctly.
 // ---------------------------------------------------------------------------
 const CALENDLY_URL =
   "https://calendly.com/jim-etienneagency/30min" +
@@ -74,52 +73,27 @@ const CALENDLY_URL =
   "&hide_gdpr_banner=1";
 
 function CalendlySection({ inView, orbs }: { inView: boolean; orbs: OrbConfig[] }) {
-  const containerRef = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    // If the global Calendly object already exists (script cached), init immediately
-    const win = window as unknown as Record<string, unknown>;
-    if (win.Calendly) {
-      initWidget();
-      return;
-    }
-
-    // Dynamically load the Calendly widget script
-    const existing = document.querySelector<HTMLScriptElement>(
-      'script[src*="assets.calendly.com"]'
-    );
-    if (existing) {
-      existing.addEventListener("load", initWidget);
+    // Already loaded from a previous visit
+    if (document.querySelector('script[src*="assets.calendly.com"]')) {
+      setLoaded(true);
       return;
     }
 
     const script = document.createElement("script");
     script.src = "https://assets.calendly.com/assets/external/widget.js";
     script.async = true;
-    script.onload = initWidget;
+    script.onload = () => setLoaded(true);
     document.head.appendChild(script);
-
-    function initWidget() {
-      if (!containerRef.current) return;
-      const C = (window as unknown as Record<string, unknown>).Calendly as
-        | { initInlineWidget?: (opts: Record<string, unknown>) => void }
-        | undefined;
-      if (C?.initInlineWidget) {
-        C.initInlineWidget({
-          url: CALENDLY_URL,
-          parentElement: containerRef.current,
-        });
-      }
-      setLoaded(true);
-    }
   }, []);
 
   return (
     <section className="relative py-16 md:py-24 overflow-hidden">
       <GradientOrbs orbs={orbs} />
       <div className="container relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center">
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-4">
             Pick a time that{" "}
             <span className="highlight-green">works</span>
@@ -128,18 +102,13 @@ function CalendlySection({ inView, orbs }: { inView: boolean; orbs: OrbConfig[] 
             Book your 15-minute discovery call directly. No back-and-forth.
           </p>
 
-          {/* Widget container — styled to match site card aesthetic */}
-          <div className="card-premium rounded-2xl overflow-hidden p-0">
-            <div
-              ref={containerRef}
-              style={{ minHeight: 700, opacity: loaded ? 1 : 0, transition: "opacity 0.4s ease" }}
-            />
-            {!loaded && (
-              <div className="flex items-center justify-center" style={{ height: 700 }}>
-                <div className="animate-pulse text-muted-foreground text-sm">Loading calendar…</div>
-              </div>
-            )}
-          </div>
+          {/* Standard Calendly inline widget — widget.js auto-detects
+              elements with this class and handles all iframe sizing. */}
+          <div
+            className="calendly-inline-widget rounded-2xl"
+            data-url={CALENDLY_URL}
+            style={{ minWidth: 320, height: 700 }}
+          />
 
           <div className="mt-8">
             <div className="flex items-center gap-4 max-w-xs mx-auto">

@@ -281,6 +281,14 @@
     background-size: 24px 24px;
   }
 
+  /* ─── Calendly embed — clean up iframe border ──────────────── */
+  .calendly-inline-widget {
+    overflow: hidden;
+  }
+  .calendly-inline-widget iframe {
+    border: none !important;
+  }
+
   /* ─── Premium card styles ────────────────────────────────────── */
   .card-premium {
     background: #ffffff;

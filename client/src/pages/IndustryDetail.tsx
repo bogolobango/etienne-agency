@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
-import { useCanonical } from "@/hooks/useCanonical";
+import { useSEO } from "@/hooks/useSEO";
 import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
 
 const idHeroOrbs: OrbConfig[] = [
@@ -147,25 +147,36 @@ export default function IndustryDetail() {
 
   usePageView(industry ? `Industry - ${industry.name}` : "Industry - Unknown");
   useScrollTracking(industry ? `Industry - ${industry.name}` : "Industry - Unknown");
-  useCanonical(`/industries/${slug || ""}`);
+  useSEO(`/industries/${slug || ""}`);
 
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
-    if (!industry) return;
-
-    document.title = industry.title;
-
-    // Inject or update meta description
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (!metaDesc) {
-      metaDesc = document.createElement("meta");
-      metaDesc.setAttribute("name", "description");
-      document.head.appendChild(metaDesc);
-    }
-    metaDesc.setAttribute("content", industry.metaDescription);
-
+    if (!industry || !slug) return;
     setInView(true);
+
+    // Inject JSON-LD structured data for this industry page
+    const ldId = `json-ld-industry-${slug}`;
+    if (!document.getElementById(ldId)) {
+      const script = document.createElement("script");
+      script.id = ldId;
+      script.type = "application/ld+json";
+      script.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: `AI Receptionist for ${industry.name}`,
+        description: industry.metaDescription,
+        url: `https://www.etienneagency.com/industries/${slug}`,
+        provider: {
+          "@type": "ProfessionalService",
+          name: "Etienne Agency",
+          url: "https://www.etienneagency.com",
+        },
+        areaServed: "US",
+        serviceType: "AI Receptionist & Appointment Scheduling",
+      });
+      document.head.appendChild(script);
+    }
   }, [industry, slug]);
 
   // Redirect to /industries if slug doesn't match any industry

@@ -8,7 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
-import { useCanonical } from "@/hooks/useCanonical";
+import { useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import {
@@ -50,12 +50,11 @@ const hiwCtaOrbs: OrbConfig[] = [
 export default function HowItWorks() {
   usePageView('How It Works');
   useScrollTracking('How It Works');
-  useCanonical('/how-it-works');
+  useSEO('/how-it-works');
 
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
-    document.title = "From Overwhelmed to Automated in 4 Weeks | Etienne Agency";
     setInView(true);
   }, []);
 

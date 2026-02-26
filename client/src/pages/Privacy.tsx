@@ -1,14 +1,9 @@
-import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useCanonical } from "@/hooks/useCanonical";
+import { useSEO } from "@/hooks/useSEO";
 
 export default function Privacy() {
-  useCanonical('/privacy');
-
-  useEffect(() => {
-    document.title = "Privacy Policy | Etienne Agency";
-  }, []);
+  useSEO('/privacy');
 
   return (
     <div id="main-content" className="min-h-screen">

@@ -9,6 +9,7 @@ import rateLimit from "express-rate-limit";
 import morgan from "morgan";
 import nodemailer from "nodemailer";
 import { contactSchema, escapeHtml, sanitizeHeader, type ContactFormData } from "./contact.schema.js";
+import { getPageMeta, BASE_URL, OG_IMAGE, SITE_NAME } from "../shared/seoMeta.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -300,9 +301,87 @@ async function startServer() {
     index: false,
   }));
 
-  // --- SPA fallback ---
-  app.get("*", (_req, res) => {
-    res.sendFile(path.join(staticPath, "index.html"));
+  // --- SPA fallback with SEO meta-tag injection ---
+  // Read the index.html template once at startup so we can inject per-route
+  // meta tags for crawlers that don't execute JavaScript (Bing, social
+  // media link previews, etc.).
+  const indexPath = path.join(staticPath, "index.html");
+  let htmlTemplate = "";
+  try {
+    htmlTemplate = fs.readFileSync(indexPath, "utf-8");
+  } catch {
+    console.warn("[seo] Could not read index.html template — meta injection disabled");
+  }
+
+  app.get("*", (req, res) => {
+    if (!htmlTemplate) {
+      res.sendFile(indexPath);
+      return;
+    }
+
+    const meta = getPageMeta(req.path);
+    const canonicalUrl = `${BASE_URL}${req.path === "/" ? "" : req.path}`;
+    const ogImage = meta.ogImage || OG_IMAGE;
+
+    // Escape HTML entities in meta content to prevent injection
+    const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+    let html = htmlTemplate;
+
+    // Replace <title>
+    html = html.replace(
+      /<title>[^<]*<\/title>/,
+      `<title>${esc(meta.title)}</title>`
+    );
+
+    // Replace meta description
+    html = html.replace(
+      /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/,
+      `<meta name="description" content="${esc(meta.description)}" />`
+    );
+
+    // Replace Open Graph tags
+    html = html.replace(
+      /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/,
+      `<meta property="og:title" content="${esc(meta.title)}" />`
+    );
+    html = html.replace(
+      /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/,
+      `<meta property="og:description" content="${esc(meta.description)}" />`
+    );
+    html = html.replace(
+      /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/,
+      `<meta property="og:url" content="${esc(canonicalUrl)}" />`
+    );
+    html = html.replace(
+      /<meta\s+property="og:image"\s+content="[^"]*"\s*\/?>/,
+      `<meta property="og:image" content="${esc(ogImage)}" />`
+    );
+
+    // Replace Twitter Card tags
+    html = html.replace(
+      /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>/,
+      `<meta name="twitter:title" content="${esc(meta.title)}" />`
+    );
+    html = html.replace(
+      /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>/,
+      `<meta name="twitter:description" content="${esc(meta.description)}" />`
+    );
+    html = html.replace(
+      /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/?>/,
+      `<meta name="twitter:image" content="${esc(ogImage)}" />`
+    );
+
+    // Inject canonical link (add before </head> if not present)
+    if (!html.includes('rel="canonical"')) {
+      html = html.replace(
+        "</head>",
+        `  <link rel="canonical" href="${esc(canonicalUrl)}" />\n  </head>`
+      );
+    }
+
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+    res.send(html);
   });
 
   const port = process.env.PORT || 3000;

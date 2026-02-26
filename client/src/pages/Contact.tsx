@@ -27,7 +27,7 @@ import {
 import { toast } from "sonner";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
-import { useCanonical } from "@/hooks/useCanonical";
+import { useSEO } from "@/hooks/useSEO";
 import { trackFormSubmit } from "@/lib/analytics";
 import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
 
@@ -126,7 +126,7 @@ function CalendlySection({ inView, orbs }: { inView: boolean; orbs: OrbConfig[] 
 export default function Contact() {
   usePageView('Contact');
   useScrollTracking('Contact');
-  useCanonical('/contact');
+  useSEO('/contact');
 
   const [inView, setInView] = useState(false);
   const [formData, setFormData] = useState({
@@ -140,7 +140,6 @@ export default function Contact() {
   });
 
   useEffect(() => {
-    document.title = "Book Your Free Revenue Audit | 15 Minutes, No Pitch | Etienne Agency";
     setInView(true);
   }, []);
 

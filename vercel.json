@@ -1,7 +1,8 @@
 {
   "framework": "vite",
-  "buildCommand": "vite build",
+  "buildCommand": "vite build && vite build --config vite.prerender.config.ts && node scripts/prerender.mjs",
   "outputDirectory": "dist/public",
+  "cleanUrls": true,
   "headers": [
     {
       "source": "/(.*)",

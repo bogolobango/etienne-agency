@@ -1,22 +1,12 @@
 /**
  * Contact Page - Tango Editorial Design
- * Discovery call scheduling form with editorial styling
+ * Discovery call scheduling via Calendly with editorial styling
  */
 
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import {
   CheckCircle2,
   Clock,
@@ -24,11 +14,9 @@ import {
   Mail,
   ArrowRight
 } from "lucide-react";
-import { toast } from "sonner";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
 import { useSEO } from "@/hooks/useSEO";
-import { trackFormSubmit } from "@/lib/analytics";
 import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
 
 const contactHeroOrbs: OrbConfig[] = [
@@ -45,11 +33,6 @@ const contactExpectOrbs: OrbConfig[] = [
 const contactCalendlyOrbs: OrbConfig[] = [
   { size: 400, color: "#00D4AA", x: "70%", y: "5%", opacity: 0.3, duration: 14, delay: 2, parallaxFactor: 35 },
   { size: 350, color: "#2D5BFF", x: "-5%", y: "55%", opacity: 0.25, duration: 12, delay: 6, parallaxFactor: -30 },
-];
-
-const contactFormOrbs: OrbConfig[] = [
-  { size: 450, color: "#7B61FF", x: "75%", y: "-5%", opacity: 0.3, duration: 13, delay: 0, parallaxFactor: 45 },
-  { size: 380, color: "#FF8C42", x: "-8%", y: "50%", opacity: 0.3, duration: 15, delay: 4, parallaxFactor: -35 },
 ];
 
 const contactFaqOrbs: OrbConfig[] = [
@@ -72,56 +55,13 @@ const CALENDLY_URL =
   "&primary_color=7c3aed" +
   "&hide_gdpr_banner=1";
 
-function CalendlySection({ inView, orbs }: { inView: boolean; orbs: OrbConfig[] }) {
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    // Already loaded from a previous visit
-    if (document.querySelector('script[src*="assets.calendly.com"]')) {
-      setLoaded(true);
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    script.onload = () => setLoaded(true);
-    document.head.appendChild(script);
-  }, []);
-
-  return (
-    <section className="relative py-16 md:py-24 overflow-hidden">
-      <GradientOrbs orbs={orbs} />
-      <div className="container relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-4">
-            Pick a time that{" "}
-            <span className="highlight-green">works</span>
-          </h2>
-          <p className="text-base sm:text-lg text-muted-foreground mb-8">
-            Book your 15-minute discovery call directly. No back-and-forth.
-          </p>
-
-          {/* Standard Calendly inline widget — widget.js auto-detects
-              elements with this class and handles all iframe sizing. */}
-          <div
-            className="calendly-inline-widget rounded-2xl"
-            data-url={CALENDLY_URL}
-            style={{ minWidth: 320, height: 700 }}
-          />
-
-          <div className="mt-8">
-            <div className="flex items-center gap-4 max-w-xs mx-auto">
-              <div className="flex-1 h-px bg-border" />
-              <p className="text-sm text-muted-foreground">or use the form</p>
-              <div className="flex-1 h-px bg-border" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+const faqs = [
+  { question: "How long is the discovery call?", answer: "15 minutes. No more. We respect your time." },
+  { question: "Is this a sales pitch?", answer: "No. We ask about your missed calls, lead response time, and no-show rates. Then we give you an honest take on whether our AI receptionist can help. If it can't, we'll say so." },
+  { question: "What if I'm not ready to commit?", answer: "That's fine. Most people aren't after one call. You'll walk away knowing what appointment scheduling automation could do for your numbers." },
+  { question: "What size business do you work with?", answer: "Multi-location service businesses with 3–25 locations. Smaller operations usually don't have the volume to justify the investment. Larger enterprises often have in-house teams already." },
+  { question: "What does the virtual receptionist actually do?", answer: "It answers calls, texts, and web forms in under 60 seconds. It books appointments, sends automated reminders to reduce no-shows, and follows up with leads who don't book right away. All 24/7." }
+];
 
 export default function Contact() {
   usePageView('Contact');
@@ -129,71 +69,41 @@ export default function Contact() {
   useSEO('/contact');
 
   const [inView, setInView] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    company: "",
-    industry: "",
-    locations: "",
-    challenge: ""
-  });
 
   useEffect(() => {
     setInView(true);
-  }, []);
 
-  const [submitting, setSubmitting] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-Requested-With": "fetch" },
-        body: JSON.stringify(formData),
+    // Inject FAQPage JSON-LD for rich results
+    if (!document.getElementById("json-ld-faq")) {
+      const script = document.createElement("script");
+      script.id = "json-ld-faq";
+      script.type = "application/ld+json";
+      script.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
       });
-
-      const result = await res.json();
-
-      if (!res.ok) {
-        toast.error(result.error || "Something went wrong. Please try again.");
-        return;
-      }
-
-      trackFormSubmit('Discovery Call Form', {
-        industry: formData.industry,
-        locations: formData.locations,
-        has_challenge: formData.challenge.length > 0
-      });
-      toast.success("Got it! We'll reach out within 2 hours to schedule your discovery call.");
-      setFormData({ name: "", email: "", phone: "", company: "", industry: "", locations: "", challenge: "" });
-    } catch {
-      toast.error("Network error. Please check your connection and try again.");
-    } finally {
-      setSubmitting(false);
+      document.head.appendChild(script);
     }
-  };
 
-  const handleChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-  };
+    // Load Calendly widget script
+    if (!document.querySelector('script[src*="assets.calendly.com"]')) {
+      const calendlyScript = document.createElement("script");
+      calendlyScript.src = "https://assets.calendly.com/assets/external/widget.js";
+      calendlyScript.async = true;
+      document.head.appendChild(calendlyScript);
+    }
+  }, []);
 
   const expectations = [
     { icon: MessageCircle, title: "Your lead response time", description: "How fast do you respond to missed calls, texts, and web forms? Where are leads falling through?" },
     { icon: CheckCircle2, title: "Quick ROI estimate", description: "Based on your call volume and no-show rate, how much revenue can smart scheduling recover?" },
     { icon: Clock, title: "Fit evaluation", description: "Does the 24/7 Revenue Recovery Framework match your business? Not every company is right for this." },
     { icon: ArrowRight, title: "Clear next steps", description: "If it makes sense, we'll show you the 4-week setup. If not, no hard feelings." }
-  ];
-
-  const faqs = [
-    { question: "How long is the discovery call?", answer: "15 minutes. No more. We respect your time." },
-    { question: "Is this a sales pitch?", answer: "No. We ask about your missed calls, lead response time, and no-show rates. Then we give you an honest take on whether our AI receptionist can help. If it can't, we'll say so." },
-    { question: "What if I'm not ready to commit?", answer: "That's fine. Most people aren't after one call. You'll walk away knowing what appointment scheduling automation could do for your numbers." },
-    { question: "What size business do you work with?", answer: "Multi-location service businesses with 3–25 locations. Smaller operations usually don't have the volume to justify the investment. Larger enterprises often have in-house teams already." },
-    { question: "What does the virtual receptionist actually do?", answer: "It answers calls, texts, and web forms in under 60 seconds. It books appointments, sends automated reminders to reduce no-shows, and follows up with leads who don't book right away. All 24/7." }
   ];
 
   return (
@@ -250,17 +160,33 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Calendly Booking — Primary CTA */}
-      <CalendlySection inView={inView} orbs={contactCalendlyOrbs} />
-
-      {/* Contact Form */}
-      <section id="contact-form" className="relative py-16 md:py-24 overflow-hidden">
-        <GradientOrbs orbs={contactFormOrbs} />
+      {/* Calendly Booking + Photo/Trust Sidebar */}
+      <section id="booking" className="relative py-16 md:py-24 overflow-hidden">
+        <GradientOrbs orbs={contactCalendlyOrbs} />
         <div className="container relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-16 items-start">
-              {/* Left sidebar: photo + trust signals */}
-              <div className="hidden md:flex flex-col gap-6 md:col-span-2">
+          <div className="text-center mb-10">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-4">
+              Schedule your free{" "}
+              <span className="highlight-green">revenue audit</span>
+            </h2>
+            <p className="text-base sm:text-lg text-muted-foreground">
+              Pick a time that works. No back-and-forth.
+            </p>
+          </div>
+
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
+              {/* Left: Calendly widget */}
+              <div className="lg:col-span-3">
+                <div
+                  className="calendly-inline-widget rounded-2xl"
+                  data-url={CALENDLY_URL}
+                  style={{ minWidth: 320, height: 700 }}
+                />
+              </div>
+
+              {/* Right: Photo + trust signals */}
+              <div className="hidden lg:flex flex-col gap-6 lg:col-span-2">
                 <div className="rounded-2xl overflow-hidden shadow-lg border border-border/30" style={{ aspectRatio: '3/4' }}>
                   <img
                     src="/images/contact-office.jpg"
@@ -282,80 +208,15 @@ export default function Contact() {
                     </div>
                   ))}
                 </div>
+                <div className="text-center">
+                  <p className="text-sm text-muted-foreground mb-1">Prefer email?</p>
+                  <a href="mailto:jim@etienneagency.com" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium text-sm">
+                    <Mail className="w-4 h-4" />
+                    jim@etienneagency.com
+                  </a>
+                </div>
               </div>
-              {/* Right: form */}
-              <div className="md:col-span-3">
-            <div className="card-premium p-6 sm:p-8 md:p-10">
-              <div className="text-center mb-8">
-                <h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-foreground mb-3">Schedule your free revenue audit</h2>
-                <p className="text-sm text-muted-foreground">Fill out the form. We respond within 2 hours.</p>
-              </div>
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="space-y-2">
-                  <Label htmlFor="name" className="font-sans text-sm">Name *</Label>
-                  <Input id="name" type="text" required value={formData.name} onChange={(e) => handleChange("name", e.target.value)} placeholder="John Smith" className="rounded-lg" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="font-sans text-sm">Email *</Label>
-                  <Input id="email" type="email" required value={formData.email} onChange={(e) => handleChange("email", e.target.value)} placeholder="john@company.com" className="rounded-lg" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="phone" className="font-sans text-sm">Phone *</Label>
-                  <Input id="phone" type="tel" required value={formData.phone} onChange={(e) => handleChange("phone", e.target.value)} placeholder="(555) 123-4567" className="rounded-lg" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="company" className="font-sans text-sm">Company Name *</Label>
-                  <Input id="company" type="text" required value={formData.company} onChange={(e) => handleChange("company", e.target.value)} placeholder="Your Company" className="rounded-lg" />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="industry" className="font-sans text-sm">Industry *</Label>
-                  <Select value={formData.industry} onValueChange={(value) => handleChange("industry", value)} required>
-                    <SelectTrigger className="rounded-lg"><SelectValue placeholder="Select your industry" /></SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="medspa">Med Spa</SelectItem>
-                      <SelectItem value="dental">Dental</SelectItem>
-                      <SelectItem value="law">Law Firm</SelectItem>
-                      <SelectItem value="property">Property Management</SelectItem>
-                      <SelectItem value="accounting">Accounting</SelectItem>
-                      <SelectItem value="cleaning">Cleaning</SelectItem>
-                      <SelectItem value="sports">Sports Facility</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="locations" className="font-sans text-sm">Number of Locations *</Label>
-                  <Select value={formData.locations} onValueChange={(value) => handleChange("locations", value)} required>
-                    <SelectTrigger className="rounded-lg"><SelectValue placeholder="Select location count" /></SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="1-2">1-2</SelectItem>
-                      <SelectItem value="3-5">3-5</SelectItem>
-                      <SelectItem value="6-10">6-10</SelectItem>
-                      <SelectItem value="11-25">11-25</SelectItem>
-                      <SelectItem value="25+">25+</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="challenge" className="font-sans text-sm">What's your biggest challenge? (Optional)</Label>
-                  <Textarea id="challenge" value={formData.challenge} onChange={(e) => handleChange("challenge", e.target.value)} placeholder="e.g. Missing calls after hours, high no-show rate, slow follow-up..." rows={4} className="rounded-lg resize-none" />
-                </div>
-                <Button type="submit" disabled={submitting} className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25 py-6 h-auto text-base disabled:opacity-60">
-                  {submitting ? "Sending..." : "Book My Free Discovery Call"}
-                  {!submitting && <ArrowRight className="ml-2 w-4 h-4" />}
-                </Button>
-              </form>
             </div>
-            <div className="mt-8 text-center">
-              <p className="text-sm text-muted-foreground mb-2">Prefer to reach out directly?</p>
-              <a href="mailto:jim@etienneagency.com" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium text-sm">
-                <Mail className="w-4 h-4" />
-                jim@etienneagency.com
-              </a>
-              <p className="text-xs text-muted-foreground mt-2">We typically respond within 2 hours during business hours.</p>
-            </div>
-              </div>{/* end right col */}
-            </div>{/* end grid */}
           </div>
         </div>
       </section>
@@ -395,9 +256,9 @@ export default function Contact() {
             <p className="text-base sm:text-lg text-muted-foreground mb-8">Every day without an instant response system is revenue walking out the door. Let's fix that.</p>
             <Button
                 className="rounded-full px-8 py-6 h-auto text-base bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl shadow-primary/30 btn-primary-pill"
-              onClick={() => { document.getElementById("contact-form")?.scrollIntoView({ behavior: "smooth" }); }}
+              onClick={() => { document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" }); }}
             >
-              Fill Out the Form Above
+              Book Your Discovery Call
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </div>

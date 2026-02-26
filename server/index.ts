@@ -9,7 +9,7 @@ import rateLimit from "express-rate-limit";
 import morgan from "morgan";
 import nodemailer from "nodemailer";
 import { contactSchema, escapeHtml, sanitizeHeader, type ContactFormData } from "./contact.schema.js";
-import { getPageMeta, BASE_URL, OG_IMAGE, SITE_NAME } from "../shared/seoMeta.js";
+import { getPageMeta, getBreadcrumbJsonLd, BASE_URL, OG_IMAGE, SITE_NAME } from "../shared/seoMeta.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -377,6 +377,15 @@ async function startServer() {
       html = html.replace(
         "</head>",
         `  <link rel="canonical" href="${esc(canonicalUrl)}" />\n  </head>`
+      );
+    }
+
+    // Inject BreadcrumbList JSON-LD for subpages
+    const breadcrumb = getBreadcrumbJsonLd(req.path);
+    if (breadcrumb) {
+      html = html.replace(
+        "</head>",
+        `  <script type="application/ld+json">${JSON.stringify(breadcrumb)}</script>\n  </head>`
       );
     }
 

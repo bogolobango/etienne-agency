@@ -123,6 +123,14 @@ function CalendlySection({ inView, orbs }: { inView: boolean; orbs: OrbConfig[] 
   );
 }
 
+const faqs = [
+  { question: "How long is the discovery call?", answer: "15 minutes. No more. We respect your time." },
+  { question: "Is this a sales pitch?", answer: "No. We ask about your missed calls, lead response time, and no-show rates. Then we give you an honest take on whether our AI receptionist can help. If it can't, we'll say so." },
+  { question: "What if I'm not ready to commit?", answer: "That's fine. Most people aren't after one call. You'll walk away knowing what appointment scheduling automation could do for your numbers." },
+  { question: "What size business do you work with?", answer: "Multi-location service businesses with 3–25 locations. Smaller operations usually don't have the volume to justify the investment. Larger enterprises often have in-house teams already." },
+  { question: "What does the virtual receptionist actually do?", answer: "It answers calls, texts, and web forms in under 60 seconds. It books appointments, sends automated reminders to reduce no-shows, and follows up with leads who don't book right away. All 24/7." }
+];
+
 export default function Contact() {
   usePageView('Contact');
   useScrollTracking('Contact');
@@ -141,6 +149,23 @@ export default function Contact() {
 
   useEffect(() => {
     setInView(true);
+
+    // Inject FAQPage JSON-LD for rich results
+    if (!document.getElementById("json-ld-faq")) {
+      const script = document.createElement("script");
+      script.id = "json-ld-faq";
+      script.type = "application/ld+json";
+      script.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      });
+      document.head.appendChild(script);
+    }
   }, []);
 
   const [submitting, setSubmitting] = useState(false);
@@ -186,14 +211,6 @@ export default function Contact() {
     { icon: CheckCircle2, title: "Quick ROI estimate", description: "Based on your call volume and no-show rate, how much revenue can smart scheduling recover?" },
     { icon: Clock, title: "Fit evaluation", description: "Does the 24/7 Revenue Recovery Framework match your business? Not every company is right for this." },
     { icon: ArrowRight, title: "Clear next steps", description: "If it makes sense, we'll show you the 4-week setup. If not, no hard feelings." }
-  ];
-
-  const faqs = [
-    { question: "How long is the discovery call?", answer: "15 minutes. No more. We respect your time." },
-    { question: "Is this a sales pitch?", answer: "No. We ask about your missed calls, lead response time, and no-show rates. Then we give you an honest take on whether our AI receptionist can help. If it can't, we'll say so." },
-    { question: "What if I'm not ready to commit?", answer: "That's fine. Most people aren't after one call. You'll walk away knowing what appointment scheduling automation could do for your numbers." },
-    { question: "What size business do you work with?", answer: "Multi-location service businesses with 3–25 locations. Smaller operations usually don't have the volume to justify the investment. Larger enterprises often have in-house teams already." },
-    { question: "What does the virtual receptionist actually do?", answer: "It answers calls, texts, and web forms in under 60 seconds. It books appointments, sends automated reminders to reduce no-shows, and follows up with leads who don't book right away. All 24/7." }
   ];
 
   return (

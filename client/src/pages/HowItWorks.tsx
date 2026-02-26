@@ -322,6 +322,12 @@ export default function HowItWorks() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
+            <p className="mt-6 text-sm text-muted-foreground">
+              Want to see how it works for your industry?{" "}
+              <Link href="/industries" className="text-primary hover:underline">
+                Browse industries we serve
+              </Link>
+            </p>
           </div>
         </div>
       </section>

@@ -94,6 +94,68 @@ const industryRoutes: Record<string, PageMeta> = {
   },
 };
 
+// ---------------------------------------------------------------------------
+// Industry display names (for breadcrumbs / structured data)
+// ---------------------------------------------------------------------------
+const industryNames: Record<string, string> = {
+  medspa: "Med Spas & Aesthetic Clinics",
+  dental: "Dental Practices",
+  law: "Law Firms",
+  property: "Property Management",
+  accounting: "Accounting & CPA Firms",
+  cleaning: "Cleaning Companies",
+  sports: "Sports Facilities",
+};
+
+// ---------------------------------------------------------------------------
+// Breadcrumb labels for static routes
+// ---------------------------------------------------------------------------
+const breadcrumbLabels: Record<string, string> = {
+  "/how-it-works": "How It Works",
+  "/industries": "Industries",
+  "/contact": "Contact",
+  "/about": "About",
+  "/privacy": "Privacy Policy",
+  "/terms": "Terms of Service",
+};
+
+/**
+ * Generate BreadcrumbList JSON-LD for the given path.
+ * Returns null for the homepage (no breadcrumb needed).
+ */
+export function getBreadcrumbJsonLd(pathname: string): object | null {
+  if (pathname === "/") return null;
+
+  const items: { name: string; url: string }[] = [
+    { name: "Home", url: BASE_URL },
+  ];
+
+  // Industry detail: Home → Industries → Industry Name
+  const industryMatch = pathname.match(/^\/industries\/([^/]+)$/);
+  if (industryMatch) {
+    const slug = industryMatch[1];
+    items.push({ name: "Industries", url: `${BASE_URL}/industries` });
+    if (industryNames[slug]) {
+      items.push({ name: industryNames[slug], url: `${BASE_URL}/industries/${slug}` });
+    }
+  } else if (breadcrumbLabels[pathname]) {
+    items.push({ name: breadcrumbLabels[pathname], url: `${BASE_URL}${pathname}` });
+  }
+
+  if (items.length < 2) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
+}
+
 /**
  * Resolve SEO metadata for a given URL path.
  * Returns the best-matching PageMeta, or a sensible default for unknown routes.

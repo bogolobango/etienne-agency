@@ -367,6 +367,34 @@ export default function IndustryDetail() {
         </div>
       </section>
 
+      {/* Related Industries — internal cross-links for SEO */}
+      <section className="py-16 md:py-20 border-t border-border/30">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="font-display text-2xl sm:text-3xl text-foreground mb-8 text-center">
+              We also work with
+            </h2>
+            <div className="flex flex-wrap justify-center gap-3">
+              {Object.entries(industryData)
+                .filter(([key]) => key !== slug)
+                .slice(0, 4)
+                .map(([key, data]) => (
+                  <Link key={key} href={`/industries/${key}`}>
+                    <span className="inline-flex items-center px-4 py-2 rounded-full border border-border/50 text-sm text-muted-foreground hover:text-foreground hover:border-primary/30 transition-colors">
+                      {data.name}
+                    </span>
+                  </Link>
+                ))}
+            </div>
+            <div className="text-center mt-8">
+              <Link href="/how-it-works" className="text-sm text-primary hover:underline">
+                See how the 4-week implementation works →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

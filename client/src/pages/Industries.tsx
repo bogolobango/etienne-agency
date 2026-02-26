@@ -8,7 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
-import { useCanonical } from "@/hooks/useCanonical";
+import { useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import {
@@ -44,12 +44,11 @@ const indFitOrbs: OrbConfig[] = [
 export default function Industries() {
   usePageView('Industries');
   useScrollTracking('Industries');
-  useCanonical('/industries');
+  useSEO('/industries');
 
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
-    document.title = "AI for Your Industry | Med Spa · Dental · Law · Property | Etienne Agency";
     setInView(true);
   }, []);
 

@@ -8,7 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
-import { useCanonical } from "@/hooks/useCanonical";
+import { useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import {
@@ -49,12 +49,11 @@ const aboutCtaOrbs: OrbConfig[] = [
 export default function About() {
   usePageView('About');
   useScrollTracking('About');
-  useCanonical('/about');
+  useSEO('/about');
 
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
-    document.title = "The Team Behind the 24/7 Revenue Recovery Framework | Etienne Agency";
     setInView(true);
   }, []);
 

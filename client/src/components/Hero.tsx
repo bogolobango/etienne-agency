@@ -7,6 +7,7 @@ import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { trackCTAClick } from "@/lib/analytics";
+import FloatingDustMotes from "@/components/FloatingDustMotes";
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -17,6 +18,7 @@ export default function Hero() {
 
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 lg:pt-48 lg:pb-36 overflow-hidden section-dark">
+      <FloatingDustMotes particleCount={60} />
       {/* Subtle teal radial glow */}
       <div
         className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full pointer-events-none"

@@ -5,6 +5,7 @@
 
 import { useEffect, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
+import FloatingDustMotes from "@/components/FloatingDustMotes";
 
 export default function SocialProofSection() {
   const [inView, setInView] = useState(false);
@@ -29,6 +30,7 @@ export default function SocialProofSection() {
 
   return (
     <section id="product-section" className="relative py-20 md:py-28 lg:py-36 section-dark overflow-hidden">
+      <FloatingDustMotes particleCount={40} />
       <div className="container relative z-10">
         <div
           className={`max-w-3xl mx-auto text-center mb-12 md:mb-16 transition-all duration-700 ${

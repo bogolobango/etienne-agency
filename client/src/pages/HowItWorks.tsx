@@ -11,6 +11,7 @@ import { useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import FloatingDustMotes from "@/components/FloatingDustMotes";
 
 export default function HowItWorks() {
   usePageView("How It Works");
@@ -71,6 +72,7 @@ export default function HowItWorks() {
 
       {/* Hero — dark */}
       <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-dark overflow-hidden">
+        <FloatingDustMotes particleCount={50} />
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none" aria-hidden="true"
           style={{ background: "radial-gradient(circle, rgba(0,212,170,0.06) 0%, transparent 70%)", transform: "translate(20%,-20%)" }}
         />
@@ -180,6 +182,7 @@ export default function HowItWorks() {
 
       {/* CTA — dark */}
       <section className="relative py-20 md:py-28 lg:py-36 section-dark overflow-hidden">
+        <FloatingDustMotes particleCount={40} />
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">

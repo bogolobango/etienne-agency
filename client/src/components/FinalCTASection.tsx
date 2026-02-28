@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { useEffect, useState } from "react";
+import FloatingDustMotes from "@/components/FloatingDustMotes";
 
 export default function FinalCTASection() {
   const [inView, setInView] = useState(false);
@@ -24,6 +25,7 @@ export default function FinalCTASection() {
 
   return (
     <section id="final-cta-section" className="relative py-20 md:py-28 lg:py-36 section-dark overflow-hidden">
+      <FloatingDustMotes particleCount={40} />
       <div className="container relative z-10">
         <div
           className={`max-w-3xl mx-auto text-center transition-all duration-700 ${

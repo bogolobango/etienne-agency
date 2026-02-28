@@ -1,6 +1,5 @@
 /**
- * How It Works Page - Tango Editorial Design
- * 4-week implementation timeline with editorial styling
+ * How It Works Page — 4-week process + 3 modules
  */
 
 import { useEffect, useState } from "react";
@@ -11,323 +10,189 @@ import { useScrollTracking } from "@/hooks/useScrollTracking";
 import { useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import {
-  ArrowRight,
-  Search,
-  Wrench,
-  Rocket,
-  TrendingUp,
-  CheckCircle2,
-} from "lucide-react";
-import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
-
-const hiwHeroOrbs: OrbConfig[] = [
-  { size: 480, color: "#2D5BFF", x: "-6%", y: "-8%", opacity: 0.4, duration: 14, delay: 0, parallaxFactor: 50 },
-  { size: 380, color: "#00D4AA", x: "72%", y: "50%", opacity: 0.35, duration: 12, delay: 3, parallaxFactor: -30 },
-  { size: 320, color: "#7B61FF", x: "80%", y: "-12%", opacity: 0.3, duration: 15, delay: 6, parallaxFactor: 35 },
-];
-
-const hiwTimelineOrbs: OrbConfig[] = [
-  { size: 420, color: "#FF8C42", x: "-8%", y: "20%", opacity: 0.3, duration: 13, delay: 1, parallaxFactor: 40 },
-  { size: 380, color: "#7B61FF", x: "82%", y: "65%", opacity: 0.3, duration: 11, delay: 5, parallaxFactor: -25 },
-];
-
-const hiwIntegrationsOrbs: OrbConfig[] = [
-  { size: 400, color: "#00D4AA", x: "75%", y: "10%", opacity: 0.3, duration: 14, delay: 2, parallaxFactor: 35 },
-  { size: 350, color: "#2D5BFF", x: "-5%", y: "60%", opacity: 0.3, duration: 12, delay: 6, parallaxFactor: -30 },
-];
-
-const hiwRoiOrbs: OrbConfig[] = [
-  { size: 450, color: "#FF8C42", x: "70%", y: "-5%", opacity: 0.35, duration: 13, delay: 0, parallaxFactor: 45 },
-  { size: 380, color: "#7B61FF", x: "-8%", y: "55%", opacity: 0.3, duration: 15, delay: 4, parallaxFactor: -35 },
-];
-
-const hiwCtaOrbs: OrbConfig[] = [
-  { size: 400, color: "#2D5BFF", x: "65%", y: "-10%", opacity: 0.35, duration: 14, delay: 2, parallaxFactor: 40 },
-  { size: 350, color: "#FF8C42", x: "-5%", y: "50%", opacity: 0.3, duration: 11, delay: 5, parallaxFactor: -30 },
-];
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function HowItWorks() {
-  usePageView('How It Works');
-  useScrollTracking('How It Works');
-  useSEO('/how-it-works');
+  usePageView("How It Works");
+  useScrollTracking("How It Works");
+  useSEO("/how-it-works");
 
   const [inView, setInView] = useState(false);
+  useEffect(() => { setInView(true); }, []);
 
-  useEffect(() => {
-    setInView(true);
-  }, []);
-
-  const timeline = [
+  const steps = [
     {
       week: "Week 1",
-      title: "Discovery & Integration Planning",
-      icon: Search,
-      description: "We audit your current lead flow, response times, and booking systems. No judgment—just data. We map exactly where revenue is slipping through the cracks and design a custom integration plan for your existing tools.",
-      outcomes: [
-        "Exactly how many leads you're losing and why",
-        "Your true cost of slow response (usually eye-opening)",
-        "The integration roadmap built for your stack"
-      ],
+      title: "Discovery & Audit",
+      description: "We analyze your current inquiry flow — how leads come in, where they get stuck, and exactly how much revenue is leaking. You get a detailed revenue gap report within 48 hours.",
     },
     {
       week: "Week 2",
-      title: "System Build & Knowledge Training",
-      icon: Wrench,
-      description: "We build your custom response system, trained on your specific services, pricing, FAQs, and brand voice. This isn't a generic chatbot—it sounds like your best front desk person, available 24/7.",
-      outcomes: [
-        "Instant response flows for calls, texts, web forms, and social messages",
-        "Smart qualification logic that routes hot leads to your team",
-        "Automated booking with real-time calendar sync",
-        "Multi-channel reminder sequences to kill no-shows"
-      ],
+      title: "Integration & Configuration",
+      description: "We connect EIP to your booking platform (Zenoti, Boulevard, Mangomint) and configure the AI to handle your specific services, pricing, and booking rules. Your team reviews and approves everything.",
     },
     {
       week: "Week 3",
-      title: "Pilot Launch",
-      icon: Rocket,
-      description: "We go live with real leads at one location. You watch the system work while we monitor everything and fine-tune responses in real-time. Zero risk to your existing operations.",
-      outcomes: [
-        "Live testing with actual customer inquiries",
-        "Daily optimization based on real conversations",
-        "Performance dashboard so you see every metric"
-      ],
+      title: "Launch & Monitor",
+      description: "EIP goes live across all channels — SMS, email, web chat, and phone. We monitor every conversation for the first 7 days to fine-tune responses and ensure quality.",
     },
     {
-      week: "Week 4",
-      title: "Full Rollout & Optimization",
-      icon: TrendingUp,
-      description: "Once the pilot proves results, we expand across all locations. Ongoing optimization ensures the system keeps getting smarter and your recovery rate keeps climbing.",
-      outcomes: [
-        "Weekly performance reports with clear ROI metrics",
-        "Continuous response optimization",
-        "Direct access to our team for adjustments"
-      ],
-    }
+      week: "Week 4+",
+      title: "Optimize & Report",
+      description: "Your dashboard shows real-time revenue recovery, AI performance, and location-level insights. Monthly optimization reviews keep performance improving.",
+    },
+  ];
+
+  const modules = [
+    {
+      title: "Command Center",
+      description: "One inbox for every AI conversation across all channels and locations. See what your AI is saying, how clients respond, and when to escalate.",
+    },
+    {
+      title: "Scheduling Intelligence",
+      description: "Real-time appointment data, utilization rates, and no-show tracking. Know which locations are underperforming before the month ends.",
+    },
+    {
+      title: "Revenue Intelligence",
+      description: "See exactly how much revenue EIP recovered — by location, by channel, by time period. Ask questions in plain English, get answers backed by your data.",
+    },
   ];
 
   const integrations = [
-    {
-      category: "Scheduling",
-      tools: "Bond Sports, Mindbody, Jane, Acuity, Calendly, Google Calendar, and most major platforms"
-    },
-    {
-      category: "CRMs",
-      tools: "Salesforce, HubSpot, Clio, Practice Panther, AppFolio, Buildium, and custom systems"
-    },
-    {
-      category: "Phone Systems",
-      tools: "Your existing phone numbers stay the same"
-    },
-    {
-      category: "Communication Channels",
-      tools: "SMS, email, web chat, Facebook Messenger, Instagram DMs"
-    }
+    { category: "Booking Platforms", tools: "Zenoti, Boulevard, Mangomint, Mindbody, Acuity" },
+    { category: "CRMs", tools: "Salesforce, HubSpot, and custom systems" },
+    { category: "Phone Systems", tools: "Your existing phone numbers stay the same" },
+    { category: "Channels", tools: "SMS, email, web chat, Facebook Messenger, Instagram DMs" },
   ];
 
   return (
     <div id="main-content" className="min-h-screen">
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 overflow-hidden section-gradient-hero">
-        <GradientOrbs orbs={hiwHeroOrbs} />
-        {/* Calm office photo — the "after" state */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
-          style={{
-            backgroundImage: "url('/images/calm-office.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            opacity: 0.04,
-            filter: "blur(2px)",
-          }}
+      {/* Hero — dark */}
+      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-dark overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none" aria-hidden="true"
+          style={{ background: "radial-gradient(circle, rgba(0,212,170,0.06) 0%, transparent 70%)", transform: "translate(20%,-20%)" }}
         />
         <div className="container relative z-10">
-          <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.1] mb-6">
-              From overwhelmed to{" "}
-              <span className="highlight-purple">automated</span> in 4 weeks
+          <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-6">
+              How it works
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              No six-month implementations. No ripping out your existing systems. We plug into what you already use and start recovering lost revenue fast.
+            <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto">
+              From integration to revenue recovery in 4 weeks. No system replacement. No learning curve.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Timeline Section */}
-      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
-        <GradientOrbs orbs={hiwTimelineOrbs} />
+      {/* 4-week process */}
+      <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
         <div className="container relative z-10">
+          <div className="text-center mb-12 md:mb-16">
+            <p className="section-label">THE PROCESS</p>
+          </div>
           <div className="max-w-4xl mx-auto">
-            {timeline.map((phase, index) => {
-              const Icon = phase.icon;
-              return (
-                <div
-                  key={index}
-                  className="relative mb-12 md:mb-16"
-                  style={{
-                    opacity: inView ? 1 : 0,
-                    transform: inView ? 'translateY(0)' : 'translateY(30px)',
-                    transition: 'all 0.7s ease',
-                    transitionDelay: `${index * 150}ms`
-                  }}
-                >
-                  {/* Timeline connector */}
-                  {index < timeline.length - 1 && (
-                    <div className="absolute left-6 md:left-10 bottom-0 translate-y-full h-12 md:h-16 timeline-connector z-10" aria-hidden="true" />
-                  )}
-                  <div className="card-on-alt p-6 sm:p-8 md:p-10 transition-all duration-300">
-                    <div className="flex flex-col md:flex-row md:items-start gap-6">
-                      {/* Icon & Week badge */}
-                      <div className="flex md:flex-col items-center md:items-start gap-4">
-                        <div className="icon-container-xl flex-shrink-0">
-                          <Icon className="w-6 h-6 text-primary" />
-                        </div>
-                        <span className="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/15">
-                          {phase.week}
-                        </span>
-                      </div>
-
-                      {/* Content */}
-                      <div className="space-y-4 flex-1">
-                        <h3 className="font-display text-2xl md:text-3xl text-foreground">
-                          {phase.title}
-                        </h3>
-                        <p className="text-base text-muted-foreground leading-relaxed">
-                          {phase.description}
-                        </p>
-
-                        <div className="space-y-2 pt-2">
-                          <p className="text-sm font-semibold text-foreground font-sans">
-                            What you'll get:
-                          </p>
-                          {phase.outcomes.map((outcome, i) => (
-                            <div key={i} className="flex items-start gap-3">
-                              <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                              <p className="text-sm text-muted-foreground leading-relaxed">
-                                {outcome}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
+            {steps.map((step, i) => (
+              <div
+                key={i}
+                className="relative mb-12 md:mb-16"
+                style={{
+                  opacity: inView ? 1 : 0,
+                  transform: inView ? "translateY(0)" : "translateY(30px)",
+                  transition: "all 0.7s ease",
+                  transitionDelay: `${i * 150}ms`,
+                }}
+              >
+                {i < steps.length - 1 && (
+                  <div className="absolute left-6 md:left-10 bottom-0 translate-y-full h-12 md:h-16 timeline-connector z-10" aria-hidden="true" />
+                )}
+                <div className="card-on-alt p-6 sm:p-8 md:p-10">
+                  <div className="flex flex-col md:flex-row md:items-start gap-6">
+                    <div className="flex md:flex-col items-center md:items-start gap-4">
+                      <span className="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/15">
+                        {step.week}
+                      </span>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-display text-2xl md:text-3xl text-foreground mb-3">
+                        {step.title}
+                      </h3>
+                      <p className="text-base text-muted-foreground leading-relaxed">
+                        {step.description}
+                      </p>
                     </div>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Integrations Section */}
-      <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
-        <GradientOrbs orbs={hiwIntegrationsOrbs} />
+      {/* Three modules */}
+      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
         <div className="container relative z-10">
-          <div className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
-              What we{" "}
-              <span className="highlight-green">integrate with</span>
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1]">
+              Three modules. One intelligence layer.
+            </h2>
+          </div>
+          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+            {modules.map((mod, i) => (
+              <div key={i} className="card-premium p-6 sm:p-8">
+                <h3 className="font-display text-xl text-foreground mb-3">{mod.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{mod.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Integrations */}
+      <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+        <div className="container relative z-10">
+          <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1] mb-6">
+              Works with your existing tools
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-              We work with your existing tools—no rip and replace.
+              We plug into what you already use — no rip and replace.
             </p>
           </div>
-
           <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-            {integrations.map((integration, index) => (
-              <div
-                key={index}
-                className="card-premium p-6 sm:p-8"
-              >
-                <h3 className="font-display text-xl text-foreground mb-4">
-                  {integration.category}
-                </h3>
+            {integrations.map((item, i) => (
+              <div key={i} className="card-premium p-6 sm:p-8">
+                <h3 className="font-display text-lg text-foreground mb-3">{item.category}</h3>
                 <div className="flex flex-wrap gap-2">
-                  {integration.tools.split(', ').map((tool, i) => (
-                    <span key={i} className="tool-pill">
-                      {tool}
-                    </span>
+                  {item.tools.split(", ").map((tool, j) => (
+                    <span key={j} className="tool-pill">{tool}</span>
                   ))}
                 </div>
               </div>
             ))}
           </div>
-
-          <div className="text-center mt-10">
-            <p className="text-sm text-muted-foreground">
-              Don't see your tools? Ask us—we probably integrate with it.
-            </p>
-          </div>
+          <p className="text-center text-sm text-muted-foreground mt-8">
+            Don't see your tools? Ask us — we probably integrate with it.
+          </p>
         </div>
       </section>
 
-      {/* ROI Math Section */}
-      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
-        <GradientOrbs orbs={hiwRoiOrbs} />
-        <div className="absolute inset-0 section-dot-pattern opacity-60" aria-hidden="true" />
+      {/* CTA — dark */}
+      <section className="relative py-20 md:py-28 lg:py-36 section-dark overflow-hidden">
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
-              The math that{" "}
-              <span className="highlight-coral">matters</span>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">
+              Find out how much revenue your practice is losing
             </h2>
-            <p className="text-base sm:text-lg text-muted-foreground mb-12">
-              The question isn't whether you can afford this. It's whether you can afford not to.
-            </p>
-
-            <div className="space-y-6 max-w-xl mx-auto text-left mb-12">
-              {[
-                { num: "1", text: <>If you get <strong className="text-foreground">100 inquiries per month</strong> and lose <strong className="text-foreground">20% to slow response</strong>, that's <strong className="text-foreground">20 lost opportunities</strong>.</> },
-                { num: "2", text: <>If your average customer is worth <strong className="text-foreground">$1,000</strong>, that's <strong className="text-foreground">$20,000 in monthly lost revenue</strong>.</> },
-                { num: "3", text: <>Recover even half of those, and you've added <strong className="text-foreground">$10,000/month</strong> to your top line.</> },
-              ].map((item) => (
-                <div key={item.num} className="flex items-start gap-4">
-                  <div className="step-number flex-shrink-0 mt-0.5">{item.num}</div>
-                  <p className="text-base text-muted-foreground leading-relaxed">
-                    {item.text}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <p className="font-display text-xl sm:text-2xl text-foreground italic mb-2">
-              That's the 24/7 Revenue Recovery Framework.
-            </p>
-            <p className="text-sm text-muted-foreground">
-              We help you capture money that's already trying to reach you.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
-        <GradientOrbs orbs={hiwCtaOrbs} />
-        <div className="container relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
-              Ready to{" "}
-              <span className="highlight-coral">stop the bleeding?</span>
-            </h2>
-            <p className="text-base sm:text-lg text-muted-foreground mb-10">
-              Let's look at your numbers together. 15 minutes, no pressure, just data.
+            <p className="text-base sm:text-lg text-white/70 mb-10">
+              15 minutes. We'll analyze your current booking flow and estimate your monthly revenue gap. No commitment. No pitch deck. Just numbers.
             </p>
             <Link href="/contact">
-              <Button
-                className="rounded-full px-10 py-7 h-auto text-lg bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl shadow-primary/30 btn-primary-pill"
-              >
-                Schedule Your Discovery Call
-                <ArrowRight className="ml-2 h-5 w-5" />
+              <Button className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill">
+                Book a Revenue Audit <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <p className="mt-6 text-sm text-muted-foreground">
-              Want to see how it works for your industry?{" "}
-              <Link href="/industries" className="text-primary hover:underline">
-                Browse industries we serve
-              </Link>
-            </p>
           </div>
         </div>
       </section>

@@ -1,6 +1,6 @@
 /**
- * Industries Page - Tango Editorial Design
- * Detailed breakdown of industries with editorial styling
+ * Med Spas Landing Page — highest-intent page for email outreach
+ * Replaces the old generic Industries page. Also accessible at /med-spas.
  */
 
 import { useEffect, useState } from "react";
@@ -11,239 +11,180 @@ import { useScrollTracking } from "@/hooks/useScrollTracking";
 import { useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import {
-  Sparkles,
-  Smile,
-  Scale,
-  Building2,
-  Calculator,
-  Sparkle,
-  Trophy,
-  ArrowRight,
-  CheckCircle2
-} from "lucide-react";
-import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
-
-const indHeroOrbs: OrbConfig[] = [
-  { size: 500, color: "#7B61FF", x: "-6%", y: "-10%", opacity: 0.4, duration: 14, delay: 0, parallaxFactor: 50 },
-  { size: 380, color: "#00D4AA", x: "75%", y: "45%", opacity: 0.35, duration: 12, delay: 3, parallaxFactor: -35 },
-  { size: 340, color: "#FF8C42", x: "70%", y: "-8%", opacity: 0.3, duration: 15, delay: 6, parallaxFactor: 30 },
-];
-
-const indDetailOrbs: OrbConfig[] = [
-  { size: 450, color: "#2D5BFF", x: "-8%", y: "15%", opacity: 0.3, duration: 13, delay: 1, parallaxFactor: 45 },
-  { size: 400, color: "#FF8C42", x: "80%", y: "55%", opacity: 0.3, duration: 11, delay: 4, parallaxFactor: -30 },
-  { size: 320, color: "#00D4AA", x: "40%", y: "85%", opacity: 0.25, duration: 15, delay: 7, parallaxFactor: 25 },
-];
-
-const indFitOrbs: OrbConfig[] = [
-  { size: 420, color: "#7B61FF", x: "70%", y: "5%", opacity: 0.3, duration: 14, delay: 2, parallaxFactor: 40 },
-  { size: 380, color: "#2D5BFF", x: "-5%", y: "60%", opacity: 0.3, duration: 12, delay: 5, parallaxFactor: -30 },
-];
+import { ArrowRight } from "lucide-react";
 
 export default function Industries() {
-  usePageView('Industries');
-  useScrollTracking('Industries');
-  useSEO('/industries');
+  usePageView("Med Spas");
+  useScrollTracking("Med Spas");
+  useSEO("/med-spas");
 
   const [inView, setInView] = useState(false);
+  useEffect(() => { setInView(true); }, []);
 
-  useEffect(() => {
-    setInView(true);
-  }, []);
-
-  const industries = [
-    {
-      icon: Sparkles,
-      name: "Med Spas & Aesthetic Clinics",
-      problem: "A Botox client texts at 8pm. Your front desk closed at 6. By morning, she booked with your competitor.",
-      stats: ["75% fewer no-shows with automated reminders", "46% of appointments booked online, 70% on mobile", "20% no-show rate costs the average med spa 14% of daily revenue"],
-      solution: "Our AI receptionist responds to every inquiry instantly, books consultations with smart scheduling, and sends multi-channel reminders that keep your chairs full.",
-      highlight: "$500+ per missed call",
-    },
-    {
-      icon: Smile,
-      name: "Dental Practices",
-      problem: "New patient calls come in during procedures. Your front desk juggles check-ins, insurance, and the phone. Something gives — and it's the phone.",
-      stats: ["New patient value: $350–$700 for first visit alone", "30–40% no-show reduction with automated reminder systems", "Manual scheduling has 10% error rate vs. under 1% with AI"],
-      solution: "24/7 new patient intake, insurance verification triggers, and automated recall reminders. Your virtual receptionist keeps every hygiene chair full.",
-      highlight: "$350 per no-show",
-    },
-    {
-      icon: Scale,
-      name: "Law Firms",
-      problem: "Someone gets in an accident at 11pm. They call three firms. The first one to answer gets the case.",
-      stats: ["30% more conversions with AI-assisted intake", "Response under 1 minute is critical for PI and immigration", "47% of immigration firms already use AI for intake"],
-      solution: "After-hours intake that qualifies leads, captures case details, and routes urgent matters to your team — while protecting attorney-client confidentiality.",
-      highlight: "First responder wins",
-    },
-    {
-      icon: Building2,
-      name: "Property Management",
-      problem: "A prospective tenant inquires Saturday. Your leasing office is closed. They tour a competitor's unit Sunday and sign Monday.",
-      stats: ["70% of rental inquiries can be handled by AI", "75% of leasing staff time saved on initial inquiry handling", "60% less vacancy time with instant response systems"],
-      solution: "24/7 leasing inquiries, instant tour scheduling, and an automated follow-up system that fills vacancies faster than any front desk can.",
-      highlight: "Hundreds per vacant day",
-    },
-    {
-      icon: Calculator,
-      name: "Accounting & CPA Firms",
-      problem: "Tax season hits. Your phone rings nonstop. Your CPAs are buried in returns. New clients wait days for a callback.",
-      stats: ["3x faster lead conversion with AI-driven intake", "Responding in under 1 minute doubles engagement", "Seasonal surges overwhelm traditional staffing every year"],
-      solution: "Accounting firm scheduling that scales with demand. Instant inquiry response, consultation booking, and document collection — all automated.",
-      highlight: "Tax season surge",
-    },
-    {
-      icon: Sparkle,
-      name: "Cleaning Companies",
-      problem: "Someone searches 'house cleaning near me,' fills out three quote forms, and books with whoever responds first.",
-      stats: ["67% of customers expect a response within 5 minutes", "30–40% of leads lost to slow response times", "$2,800 average customer lifetime value"],
-      solution: "Instant quote responses, automated booking, and reminder sequences. Your AI receptionist turns first-time inquiries into repeat customers.",
-      highlight: "$2,800 LTV",
-    },
-    {
-      icon: Trophy,
-      name: "Sports Facilities",
-      problem: "Your front desk is buried in 'What time do you open?' calls. High-value corporate event inquiries go to voicemail.",
-      stats: ["60% of routine inquiries handled automatically by AI", "15% no-show rate drains revenue from booked slots", "10,500+ hours/year spent answering repetitive FAQs"],
-      solution: "24/7 booking across all channels. Smart scheduling handles routine requests. Intelligent escalation routes corporate inquiries to your team instantly.",
-      highlight: "60% automation",
-    }
+  const timeline = [
+    { time: "9:47 PM", text: "A prospective client fills out a consultation request for CoolSculpting. She's researched three practices and is ready to book.", active: false },
+    { time: "9:48 PM", text: 'Your form sends an auto-reply: "We\'ll get back to you during business hours." She Googles the next practice on her list.', active: false },
+    { time: "9:51 PM", text: "A competitor with AI-powered instant response books her for a $4,500 body contouring consultation. She's off the market.", active: false },
+    { time: "10:02 AM (next day)", text: "Your front desk calls back. She doesn't answer. She's already booked. That's $4,500 in revenue — gone.", active: true },
   ];
 
-  const idealFit = [
-    { title: "3–25 locations", description: "Big enough to feel the pain of scaling. Nimble enough to move fast." },
-    { title: "High-value appointments", description: "Each booking worth $100–$5,000+. Every missed call hurts." },
-    { title: "High inquiry volume", description: "Enough leads that appointment scheduling automation creates real ROI." },
-    { title: "Existing systems in place", description: "A CRM, scheduling tool, or booking platform our AI plugs into." }
+  const withoutEIP = [
+    "After-hours inquiries wait until morning",
+    "34% of calls missed during peak hours",
+    "No-show rate: 20–40%",
+    "Staff spends 17,500 hours/year on repetitive FAQs",
+    "No visibility into lost revenue across locations",
+  ];
+
+  const withEIP = [
+    "Every inquiry gets an intelligent response in under 2 seconds",
+    "AI handles 60% of inquiries automatically",
+    "No-show rate drops to 8–12% with automated reminders",
+    "Staff freed for high-value client interactions",
+    "Real-time revenue recovery dashboard across all locations",
   ];
 
   return (
     <div id="main-content" className="min-h-screen">
       <Header />
 
-      {/* Hero */}
-      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-gradient-hero overflow-hidden">
-        <GradientOrbs orbs={indHeroOrbs} />
+      {/* Hero — dark */}
+      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-dark overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none" aria-hidden="true"
+          style={{ background: "radial-gradient(circle, rgba(0,212,170,0.06) 0%, transparent 70%)", transform: "translate(20%,-20%)" }}
+        />
         <div className="container relative z-10">
-          <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.1] mb-6">
-              AI appointment scheduling for industries where every{" "}
-              <span className="highlight-coral">missed call has a dollar sign</span>
+          <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-6">
+              Revenue intelligence built for multi-location med spas
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-12">
-              Our virtual receptionist handles calls, books appointments, and follows up — built for multi-location service businesses where slow responses cost real money.
+            <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-10">
+              The average 5-location med spa loses $60K–$180K per year from missed after-hours inquiries, no-shows, and slow follow-up. EIP recovers it automatically — without adding staff or replacing your booking system.
             </p>
-            {/* Industry photo collage strip */}
-            <div className="flex flex-wrap justify-center gap-3">
-              {[
-                { src: "/images/medspa.jpg", label: "Med Spa" },
-                { src: "/images/dental.jpg", label: "Dental" },
-                { src: "/images/law.jpg", label: "Law" },
-                { src: "/images/property.jpg", label: "Property" },
-              ].map((item) => (
-                <div key={item.label} className="flex flex-col items-center gap-2">
-                  <div className="w-20 h-20 rounded-2xl overflow-hidden border-2 border-white shadow-md">
-                    <img src={item.src} alt={item.label} className="w-full h-full object-cover" loading="lazy" />
-                  </div>
-                  <span className="text-xs text-muted-foreground font-medium">{item.label}</span>
-                </div>
-              ))}
-            </div>
+            <Link href="/contact">
+              <Button className="rounded-full px-8 py-6 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill">
+                Book a Revenue Audit <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Industries Detail */}
-      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
-        <GradientOrbs orbs={indDetailOrbs} />
-        <div className="container relative z-10">
-          <div className="max-w-4xl mx-auto space-y-12 md:space-y-16">
-            {industries.map((industry, index) => {
-              const Icon = industry.icon;
-              return (
-                <div
-                  key={index}
-                  className="card-on-alt p-6 sm:p-8 md:p-10 transition-all duration-500"
-                  style={{
-                    opacity: inView ? 1 : 0,
-                    transform: inView ? 'translateY(0)' : 'translateY(30px)',
-                    transition: 'all 0.7s ease',
-                    transitionDelay: `${index * 100}ms`
-                  }}
-                >
-                  <div className="space-y-6">
-                    <div className="flex flex-col sm:flex-row sm:items-start gap-4">
-                      <div className="icon-container-xl flex-shrink-0">
-                        <Icon className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <h2 className="font-display text-2xl sm:text-3xl text-foreground mb-2">{industry.name}</h2>
-                        <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-xs font-medium text-primary">{industry.highlight}</span>
-                      </div>
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 font-sans">The Problem</p>
-                      <p className="text-base text-muted-foreground leading-relaxed">{industry.problem}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 font-sans">The Reality</p>
-                      <ul className="space-y-2">
-                        {industry.stats.map((stat, i) => (
-                          <li key={i} className="flex items-start gap-3">
-                            <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                            <span className="text-sm text-muted-foreground">{stat}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="pt-4 border-t border-border/50">
-                      <p className="text-xs font-semibold text-foreground uppercase tracking-wider mb-2 font-sans">Our Solution</p>
-                      <p className="text-base text-muted-foreground leading-relaxed">{industry.solution}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Ideal Fit */}
+      {/* Timeline — what happens every night */}
       <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
-        <GradientOrbs orbs={indFitOrbs} />
         <div className="container relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-16 md:mb-20">
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
-                Who the 24/7 Revenue Recovery Framework is{" "}
-                <span className="highlight-green">best for</span>
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-12 md:mb-16">
+              <p className="section-label">THE REALITY</p>
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1]">
+                What happens every night at your practice
               </h2>
-              <p className="text-base sm:text-lg text-muted-foreground">Multi-location service businesses that match these four criteria:</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16">
-              {idealFit.map((item, index) => (
-                <div key={index} className="card-premium p-6 sm:p-8">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                      <CheckCircle2 className="w-4 h-4 text-primary" />
+
+            <div className="relative pl-8 md:pl-12">
+              {/* Vertical timeline line */}
+              <div className="absolute left-3 md:left-5 top-0 bottom-0 w-[2px] bg-primary/20" aria-hidden="true" />
+
+              <div className="space-y-8">
+                {timeline.map((item, i) => (
+                  <div key={i} className={`relative transition-all duration-500 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: `${i * 150}ms` }}>
+                    {/* Dot */}
+                    <div className={`absolute -left-5 md:-left-7 top-1 w-3 h-3 rounded-full border-2 ${item.active ? "bg-[#FF6B6B] border-[#FF6B6B]" : "bg-primary border-primary"}`} />
+                    <div className={`font-mono text-sm font-semibold mb-1 ${item.active ? "text-[#FF6B6B]" : "text-primary"}`}>
+                      {item.time}
                     </div>
-                    <h3 className="font-display text-xl sm:text-2xl text-foreground">{item.title}</h3>
+                    <p className="text-base text-muted-foreground leading-relaxed">{item.text}</p>
                   </div>
-                  <p className="text-sm text-muted-foreground">{item.description}</p>
-                </div>
+                ))}
+              </div>
+            </div>
+
+            <div className={`mt-12 p-6 rounded-xl bg-[#FF6B6B]/5 border border-[#FF6B6B]/15 transition-all duration-700 delay-700 ${inView ? "opacity-100" : "opacity-0"}`}>
+              <p className="text-base text-foreground leading-relaxed">
+                <strong>This happens 3–5 times per week, per location.</strong> For a 5-location med spa, that's $8K–15K/month in revenue that never needed to be lost.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Before / After */}
+      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
+        <div className="container relative z-10">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12 md:mb-16">
+              <p className="section-label">THE FIX</p>
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1]">
+                What changes with EIP
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Without EIP */}
+              <div className="bg-white rounded-xl p-6 sm:p-8 border-l-4 border-l-[#FF6B6B] border border-border/50">
+                <h3 className="font-display text-xl text-foreground mb-4">Without EIP</h3>
+                <ul className="space-y-3">
+                  {withoutEIP.map((item, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B6B] mt-2 flex-shrink-0" />
+                      <span className="text-sm text-muted-foreground">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* With EIP */}
+              <div className="bg-white rounded-xl p-6 sm:p-8 border-l-4 border-l-primary border border-border/50">
+                <h3 className="font-display text-xl text-foreground mb-4">With EIP</h3>
+                <ul className="space-y-3">
+                  {withEIP.map((item, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      <span className="text-sm text-muted-foreground">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Integrations */}
+      <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+        <div className="container relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="section-label">WORKS WITH YOUR STACK</p>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1] mb-6">
+              Plugs into Zenoti, Boulevard, or Mangomint in weeks
+            </h2>
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-10">
+              EIP is an intelligence layer that sits on top of your existing booking platform. No data migration. No workflow changes. No retraining your team.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              {["Zenoti", "Boulevard", "Mangomint"].map((name) => (
+                <span key={name} className="tool-pill text-base px-5 py-2">{name}</span>
               ))}
             </div>
-            <div className="text-center">
-              <h3 className="font-display text-2xl sm:text-3xl text-foreground mb-4">Not sure if you're a fit?</h3>
-              <p className="text-base text-muted-foreground mb-8 max-w-lg mx-auto">15-minute call. No commitment. We'll tell you if we can help — or point you somewhere better.</p>
-              <Link href="/contact">
-                <Button className="rounded-full px-8 py-6 h-auto text-base bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl shadow-primary/30 btn-primary-pill">
-                  Book a Free Discovery Call
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
-            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA — dark */}
+      <section className="relative py-20 md:py-28 lg:py-36 section-dark overflow-hidden">
+        <div className="container relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">
+              See what you're losing — in 15 minutes
+            </h2>
+            <p className="text-base sm:text-lg text-white/70 mb-10">
+              We'll analyze your after-hours inquiry patterns and calculate your specific revenue gap. No obligation. Just data.
+            </p>
+            <Link href="/contact">
+              <Button className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill">
+                Book a Free Revenue Audit <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

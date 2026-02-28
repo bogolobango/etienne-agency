@@ -1,6 +1,6 @@
 /**
- * Header Component - Tango Editorial Design
- * Minimal sticky nav with logo left, plain text links, pill CTA right
+ * Header Component — Teal Accent Design
+ * Minimal sticky nav: Logo | How It Works · Med Spas · About | [Book a Revenue Audit]
  */
 
 import { Button } from "@/components/ui/button";
@@ -68,12 +68,12 @@ export default function Header() {
                   How It Works
                 </span>
               </Link>
-              <Link href="/industries">
+              <Link href="/med-spas">
                 <span
                   className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-                  onClick={() => trackNavigationClick('Industries', '/industries', 'header')}
+                  onClick={() => trackNavigationClick('Med Spas', '/med-spas', 'header')}
                 >
-                  Industries
+                  Med Spas
                 </span>
               </Link>
               <Link href="/about">
@@ -84,24 +84,16 @@ export default function Header() {
                   About
                 </span>
               </Link>
-              <Link href="/contact">
-                <span
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-                  onClick={() => trackNavigationClick('Contact', '/contact', 'header')}
-                >
-                  Contact
-                </span>
-              </Link>
             </nav>
 
-            {/* Desktop CTA Button — pill shape */}
+            {/* Desktop CTA Button */}
             <Link href="/contact">
               <Button
-                className="hidden md:inline-flex rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/90"
+                className="hidden md:inline-flex rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                 size="default"
-                onClick={() => trackCTAClick('Get Started', 'Header', 'primary')}
+                onClick={() => trackCTAClick('Book a Revenue Audit', 'Header', 'primary')}
               >
-                Get Started
+                Book a Revenue Audit
               </Button>
             </Link>
 
@@ -145,7 +137,6 @@ export default function Header() {
         }`}
       >
         <div className="flex flex-col h-full">
-          {/* Mobile Menu Header */}
           <div className="flex items-center justify-between p-6 border-b border-border">
             <Link href="/" onClick={handleLinkClick}>
               <img
@@ -163,7 +154,6 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Mobile Navigation Links */}
           <nav className="flex-1 overflow-y-auto p-6">
             <ul className="space-y-1">
               <li>
@@ -174,9 +164,9 @@ export default function Header() {
                 </Link>
               </li>
               <li>
-                <Link href="/industries" onClick={() => { handleLinkClick(); trackNavigationClick('Industries', '/industries', 'mobile_menu'); }}>
+                <Link href="/med-spas" onClick={() => { handleLinkClick(); trackNavigationClick('Med Spas', '/med-spas', 'mobile_menu'); }}>
                   <span className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors cursor-pointer">
-                    Industries
+                    Med Spas
                   </span>
                 </Link>
               </li>
@@ -187,25 +177,17 @@ export default function Header() {
                   </span>
                 </Link>
               </li>
-              <li>
-                <Link href="/contact" onClick={() => { handleLinkClick(); trackNavigationClick('Contact', '/contact', 'mobile_menu'); }}>
-                  <span className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors cursor-pointer">
-                    Contact
-                  </span>
-                </Link>
-              </li>
             </ul>
           </nav>
 
-          {/* Mobile Menu Footer with CTA */}
           <div className="p-6 border-t border-border">
             <Link href="/contact" onClick={handleLinkClick}>
               <Button
-                className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+                className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                 size="lg"
-                onClick={() => trackCTAClick('Get Started', 'Mobile Menu', 'primary')}
+                onClick={() => trackCTAClick('Book a Revenue Audit', 'Mobile Menu', 'primary')}
               >
-                Get Started
+                Book a Revenue Audit
               </Button>
             </Link>
           </div>

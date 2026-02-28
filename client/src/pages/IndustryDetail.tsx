@@ -18,12 +18,12 @@ import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
 const idHeroOrbs: OrbConfig[] = [
   { size: 500, color: "#2D5BFF", x: "-8%", y: "-10%", opacity: 0.4, duration: 14, delay: 0, parallaxFactor: 50 },
   { size: 380, color: "#00D4AA", x: "74%", y: "50%", opacity: 0.35, duration: 12, delay: 3, parallaxFactor: -35 },
-  { size: 340, color: "#7B61FF", x: "78%", y: "-15%", opacity: 0.3, duration: 15, delay: 6, parallaxFactor: 30 },
+  { size: 340, color: "#00D4AA", x: "78%", y: "-15%", opacity: 0.3, duration: 15, delay: 6, parallaxFactor: 30 },
 ];
 
 const idProblemOrbs: OrbConfig[] = [
   { size: 420, color: "#FF8C42", x: "-6%", y: "15%", opacity: 0.3, duration: 13, delay: 1, parallaxFactor: 40 },
-  { size: 380, color: "#7B61FF", x: "80%", y: "60%", opacity: 0.3, duration: 11, delay: 5, parallaxFactor: -25 },
+  { size: 380, color: "#00D4AA", x: "80%", y: "60%", opacity: 0.3, duration: 11, delay: 5, parallaxFactor: -25 },
 ];
 
 const idStatsOrbs: OrbConfig[] = [
@@ -32,7 +32,7 @@ const idStatsOrbs: OrbConfig[] = [
 ];
 
 const idSolutionOrbs: OrbConfig[] = [
-  { size: 450, color: "#7B61FF", x: "68%", y: "-5%", opacity: 0.3, duration: 13, delay: 0, parallaxFactor: 45 },
+  { size: 450, color: "#00D4AA", x: "68%", y: "-5%", opacity: 0.3, duration: 13, delay: 0, parallaxFactor: 45 },
   { size: 380, color: "#FF8C42", x: "-8%", y: "50%", opacity: 0.3, duration: 15, delay: 4, parallaxFactor: -35 },
 ];
 
@@ -271,7 +271,7 @@ export default function IndustryDetail() {
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
-                The <span className="highlight-purple">reality</span>
+                The <span className="highlight-teal">reality</span>
               </h2>
               <p className="text-base sm:text-lg text-muted-foreground">
                 The numbers behind the missed revenue in {industry.name.toLowerCase()}.
@@ -352,7 +352,7 @@ export default function IndustryDetail() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
               See what AI scheduling can do for{" "}
-              <span className="highlight-purple">{industry.name.toLowerCase()}</span>
+              <span className="highlight-teal">{industry.name.toLowerCase()}</span>
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
               15-minute call. No commitment. We'll show you exactly how the 24/7 Revenue Recovery Framework works for your industry — and what it could recover for your business.

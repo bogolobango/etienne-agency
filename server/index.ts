@@ -50,7 +50,7 @@ async function sendNotificationEmail(data: ContactFormData) {
     subject: sanitizeHeader(`New Discovery Call Request: ${data.name} — ${data.company}`),
     html: `
       <div style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2 style="color: #7C3AED;">New Discovery Call Request</h2>
+        <h2 style="color: #00D4AA;">New Discovery Call Request</h2>
         <table style="width: 100%; border-collapse: collapse;">
           <tr><td style="padding: 8px 0; color: #6B7280; width: 140px;">Name</td><td style="padding: 8px 0; font-weight: 600;">${escapeHtml(data.name)}</td></tr>
           <tr><td style="padding: 8px 0; color: #6B7280;">Email</td><td style="padding: 8px 0;"><a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></td></tr>

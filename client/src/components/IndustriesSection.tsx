@@ -1,28 +1,8 @@
 /**
- * Industries Section Component - Tango Editorial Design
- * Editorial headline with highlights, card grid, alternating accent colors
+ * "Who It's For" Section — Med spa focused, 4 use-case cards
  */
 
 import { useEffect, useState } from "react";
-import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
-import {
-  Sparkles,
-  Smile,
-  Scale,
-  Building2,
-  Calculator,
-  Sparkle,
-  Trophy,
-  ArrowRight
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
-
-const industryOrbs: OrbConfig[] = [
-  { size: 500, color: "#7B61FF", x: "-8%", y: "5%", opacity: 0.35, duration: 14, delay: 0, parallaxFactor: 50 },
-  { size: 380, color: "#00D4AA", x: "80%", y: "40%", opacity: 0.3, duration: 12, delay: 4, parallaxFactor: -30 },
-  { size: 320, color: "#FF8C42", x: "10%", y: "75%", opacity: 0.35, duration: 15, delay: 7, parallaxFactor: 35 },
-];
 
 export default function IndustriesSection() {
   const [inView, setInView] = useState(false);
@@ -30,158 +10,68 @@ export default function IndustriesSection() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-        }
+        if (entry.isIntersecting) setInView(true);
       },
       { threshold: 0.1 }
     );
-
-    const element = document.getElementById("industries-section");
-    if (element) observer.observe(element);
-
+    const el = document.getElementById("who-section");
+    if (el) observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
-  const industries = [
+  const useCases = [
     {
-      icon: Sparkles,
-      name: "Med Spas & Aesthetic Clinics",
-      description: "Where a single missed Botox inquiry costs $500+",
-      highlight: "$500+ per missed call",
-      photo: "/images/medspa.jpg",
+      title: "Multi-location med spas",
+      description: "You need one view across all locations. EIP gives you revenue recovery and AI performance metrics by center — not just in aggregate.",
     },
     {
-      icon: Smile,
-      name: "Dental Practices",
-      description: "Where every no-show is $350 in lost chair time",
-      highlight: "$350 per no-show",
-      photo: "/images/dental.jpg",
+      title: "High-volume aesthetic practices",
+      description: "CoolSculpting consultations at 11pm. Botox inquiries on Sunday morning. Your highest-intent clients reach out when you're closed. EIP captures them.",
     },
     {
-      icon: Scale,
-      name: "Law Firms",
-      description: "Where after-hours callers become someone else's client",
-      highlight: "24/7 case intake",
-      photo: "/images/law.jpg",
+      title: "Practices on Zenoti or Boulevard",
+      description: "We integrate directly with your existing platform. No data migration. No workflow changes. Live in 4 weeks.",
     },
     {
-      icon: Building2,
-      name: "Property Management",
-      description: "Where vacant days cost hundreds per unit",
-      highlight: "Fill vacancies faster",
-      photo: "/images/property.jpg",
-    },
-    {
-      icon: Calculator,
-      name: "Accounting & CPA Firms",
-      description: "Where tax season inquiries can't wait until Monday",
-      highlight: "Scale with demand",
-      photo: "/images/accounting.jpg",
-    },
-    {
-      icon: Sparkle,
-      name: "Cleaning Companies",
-      description: "Where instant quotes win the job",
-      highlight: "$2,800 LTV",
-      photo: "/images/cleaning.jpg",
-    },
-    {
-      icon: Trophy,
-      name: "Sports Facilities",
-      description: "Where booking friction kills repeat business",
-      highlight: "60% automation rate",
-      photo: "/images/sports.jpg",
+      title: "Owners tired of hiring more front desk staff",
+      description: "The average med spa spends $42K/year per receptionist. EIP handles 60% of inquiries automatically — without adding headcount.",
     },
   ];
 
   return (
-    <section
-      id="industries-section"
-      className="relative py-20 md:py-28 lg:py-36 overflow-hidden"
-    >
-      {/* Animated gradient orbs */}
-      <GradientOrbs orbs={industryOrbs} />
-
+    <section id="who-section" className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
       <div className="container relative z-10">
-        {/* Section header */}
         <div
           className={`max-w-3xl mx-auto text-center mb-16 md:mb-20 transition-all duration-700 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] text-foreground leading-[1.1] mb-6">
-            Built for{" "}
-            <span className="highlight-purple">multi-location</span> service businesses
+          <p className="section-label">BUILT FOR MED SPAS</p>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1] mb-6">
+            Designed for multi-location aesthetic practices
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            3–25 locations. High call volume. Real booking value. If a missed call costs you hundreds, our virtual receptionist was built for you.
+            If you operate 3 or more med spa locations and lose sleep over missed inquiries, no-shows, and inconsistent client experience across locations — EIP was built for you.
           </p>
         </div>
 
-        {/* Industries grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto mb-16">
-          {industries.map((industry, index) => {
-            const Icon = industry.icon;
-            return (
-              <div
-                key={index}
-                className={`card-premium p-6 sm:p-8 transition-all duration-500 ${
-                  inView
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
-                }`}
-                style={{
-                  transitionDelay: `${100 + index * 50}ms`,
-                }}
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="icon-container-lg">
-                      <Icon className="w-5 h-5 text-primary" />
-                    </div>
-                    {industry.photo && (
-                      <img
-                        src={industry.photo}
-                        alt={industry.name}
-                        className="industry-photo"
-                        loading="lazy"
-                      />
-                    )}
-                  </div>
-
-                  <h3 className="font-display text-xl text-foreground">
-                    {industry.name}
-                  </h3>
-
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {industry.description}
-                  </p>
-
-                  <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-xs font-medium text-primary">
-                    {industry.highlight}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* CTA */}
-        <div
-          className={`text-center transition-all duration-700 delay-500 ${
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          <Link href="/industries">
-            <Button
-              className="rounded-full px-8 py-6 h-auto text-base border-2 border-foreground/20 bg-transparent text-foreground hover:bg-muted"
-              variant="outline"
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {useCases.map((item, i) => (
+            <div
+              key={i}
+              className={`bg-white rounded-xl p-6 sm:p-8 border-l-4 border-l-primary border border-border/50 transition-all duration-500 ${
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: `${100 + i * 100}ms` }}
             >
-              See How It Works for Your Industry
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </Link>
+              <h3 className="font-display text-lg sm:text-xl text-foreground mb-3">
+                {item.title}
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

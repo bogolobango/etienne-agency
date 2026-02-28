@@ -1,7 +1,5 @@
 /**
- * Home Page - Tango Editorial Design
- * Minimal, airy, editorial landing page with generous whitespace,
- * serif display headlines, colored keyword highlights, and pill CTAs
+ * Home Page — Med spa positioned, teal accent design
  */
 
 import { useEffect } from "react";
@@ -21,60 +19,42 @@ import { useSEO } from "@/hooks/useSEO";
 const jsonLd = [
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: "Etienne Agency",
+    "@type": "SoftwareApplication",
+    name: "EIP — Etienne Intelligence Platform",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
     description:
-      "AI receptionist and appointment scheduling automation for multi-location service businesses.",
-    url: "https://www.etienneagency.com",
-    email: "jim@etienneagency.com",
-    areaServed: { "@type": "Country", name: "US" },
-    serviceType: [
-      "AI Receptionist",
-      "Appointment Scheduling Automation",
-      "Lead Response Automation",
-    ],
-    knowsAbout: [
-      "Med Spas",
-      "Dental Practices",
-      "Law Firms",
-      "Property Management",
-      "Accounting Firms",
-      "Cleaning Companies",
-      "Sports Facilities",
-    ],
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: "AI Automation Services",
-      itemListElement: [
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI Receptionist", description: "24/7 automated call answering and lead qualification" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Appointment Scheduling Automation", description: "Smart booking with automated reminders to reduce no-shows" } },
-        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Lead Response Automation", description: "Sub-60-second response to calls, texts, and web forms" } },
-      ],
+      "AI-powered revenue recovery platform for multi-location med spas. Integrates with Zenoti, Boulevard, and Mangomint.",
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+    },
+    author: {
+      "@type": "Organization",
+      name: "Etienne Agency",
+      url: "https://etienneagency.com",
     },
   },
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
+    "@type": "Organization",
     name: "Etienne Agency",
-    url: "https://www.etienneagency.com",
-    publisher: {
-      "@type": "Organization",
-      name: "Etienne Agency",
-      url: "https://www.etienneagency.com",
-      logo: "https://www.etienneagency.com/images/logo.png",
-      email: "jim@etienneagency.com",
-      sameAs: [],
-    },
+    url: "https://etienneagency.com",
+    logo: "https://etienneagency.com/images/logo.png",
+    email: "jim@etienneagency.com",
+    description:
+      "AI-powered revenue recovery for multi-location med spas.",
+    areaServed: { "@type": "Country", name: "US" },
+    sameAs: [],
   },
 ];
 
 export default function Home() {
-  usePageView('Homepage');
-  useScrollTracking('Homepage');
-  useSEO('/');
+  usePageView("Homepage");
+  useScrollTracking("Homepage");
+  useSEO("/");
 
   useEffect(() => {
-    // Inject JSON-LD structured data
     const existing = document.getElementById("json-ld-home");
     if (!existing) {
       const script = document.createElement("script");
@@ -91,8 +71,26 @@ export default function Home() {
       <Hero />
       <ProblemSection />
       <SolutionSection />
+      {/* Product Preview (dark section) — re-uses SocialProofSection export name */}
       <SocialProofSection />
+      {/* Who It's For — med spa use cases */}
       <IndustriesSection />
+      {/* Trust bar */}
+      <section className="py-12 md:py-16 section-gradient-alt">
+        <div className="container">
+          <div className="max-w-3xl mx-auto text-center space-y-4">
+            <p className="section-label">TRUSTED BY FORWARD-THINKING PRACTICES</p>
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+              <span>Integrates with Zenoti &middot; Boulevard &middot; Mangomint</span>
+            </div>
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+              <span>HIPAA-compliant</span>
+              <span>&middot;</span>
+              <span>SOC 2 aligned</span>
+            </div>
+          </div>
+        </div>
+      </section>
       <FinalCTASection />
       <Footer />
       <ScrollCTA />

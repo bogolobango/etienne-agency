@@ -20,14 +20,14 @@ import { useSEO } from "@/hooks/useSEO";
 import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
 
 const contactHeroOrbs: OrbConfig[] = [
-  { size: 480, color: "#7B61FF", x: "-6%", y: "-8%", opacity: 0.4, duration: 14, delay: 0, parallaxFactor: 50 },
+  { size: 480, color: "#00D4AA", x: "-6%", y: "-8%", opacity: 0.4, duration: 14, delay: 0, parallaxFactor: 50 },
   { size: 400, color: "#2D5BFF", x: "72%", y: "45%", opacity: 0.35, duration: 12, delay: 3, parallaxFactor: -30 },
   { size: 320, color: "#00D4AA", x: "78%", y: "-12%", opacity: 0.3, duration: 15, delay: 6, parallaxFactor: 35 },
 ];
 
 const contactExpectOrbs: OrbConfig[] = [
   { size: 420, color: "#FF8C42", x: "-6%", y: "15%", opacity: 0.3, duration: 13, delay: 1, parallaxFactor: 40 },
-  { size: 360, color: "#7B61FF", x: "80%", y: "60%", opacity: 0.3, duration: 11, delay: 5, parallaxFactor: -25 },
+  { size: 360, color: "#00D4AA", x: "80%", y: "60%", opacity: 0.3, duration: 11, delay: 5, parallaxFactor: -25 },
 ];
 
 const contactCalendlyOrbs: OrbConfig[] = [
@@ -42,7 +42,7 @@ const contactFaqOrbs: OrbConfig[] = [
 
 const contactCtaOrbs: OrbConfig[] = [
   { size: 400, color: "#FF8C42", x: "65%", y: "-10%", opacity: 0.35, duration: 13, delay: 1, parallaxFactor: 40 },
-  { size: 350, color: "#7B61FF", x: "-5%", y: "50%", opacity: 0.3, duration: 15, delay: 5, parallaxFactor: -30 },
+  { size: 350, color: "#00D4AA", x: "-5%", y: "50%", opacity: 0.3, duration: 15, delay: 5, parallaxFactor: -30 },
 ];
 
 // Calendly embed — uses the standard calendly-inline-widget class so
@@ -134,7 +134,7 @@ export default function Contact() {
             <div className="text-center mb-12 md:mb-16">
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
                 What happens on the{" "}
-                <span className="highlight-purple">call</span>
+                <span className="highlight-teal">call</span>
               </h2>
               <p className="text-base sm:text-lg text-muted-foreground">Here's exactly what your 15-minute discovery call covers:</p>
             </div>

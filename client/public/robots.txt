@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.etienneagency.com/sitemap.xml
+Sitemap: https://etienneagency.com/sitemap.xml

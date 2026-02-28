@@ -1,6 +1,5 @@
 /**
- * About Page - Tango Editorial Design
- * Company story, team background, and approach philosophy
+ * About Page — Team, thesis, approach
  */
 
 import { useEffect, useState } from "react";
@@ -11,263 +10,108 @@ import { useScrollTracking } from "@/hooks/useScrollTracking";
 import { useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import {
-  Zap,
-  Link2,
-  Target,
-  MessageSquare,
-  ArrowRight
-} from "lucide-react";
-import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
-
-const aboutHeroOrbs: OrbConfig[] = [
-  { size: 480, color: "#2D5BFF", x: "-8%", y: "-10%", opacity: 0.4, duration: 14, delay: 0, parallaxFactor: 50 },
-  { size: 400, color: "#7B61FF", x: "74%", y: "50%", opacity: 0.35, duration: 12, delay: 3, parallaxFactor: -30 },
-  { size: 320, color: "#00D4AA", x: "78%", y: "-12%", opacity: 0.3, duration: 15, delay: 6, parallaxFactor: 35 },
-];
-
-const aboutStoryOrbs: OrbConfig[] = [
-  { size: 420, color: "#FF8C42", x: "-6%", y: "20%", opacity: 0.3, duration: 13, delay: 1, parallaxFactor: 40 },
-  { size: 360, color: "#00D4AA", x: "80%", y: "65%", opacity: 0.3, duration: 11, delay: 5, parallaxFactor: -25 },
-];
-
-const aboutStrengthsOrbs: OrbConfig[] = [
-  { size: 400, color: "#7B61FF", x: "72%", y: "8%", opacity: 0.3, duration: 14, delay: 2, parallaxFactor: 35 },
-  { size: 350, color: "#2D5BFF", x: "-5%", y: "55%", opacity: 0.3, duration: 12, delay: 6, parallaxFactor: -30 },
-];
-
-const aboutApproachOrbs: OrbConfig[] = [
-  { size: 450, color: "#00D4AA", x: "68%", y: "-5%", opacity: 0.3, duration: 13, delay: 0, parallaxFactor: 45 },
-  { size: 380, color: "#FF8C42", x: "-8%", y: "50%", opacity: 0.3, duration: 15, delay: 4, parallaxFactor: -35 },
-];
-
-const aboutCtaOrbs: OrbConfig[] = [
-  { size: 400, color: "#2D5BFF", x: "65%", y: "-10%", opacity: 0.35, duration: 14, delay: 2, parallaxFactor: 40 },
-  { size: 350, color: "#7B61FF", x: "-5%", y: "55%", opacity: 0.3, duration: 11, delay: 5, parallaxFactor: -30 },
-];
+import { ArrowRight } from "lucide-react";
 
 export default function About() {
-  usePageView('About');
-  useScrollTracking('About');
-  useSEO('/about');
+  usePageView("About");
+  useScrollTracking("About");
+  useSEO("/about");
 
   const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    setInView(true);
-  }, []);
-
-  const principles = [
-    {
-      icon: Zap,
-      title: "Speed over perfection",
-      description: "A working system in 4 weeks beats a perfect system in 6 months."
-    },
-    {
-      icon: Link2,
-      title: "Integration over replacement",
-      description: "Your tools work. Let's make them work better."
-    },
-    {
-      icon: Target,
-      title: "ROI over features",
-      description: "Every decision we make is about revenue recovery, not feature lists."
-    },
-    {
-      icon: MessageSquare,
-      title: "Honesty over sales",
-      description: "If we're not the right fit, we'll tell you. We'd rather lose a sale than take on a client we can't help."
-    }
-  ];
-
-  const strengths = [
-    {
-      title: "Enterprise AI, Built for Local Business",
-      description: "Our founding team sold and ran AI systems for Fortune 500 companies. The same technology that large corporations pay millions for now powers your AI receptionist and automated follow-up system — through the 24/7 Revenue Recovery Framework."
-    },
-    {
-      title: "Deep Integration, Not a Bolt-On",
-      description: "Our technical team comes from data startups where integration is everything. This isn't a chatbot on your website. Your conversational AI connects to your CRM, scheduling software, phone system, and every communication channel — so nothing falls through the cracks."
-    },
-    {
-      title: "Results-Obsessed Mindset",
-      description: "Success isn't about the technology. It's about how much revenue you recover. If the numbers don't improve, nothing else matters. Every decision ties back to your bottom line."
-    }
-  ];
+  useEffect(() => { setInView(true); }, []);
 
   return (
     <div id="main-content" className="min-h-screen">
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 overflow-hidden section-gradient-hero">
-        <GradientOrbs orbs={aboutHeroOrbs} />
+      {/* Hero — light background */}
+      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 overflow-hidden">
         <div className="container relative z-10">
-          <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.1] mb-6">
-              The team behind your{" "}
-              <span className="highlight-purple">AI appointment scheduling</span>{" "}
-              system
+              We built the intelligence layer that booking systems forgot
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto mb-12">
-              Etienne Agency was built by operators who sold AI to Fortune 500 companies — and realized the same technology could stop missed calls and slow responses for local service businesses.
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+              Etienne Agency was founded on a simple observation: multi-location med spas
+              invest heavily in marketing to generate leads, then lose thousands in revenue
+              because nobody answers after hours.
             </p>
-            {/* Team photo */}
-            <div className="max-w-2xl mx-auto">
-              <div className="rounded-2xl overflow-hidden shadow-xl border border-white/60" style={{ aspectRatio: '16/7' }}>
-                <img
-                  src="/images/team-workspace.jpg"
-                  alt="Etienne Agency team"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Story Section */}
+      {/* The Team */}
       <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
-        <GradientOrbs orbs={aboutStoryOrbs} />
         <div className="container relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
-              {/* Left: story text */}
-              <div>
-                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-10">
-                  Our Story
-                </h2>
-                <div className="space-y-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
-                  <p>
-                    After years selling enterprise AI systems to Fortune 500 companies, I (Jim, founder of Etienne Agency) kept seeing the same pattern: the technology that large corporations pay millions for could solve real, urgent problems for local service businesses — missed calls, slow follow-up, no-shows.
-                  </p>
-                  <p>
-                    But local businesses couldn't afford a $500,000 setup and a 12-month rollout. They needed a virtual receptionist that worked now. One that fit their current tools. One that delivered ROI in weeks — not years.
-                  </p>
-                  <p>
-                    That's why I started Etienne Agency: to bring enterprise-grade AI to the businesses that need it most — med spas, dental practices, law firms, and property management companies losing revenue every single day to problems that technology solved years ago.
-                  </p>
-                  <p className="font-display text-2xl sm:text-3xl text-foreground italic text-center pt-4">
-                    The technology exists. Now it's accessible.
-                  </p>
-                </div>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground text-center mb-12 md:mb-16">
+              The team
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Jim */}
+              <div className="card-premium p-6 sm:p-8">
+                <h3 className="font-display text-2xl text-foreground mb-1">Jim Etienne</h3>
+                <p className="text-sm text-primary font-semibold mb-4">Co-Founder &amp; CEO</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Before Etienne Agency, Jim spent years selling AI solutions to Fortune 500
+                  companies. He saw firsthand how enterprise-grade AI could transform operations —
+                  and how local service businesses were being left behind. Etienne Agency brings
+                  that same caliber of intelligence to the businesses that need it most.
+                </p>
               </div>
-              {/* Right: sidebar accent photo */}
-              <div className="hidden md:block">
-                <div className="rounded-2xl overflow-hidden shadow-lg border border-border/30" style={{ aspectRatio: '4/5' }}>
-                  <img
-                    src="/images/about-story.jpg"
-                    alt="Planning session"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
+              {/* Rumeer */}
+              <div className="card-premium p-6 sm:p-8">
+                <h3 className="font-display text-2xl text-foreground mb-1">Rumeer</h3>
+                <p className="text-sm text-primary font-semibold mb-4">Co-Founder &amp; CTO</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Rumeer leads technical architecture and product development, building the
+                  integrations and intelligence engines that power EIP. His background in
+                  full-stack development and system design ensures that EIP is reliable,
+                  fast, and built to scale across hundreds of locations.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* What We Bring Section */}
+      {/* Our Thesis */}
       <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
-        <GradientOrbs orbs={aboutStrengthsOrbs} />
         <div className="container relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-16 md:mb-20">
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
-                What we bring to the{" "}
-                <span className="highlight-coral">table</span>
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {strengths.map((strength, index) => (
-                <div
-                  key={index}
-                  className="card-premium p-6 sm:p-8 transition-all duration-500"
-                  style={{
-                    opacity: inView ? 1 : 0,
-                    transform: inView ? 'translateY(0)' : 'translateY(20px)',
-                    transitionDelay: `${index * 150}ms`
-                  }}
-                >
-                  <h3 className="font-display text-xl sm:text-2xl text-foreground mb-4">
-                    {strength.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                    {strength.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Approach Section */}
-      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-cta overflow-hidden">
-        <GradientOrbs orbs={aboutApproachOrbs} />
-        <div className="container relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-16 md:mb-20">
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
-                Our{" "}
-                <span className="highlight-green">approach</span>
-              </h2>
-              <p className="text-base sm:text-lg text-muted-foreground">
-                Four rules guide every project:
+          <div className="max-w-3xl mx-auto">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground text-center mb-10">
+              Our thesis
+            </h2>
+            <div className="space-y-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
+              <p>
+                The $18.6 billion med spa industry is growing at 14% annually.
+                Over 10,000 medical spas operate in the US alone. But the technology stack
+                hasn't kept up. Booking platforms manage what's already scheduled.
+                Nobody is managing what's being missed.
+              </p>
+              <p>
+                That's the gap. EIP is the intelligence layer that sits on top of your
+                existing systems and captures the revenue that falls through the cracks —
+                automatically, 24/7, across every channel and every location.
               </p>
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {principles.map((principle, index) => {
-                const Icon = principle.icon;
-                return (
-                  <div
-                    key={index}
-                    className="card-on-alt p-6 sm:p-8 transition-all duration-500"
-                    style={{
-                      opacity: inView ? 1 : 0,
-                      transform: inView ? 'translateY(0)' : 'translateY(20px)',
-                      transitionDelay: `${index * 100}ms`
-                    }}
-                  >
-                    <div className="icon-container-lg mb-4">
-                      <Icon className="w-5 h-5" />
-                    </div>
-                    <h3 className="font-display text-lg sm:text-xl text-foreground mb-3">
-                      {principle.title}
-                    </h3>
-                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                      {principle.description}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
-        <GradientOrbs orbs={aboutCtaOrbs} />
+      {/* CTA — dark */}
+      <section className="relative py-20 md:py-28 lg:py-36 section-dark overflow-hidden">
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
-              See if the 24/7 Revenue Recovery Framework{" "}
-              <span className="highlight-purple">fits your business</span>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">
+              Find out how much revenue your practice is losing
             </h2>
-            <p className="text-base sm:text-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
-              No pressure. No pitch deck. 15 minutes to find out if we can recover the revenue you're losing to missed calls and slow responses.
+            <p className="text-base sm:text-lg text-white/70 mb-10">
+              15 minutes. No pitch deck. Just numbers.
             </p>
             <Link href="/contact">
-              <Button
-                className="rounded-full px-8 py-6 h-auto text-base bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl shadow-primary/30 btn-primary-pill"
-              >
-                Book a Free Discovery Call
-                <ArrowRight className="ml-2 w-4 h-4" />
+              <Button className="rounded-full px-8 py-6 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill">
+                Book a Revenue Audit <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
           </div>

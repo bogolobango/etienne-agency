@@ -1,16 +1,8 @@
 /**
- * Problem Section Component - Tango Editorial Design
- * Stats grid with editorial headline, colored keyword highlights, generous spacing
+ * Problem Section — "The Cost of Slow Response" stat cards
  */
 
 import { useEffect, useState } from "react";
-import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
-
-const problemOrbs: OrbConfig[] = [
-  { size: 450, color: "#FF8C42", x: "-10%", y: "15%", opacity: 0.4, duration: 13, delay: 2, parallaxFactor: 45 },
-  { size: 380, color: "#7B61FF", x: "80%", y: "60%", opacity: 0.35, duration: 11, delay: 5, parallaxFactor: -30 },
-  { size: 320, color: "#2D5BFF", x: "40%", y: "85%", opacity: 0.3, duration: 15, delay: 8, parallaxFactor: 25 },
-];
 
 export default function ProblemSection() {
   const [inView, setInView] = useState(false);
@@ -18,122 +10,74 @@ export default function ProblemSection() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-        }
+        if (entry.isIntersecting) setInView(true);
       },
       { threshold: 0.2 }
     );
-
-    const element = document.getElementById("problem-section");
-    if (element) observer.observe(element);
-
+    const el = document.getElementById("problem-section");
+    if (el) observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
   const problems = [
     {
       stat: "78%",
-      description: "of customers book with the first business that responds. Slow lead response time hands them to your competitor.",
+      description: "of clients book with the first practice that responds. Slow response hands them to your competitor.",
+      cite: "Velocify / InsideSales.com",
+      coral: false,
     },
     {
-      stat: "100x",
-      description: "more likely to connect when you respond in 5 minutes vs. 30. An instant response system closes the gap.",
+      stat: "$8K–15K",
+      description: "in monthly revenue lost per location from after-hours inquiries that go unanswered until morning.",
+      cite: "Med spa industry benchmarks",
+      coral: true,
     },
     {
       stat: "42 hours",
-      description: "is the average lead response time. Your competitor already closed the deal by then.",
+      description: "is the average lead response time for med spas. Your competitor's AI answers in under 2 seconds.",
+      cite: "Workee / ChiliPiper 2025",
+      coral: false,
     },
     {
       stat: "20–40%",
-      description: "of appointments become no-shows without automated reminders. That's thousands in lost revenue each month.",
+      description: "of appointments become no-shows without automated reminders. That's thousands in lost revenue monthly.",
+      cite: "Workee med spa booking data",
+      coral: false,
     },
   ];
 
   return (
-    <section
-      id="problem-section"
-      className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden"
-    >
-      {/* Animated gradient orbs */}
-      <GradientOrbs orbs={problemOrbs} />
-
-      {/* Decorative front-desk photo accent */}
-      <div className="absolute right-0 top-0 w-72 h-full pointer-events-none hidden xl:block" aria-hidden="true">
-        <div
-          style={{
-            backgroundImage: "url('/images/front-desk.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            opacity: 0.06,
-            position: "absolute",
-            inset: 0,
-          }}
-        />
-      </div>
+    <section id="problem-section" className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
       <div className="container relative z-10">
-        {/* Section intro */}
         <div
           className={`max-w-3xl mx-auto text-center mb-16 md:mb-20 transition-all duration-700 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] text-foreground leading-[1.1] mb-6">
-            Every missed call is{" "}
-            <span className="highlight-coral">revenue lost</span> forever
+          <p className="section-label">THE COST OF SLOW RESPONSE</p>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1]">
+            Every hour you don't respond, revenue walks out the door
           </h2>
-          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            The phone rings during a procedure. A lead submits a form at 9pm. Your front desk is slammed. A $5,000 client hangs up after three rings. Without an AI receptionist, that money goes to your competitor.
-          </p>
         </div>
 
-        {/* Step label */}
-        <div
-          className={`text-center mb-10 transition-all duration-700 delay-200 ${
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          <p className="text-sm uppercase tracking-wider text-muted-foreground font-medium">
-            Here's what that costs you
-          </p>
-        </div>
-
-        {/* Statistics grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-          {problems.map((problem, index) => (
+          {problems.map((p, i) => (
             <div
-              key={index}
-              className={`card-on-alt p-6 sm:p-8 transition-all duration-500 ${
-                inView
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
+              key={i}
+              className={`stat-card transition-all duration-500 ${
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
-              style={{
-                transitionDelay: `${300 + index * 100}ms`,
-              }}
+              style={{ transitionDelay: `${300 + i * 100}ms` }}
             >
-              <div className="space-y-3">
-                <div className="font-display text-4xl sm:text-5xl text-foreground">
-                  {problem.stat}
-                </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {problem.description}
-                </p>
+              <div className={`font-display text-4xl sm:text-5xl mb-3 ${p.coral ? "text-[#FF6B6B]" : "text-foreground"}`}>
+                {p.stat}
               </div>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+                {p.description}
+              </p>
+              <p className="text-xs text-muted-foreground/50 italic">{p.cite}</p>
             </div>
           ))}
-        </div>
-
-        {/* Closing quote */}
-        <div
-          className={`max-w-2xl mx-auto text-center mt-16 md:mt-20 transition-all duration-700 delay-700 ${
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          <p className="font-display text-xl md:text-2xl lg:text-3xl text-foreground italic">
-            You didn't build your business to babysit a phone.{" "}
-            <span className="highlight-green">A virtual receptionist fixes this.</span>
-          </p>
         </div>
       </div>
     </section>

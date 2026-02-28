@@ -1,10 +1,8 @@
 /**
  * Shared SEO metadata for every public route.
- * Used by both the client-side useSEO hook and the server-side HTML injector
- * so that crawlers see correct meta tags even without executing JavaScript.
  */
 
-export const BASE_URL = "https://www.etienneagency.com";
+export const BASE_URL = "https://etienneagency.com";
 export const OG_IMAGE = `${BASE_URL}/images/og-image.png`;
 export const SITE_NAME = "Etienne Agency";
 
@@ -14,34 +12,36 @@ export interface PageMeta {
   ogImage?: string;
 }
 
-// ---------------------------------------------------------------------------
-// Static route metadata
-// ---------------------------------------------------------------------------
 const staticRoutes: Record<string, PageMeta> = {
   "/": {
-    title: "Stop Losing Revenue to Missed Calls | AI for Multi-Location Businesses | Etienne Agency",
+    title: "Etienne Agency — AI Revenue Recovery for Multi-Location Med Spas",
     description:
-      "Multi-location service businesses lose thousands monthly to missed calls and slow follow-up. The 24/7 Revenue Recovery Framework fixes that in 4 weeks. Med spas, dental, law firms, property management.",
+      "Multi-location med spas lose $8K–15K/month per location from missed after-hours inquiries. Etienne Agency's AI captures and converts them automatically. Book a free revenue audit.",
   },
   "/how-it-works": {
-    title: "From Overwhelmed to Automated in 4 Weeks | Etienne Agency",
+    title: "How It Works — AI Revenue Recovery for Med Spas | Etienne Agency",
     description:
-      "See how the 24/7 Revenue Recovery Framework automates lead response, appointment booking, and follow-up in just 4 weeks. Discovery, build, launch, optimize.",
+      "From integration to revenue recovery in 4 weeks. EIP plugs into your Zenoti, Boulevard, or Mangomint platform and captures missed revenue automatically.",
+  },
+  "/med-spas": {
+    title: "AI Revenue Recovery for Med Spas — Etienne Agency",
+    description:
+      "The average 5-location med spa loses $60K–$180K/year from missed inquiries and no-shows. EIP recovers it automatically without replacing your booking system.",
   },
   "/industries": {
-    title: "AI for Your Industry | Med Spa · Dental · Law · Property | Etienne Agency",
+    title: "AI Revenue Recovery for Med Spas — Etienne Agency",
     description:
-      "Discover how AI receptionist and scheduling automation works for med spas, dental practices, law firms, property management, accounting firms, cleaning companies, and sports facilities.",
+      "The average 5-location med spa loses $60K–$180K/year from missed inquiries and no-shows. EIP recovers it automatically without replacing your booking system.",
   },
   "/contact": {
     title: "Book Your Free Revenue Audit | 15 Minutes, No Pitch | Etienne Agency",
     description:
-      "Schedule a free 15-minute discovery call. We'll show you exactly how many leads you're losing to missed calls and slow follow-up — and how to fix it in 4 weeks.",
+      "Schedule a free 15-minute discovery call. We'll show you exactly how many leads you're losing to missed inquiries and how to fix it in 4 weeks.",
   },
   "/about": {
-    title: "The Team Behind the 24/7 Revenue Recovery Framework | Etienne Agency",
+    title: "About Etienne Agency — The Intelligence Layer for Med Spas",
     description:
-      "Meet the Etienne Agency team. We build AI receptionist and scheduling systems that help multi-location service businesses stop losing revenue to missed calls.",
+      "Etienne Agency builds AI revenue recovery for multi-location med spas. Founded by Fortune 500 AI sales veterans, now bringing enterprise intelligence to local businesses.",
   },
   "/privacy": {
     title: "Privacy Policy | Etienne Agency",
@@ -53,76 +53,28 @@ const staticRoutes: Record<string, PageMeta> = {
   },
 };
 
-// ---------------------------------------------------------------------------
-// Industry-specific metadata (keyed by slug)
-// ---------------------------------------------------------------------------
 const industryRoutes: Record<string, PageMeta> = {
   medspa: {
-    title: "AI Scheduling for Med Spas | Reduce No-Shows 75% | Etienne Agency",
+    title: "AI Revenue Recovery for Med Spas — Etienne Agency",
     description:
-      "Med spas lose $500+ per missed call. The 24/7 Revenue Recovery Framework responds to every inquiry instantly, books consultations, and cuts no-shows by 75%. See how in 15 minutes.",
-  },
-  dental: {
-    title: "AI Scheduling for Dental Practices | Reduce No-Shows 40% | Etienne Agency",
-    description:
-      "New patient calls come in during procedures. Your front desk can't keep up. The 24/7 Revenue Recovery Framework automates intake, booking, and reminders in 4 weeks.",
-  },
-  law: {
-    title: "AI Intake for Law Firms | Never Miss a Case Again | Etienne Agency",
-    description:
-      "Someone gets in an accident at 11pm and calls three firms. The first to answer gets the case. Our AI intake system responds in under 60 seconds, 24/7.",
-  },
-  property: {
-    title: "AI Leasing Assistant for Property Management | Fill Vacancies 60% Faster | Etienne Agency",
-    description:
-      "A prospective tenant inquires Saturday. Your leasing office is closed. They tour a competitor's unit Sunday and sign Monday. Our AI responds 24/7 and books tours instantly.",
-  },
-  accounting: {
-    title: "AI Scheduling for Accounting Firms | Scale Through Tax Season | Etienne Agency",
-    description:
-      "Tax season hits. Your phone rings nonstop. New clients wait days for a callback. Our AI handles intake and scheduling 24/7 so your CPAs can focus on returns.",
-  },
-  cleaning: {
-    title: "AI Booking for Cleaning Companies | Respond First, Win the Job | Etienne Agency",
-    description:
-      "67% of customers expect a response within 5 minutes. With an average $2,800 lifetime value per customer, every slow response costs you thousands. Our AI responds instantly.",
-  },
-  sports: {
-    title: "AI Receptionist for Sports Facilities | Automate 60% of Inquiries | Etienne Agency",
-    description:
-      "Your front desk is buried in 'What time do you open?' calls. High-value corporate event inquiries go to voicemail. Our AI handles routine questions and routes the big deals to your team.",
+      "The average 5-location med spa loses $60K–$180K/year from missed inquiries and no-shows. EIP recovers it automatically without replacing your booking system.",
   },
 };
 
-// ---------------------------------------------------------------------------
-// Industry display names (for breadcrumbs / structured data)
-// ---------------------------------------------------------------------------
 const industryNames: Record<string, string> = {
-  medspa: "Med Spas & Aesthetic Clinics",
-  dental: "Dental Practices",
-  law: "Law Firms",
-  property: "Property Management",
-  accounting: "Accounting & CPA Firms",
-  cleaning: "Cleaning Companies",
-  sports: "Sports Facilities",
+  medspa: "Med Spas",
 };
 
-// ---------------------------------------------------------------------------
-// Breadcrumb labels for static routes
-// ---------------------------------------------------------------------------
 const breadcrumbLabels: Record<string, string> = {
   "/how-it-works": "How It Works",
-  "/industries": "Industries",
+  "/med-spas": "Med Spas",
+  "/industries": "Med Spas",
   "/contact": "Contact",
   "/about": "About",
   "/privacy": "Privacy Policy",
   "/terms": "Terms of Service",
 };
 
-/**
- * Generate BreadcrumbList JSON-LD for the given path.
- * Returns null for the homepage (no breadcrumb needed).
- */
 export function getBreadcrumbJsonLd(pathname: string): object | null {
   if (pathname === "/") return null;
 
@@ -130,11 +82,10 @@ export function getBreadcrumbJsonLd(pathname: string): object | null {
     { name: "Home", url: BASE_URL },
   ];
 
-  // Industry detail: Home → Industries → Industry Name
   const industryMatch = pathname.match(/^\/industries\/([^/]+)$/);
   if (industryMatch) {
     const slug = industryMatch[1];
-    items.push({ name: "Industries", url: `${BASE_URL}/industries` });
+    items.push({ name: "Med Spas", url: `${BASE_URL}/med-spas` });
     if (industryNames[slug]) {
       items.push({ name: industryNames[slug], url: `${BASE_URL}/industries/${slug}` });
     }
@@ -156,21 +107,14 @@ export function getBreadcrumbJsonLd(pathname: string): object | null {
   };
 }
 
-/**
- * Resolve SEO metadata for a given URL path.
- * Returns the best-matching PageMeta, or a sensible default for unknown routes.
- */
 export function getPageMeta(pathname: string): PageMeta {
-  // Exact static match
   if (staticRoutes[pathname]) return staticRoutes[pathname];
 
-  // Industry detail pages: /industries/:slug
   const industryMatch = pathname.match(/^\/industries\/([^/]+)$/);
   if (industryMatch) {
     const slug = industryMatch[1];
     if (industryRoutes[slug]) return industryRoutes[slug];
   }
 
-  // Fallback to homepage meta
   return staticRoutes["/"];
 }

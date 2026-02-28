@@ -53,7 +53,9 @@ export default function Header() {
                 <img
                   src="/images/logo.png"
                   alt="Etienne Agency"
-                  className="w-36 h-auto"
+                  className={`w-36 h-auto transition-all duration-300 ${
+                    scrolled ? "" : "brightness-0 invert"
+                  }`}
                 />
               </div>
             </Link>
@@ -62,7 +64,11 @@ export default function Header() {
             <nav className="hidden md:flex items-center gap-8">
               <Link href="/how-it-works">
                 <span
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                  className={`text-sm font-medium transition-colors cursor-pointer ${
+                    scrolled
+                      ? "text-muted-foreground hover:text-foreground"
+                      : "text-white/70 hover:text-white"
+                  }`}
                   onClick={() => trackNavigationClick('How It Works', '/how-it-works', 'header')}
                 >
                   How It Works
@@ -70,7 +76,11 @@ export default function Header() {
               </Link>
               <Link href="/med-spas">
                 <span
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                  className={`text-sm font-medium transition-colors cursor-pointer ${
+                    scrolled
+                      ? "text-muted-foreground hover:text-foreground"
+                      : "text-white/70 hover:text-white"
+                  }`}
                   onClick={() => trackNavigationClick('Med Spas', '/med-spas', 'header')}
                 >
                   Med Spas
@@ -78,7 +88,11 @@ export default function Header() {
               </Link>
               <Link href="/about">
                 <span
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                  className={`text-sm font-medium transition-colors cursor-pointer ${
+                    scrolled
+                      ? "text-muted-foreground hover:text-foreground"
+                      : "text-white/70 hover:text-white"
+                  }`}
                   onClick={() => trackNavigationClick('About', '/about', 'header')}
                 >
                   About
@@ -99,7 +113,7 @@ export default function Header() {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden p-2 text-foreground"
+              className={`md:hidden p-2 transition-colors ${scrolled ? "text-foreground" : "text-white"}`}
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open menu"
             >

@@ -4,14 +4,25 @@
  */
 
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import { trackNavigationClick, trackCTAClick } from "@/lib/analytics";
 
+// Pages whose hero section has a dark (section-dark) background
+const DARK_HERO_ROUTES = ["/", "/how-it-works", "/med-spas"];
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [location] = useLocation();
+
+  const hasDarkHero = DARK_HERO_ROUTES.some(
+    (path) => location === path || (path !== "/" && location.startsWith(path))
+  );
+
+  // White logo / nav only when NOT scrolled AND on a page with a dark hero
+  const overDark = !scrolled && hasDarkHero;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,7 +65,7 @@ export default function Header() {
                   src="/images/logo.png"
                   alt="Etienne Agency"
                   className={`w-36 h-auto transition-all duration-300 ${
-                    scrolled ? "" : "brightness-0 invert"
+                    overDark ? "brightness-0 invert" : ""
                   }`}
                 />
               </div>
@@ -65,9 +76,9 @@ export default function Header() {
               <Link href="/how-it-works">
                 <span
                   className={`text-sm font-medium transition-colors cursor-pointer ${
-                    scrolled
-                      ? "text-muted-foreground hover:text-foreground"
-                      : "text-white/70 hover:text-white"
+                    overDark
+                      ? "text-white/70 hover:text-white"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                   onClick={() => trackNavigationClick('How It Works', '/how-it-works', 'header')}
                 >
@@ -77,9 +88,9 @@ export default function Header() {
               <Link href="/med-spas">
                 <span
                   className={`text-sm font-medium transition-colors cursor-pointer ${
-                    scrolled
-                      ? "text-muted-foreground hover:text-foreground"
-                      : "text-white/70 hover:text-white"
+                    overDark
+                      ? "text-white/70 hover:text-white"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                   onClick={() => trackNavigationClick('Med Spas', '/med-spas', 'header')}
                 >
@@ -89,9 +100,9 @@ export default function Header() {
               <Link href="/about">
                 <span
                   className={`text-sm font-medium transition-colors cursor-pointer ${
-                    scrolled
-                      ? "text-muted-foreground hover:text-foreground"
-                      : "text-white/70 hover:text-white"
+                    overDark
+                      ? "text-white/70 hover:text-white"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                   onClick={() => trackNavigationClick('About', '/about', 'header')}
                 >
@@ -113,7 +124,7 @@ export default function Header() {
 
             {/* Mobile Menu Button */}
             <button
-              className={`md:hidden p-2 transition-colors ${scrolled ? "text-foreground" : "text-white"}`}
+              className={`md:hidden p-2 transition-colors ${overDark ? "text-white" : "text-foreground"}`}
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open menu"
             >

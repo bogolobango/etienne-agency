@@ -11,6 +11,7 @@ import { useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
+import FloatingDustMotes from "@/components/FloatingDustMotes";
 
 export default function About() {
   usePageView("About");
@@ -101,6 +102,7 @@ export default function About() {
 
       {/* CTA — dark */}
       <section className="relative py-20 md:py-28 lg:py-36 section-dark overflow-hidden">
+        <FloatingDustMotes particleCount={40} />
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">

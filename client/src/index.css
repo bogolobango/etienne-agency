@@ -263,7 +263,7 @@
   .section-gradient-alt {
     background:
       linear-gradient(180deg, var(--background) 0%, transparent 10%, transparent 90%, var(--background) 100%),
-      linear-gradient(135deg, #F0FDF9 0%, #F3F4F8 50%, #EFF6FF 100%);
+      linear-gradient(135deg, #E6F9F4 0%, #ECF0F5 50%, #E6F0FB 100%);
   }
 
   .section-gradient-cta {

@@ -9,7 +9,7 @@ export default function Privacy() {
     <div id="main-content" className="min-h-screen">
       <Header />
 
-      <section className="pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28">
+      <section className="pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-gradient-alt">
         <div className="container">
           <div className="max-w-3xl mx-auto prose prose-gray">
             <h1 className="font-display text-4xl sm:text-5xl text-foreground mb-8">Privacy Policy</h1>

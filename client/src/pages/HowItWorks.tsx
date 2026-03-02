@@ -89,7 +89,7 @@ export default function HowItWorks() {
       </section>
 
       {/* 4-week process */}
-      <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
         <div className="container relative z-10">
           <div className="text-center mb-12 md:mb-16">
             <p className="section-label">THE PROCESS</p>
@@ -152,7 +152,7 @@ export default function HowItWorks() {
       </section>
 
       {/* Integrations */}
-      <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1] mb-6">

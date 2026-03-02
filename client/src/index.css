@@ -463,8 +463,11 @@
     background: #ffffff;
     border-radius: 1rem;
     border: 1px solid rgba(226, 228, 234, 0.6);
-    padding: 2rem;
+    padding: 1.5rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    overflow: hidden;
+    word-break: break-word;
+    min-width: 0;
   }
 
   /* ─── Industry photo accent ──────────────────────────────────── */

@@ -73,7 +73,7 @@ export default function Industries() {
       </section>
 
       {/* Timeline — what happens every night */}
-      <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12 md:mb-16">
@@ -153,7 +153,7 @@ export default function Industries() {
       </section>
 
       {/* Integrations */}
-      <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <p className="section-label">WORKS WITH YOUR STACK</p>

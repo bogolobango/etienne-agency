@@ -161,7 +161,7 @@ export default function Contact() {
       </section>
 
       {/* Calendly Booking + Photo/Trust Sidebar */}
-      <section id="booking" className="relative py-16 md:py-24 overflow-hidden">
+      <section id="booking" className="relative py-16 md:py-24 section-gradient-alt overflow-hidden">
         <GradientOrbs orbs={contactCalendlyOrbs} />
         <div className="container relative z-10">
           <div className="text-center mb-10">
@@ -245,7 +245,7 @@ export default function Contact() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-16 md:py-24 overflow-hidden">
+      <section className="relative py-16 md:py-24 section-gradient-alt overflow-hidden">
         <GradientOrbs orbs={contactCtaOrbs} />
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">

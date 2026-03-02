@@ -39,7 +39,7 @@ export default function IndustriesSection() {
   ];
 
   return (
-    <section id="who-section" className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+    <section id="who-section" className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
       <div className="container relative z-10">
         <div
           className={`max-w-3xl mx-auto text-center mb-16 md:mb-20 transition-all duration-700 ${

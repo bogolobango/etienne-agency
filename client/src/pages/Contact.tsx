@@ -1,6 +1,5 @@
 /**
- * Contact Page - Tango Editorial Design
- * Discovery call scheduling via Calendly with editorial styling
+ * Free Revenue Audit Page — Conversion page with form + audit details
  */
 
 import { useEffect, useState } from "react";
@@ -9,14 +8,16 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import {
   CheckCircle2,
-  Clock,
-  MessageCircle,
-  Mail,
-  ArrowRight
+  ArrowRight,
+  BarChart3,
+  DollarSign,
+  TrendingDown,
+  Brain,
 } from "lucide-react";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
 import { useSEO } from "@/hooks/useSEO";
+import { trackCTAClick, trackFormSubmit } from "@/lib/analytics";
 import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
 
 const contactHeroOrbs: OrbConfig[] = [
@@ -25,86 +26,63 @@ const contactHeroOrbs: OrbConfig[] = [
   { size: 320, color: "#00D4AA", x: "78%", y: "-12%", opacity: 0.3, duration: 15, delay: 6, parallaxFactor: 35 },
 ];
 
-const contactExpectOrbs: OrbConfig[] = [
+const contactAuditOrbs: OrbConfig[] = [
   { size: 420, color: "#FF8C42", x: "-6%", y: "15%", opacity: 0.3, duration: 13, delay: 1, parallaxFactor: 40 },
   { size: 360, color: "#00D4AA", x: "80%", y: "60%", opacity: 0.3, duration: 11, delay: 5, parallaxFactor: -25 },
 ];
 
-const contactCalendlyOrbs: OrbConfig[] = [
+const contactFormOrbs: OrbConfig[] = [
   { size: 400, color: "#00D4AA", x: "70%", y: "5%", opacity: 0.3, duration: 14, delay: 2, parallaxFactor: 35 },
   { size: 350, color: "#2D5BFF", x: "-5%", y: "55%", opacity: 0.25, duration: 12, delay: 6, parallaxFactor: -30 },
 ];
 
-const contactFaqOrbs: OrbConfig[] = [
-  { size: 400, color: "#2D5BFF", x: "-5%", y: "10%", opacity: 0.3, duration: 14, delay: 2, parallaxFactor: 40 },
-  { size: 350, color: "#00D4AA", x: "78%", y: "60%", opacity: 0.3, duration: 11, delay: 5, parallaxFactor: -30 },
-];
-
-const contactCtaOrbs: OrbConfig[] = [
-  { size: 400, color: "#FF8C42", x: "65%", y: "-10%", opacity: 0.35, duration: 13, delay: 1, parallaxFactor: 40 },
-  { size: 350, color: "#00D4AA", x: "-5%", y: "50%", opacity: 0.3, duration: 15, delay: 5, parallaxFactor: -30 },
-];
-
-// Calendly embed — uses the standard calendly-inline-widget class so
-// widget.js auto-detects and sizes the iframe correctly.
-// ---------------------------------------------------------------------------
-const CALENDLY_URL =
-  "https://calendly.com/jim-etienneagency/30min" +
-  "?background_color=ffffff" +
-  "&text_color=111827" +
-  "&primary_color=7c3aed" +
-  "&hide_gdpr_banner=1";
-
-const faqs = [
-  { question: "How long is the discovery call?", answer: "15 minutes. No more. We respect your time." },
-  { question: "Is this a sales pitch?", answer: "No. We ask about your missed calls, lead response time, and no-show rates. Then we give you an honest take on whether our AI receptionist can help. If it can't, we'll say so." },
-  { question: "What if I'm not ready to commit?", answer: "That's fine. Most people aren't after one call. You'll walk away knowing what appointment scheduling automation could do for your numbers." },
-  { question: "What size business do you work with?", answer: "Multi-location service businesses with 3–25 locations. Smaller operations usually don't have the volume to justify the investment. Larger enterprises often have in-house teams already." },
-  { question: "What does the virtual receptionist actually do?", answer: "It answers calls, texts, and web forms in under 60 seconds. It books appointments, sends automated reminders to reduce no-shows, and follows up with leads who don't book right away. All 24/7." }
-];
-
 export default function Contact() {
-  usePageView('Contact');
-  useScrollTracking('Contact');
+  usePageView('Free Revenue Audit');
+  useScrollTracking('Free Revenue Audit');
   useSEO('/contact');
 
   const [inView, setInView] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    business: "",
+    locations: "",
+    platform: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     setInView(true);
-
-    // Inject FAQPage JSON-LD for rich results
-    if (!document.getElementById("json-ld-faq")) {
-      const script = document.createElement("script");
-      script.id = "json-ld-faq";
-      script.type = "application/ld+json";
-      script.textContent = JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: faqs.map((f) => ({
-          "@type": "Question",
-          name: f.question,
-          acceptedAnswer: { "@type": "Answer", text: f.answer },
-        })),
-      });
-      document.head.appendChild(script);
-    }
-
-    // Load Calendly widget script
-    if (!document.querySelector('script[src*="assets.calendly.com"]')) {
-      const calendlyScript = document.createElement("script");
-      calendlyScript.src = "https://assets.calendly.com/assets/external/widget.js";
-      calendlyScript.async = true;
-      document.head.appendChild(calendlyScript);
-    }
   }, []);
 
-  const expectations = [
-    { icon: MessageCircle, title: "Your lead response time", description: "How fast do you respond to missed calls, texts, and web forms? Where are leads falling through?" },
-    { icon: CheckCircle2, title: "Quick ROI estimate", description: "Based on your call volume and no-show rate, how much revenue can smart scheduling recover?" },
-    { icon: Clock, title: "Fit evaluation", description: "Does the 24/7 Revenue Recovery Framework match your business? Not every company is right for this." },
-    { icon: ArrowRight, title: "Clear next steps", description: "If it makes sense, we'll show you the 4-week setup. If not, no hard feelings." }
+  const auditIncludes = [
+    {
+      icon: BarChart3,
+      title: "Cross-Location Performance Comparison",
+      description: "Every center ranked by revenue, utilization, no-show rate, and lead response time. See which location is your strongest and which needs attention.",
+    },
+    {
+      icon: DollarSign,
+      title: "Revenue Leakage Report",
+      description: "Estimated dollar value of missed calls, delayed responses, and lost leads across all locations for the 14-day period \u2014 annualized projection included.",
+    },
+    {
+      icon: TrendingDown,
+      title: "No-Show Pattern Analysis",
+      description: "Which days, times, providers, and service types have the highest no-show rates. Estimated revenue impact and recommended interventions.",
+    },
+    {
+      icon: Brain,
+      title: "AI Analyst Demo",
+      description: "Live access to the AI Revenue Analyst with your actual data loaded. Ask any question about your business and see what cross-center intelligence looks like.",
+    },
   ];
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    trackFormSubmit('Free Revenue Audit', { locations: formData.locations, platform: formData.platform });
+    trackCTAClick('Start My Free Audit', 'Audit Form', 'primary');
+    setSubmitted(true);
+  }
 
   return (
     <div id="main-content" className="min-h-screen">
@@ -116,30 +94,29 @@ export default function Contact() {
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.1] mb-6">
-              Book a free call to stop{" "}
-              <span className="highlight-coral">missed calls and lost revenue</span>
+              See what your booking system{" "}
+              <span className="highlight-coral">can't show you.</span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              15 minutes. No pitch deck. Find out how an AI receptionist and appointment scheduling automation can recover the revenue you're losing today.
+              We'll connect to your booking data, run a 14-day analysis across all your locations, and deliver a revenue intelligence report showing exactly where money is slipping through the cracks. Free. No strings.
             </p>
           </div>
         </div>
       </section>
 
-      {/* What to Expect */}
+      {/* What You Get */}
       <section className="relative py-16 md:py-24 section-gradient-alt overflow-hidden">
-        <GradientOrbs orbs={contactExpectOrbs} />
+        <GradientOrbs orbs={contactAuditOrbs} />
         <div className="container relative z-10">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12 md:mb-16">
+              <p className="section-label">THE REVENUE AUDIT INCLUDES</p>
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
-                What happens on the{" "}
-                <span className="highlight-teal">call</span>
+                What you get
               </h2>
-              <p className="text-base sm:text-lg text-muted-foreground">Here's exactly what your 15-minute discovery call covers:</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {expectations.map((item, index) => {
+              {auditIncludes.map((item, index) => {
                 const Icon = item.icon;
                 return (
                   <div
@@ -160,107 +137,94 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Calendly Booking + Photo/Trust Sidebar */}
-      <section id="booking" className="relative py-16 md:py-24 section-gradient-alt overflow-hidden">
-        <GradientOrbs orbs={contactCalendlyOrbs} />
+      {/* The Form */}
+      <section id="audit-form" className="relative py-16 md:py-24 section-gradient-alt overflow-hidden">
+        <GradientOrbs orbs={contactFormOrbs} />
         <div className="container relative z-10">
-          <div className="text-center mb-10">
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-4">
-              Schedule your free{" "}
-              <span className="highlight-green">revenue audit</span>
-            </h2>
-            <p className="text-base sm:text-lg text-muted-foreground">
-              Pick a time that works. No back-and-forth.
-            </p>
-          </div>
-
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
-              {/* Left: Calendly widget */}
-              <div className="lg:col-span-3">
-                <div
-                  className="calendly-inline-widget rounded-2xl"
-                  data-url={CALENDLY_URL}
-                  style={{ minWidth: 320, height: 700 }}
-                />
-              </div>
-
-              {/* Right: Photo + trust signals */}
-              <div className="hidden lg:flex flex-col gap-6 lg:col-span-2">
-                <div className="rounded-2xl overflow-hidden shadow-lg border border-border/30" style={{ aspectRatio: '3/4' }}>
-                  <img
-                    src="/images/contact-office.jpg"
-                    alt="Discovery call"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="card-premium p-5 space-y-3">
-                  <p className="text-sm font-semibold text-foreground">What you'll get</p>
-                  {[
-                    "Honest assessment of your lead flow",
-                    "Quick ROI estimate for your business",
-                    "Clear next steps — no pressure",
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                      <p className="text-xs text-muted-foreground">{item}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className="text-center">
-                  <p className="text-sm text-muted-foreground mb-1">Prefer email?</p>
-                  <a href="mailto:jim@etienneagency.com" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium text-sm">
-                    <Mail className="w-4 h-4" />
-                    jim@etienneagency.com
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQs */}
-      <section className="relative py-16 md:py-24 section-gradient-alt overflow-hidden">
-        <GradientOrbs orbs={contactFaqOrbs} />
-        <div className="container relative z-10">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-12">
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-10">
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-4">
-                Common questions about our{" "}
-                <span className="highlight-green">AI receptionist</span>
+                Start your free{" "}
+                <span className="highlight-green">revenue audit</span>
               </h2>
             </div>
-            <div className="space-y-4">
-              {faqs.map((faq, index) => (
-                <div key={index} className="card-on-alt p-6 sm:p-8">
-                  <h3 className="font-display text-lg sm:text-xl text-foreground mb-3">{faq.question}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Final CTA */}
-      <section className="relative py-16 md:py-24 section-gradient-alt overflow-hidden">
-        <GradientOrbs orbs={contactCtaOrbs} />
-        <div className="container relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground mb-6">
-              Stop losing revenue to{" "}
-              <span className="highlight-coral">slow responses</span>
-            </h2>
-            <p className="text-base sm:text-lg text-muted-foreground mb-8">Every day without an instant response system is revenue walking out the door. Let's fix that.</p>
-            <Button
-                className="rounded-full px-8 py-6 h-auto text-base bg-primary text-primary-foreground hover:bg-primary/90 shadow-xl shadow-primary/30 btn-primary-pill"
-              onClick={() => { document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" }); }}
-            >
-              Book Your Discovery Call
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
+            {submitted ? (
+              <div className="card-premium p-8 sm:p-10 text-center">
+                <CheckCircle2 className="w-12 h-12 text-primary mx-auto mb-4" />
+                <h3 className="font-display text-2xl text-foreground mb-3">We'll be in touch within 24 hours.</h3>
+                <p className="text-base text-muted-foreground leading-relaxed">
+                  We'll reach out to set up the data connection. The audit takes 14 days of data, and we'll walk you through the results live.
+                </p>
+              </div>
+            ) : (
+              <div className="form-container p-8 sm:p-10">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">Your name</label>
+                    <input
+                      id="name"
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                      placeholder="Jane Smith"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="business" className="block text-sm font-medium text-foreground mb-2">Business name</label>
+                    <input
+                      id="business"
+                      type="text"
+                      required
+                      value={formData.business}
+                      onChange={(e) => setFormData({ ...formData, business: e.target.value })}
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                      placeholder="Glow Med Spa"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="locations" className="block text-sm font-medium text-foreground mb-2">Number of locations</label>
+                    <input
+                      id="locations"
+                      type="text"
+                      required
+                      value={formData.locations}
+                      onChange={(e) => setFormData({ ...formData, locations: e.target.value })}
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                      placeholder="5"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="platform" className="block text-sm font-medium text-foreground mb-2">Booking platform</label>
+                    <select
+                      id="platform"
+                      required
+                      value={formData.platform}
+                      onChange={(e) => setFormData({ ...formData, platform: e.target.value })}
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                    >
+                      <option value="">Select your platform</option>
+                      <option value="zenoti">Zenoti</option>
+                      <option value="boulevard">Boulevard</option>
+                      <option value="mangomint">Mangomint</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <Button
+                    type="submit"
+                    className="w-full rounded-full py-6 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
+                  >
+                    Start My Free Audit
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </form>
+                <p className="text-center text-xs text-muted-foreground mt-6">
+                  We'll reach out within 24 hours to set up the data connection. The audit takes 14 days of data, and we'll walk you through the results live. If the numbers don't surprise you, no hard feelings.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>

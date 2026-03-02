@@ -1,6 +1,6 @@
 /**
- * Header Component — Teal Accent Design
- * Minimal sticky nav: Logo | How It Works · Med Spas · About | [Book a Revenue Audit]
+ * Header Component — Revenue Intelligence positioning
+ * Minimal sticky nav: Logo | How It Works · Med Spas · About | [Free Revenue Audit]
  */
 
 import { Button } from "@/components/ui/button";
@@ -116,9 +116,9 @@ export default function Header() {
               <Button
                 className="hidden md:inline-flex rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                 size="default"
-                onClick={() => trackCTAClick('Book a Revenue Audit', 'Header', 'primary')}
+                onClick={() => trackCTAClick('Free Revenue Audit', 'Header', 'primary')}
               >
-                Book a Revenue Audit
+                Free Revenue Audit
               </Button>
             </Link>
 
@@ -210,9 +210,9 @@ export default function Header() {
               <Button
                 className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                 size="lg"
-                onClick={() => trackCTAClick('Book a Revenue Audit', 'Mobile Menu', 'primary')}
+                onClick={() => trackCTAClick('Free Revenue Audit', 'Mobile Menu', 'primary')}
               >
-                Book a Revenue Audit
+                Free Revenue Audit
               </Button>
             </Link>
           </div>

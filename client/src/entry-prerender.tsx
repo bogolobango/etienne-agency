@@ -11,7 +11,6 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import HowItWorks from "./pages/HowItWorks";
 import Industries from "./pages/Industries";
-import IndustryDetail from "./pages/IndustryDetail";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
@@ -32,7 +31,7 @@ export function render(url: string): string {
           <Route path="/" component={Home} />
           <Route path="/how-it-works" component={HowItWorks} />
           <Route path="/industries" component={Industries} />
-          <Route path="/industries/:slug" component={IndustryDetail} />
+          <Route path="/med-spas" component={Industries} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
           <Route path="/privacy" component={Privacy} />

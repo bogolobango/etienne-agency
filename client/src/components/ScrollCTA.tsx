@@ -47,7 +47,7 @@ export default function ScrollCTA() {
       <div className="bg-card/95 backdrop-blur-md border-t border-border shadow-lg">
         <div className="container py-3 flex items-center justify-between gap-4">
           <p className="text-sm text-foreground font-medium">
-            Losing leads to missed calls?
+            See where your locations are leaking revenue.
           </p>
           <div className="flex items-center gap-3">
             <Link href="/contact">

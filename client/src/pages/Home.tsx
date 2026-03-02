@@ -1,5 +1,5 @@
 /**
- * Home Page — Med spa positioned, teal accent design
+ * Home Page — Revenue Intelligence for Multi-Location Med Spas
  */
 
 import { useEffect } from "react";
@@ -24,7 +24,7 @@ const jsonLd = [
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     description:
-      "AI-powered revenue recovery platform for multi-location med spas. Integrates with Zenoti, Boulevard, and Mangomint.",
+      "Revenue intelligence platform for multi-location med spas. Connects to Zenoti, Boulevard, and Mangomint to surface revenue gaps across locations.",
     offers: {
       "@type": "Offer",
       availability: "https://schema.org/InStock",
@@ -43,7 +43,7 @@ const jsonLd = [
     logo: "https://etienneagency.com/images/logo.png",
     email: "jim@etienneagency.com",
     description:
-      "AI-powered revenue recovery for multi-location med spas.",
+      "Revenue intelligence for multi-location med spas.",
     areaServed: { "@type": "Country", name: "US" },
     sameAs: [],
   },
@@ -71,26 +71,10 @@ export default function Home() {
       <Hero />
       <ProblemSection />
       <SolutionSection />
-      {/* Product Preview (dark section) — re-uses SocialProofSection export name */}
+      {/* Product Preview (dark section) */}
       <SocialProofSection />
-      {/* Who It's For — med spa use cases */}
+      {/* Integrations + Differentiation + Social Proof */}
       <IndustriesSection />
-      {/* Trust bar */}
-      <section className="py-12 md:py-16 section-gradient-alt">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center space-y-4">
-            <p className="section-label">TRUSTED BY FORWARD-THINKING PRACTICES</p>
-            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-              <span>Integrates with Zenoti &middot; Boulevard &middot; Mangomint</span>
-            </div>
-            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-              <span>HIPAA-compliant</span>
-              <span>&middot;</span>
-              <span>SOC 2 aligned</span>
-            </div>
-          </div>
-        </div>
-      </section>
       <FinalCTASection />
       <Footer />
       <ScrollCTA />

@@ -1,5 +1,5 @@
 /**
- * How It Works Page — 4-week process + 3 modules
+ * How It Works Page — Connect. Analyze. Recover.
  */
 
 import { useEffect, useState } from "react";
@@ -23,47 +23,32 @@ export default function HowItWorks() {
 
   const steps = [
     {
-      week: "Week 1",
-      title: "Discovery & Audit",
-      description: "We analyze your current inquiry flow — how leads come in, where they get stuck, and exactly how much revenue is leaking. You get a detailed revenue gap report within 48 hours.",
+      num: "01",
+      title: "Connect Your Platforms",
+      description: "One API key. 30 seconds. EIP connects to your Zenoti, Boulevard, or Mangomint account and starts reading your appointment data, guest records, invoices, and lead pipeline. We never write to your system — we only read from it. Your booking workflows stay the same.",
+      syncs: ["Appointments", "Guests/Clients", "Invoices", "Services", "Providers", "Opportunities (Leads)"],
     },
     {
-      week: "Week 2",
-      title: "Integration & Configuration",
-      description: "We connect EIP to your booking platform (Zenoti, Boulevard, Mangomint) and configure the AI to handle your specific services, pricing, and booking rules. Your team reviews and approves everything.",
+      num: "02",
+      title: "EIP Maps Your Revenue Landscape",
+      description: 'Within hours, EIP has mapped your entire business: revenue by center, utilization by room and provider, no-show patterns by day and time, lead response times, and rebooking rates. Every number traces back to your booking data with full provenance — you\'ll see "via Zenoti" attribution on every metric so you know exactly where it comes from.',
     },
     {
-      week: "Week 3",
-      title: "Launch & Monitor",
-      description: "EIP goes live across all channels — SMS, email, web chat, and phone. We monitor every conversation for the first 7 days to fine-tune responses and ensure quality.",
+      num: "03",
+      title: "Ask Anything. Get Answers.",
+      description: "This is the part no booking platform does. Open the AI Revenue Analyst and ask any question about your business in plain English. EIP analyzes your data across every center and delivers a specific, data-backed answer with dollar amounts, trend analysis, and recommended actions. Not a dashboard you have to interpret. A direct answer to your question.",
+      examples: [
+        '"Why is White Plains underperforming?"',
+        '"How much revenue did we lose from no-shows last month?"',
+        '"Compare provider rebooking rates across all centers."',
+        '"What should I focus on this week?"',
+      ],
     },
     {
-      week: "Week 4+",
-      title: "Optimize & Report",
-      description: "Your dashboard shows real-time revenue recovery, AI performance, and location-level insights. Monthly optimization reviews keep performance improving.",
+      num: "04",
+      title: "Act on the Intelligence",
+      description: "EIP doesn't just tell you what's wrong — it tells you what to do. Priority-ranked action items, revenue impact estimates, and specific operational recommendations. Toggle between Owner view (full financial intelligence across all locations) and Staff view (operational focus on a single center) so every team member sees what they need.",
     },
-  ];
-
-  const modules = [
-    {
-      title: "Command Center",
-      description: "One inbox for every AI conversation across all channels and locations. See what your AI is saying, how clients respond, and when to escalate.",
-    },
-    {
-      title: "Scheduling Intelligence",
-      description: "Real-time appointment data, utilization rates, and no-show tracking. Know which locations are underperforming before the month ends.",
-    },
-    {
-      title: "Revenue Intelligence",
-      description: "See exactly how much revenue EIP recovered — by location, by channel, by time period. Ask questions in plain English, get answers backed by your data.",
-    },
-  ];
-
-  const integrations = [
-    { category: "Booking Platforms", tools: "Zenoti, Boulevard, Mangomint, Mindbody, Acuity" },
-    { category: "CRMs", tools: "Salesforce, HubSpot, and custom systems" },
-    { category: "Phone Systems", tools: "Your existing phone numbers stay the same" },
-    { category: "Channels", tools: "SMS, email, web chat, Facebook Messenger, Instagram DMs" },
   ];
 
   return (
@@ -79,26 +64,23 @@ export default function HowItWorks() {
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-6">
-              How it works
+              Connect. Analyze. Recover.
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto">
-              From integration to revenue recovery in 4 weeks. No system replacement. No learning curve.
+              EIP reads your booking data and turns it into cross-location revenue intelligence. Here's how.
             </p>
           </div>
         </div>
       </section>
 
-      {/* 4-week process */}
+      {/* Steps */}
       <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
         <div className="container relative z-10">
-          <div className="text-center mb-12 md:mb-16">
-            <p className="section-label">THE PROCESS</p>
-          </div>
           <div className="max-w-4xl mx-auto">
             {steps.map((step, i) => (
               <div
                 key={i}
-                className="relative mb-12 md:mb-16"
+                className="relative mb-16 md:mb-20 last:mb-0"
                 style={{
                   opacity: inView ? 1 : 0,
                   transform: inView ? "translateY(0)" : "translateY(30px)",
@@ -106,77 +88,42 @@ export default function HowItWorks() {
                   transitionDelay: `${i * 150}ms`,
                 }}
               >
-                {i < steps.length - 1 && (
-                  <div className="absolute left-6 md:left-10 bottom-0 translate-y-full h-12 md:h-16 timeline-connector z-10" aria-hidden="true" />
-                )}
-                <div className="card-on-alt p-6 sm:p-8 md:p-10">
-                  <div className="flex flex-col md:flex-row md:items-start gap-6">
-                    <div className="flex md:flex-col items-center md:items-start gap-4">
-                      <span className="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/15">
-                        {step.week}
-                      </span>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-display text-2xl md:text-3xl text-foreground mb-3">
-                        {step.title}
-                      </h3>
-                      <p className="text-base text-muted-foreground leading-relaxed">
-                        {step.description}
-                      </p>
-                    </div>
+                <div className="flex flex-col md:flex-row md:items-start gap-6">
+                  <div className="flex-shrink-0">
+                    <span className="text-[4rem] md:text-[5rem] font-display leading-none select-none text-primary/15">
+                      {step.num}
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-display text-2xl md:text-3xl text-foreground mb-4">
+                      {step.title}
+                    </h3>
+                    <p className="text-base text-muted-foreground leading-relaxed mb-4">
+                      {step.description}
+                    </p>
+                    {step.syncs && (
+                      <div className="flex flex-wrap gap-2 mt-4">
+                        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider w-full mb-1">What gets synced:</p>
+                        {step.syncs.map((s, j) => (
+                          <span key={j} className="tool-pill text-xs">{s}</span>
+                        ))}
+                      </div>
+                    )}
+                    {step.examples && (
+                      <ul className="space-y-2 mt-4">
+                        {step.examples.map((ex, j) => (
+                          <li key={j} className="flex items-start gap-2">
+                            <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                            <span className="text-sm text-muted-foreground italic">{ex}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Three modules */}
-      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
-        <div className="container relative z-10">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1]">
-              Three modules. One intelligence layer.
-            </h2>
-          </div>
-          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-            {modules.map((mod, i) => (
-              <div key={i} className="card-premium p-6 sm:p-8">
-                <h3 className="font-display text-xl text-foreground mb-3">{mod.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{mod.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Integrations */}
-      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
-        <div className="container relative z-10">
-          <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1] mb-6">
-              Works with your existing tools
-            </h2>
-            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-              We plug into what you already use — no rip and replace.
-            </p>
-          </div>
-          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-            {integrations.map((item, i) => (
-              <div key={i} className="card-premium p-6 sm:p-8">
-                <h3 className="font-display text-lg text-foreground mb-3">{item.category}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {item.tools.split(", ").map((tool, j) => (
-                    <span key={j} className="tool-pill">{tool}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="text-center text-sm text-muted-foreground mt-8">
-            Don't see your tools? Ask us — we probably integrate with it.
-          </p>
         </div>
       </section>
 
@@ -186,14 +133,14 @@ export default function HowItWorks() {
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">
-              Find out how much revenue your practice is losing
+              See it on your data.
             </h2>
             <p className="text-base sm:text-lg text-white/70 mb-10">
-              15 minutes. We'll analyze your current booking flow and estimate your monthly revenue gap. No commitment. No pitch deck. Just numbers.
+              Connect your booking system and see exactly what EIP surfaces in the first week.
             </p>
             <Link href="/contact">
               <Button className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill">
-                Book a Revenue Audit <ArrowRight className="ml-2 h-5 w-5" />
+                Get Your Free Revenue Audit <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
           </div>

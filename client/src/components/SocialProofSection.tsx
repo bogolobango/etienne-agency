@@ -70,11 +70,13 @@ export default function SocialProofSection() {
             </div>
             {/* Dashboard demo */}
             <div className="bg-[#0A0F1C]">
-              <img
-                src="/images/eip-dashboard.gif"
-                alt="EIP Dashboard — Revenue Intelligence Platform in action"
+              <video
+                src="/images/eip-dashboard.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="w-full h-auto block"
-                loading="lazy"
               />
             </div>
           </div>

@@ -44,11 +44,15 @@ export default function Contact() {
   const [inView, setInView] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
+    email: "",
+    phone: "",
     business: "",
     locations: "",
     platform: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     setInView(true);
@@ -77,11 +81,42 @@ export default function Contact() {
     },
   ];
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setSubmitting(true);
+    setError("");
+
     trackFormSubmit('Free Revenue Audit', { locations: formData.locations, platform: formData.platform });
     trackCTAClick('Start My Free Audit', 'Audit Form', 'primary');
-    setSubmitted(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Requested-With": "fetch",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.business,
+          industry: "medspa",
+          locations: formData.locations,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error || "Something went wrong. Please try again.");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -173,6 +208,30 @@ export default function Contact() {
                     />
                   </div>
                   <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">Email address</label>
+                    <input
+                      id="email"
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                      placeholder="jane@glowmedspa.com"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">Phone number</label>
+                    <input
+                      id="phone"
+                      type="tel"
+                      required
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                      placeholder="(555) 123-4567"
+                    />
+                  </div>
+                  <div>
                     <label htmlFor="business" className="block text-sm font-medium text-foreground mb-2">Business name</label>
                     <input
                       id="business"
@@ -186,15 +245,20 @@ export default function Contact() {
                   </div>
                   <div>
                     <label htmlFor="locations" className="block text-sm font-medium text-foreground mb-2">Number of locations</label>
-                    <input
+                    <select
                       id="locations"
-                      type="text"
                       required
                       value={formData.locations}
                       onChange={(e) => setFormData({ ...formData, locations: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
-                      placeholder="5"
-                    />
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                    >
+                      <option value="">Select range</option>
+                      <option value="1-2">1–2</option>
+                      <option value="3-5">3–5</option>
+                      <option value="6-10">6–10</option>
+                      <option value="11-25">11–25</option>
+                      <option value="25+">25+</option>
+                    </select>
                   </div>
                   <div>
                     <label htmlFor="platform" className="block text-sm font-medium text-foreground mb-2">Booking platform</label>
@@ -212,12 +276,16 @@ export default function Contact() {
                       <option value="other">Other</option>
                     </select>
                   </div>
+                  {error && (
+                    <p className="text-sm text-red-500 text-center">{error}</p>
+                  )}
                   <Button
                     type="submit"
-                    className="w-full rounded-full py-6 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
+                    disabled={submitting}
+                    className="w-full rounded-full py-6 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill disabled:opacity-60"
                   >
-                    Start My Free Audit
-                    <ArrowRight className="ml-2 w-4 h-4" />
+                    {submitting ? "Submitting…" : "Start My Free Audit"}
+                    {!submitting && <ArrowRight className="ml-2 w-4 h-4" />}
                   </Button>
                 </form>
                 <p className="text-center text-xs text-muted-foreground mt-6">

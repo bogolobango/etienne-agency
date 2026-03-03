@@ -1,17 +1,28 @@
 /**
- * Header Component — Teal Accent Design
- * Minimal sticky nav: Logo | How It Works · Med Spas · About | [Book a Revenue Audit]
+ * Header Component — Revenue Intelligence positioning
+ * Minimal sticky nav: Logo | How It Works · Med Spas · About | [Free Revenue Audit]
  */
 
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import { trackNavigationClick, trackCTAClick } from "@/lib/analytics";
 
+// Pages whose hero section has a dark (section-dark) background
+const DARK_HERO_ROUTES = ["/", "/how-it-works", "/med-spas"];
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [location] = useLocation();
+
+  const hasDarkHero = DARK_HERO_ROUTES.some(
+    (path) => location === path || (path !== "/" && location.startsWith(path))
+  );
+
+  // White logo / nav only when NOT scrolled AND on a page with a dark hero
+  const overDark = !scrolled && hasDarkHero;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,7 +64,9 @@ export default function Header() {
                 <img
                   src="/images/logo.png"
                   alt="Etienne Agency"
-                  className="w-36 h-auto"
+                  className={`w-36 h-auto transition-all duration-300 ${
+                    overDark ? "brightness-0 invert" : ""
+                  }`}
                 />
               </div>
             </Link>
@@ -62,7 +75,11 @@ export default function Header() {
             <nav className="hidden md:flex items-center gap-8">
               <Link href="/how-it-works">
                 <span
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                  className={`text-sm font-medium transition-colors cursor-pointer ${
+                    overDark
+                      ? "text-white/70 hover:text-white"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                   onClick={() => trackNavigationClick('How It Works', '/how-it-works', 'header')}
                 >
                   How It Works
@@ -70,7 +87,11 @@ export default function Header() {
               </Link>
               <Link href="/med-spas">
                 <span
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                  className={`text-sm font-medium transition-colors cursor-pointer ${
+                    overDark
+                      ? "text-white/70 hover:text-white"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                   onClick={() => trackNavigationClick('Med Spas', '/med-spas', 'header')}
                 >
                   Med Spas
@@ -78,7 +99,11 @@ export default function Header() {
               </Link>
               <Link href="/about">
                 <span
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                  className={`text-sm font-medium transition-colors cursor-pointer ${
+                    overDark
+                      ? "text-white/70 hover:text-white"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                   onClick={() => trackNavigationClick('About', '/about', 'header')}
                 >
                   About
@@ -91,15 +116,15 @@ export default function Header() {
               <Button
                 className="hidden md:inline-flex rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                 size="default"
-                onClick={() => trackCTAClick('Book a Revenue Audit', 'Header', 'primary')}
+                onClick={() => trackCTAClick('Free Revenue Audit', 'Header', 'primary')}
               >
-                Book a Revenue Audit
+                Free Revenue Audit
               </Button>
             </Link>
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden p-2 text-foreground"
+              className={`md:hidden p-2 transition-colors ${overDark ? "text-white" : "text-foreground"}`}
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open menu"
             >
@@ -185,9 +210,9 @@ export default function Header() {
               <Button
                 className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                 size="lg"
-                onClick={() => trackCTAClick('Book a Revenue Audit', 'Mobile Menu', 'primary')}
+                onClick={() => trackCTAClick('Free Revenue Audit', 'Mobile Menu', 'primary')}
               >
-                Book a Revenue Audit
+                Free Revenue Audit
               </Button>
             </Link>
           </div>

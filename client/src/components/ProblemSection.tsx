@@ -1,5 +1,5 @@
 /**
- * Problem Section — "The Cost of Slow Response" stat cards
+ * Problem Section — "You Have the Data. You Don't Have the Answers."
  */
 
 import { useEffect, useState } from "react";
@@ -19,49 +19,58 @@ export default function ProblemSection() {
     return () => observer.disconnect();
   }, []);
 
-  const problems = [
+  const stats = [
     {
-      stat: "78%",
-      description: "of clients book with the first practice that responds. Slow response hands them to your competitor.",
-      cite: "Velocify / InsideSales.com",
-      coral: false,
-    },
-    {
-      stat: "$8K–15K",
-      description: "in monthly revenue lost per location from after-hours inquiries that go unanswered until morning.",
-      cite: "Med spa industry benchmarks",
+      stat: "$18,400/mo",
+      description: "Average revenue lost to delayed lead response at a 5-location med spa",
       coral: true,
     },
     {
-      stat: "42 hours",
-      description: "is the average lead response time for med spas. Your competitor's AI answers in under 2 seconds.",
-      cite: "Workee / ChiliPiper 2025",
+      stat: "23%",
+      description: "Industry average no-show rate for aesthetic practices without predictive intervention",
       coral: false,
     },
     {
-      stat: "20–40%",
-      description: "of appointments become no-shows without automated reminders. That's thousands in lost revenue monthly.",
-      cite: "Workee med spa booking data",
+      stat: "47 min",
+      description: "Average time to return a missed call during business hours",
       coral: false,
     },
   ];
 
   return (
-    <section id="problem-section" className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+    <section id="problem-section" className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
       <div className="container relative z-10">
         <div
-          className={`max-w-3xl mx-auto text-center mb-16 md:mb-20 transition-all duration-700 ${
+          className={`max-w-3xl mx-auto text-center mb-12 md:mb-16 transition-all duration-700 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <p className="section-label">THE COST OF SLOW RESPONSE</p>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1]">
-            Every hour you don't respond, revenue walks out the door
+          <p className="section-label">THE INTELLIGENCE GAP</p>
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1] mb-6">
+            You have the data. You don't have the answers.
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-          {problems.map((p, i) => (
+        <div
+          className={`max-w-3xl mx-auto mb-16 transition-all duration-700 delay-100 ${
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          <div className="space-y-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
+            <p>
+              Your booking platform tracks every appointment, every no-show, and every invoice. But when you want to know why Williamsburg is underperforming, or how much your White Plains no-show rate is actually costing you, or which provider has the worst rebooking rate — you're pulling reports from three different screens, exporting to Excel, and spending your Sunday doing math.
+            </p>
+            <p>
+              Meanwhile, your front desk missed 4 calls during the lunch rush, 2 web inquiries sat for 6 hours, and a $1,200 body contouring lead went to your competitor because nobody called her back.
+            </p>
+            <p className="font-semibold text-foreground">
+              You don't have a software problem. You have an intelligence problem.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {stats.map((p, i) => (
             <div
               key={i}
               className={`stat-card transition-all duration-500 ${
@@ -69,16 +78,18 @@ export default function ProblemSection() {
               }`}
               style={{ transitionDelay: `${300 + i * 100}ms` }}
             >
-              <div className={`font-display text-4xl sm:text-5xl mb-3 ${p.coral ? "text-[#FF6B6B]" : "text-foreground"}`}>
+              <div className={`font-display text-3xl sm:text-4xl md:text-5xl mb-3 break-words ${p.coral ? "text-[#FF6B6B]" : "text-foreground"}`}>
                 {p.stat}
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+              <p className="text-sm text-muted-foreground leading-relaxed break-words">
                 {p.description}
               </p>
-              <p className="text-xs text-muted-foreground/50 italic">{p.cite}</p>
             </div>
           ))}
         </div>
+        <p className="text-center text-xs text-muted-foreground/50 italic mt-6">
+          Based on industry data from AmSpa, ASAPS, and analysis of 500+ multi-location practices
+        </p>
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 /**
- * Footer Component — Teal Accent Design
+ * Footer Component — Revenue Intelligence positioning
  * Product, Company, Connect columns
  */
 
@@ -22,7 +22,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              AI-powered revenue recovery for multi-location med spas.
+              Revenue intelligence for multi-location med spas.
             </p>
           </div>
 
@@ -32,7 +32,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li><Link href="/how-it-works"><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">How It Works</span></Link></li>
               <li><Link href="/med-spas"><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Med Spas</span></Link></li>
-              <li><Link href="/contact"><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Book a Demo</span></Link></li>
+              <li><Link href="/contact"><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Free Revenue Audit</span></Link></li>
             </ul>
           </div>
 
@@ -41,7 +41,6 @@ export default function Footer() {
             <h3 className="text-sm font-semibold text-foreground font-sans">Company</h3>
             <ul className="space-y-3">
               <li><Link href="/about"><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">About</span></Link></li>
-              <li><Link href="/contact"><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Contact</span></Link></li>
               <li><span className="text-sm text-muted-foreground">Blog (coming soon)</span></li>
             </ul>
           </div>

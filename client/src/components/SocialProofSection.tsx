@@ -5,6 +5,7 @@
 
 import { useEffect, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
+import FloatingDustMotes from "@/components/FloatingDustMotes";
 
 export default function SocialProofSection() {
   const [inView, setInView] = useState(false);
@@ -29,6 +30,7 @@ export default function SocialProofSection() {
 
   return (
     <section id="product-section" className="relative py-20 md:py-28 lg:py-36 section-dark overflow-hidden">
+      <FloatingDustMotes particleCount={40} />
       <div className="container relative z-10">
         <div
           className={`max-w-3xl mx-auto text-center mb-12 md:mb-16 transition-all duration-700 ${
@@ -66,25 +68,15 @@ export default function SocialProofSection() {
                 </div>
               </div>
             </div>
-            {/* Screenshot area */}
-            <div
-              className="bg-[#0A0F1C] flex items-center justify-center"
-              style={{ aspectRatio: "16/9", minHeight: 300 }}
-            >
-              <img
-                src="/images/eip-dashboard.png"
-                alt="EIP Dashboard — Revenue Intelligence Platform"
-                className="w-full h-full object-cover"
-                loading="lazy"
-                onError={(e) => {
-                  // Fallback if screenshot doesn't exist yet
-                  const target = e.currentTarget;
-                  target.style.display = "none";
-                  const parent = target.parentElement;
-                  if (parent) {
-                    parent.innerHTML = `<div class="text-center p-12"><p class="text-white/30 text-lg font-semibold mb-2">EIP Dashboard</p><p class="text-white/20 text-sm">Revenue Intelligence Platform — Screenshot Pending</p></div>`;
-                  }
-                }}
+            {/* Dashboard demo */}
+            <div className="bg-[#0A0F1C]">
+              <video
+                src="/images/eip-dashboard.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-auto block"
               />
             </div>
           </div>

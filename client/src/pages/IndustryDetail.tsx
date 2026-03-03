@@ -265,7 +265,7 @@ export default function IndustryDetail() {
       </section>
 
       {/* Stats Section */}
-      <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
         <GradientOrbs orbs={idStatsOrbs} />
         <div className="container relative z-10">
           <div className="max-w-5xl mx-auto">
@@ -346,7 +346,7 @@ export default function IndustryDetail() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+      <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
         <GradientOrbs orbs={idCtaOrbs} />
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
@@ -368,7 +368,7 @@ export default function IndustryDetail() {
       </section>
 
       {/* Related Industries — internal cross-links for SEO */}
-      <section className="py-16 md:py-20 border-t border-border/30">
+      <section className="py-16 md:py-20 section-gradient-alt border-t border-border/30">
         <div className="container">
           <div className="max-w-4xl mx-auto">
             <h2 className="font-display text-2xl sm:text-3xl text-foreground mb-8 text-center">

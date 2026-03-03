@@ -13,7 +13,6 @@ const HowItWorks = lazy(() => import("./pages/HowItWorks"));
 const Industries = lazy(() => import("./pages/Industries"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
-const IndustryDetail = lazy(() => import("./pages/IndustryDetail"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
@@ -34,7 +33,6 @@ function Router() {
         <Route path={"/how-it-works"} component={HowItWorks} />
         <Route path="/med-spas" component={Industries} />
         <Route path="/industries" component={Industries} />
-        <Route path="/industries/:slug" component={Industries} />
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
         <Route path="/privacy" component={Privacy} />

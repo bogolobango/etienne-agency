@@ -78,10 +78,10 @@ export default function ProblemSection() {
               }`}
               style={{ transitionDelay: `${300 + i * 100}ms` }}
             >
-              <div className={`font-display text-4xl sm:text-5xl mb-3 ${p.coral ? "text-[#FF6B6B]" : "text-foreground"}`}>
+              <div className={`font-display text-3xl sm:text-4xl md:text-5xl mb-3 break-words ${p.coral ? "text-[#FF6B6B]" : "text-foreground"}`}>
                 {p.stat}
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-sm text-muted-foreground leading-relaxed break-words">
                 {p.description}
               </p>
             </div>

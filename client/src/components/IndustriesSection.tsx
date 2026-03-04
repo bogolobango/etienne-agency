@@ -140,10 +140,10 @@ export default function IndustriesSection() {
           <div className="max-w-3xl mx-auto">
             <blockquote className="card-premium p-8 sm:p-10 text-center">
               <p className="font-display text-lg sm:text-xl md:text-2xl text-foreground leading-relaxed mb-4 italic">
-                &ldquo;The average 5-location med spa is losing $18K/month to gaps their booking system can't see. EIP is built to find those gaps.&rdquo;
+                &ldquo;The average 5-location med spa is losing $18K/month to gaps their booking system can't see. EIP is built to find those gaps, and recommend ways to plug them.&rdquo;
               </p>
               <footer className="text-sm text-muted-foreground">
-                <span className="font-semibold text-foreground">Jim Etienne</span>, Founder
+                <span className="font-semibold text-foreground">Jim Stephen</span>, Founder
               </footer>
             </blockquote>
           </div>

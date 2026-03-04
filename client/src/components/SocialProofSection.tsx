@@ -42,7 +42,7 @@ export default function SocialProofSection() {
             The intelligence layer your booking system is missing
           </h2>
           <p className="text-base sm:text-lg text-white/70 leading-relaxed max-w-2xl mx-auto">
-            EIP — the Etienne Intelligence Platform — gives multi-location med spa owners
+            EIP (Etienne Intelligence Platform) gives multi-location med spa owners
             a single view of recovered revenue, AI conversation performance,
             and operational intelligence across every location.
           </p>

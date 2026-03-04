@@ -51,7 +51,7 @@ export default function SolutionSection() {
             One platform. Every location. Every answer.
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            EIP is the intelligence layer for multi-location med spas. It connects to your existing booking system — we don't replace anything — and unifies your appointment data, guest records, invoices, lead pipeline, and communication logs into a single view across all your centers. Then it tells you what to do about it.
+            EIP is the intelligence layer for multi-location med spas. It connects to your existing booking system — we don't replace anything — and unifies your appointment data, guest records, invoices, lead pipeline, and communication logs into a single view across all your centers. Then it recommends action paths to optimize your operations.
           </p>
         </div>
 

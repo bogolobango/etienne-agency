@@ -66,10 +66,10 @@ export default function About() {
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto">
             <div className="card-premium p-8 sm:p-10">
-              <h3 className="font-display text-2xl text-foreground mb-1">Jim Etienne</h3>
+              <h3 className="font-display text-2xl text-foreground mb-1">Jim Stephen</h3>
               <p className="text-sm text-primary font-semibold mb-6">Founder &amp; CEO</p>
               <p className="text-base text-muted-foreground leading-relaxed">
-                Formerly led AI-powered go-to-market strategy at the Fortune 500 level. Built Etienne to bring enterprise-grade revenue intelligence to the $21 billion medical aesthetics industry &mdash; specifically for operators running 3&ndash;25 locations who need cross-center intelligence without hiring a data team.
+                Formerly led AI-powered go-to-market strategy at the Fortune 500 level. Built Etienne to bring enterprise-grade revenue intelligence to the $21 billion medical aesthetics market &mdash; specifically for operators running 3&ndash;25 locations who need cross-center intelligence without hiring a data team.
               </p>
             </div>
           </div>

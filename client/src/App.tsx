@@ -6,6 +6,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { captureUTMParams } from "@/lib/utm";
 
 // Lazy-loaded page components (code-split per route)
 const Home = lazy(() => import("./pages/Home"));
@@ -49,6 +50,9 @@ function Router() {
 // - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
 //   to keep consistent foreground/background color across components
 // - If you want to make theme switchable, pass `switchable` ThemeProvider and use `useTheme` hook
+
+// Capture UTM params on initial page load (cold-email attribution)
+captureUTMParams();
 
 function App() {
   return (

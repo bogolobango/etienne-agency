@@ -13,11 +13,13 @@ import {
   DollarSign,
   TrendingDown,
   Brain,
+  Shield,
 } from "lucide-react";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
 import { useSEO } from "@/hooks/useSEO";
-import { trackCTAClick, trackFormSubmit } from "@/lib/analytics";
+import { trackCTAClick, trackFormSubmit, trackFormFieldFocus } from "@/lib/analytics";
+import { getUTMParams } from "@/lib/utm";
 import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
 
 const contactHeroOrbs: OrbConfig[] = [
@@ -86,7 +88,8 @@ export default function Contact() {
     setSubmitting(true);
     setError("");
 
-    trackFormSubmit('Free Revenue Audit', { locations: formData.locations, platform: formData.platform });
+    const utm = getUTMParams();
+    trackFormSubmit('Free Revenue Audit', { locations: formData.locations, platform: formData.platform, ...utm });
     trackCTAClick('Start My Free Audit', 'Audit Form', 'primary');
 
     try {
@@ -124,7 +127,7 @@ export default function Contact() {
       <Header />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-gradient-hero overflow-hidden">
+      <section className="relative pt-24 pb-12 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-gradient-hero overflow-hidden">
         <GradientOrbs orbs={contactHeroOrbs} />
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -203,7 +206,8 @@ export default function Contact() {
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                      onFocus={() => trackFormFieldFocus('Free Revenue Audit', 'name')}
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
                       placeholder="Jane Smith"
                     />
                   </div>
@@ -215,7 +219,8 @@ export default function Contact() {
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                      onFocus={() => trackFormFieldFocus('Free Revenue Audit', 'email')}
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
                       placeholder="jane@glowmedspa.com"
                     />
                   </div>
@@ -227,7 +232,8 @@ export default function Contact() {
                       required
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                      onFocus={() => trackFormFieldFocus('Free Revenue Audit', 'phone')}
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
                       placeholder="(555) 123-4567"
                     />
                   </div>
@@ -239,7 +245,8 @@ export default function Contact() {
                       required
                       value={formData.business}
                       onChange={(e) => setFormData({ ...formData, business: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                      onFocus={() => trackFormFieldFocus('Free Revenue Audit', 'business')}
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
                       placeholder="Glow Med Spa"
                     />
                   </div>
@@ -250,7 +257,8 @@ export default function Contact() {
                       required
                       value={formData.locations}
                       onChange={(e) => setFormData({ ...formData, locations: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                      onFocus={() => trackFormFieldFocus('Free Revenue Audit', 'locations')}
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-base text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
                     >
                       <option value="">Select range</option>
                       <option value="1-2">1–2</option>
@@ -267,7 +275,8 @@ export default function Contact() {
                       required
                       value={formData.platform}
                       onChange={(e) => setFormData({ ...formData, platform: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                      onFocus={() => trackFormFieldFocus('Free Revenue Audit', 'platform')}
+                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-base text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
                     >
                       <option value="">Select your platform</option>
                       <option value="zenoti">Zenoti</option>
@@ -287,6 +296,10 @@ export default function Contact() {
                     {submitting ? "Submitting…" : "Start My Free Audit"}
                     {!submitting && <ArrowRight className="ml-2 w-4 h-4" />}
                   </Button>
+                  <div className="flex items-center justify-center gap-2 mt-4 text-xs text-muted-foreground">
+                    <Shield className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                    <span>Read-only data access. We never modify your booking system.</span>
+                  </div>
                 </form>
                 <p className="text-center text-xs text-muted-foreground mt-6">
                   We'll reach out within 24 hours to set up the data connection. The audit takes 14 days of data, and we'll walk you through the results live. If the numbers don't surprise you, no hard feelings.

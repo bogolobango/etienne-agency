@@ -4,6 +4,7 @@
  */
 
 import { Link } from "wouter";
+import { trackNavigationClick, trackCTAClick } from "@/lib/analytics";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -18,6 +19,8 @@ export default function Footer() {
               <img
                 src="/images/logo.png"
                 alt="Etienne Agency"
+                width={144}
+                height={32}
                 className="w-28 h-auto cursor-pointer hover:opacity-80 transition-opacity"
               />
             </Link>
@@ -30,9 +33,9 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-foreground font-sans">Product</h3>
             <ul className="space-y-3">
-              <li><Link href="/how-it-works"><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">How It Works</span></Link></li>
-              <li><Link href="/med-spas"><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Med Spas</span></Link></li>
-              <li><Link href="/contact"><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Free Revenue Audit</span></Link></li>
+              <li><Link href="/how-it-works" onClick={() => trackNavigationClick('How It Works', '/how-it-works', 'footer')}><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">How It Works</span></Link></li>
+              <li><Link href="/med-spas" onClick={() => trackNavigationClick('Med Spas', '/med-spas', 'footer')}><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Med Spas</span></Link></li>
+              <li><Link href="/contact" onClick={() => trackCTAClick('Free Revenue Audit', 'Footer', 'primary')}><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Free Revenue Audit</span></Link></li>
             </ul>
           </div>
 
@@ -40,7 +43,7 @@ export default function Footer() {
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-foreground font-sans">Company</h3>
             <ul className="space-y-3">
-              <li><Link href="/about"><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">About</span></Link></li>
+              <li><Link href="/about" onClick={() => trackNavigationClick('About', '/about', 'footer')}><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">About</span></Link></li>
               <li><span className="text-sm text-muted-foreground">Blog (coming soon)</span></li>
             </ul>
           </div>

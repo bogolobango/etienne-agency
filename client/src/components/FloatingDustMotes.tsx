@@ -3,7 +3,7 @@
  * Organic drifting dust motes with flicker for lo-fi depth.
  */
 
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect, useCallback, useState } from "react";
 
 interface FloatingDustMotesProps {
   /** Number of particles (default 50) */
@@ -29,10 +29,23 @@ export default function FloatingDustMotes({
   const animFrameRef = useRef<number>(0);
   const particlesRef = useRef<Particle[]>([]);
   const dprRef = useRef(1);
+  const [isVisible, setIsVisible] = useState(false);
 
   // Store config in refs so the animation loop always reads the latest
   const configRef = useRef({ particleCount, baseColor, maxSpeed, maxRadius });
   configRef.current = { particleCount, baseColor, maxSpeed, maxRadius };
+
+  // Pause animation when off-screen to save CPU/battery
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { rootMargin: "100px" }
+    );
+    observer.observe(canvas);
+    return () => observer.disconnect();
+  }, []);
 
   const initParticles = useCallback((w: number, h: number) => {
     const cfg = configRef.current;
@@ -67,7 +80,7 @@ export default function FloatingDustMotes({
     resize();
     window.addEventListener("resize", resize);
 
-    // Animation loop
+    // Animation loop — only runs when canvas is visible
     const render = (time: number) => {
       const w = canvas.clientWidth;
       const h = canvas.clientHeight;
@@ -82,13 +95,15 @@ export default function FloatingDustMotes({
       animFrameRef.current = requestAnimationFrame(render);
     };
 
-    animFrameRef.current = requestAnimationFrame(render);
+    if (isVisible) {
+      animFrameRef.current = requestAnimationFrame(render);
+    }
 
     return () => {
       cancelAnimationFrame(animFrameRef.current);
       window.removeEventListener("resize", resize);
     };
-  }, [initParticles]);
+  }, [initParticles, isVisible]);
 
   return (
     <canvas

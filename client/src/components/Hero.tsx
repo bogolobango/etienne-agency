@@ -39,7 +39,7 @@ export default function Hero() {
           </h1>
 
           <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-10">
-            The Etienne Intelligence Platform connects to your booking system — Zenoti, Boulevard, or Mangomint — and surfaces the revenue gaps hiding across your locations. No rip-and-replace. Just answers.
+            The Etienne Intelligence Platform connects to your booking system, Zenoti, Boulevard, or Mangomint, and surfaces the revenue gaps hiding across your locations. We don't replace any software you're using. We provide answers they're not focused on sharing.
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-3 mb-10">

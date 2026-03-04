@@ -62,7 +62,7 @@ export default function Industries() {
       <Header />
 
       {/* Hero — dark */}
-      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-dark overflow-hidden">
+      <section className="relative pt-24 pb-12 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-dark overflow-hidden">
         <FloatingDustMotes particleCount={50} />
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none" aria-hidden="true"
           style={{ background: "radial-gradient(circle, rgba(0,212,170,0.06) 0%, transparent 70%)", transform: "translate(20%,-20%)" }}

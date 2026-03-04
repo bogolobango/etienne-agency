@@ -64,6 +64,8 @@ export default function Header() {
                 <img
                   src="/images/logo.png"
                   alt="Etienne Agency"
+                  width={144}
+                  height={32}
                   className={`w-36 h-auto transition-all duration-300 ${
                     overDark ? "brightness-0 invert" : ""
                   }`}
@@ -124,7 +126,7 @@ export default function Header() {
 
             {/* Mobile Menu Button */}
             <button
-              className={`md:hidden p-2 transition-colors ${overDark ? "text-white" : "text-foreground"}`}
+              className={`md:hidden p-3 -mr-1 transition-colors ${overDark ? "text-white" : "text-foreground"}`}
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open menu"
             >
@@ -167,12 +169,14 @@ export default function Header() {
               <img
                 src="/images/logo.png"
                 alt="Etienne Agency"
+                width={144}
+                height={32}
                 className="h-8 w-auto"
               />
             </Link>
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="p-2 text-muted-foreground hover:text-foreground transition-colors"
+              className="p-2.5 text-muted-foreground hover:text-foreground transition-colors"
               aria-label="Close menu"
             >
               <X className="w-5 h-5" />
@@ -180,7 +184,7 @@ export default function Header() {
           </div>
 
           <nav className="flex-1 overflow-y-auto p-6">
-            <ul className="space-y-1">
+            <ul className="space-y-2">
               <li>
                 <Link href="/how-it-works" onClick={() => { handleLinkClick(); trackNavigationClick('How It Works', '/how-it-works', 'mobile_menu'); }}>
                   <span className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors cursor-pointer">

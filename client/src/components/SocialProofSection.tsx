@@ -3,12 +3,14 @@
  * Replaces the old SocialProofSection with the product preview per spec.
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { CheckCircle2 } from "lucide-react";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 
 export default function SocialProofSection() {
   const [inView, setInView] = useState(false);
+  const [videoVisible, setVideoVisible] = useState(false);
+  const videoContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -19,6 +21,23 @@ export default function SocialProofSection() {
     );
     const el = document.getElementById("product-section");
     if (el) observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Lazy-load the video only when its container is near the viewport
+  useEffect(() => {
+    const el = videoContainerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVideoVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
@@ -68,16 +87,19 @@ export default function SocialProofSection() {
                 </div>
               </div>
             </div>
-            {/* Dashboard demo */}
-            <div className="bg-[#0A0F1C]">
-              <video
-                src="/images/eip-dashboard.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-auto block"
-              />
+            {/* Dashboard demo — lazy-loaded to avoid 24MB eager download */}
+            <div ref={videoContainerRef} className="bg-[#0A0F1C]" style={{ aspectRatio: "16/9" }}>
+              {videoVisible && (
+                <video
+                  src="/images/eip-dashboard.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="none"
+                  className="w-full h-auto block"
+                />
+              )}
             </div>
           </div>
         </div>

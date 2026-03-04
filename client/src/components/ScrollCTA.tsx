@@ -45,11 +45,11 @@ export default function ScrollCTA() {
       }`}
     >
       <div className="bg-card/95 backdrop-blur-md border-t border-border shadow-lg">
-        <div className="container py-3 flex items-center justify-between gap-4">
-          <p className="text-sm text-foreground font-medium">
+        <div className="container py-3 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+          <p className="text-sm text-foreground font-medium text-center sm:text-left">
             See where your locations are leaking revenue.
           </p>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-shrink-0">
             <Link href="/contact">
               <button
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors shadow-sm"
@@ -61,7 +61,7 @@ export default function ScrollCTA() {
             </Link>
             <button
               onClick={handleDismiss}
-              className="p-1.5 rounded-full hover:bg-muted transition-colors text-muted-foreground"
+              className="p-2.5 rounded-full hover:bg-muted transition-colors text-muted-foreground"
               aria-label="Dismiss"
             >
               <X className="w-4 h-4" />

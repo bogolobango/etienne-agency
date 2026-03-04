@@ -11,6 +11,7 @@ import { useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
+import { trackCTAClick } from "@/lib/analytics";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 
 export default function About() {
@@ -26,12 +27,20 @@ export default function About() {
       <Header />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-gradient-hero overflow-hidden">
+      <section className="relative pt-24 pb-12 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-gradient-hero overflow-hidden">
         <div className="container relative z-10">
           <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.1] mb-6">
               We built the intelligence layer your booking system should have included.
             </h1>
+            <Link href="/contact">
+              <Button
+                className="rounded-full px-8 py-6 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
+                onClick={() => trackCTAClick('Get Your Free Revenue Audit', 'About Hero', 'primary')}
+              >
+                Get Your Free Revenue Audit <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

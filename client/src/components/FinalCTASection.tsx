@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { useEffect, useState } from "react";
+import { trackCTAClick } from "@/lib/analytics";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 
 export default function FinalCTASection() {
@@ -43,6 +44,7 @@ export default function FinalCTASection() {
             <Link href="/contact">
               <Button
                 className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill"
+                onClick={() => trackCTAClick('Get Your Free Revenue Audit', 'Final CTA Section', 'primary')}
               >
                 Get Your Free Revenue Audit
                 <ArrowRight className="ml-2 h-5 w-5" />

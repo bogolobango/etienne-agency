@@ -11,6 +11,7 @@ import { useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { trackCTAClick } from "@/lib/analytics";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 
 export default function HowItWorks() {
@@ -56,7 +57,7 @@ export default function HowItWorks() {
       <Header />
 
       {/* Hero — dark */}
-      <section className="relative pt-32 pb-16 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-dark overflow-hidden">
+      <section className="relative pt-24 pb-12 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-dark overflow-hidden">
         <FloatingDustMotes particleCount={50} />
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none" aria-hidden="true"
           style={{ background: "radial-gradient(circle, rgba(0,212,170,0.06) 0%, transparent 70%)", transform: "translate(20%,-20%)" }}
@@ -66,9 +67,17 @@ export default function HowItWorks() {
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-6">
               Connect. Analyze. Recover.
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-10">
               EIP reads your booking data and turns it into cross-location revenue intelligence. Here's how.
             </p>
+            <Link href="/contact">
+              <Button
+                className="rounded-full px-8 py-6 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
+                onClick={() => trackCTAClick('Get Your Free Revenue Audit', 'How It Works Hero', 'primary')}
+              >
+                Get Your Free Revenue Audit <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -78,9 +87,9 @@ export default function HowItWorks() {
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto">
             {steps.map((step, i) => (
+              <div key={i}>
               <div
-                key={i}
-                className="relative mb-16 md:mb-20 last:mb-0"
+                className="relative mb-16 md:mb-20"
                 style={{
                   opacity: inView ? 1 : 0,
                   transform: inView ? "translateY(0)" : "translateY(30px)",
@@ -121,6 +130,20 @@ export default function HowItWorks() {
                     )}
                   </div>
                 </div>
+              </div>
+              {/* Mid-page CTA after step 2 */}
+              {i === 1 && (
+                <div className="text-center mb-16 md:mb-20">
+                  <Link href="/contact">
+                    <Button
+                      className="rounded-full px-8 py-6 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
+                      onClick={() => trackCTAClick('Get Your Free Revenue Audit', 'How It Works Mid-Page', 'primary')}
+                    >
+                      Get Your Free Revenue Audit <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
+              )}
               </div>
             ))}
           </div>

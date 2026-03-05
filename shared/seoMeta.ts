@@ -51,6 +51,11 @@ const staticRoutes: Record<string, PageMeta> = {
     title: "Terms of Service | Etienne",
     description: "Read the Etienne Agency terms of service and conditions of use.",
   },
+  "/diagnostics": {
+    title: "Revenue Gap Calculator | Etienne",
+    description:
+      "How much revenue is leaking across your med spa locations? Use this interactive calculator to estimate your annual gap from no-shows, after-hours leakage, variance, and utilization.",
+  },
 };
 
 const industryRoutes: Record<string, PageMeta> = {};
@@ -65,6 +70,7 @@ const breadcrumbLabels: Record<string, string> = {
   "/about": "About",
   "/privacy": "Privacy Policy",
   "/terms": "Terms of Service",
+  "/diagnostics": "Revenue Gap Calculator",
 };
 
 export function getBreadcrumbJsonLd(pathname: string): object | null {

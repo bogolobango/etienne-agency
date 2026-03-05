@@ -191,7 +191,7 @@ export default function RevenueGapCalculator() {
   }, []);
 
   return (
-    <section id="revenue-gap-calculator" className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
+    <section id="revenue-gap-calculator" className="relative pt-28 sm:pt-32 md:pt-36 pb-20 md:pb-28 lg:pb-36 section-gradient-alt overflow-hidden">
       <div className="container relative z-10">
         {/* Header */}
         <div

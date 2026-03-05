@@ -15,6 +15,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import Diagnostics from "./pages/Diagnostics";
 
 // Re-export SEO utilities so the prerender script can use them
 // from the single SSR bundle without needing tsx or extra tooling.
@@ -36,6 +37,7 @@ export function render(url: string): string {
           <Route path="/contact" component={Contact} />
           <Route path="/privacy" component={Privacy} />
           <Route path="/terms" component={Terms} />
+          <Route path="/diagnostics" component={Diagnostics} />
         </Switch>
       </ThemeProvider>
     </Router>

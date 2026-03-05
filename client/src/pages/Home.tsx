@@ -9,6 +9,7 @@ import ProblemSection from "@/components/ProblemSection";
 import SolutionSection from "@/components/SolutionSection";
 import SocialProofSection from "@/components/SocialProofSection";
 import IndustriesSection from "@/components/IndustriesSection";
+import RevenueGapCalculator from "@/components/RevenueGapCalculator";
 import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
 import ScrollCTA from "@/components/ScrollCTA";
@@ -75,6 +76,7 @@ export default function Home() {
       <SocialProofSection />
       {/* Integrations + Differentiation + Social Proof */}
       <IndustriesSection />
+      <RevenueGapCalculator />
       <FinalCTASection />
       <Footer />
       <ScrollCTA />

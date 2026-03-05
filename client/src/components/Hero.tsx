@@ -61,6 +61,21 @@ export default function Hero() {
                 See the Platform
               </Button>
             </Link>
+            <a
+              href="#revenue-gap-calculator"
+              onClick={(e) => {
+                e.preventDefault();
+                trackCTAClick('Calculate Your Revenue Gap', 'Hero Section', 'secondary');
+                document.getElementById('revenue-gap-calculator')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              <Button
+                variant="outline"
+                className="rounded-full px-8 py-6 h-auto text-base border-2 border-white/20 text-white hover:bg-white/10 transition-all duration-200 bg-transparent"
+              >
+                Calculate Your Revenue Gap
+              </Button>
+            </a>
           </div>
 
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-white/50">

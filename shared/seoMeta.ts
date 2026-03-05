@@ -2,7 +2,7 @@
  * Shared SEO metadata for every public route.
  */
 
-export const BASE_URL = "https://etienneagency.com";
+export const BASE_URL = "https://www.etienneagency.com";
 export const OG_IMAGE = `${BASE_URL}/images/og-image.png`;
 export const SITE_NAME = "Etienne";
 

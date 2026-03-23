@@ -27,12 +27,12 @@ export default function ProblemSection() {
     },
     {
       stat: "50%",
-      description: "Utilization drop when expanding from 2 to 4 treatment rooms without scheduling intelligence",
+      description: "Average utilization drop when practices scale from 2 to 4+ treatment rooms — invisible without cross-location data",
       coral: false,
     },
     {
-      stat: "47% vs 61%",
-      description: "Rebooking rates at bottom-quartile vs. top-quartile multi-location med spas — a gap worth $8K–$12K/mo per center",
+      stat: "47%",
+      description: "Rebooking rate at the average med spa vs. 61%+ at top-performing groups — a gap worth finding",
       coral: false,
     },
   ];
@@ -88,7 +88,7 @@ export default function ProblemSection() {
           ))}
         </div>
         <p className="text-center text-xs text-muted-foreground/50 italic mt-6">
-          Based on industry data from AmSpa (2024 Medical Spa State of the Industry) and ASAPS member surveys
+          Based on industry data from AmSpa, ASAPS, and Zenoti market research
         </p>
       </div>
     </section>

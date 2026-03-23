@@ -3,7 +3,7 @@
  */
 
 import { useEffect, useState } from "react";
-import { Brain, Headset, CalendarDays } from "lucide-react";
+import { Brain, BarChart3, CalendarDays } from "lucide-react";
 
 export default function SolutionSection() {
   const [inView, setInView] = useState(false);
@@ -27,9 +27,9 @@ export default function SolutionSection() {
       description: 'Ask any question about your business in plain English. "Why did revenue drop at SoHo this month?" "Compare no-show rates across all locations." "Which provider should I hire next?" EIP analyzes your data across every center and gives you a specific, dollar-backed answer in seconds. Not a canned report. A real analysis.',
     },
     {
-      icon: Headset,
-      title: "Cross-Location Command Center",
-      description: "See every center's KPIs in one view — revenue, utilization, no-show rate, rebooking rate, and provider performance. No more toggling between locations or exporting CSVs. The Command Center surfaces what changed, what's trending down, and where to focus this week.",
+      icon: BarChart3,
+      title: "Cross-Location Benchmarking",
+      description: "EIP compares every metric — no-show rate, provider utilization, rebooking rate, revenue per visit — across all your locations simultaneously. Know which center is your strongest performer and which is dragging the average down, with dollar impact attached to every gap.",
     },
     {
       icon: CalendarDays,

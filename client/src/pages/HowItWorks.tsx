@@ -9,7 +9,6 @@ import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
 import { useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { trackCTAClick } from "@/lib/analytics";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
@@ -70,17 +69,14 @@ export default function HowItWorks() {
             <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-4">
               EIP reads your booking data and turns it into cross-location revenue intelligence. Here's how.
             </p>
-            <p className="text-sm text-white/40 max-w-2xl mx-auto mb-10">
-              We're onboarding early-access partners now. The platform is live and generating insights for real multi-location med spas.
-            </p>
-            <Link href="/calculator">
+            <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
               <Button
                 className="rounded-full px-8 py-6 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
-                onClick={() => trackCTAClick('Get Your Free Revenue Audit', 'How It Works Hero', 'primary')}
+                onClick={() => trackCTAClick('Book a Revenue Call', 'How It Works Hero', 'primary')}
               >
-                Get Your Free Revenue Audit <ArrowRight className="ml-2 h-4 w-4" />
+                Book a Revenue Call <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -137,14 +133,14 @@ export default function HowItWorks() {
               {/* Mid-page CTA after step 2 */}
               {i === 1 && (
                 <div className="text-center mb-16 md:mb-20">
-                  <Link href="/calculator">
+                  <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
                     <Button
                       className="rounded-full px-8 py-6 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
-                      onClick={() => trackCTAClick('Get Your Free Revenue Audit', 'How It Works Mid-Page', 'primary')}
+                      onClick={() => trackCTAClick('Book a Revenue Call', 'How It Works Mid-Page', 'primary')}
                     >
-                      Get Your Free Revenue Audit <ArrowRight className="ml-2 h-4 w-4" />
+                      Book a Revenue Call <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
-                  </Link>
+                  </a>
                 </div>
               )}
               </div>
@@ -161,17 +157,15 @@ export default function HowItWorks() {
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">
               See it on your data.
             </h2>
-            <p className="text-base sm:text-lg text-white/70 mb-4">
-              Connect your booking system and see exactly what EIP surfaces in the first week.
-            </p>
-            <p className="text-sm text-white/40 mb-10">
-              Start with the calculator to estimate your gaps. Then we'll run the full analysis on your real data — free, 15 minutes to set up.
-            </p>
-            <Link href="/calculator">
+            <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
               <Button className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill">
-                Get Your Free Revenue Audit <ArrowRight className="ml-2 h-5 w-5" />
+                Book a Revenue Call <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-            </Link>
+            </a>
+            <p className="text-sm text-white/40 mt-6">
+              20 minutes. We'll show you exactly what EIP would surface from your booking data.<br />
+              No pitch deck. No commitment.
+            </p>
           </div>
         </div>
       </section>

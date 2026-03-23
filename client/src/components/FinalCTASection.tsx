@@ -4,7 +4,6 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { Link } from "wouter";
 import { useEffect, useState } from "react";
 import { trackCTAClick } from "@/lib/analytics";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
@@ -36,24 +35,21 @@ export default function FinalCTASection() {
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">
             Find out what your locations are missing.
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-white/70 mb-10">
-            Run your numbers through our revenue gap calculator to see an instant estimate. Then, if the gaps are real, we'll connect to your booking data and show you the exact dollars.
-          </p>
-
           <div className="flex justify-center mb-6">
-            <Link href="/calculator">
+            <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
               <Button
                 className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill"
-                onClick={() => trackCTAClick('Get Your Free Revenue Audit', 'Final CTA Section', 'primary')}
+                onClick={() => trackCTAClick('Book a Revenue Call', 'Final CTA Section', 'primary')}
               >
-                Get Your Free Revenue Audit
+                Book a Revenue Call
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-            </Link>
+            </a>
           </div>
 
           <p className="text-sm text-white/40">
-            2 minutes to run the calculator. 15 minutes to set up the full audit. Results in 7 days. No commitment.
+            20 minutes. We'll show you exactly what EIP would surface from your booking data.<br />
+            No pitch deck. No commitment.
           </p>
         </div>
       </div>

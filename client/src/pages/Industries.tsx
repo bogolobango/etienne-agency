@@ -9,7 +9,6 @@ import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
 import { useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
 import { ArrowRight, CheckCircle2, XCircle } from "lucide-react";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 
@@ -26,11 +25,6 @@ export default function Industries() {
       title: "The Multi-Location Visibility Gap",
       problem: "Your booking platform shows you one location at a time. You toggle between centers, export CSVs, and paste into spreadsheets. By the time you've compared performance across all 5 locations, the data is a week old, and you've burned half a Sunday.",
       solution: "One dashboard, all centers, real-time. Compare any metric across any location instantly. Ask the AI Analyst, \"Which center is underperforming?\" and get a ranked table with dollar impact in 30 seconds.",
-    },
-    {
-      title: "The Lead Pipeline You Can't See",
-      problem: "Your booking system tracks the appointments that happened. It can't tell you which high-value prospects inquired, didn't book, and never came back. It can't quantify what those lost opportunities cost you across 5 or 10 locations, or show you which centers convert inquiries and which let them drop.",
-      solution: "EIP surfaces your full lead pipeline across all centers — who inquired, who booked, who didn't, and the dollar value of each gap. See conversion rates by location, identify which centers are leaving revenue on the table, and get specific recommendations to close the gap.",
     },
     {
       title: "No-Shows Eating Your Revenue",
@@ -54,7 +48,7 @@ export default function Industries() {
   const isNotFor = [
     "Single-location practices (you don't need cross-center intelligence yet)",
     "Businesses looking to replace their booking system (we sit on top, not instead of)",
-    "Teams that only want a single-metric dashboard (EIP is built for cross-center intelligence, not vanity reporting)",
+    "Operators who want a replacement for their booking system (EIP sits on top \u2014 we never replace Zenoti, Boulevard, or Mangomint)",
   ];
 
   return (
@@ -75,11 +69,11 @@ export default function Industries() {
             <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-10">
               You didn't build a multi-location practice to spend Sundays pulling reports. EIP gives you cross-center intelligence that your booking system is not designed to provide.
             </p>
-            <Link href="/calculator">
+            <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
               <Button className="rounded-full px-8 py-6 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill">
-                Get Your Free Revenue Audit <ArrowRight className="ml-2 h-4 w-4" />
+                Book a Revenue Call <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -161,17 +155,15 @@ export default function Industries() {
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">
               How much revenue are your locations missing?
             </h2>
-            <p className="text-base sm:text-lg text-white/70 mb-4">
-              Start with the calculator — plug in your numbers and see an instant estimate. Then we'll connect to your booking data for the real analysis.
-            </p>
-            <p className="text-sm text-white/40 mb-10">
-              2 minutes for the estimate. 15 minutes to set up the full audit. If there are no gaps, we'll tell you that too.
-            </p>
-            <Link href="/calculator">
+            <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
               <Button className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill">
-                Get Your Free Revenue Audit <ArrowRight className="ml-2 h-5 w-5" />
+                Book a Revenue Call <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-            </Link>
+            </a>
+            <p className="text-sm text-white/40 mt-6">
+              20 minutes. We'll show you exactly what EIP would surface from your booking data.<br />
+              No pitch deck. No commitment.
+            </p>
           </div>
         </div>
       </section>

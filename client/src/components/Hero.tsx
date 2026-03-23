@@ -42,16 +42,16 @@ export default function Hero() {
             EIP connects to Zenoti, Boulevard, or Mangomint and gives you cross-location revenue intelligence your booking system was never designed to provide. One view. Every center. Real answers&nbsp;&mdash;&nbsp;not more dashboards.
           </p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-3 mb-10">
-            <Link href="/calculator">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 mb-6">
+            <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
               <Button
                 className="rounded-full px-8 py-6 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
-                onClick={() => trackCTAClick('Get Your Free Revenue Audit', 'Hero Section', 'primary')}
+                onClick={() => trackCTAClick('Book a Revenue Call', 'Hero Section', 'primary')}
               >
-                Get Your Free Revenue Audit
+                Book a Revenue Call
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </Link>
+            </a>
             <Link href="/how-it-works">
               <Button
                 variant="outline"
@@ -62,6 +62,11 @@ export default function Hero() {
               </Button>
             </Link>
           </div>
+
+          <p className="text-sm text-white/40 mb-10">
+            20 minutes. We'll show you exactly what EIP would surface from your booking data.<br />
+            No pitch deck. No commitment.
+          </p>
 
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-white/50">
             <span>Revenue intelligence for multi-location med spas</span>

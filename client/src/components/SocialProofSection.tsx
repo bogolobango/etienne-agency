@@ -43,7 +43,7 @@ export default function SocialProofSection() {
 
   const features = [
     { title: "Cross-Location View", description: "Every center's revenue, utilization, and rebooking rate — one screen." },
-    { title: "Revenue Intelligence", description: "See exactly where revenue is leaking and what each gap is costing you." },
+    { title: "Revenue Intelligence", description: "See exactly how much revenue each location is leaving on the table — broken down by no-shows, utilization gaps, and rebooking rate." },
     { title: "AI Analyst", description: "Ask questions about your business in plain English. Get answers backed by your data." },
   ];
 
@@ -62,7 +62,7 @@ export default function SocialProofSection() {
           </h2>
           <p className="text-base sm:text-lg text-white/70 leading-relaxed max-w-2xl mx-auto">
             EIP (Etienne Intelligence Platform) gives multi-location med spa owners
-            a single view of recovered revenue, AI conversation performance,
+            a single view of revenue gaps, performance variance,
             and operational intelligence across every location.
           </p>
         </div>
@@ -83,7 +83,7 @@ export default function SocialProofSection() {
               </div>
               <div className="flex-1 mx-4">
                 <div className="bg-white/5 rounded-md px-3 py-1 text-xs text-white/40 text-center">
-                  eip.etienneagency.com
+                  EIP Dashboard — Revenue Intelligence
                 </div>
               </div>
             </div>

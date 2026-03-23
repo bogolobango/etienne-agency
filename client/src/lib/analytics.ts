@@ -38,8 +38,8 @@ export function trackEvent(
   track(eventName, properties as Record<string, string | number | boolean>);
 
   // Send to Google Analytics if available
-  if (typeof window !== 'undefined' && (window as any).gtag) {
-    (window as any).gtag('event', eventName, properties);
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', eventName, properties);
   }
 }
 

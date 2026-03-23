@@ -35,7 +35,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li><Link href="/how-it-works" onClick={() => trackNavigationClick('How It Works', '/how-it-works', 'footer')}><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">How It Works</span></Link></li>
               <li><Link href="/med-spas" onClick={() => trackNavigationClick('Med Spas', '/med-spas', 'footer')}><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Med Spas</span></Link></li>
-              <li><Link href="/contact" onClick={() => trackCTAClick('Free Revenue Audit', 'Footer', 'primary')}><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Free Revenue Audit</span></Link></li>
+              <li><Link href="/calculator" onClick={() => trackCTAClick('Free Revenue Audit', 'Footer', 'primary')}><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Free Revenue Audit</span></Link></li>
             </ul>
           </div>
 

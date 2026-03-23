@@ -70,7 +70,7 @@ export default function HowItWorks() {
             <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-10">
               EIP reads your booking data and turns it into cross-location revenue intelligence. Here's how.
             </p>
-            <Link href="/contact">
+            <Link href="/calculator">
               <Button
                 className="rounded-full px-8 py-6 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
                 onClick={() => trackCTAClick('Get Your Free Revenue Audit', 'How It Works Hero', 'primary')}
@@ -134,7 +134,7 @@ export default function HowItWorks() {
               {/* Mid-page CTA after step 2 */}
               {i === 1 && (
                 <div className="text-center mb-16 md:mb-20">
-                  <Link href="/contact">
+                  <Link href="/calculator">
                     <Button
                       className="rounded-full px-8 py-6 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
                       onClick={() => trackCTAClick('Get Your Free Revenue Audit', 'How It Works Mid-Page', 'primary')}
@@ -161,7 +161,7 @@ export default function HowItWorks() {
             <p className="text-base sm:text-lg text-white/70 mb-10">
               Connect your booking system and see exactly what EIP surfaces in the first week.
             </p>
-            <Link href="/contact">
+            <Link href="/calculator">
               <Button className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill">
                 Get Your Free Revenue Audit <ArrowRight className="ml-2 h-5 w-5" />
               </Button>

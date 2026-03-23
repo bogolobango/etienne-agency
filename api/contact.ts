@@ -184,30 +184,34 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const data = result.data;
   const submittedAt = new Date().toISOString();
 
-  // Send email notification (silent-fail)
-  try {
-    await sendNotificationEmail(data);
-  } catch (err) {
-    console.error("Failed to send email notification:", err);
-  }
+  // Respond immediately — don't block on email/Airtable
+  res.json({
+    success: true,
+    message: "Thank you! We'll reach out within 2 hours.",
+  });
 
-  // Push to Airtable (silent-fail)
-  try {
-    await createAirtableRecord(data, submittedAt);
-  } catch (err) {
-    // Log only the message, not the full error object (may contain tokens)
-    console.error("Failed to create Airtable record:", err instanceof Error ? err.message : "unknown error");
-  }
-
-  console.log("[contact] Submission processed successfully", {
+  console.log(JSON.stringify({
+    level: "info",
+    message: "Contact submission processed",
     name: data.name,
     company: data.company,
     industry: data.industry,
     submittedAt,
-  });
+  }));
 
-  return res.json({
-    success: true,
-    message: "Thank you! We'll reach out within 2 hours.",
+  // Fire-and-forget: email + Airtable run concurrently after response
+  sendNotificationEmail(data).catch((err) => {
+    console.error(JSON.stringify({
+      level: "error",
+      message: "Failed to send email notification",
+      error: String(err),
+    }));
+  });
+  createAirtableRecord(data, submittedAt).catch((err) => {
+    console.error(JSON.stringify({
+      level: "error",
+      message: "Failed to create Airtable record",
+      error: err instanceof Error ? err.message : "unknown error",
+    }));
   });
 }

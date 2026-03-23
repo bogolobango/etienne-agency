@@ -41,7 +41,7 @@ export default function FinalCTASection() {
           </p>
 
           <div className="flex justify-center mb-6">
-            <Link href="/contact">
+            <Link href="/calculator">
               <Button
                 className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill"
                 onClick={() => trackCTAClick('Get Your Free Revenue Audit', 'Final CTA Section', 'primary')}

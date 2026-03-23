@@ -33,6 +33,11 @@ const staticRoutes: Record<string, PageMeta> = {
     description:
       "Running 3-25 med spa locations? EIP shows you where revenue is leaking across your centers — no-shows, missed leads, and utilization gaps — and tells you exactly what to do about it.",
   },
+  "/calculator": {
+    title: "Revenue Gap Calculator for Med Spas | Etienne",
+    description:
+      "See how much revenue your med spa locations are losing to no-shows, utilization gaps, and missed rebookings. Free interactive calculator powered by the EIP leakage model.",
+  },
   "/contact": {
     title: "Free Revenue Audit for Multi-Location Med Spas | Etienne",
     description:
@@ -61,6 +66,7 @@ const breadcrumbLabels: Record<string, string> = {
   "/how-it-works": "How It Works",
   "/med-spas": "Med Spas",
   "/industries": "Med Spas",
+  "/calculator": "Revenue Gap Calculator",
   "/contact": "Free Revenue Audit",
   "/about": "About",
   "/privacy": "Privacy Policy",

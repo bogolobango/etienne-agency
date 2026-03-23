@@ -33,7 +33,7 @@ export default function About() {
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.1] mb-6">
               We built the intelligence layer your booking system should have included.
             </h1>
-            <Link href="/contact">
+            <Link href="/calculator">
               <Button
                 className="rounded-full px-8 py-6 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
                 onClick={() => trackCTAClick('Get Your Free Revenue Audit', 'About Hero', 'primary')}
@@ -96,7 +96,7 @@ export default function About() {
             <p className="text-base sm:text-lg text-white/70 mb-10">
               15 minutes. No pitch deck. Just numbers.
             </p>
-            <Link href="/contact">
+            <Link href="/calculator">
               <Button className="rounded-full px-8 py-6 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill">
                 Get Your Free Revenue Audit <ArrowRight className="ml-2 w-4 h-4" />
               </Button>

@@ -10,6 +10,7 @@ import morgan from "morgan";
 import nodemailer from "nodemailer";
 import { contactSchema, escapeHtml, sanitizeHeader, type ContactFormData } from "./contact.schema.js";
 import { getPageMeta, getBreadcrumbJsonLd, BASE_URL, OG_IMAGE, SITE_NAME } from "../shared/seoMeta.js";
+import { logger } from "./logger.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,20 +30,29 @@ const industryLabels: Record<string, string> = {
 };
 
 // ---------------------------------------------------------------------------
-// Email notification helper
+// Email notification helper (transporter reused across requests)
 // ---------------------------------------------------------------------------
-async function sendNotificationEmail(data: ContactFormData) {
-  if (!process.env.SMTP_HOST || !process.env.NOTIFY_EMAIL) return;
+let smtpTransporter: nodemailer.Transporter | null = null;
 
-  const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT || "587"),
-    secure: process.env.SMTP_SECURE === "true",
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
+function getSmtpTransporter(): nodemailer.Transporter | null {
+  if (!process.env.SMTP_HOST || !process.env.NOTIFY_EMAIL) return null;
+  if (!smtpTransporter) {
+    smtpTransporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: parseInt(process.env.SMTP_PORT || "587"),
+      secure: process.env.SMTP_SECURE === "true",
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+  }
+  return smtpTransporter;
+}
+
+async function sendNotificationEmail(data: ContactFormData) {
+  const transporter = getSmtpTransporter();
+  if (!transporter) return;
 
   await transporter.sendMail({
     from: process.env.SMTP_FROM || "noreply@etienneagency.com",
@@ -114,15 +124,19 @@ async function createAirtableRecord(data: ContactFormData, submittedAt: string) 
 // Server bootstrap
 // ---------------------------------------------------------------------------
 function validateEnv() {
-  const warnings: string[] = [];
   if (process.env.NODE_ENV === "production") {
-    if (!process.env.CORS_ORIGIN) warnings.push("CORS_ORIGIN not set — defaulting to https://etienneagency.com");
-    if (!process.env.SMTP_HOST) warnings.push("SMTP_HOST not set — email notifications disabled");
-    if (!process.env.NOTIFY_EMAIL) warnings.push("NOTIFY_EMAIL not set — using default recipient");
-    if (!process.env.AIRTABLE_PAT) warnings.push("AIRTABLE_PAT not set — Airtable integration disabled");
-    if (!process.env.AIRTABLE_BASE_ID) warnings.push("AIRTABLE_BASE_ID not set — Airtable integration disabled");
+    // Critical: server must know its allowed origin for CORS/CSRF checks
+    if (!process.env.CORS_ORIGIN) {
+      logger.error("CORS_ORIGIN is required in production. Set it to the frontend URL (e.g. https://etienneagency.com).");
+      process.exit(1);
+    }
+
+    // Optional features — warn but don't crash
+    if (!process.env.SMTP_HOST) logger.warn("SMTP_HOST not set — email notifications disabled");
+    if (!process.env.NOTIFY_EMAIL) logger.warn("NOTIFY_EMAIL not set — email notifications disabled");
+    if (!process.env.AIRTABLE_PAT) logger.warn("AIRTABLE_PAT not set — Airtable integration disabled");
+    if (!process.env.AIRTABLE_BASE_ID) logger.warn("AIRTABLE_BASE_ID not set — Airtable integration disabled");
   }
-  for (const w of warnings) console.warn(`[env] ${w}`);
 }
 
 async function startServer() {
@@ -204,7 +218,7 @@ async function startServer() {
     const safeMsg = typeof message === "string" ? message.slice(0, 500) : "unknown";
     const safeUrl = typeof url === "string" ? url.slice(0, 200) : "unknown";
     const safeStack = typeof stack === "string" ? stack.split("\n").slice(0, 5).join("\n") : "";
-    console.error(`[client-error] ${safeUrl}: ${safeMsg}\n${safeStack}`);
+    logger.error("Client-side error", { url: safeUrl, message: safeMsg, stack: safeStack });
     res.status(204).end();
   });
 
@@ -266,27 +280,30 @@ async function startServer() {
       existing.push(submission);
       fs.writeFileSync(logFile, JSON.stringify(existing, null, 2));
     } catch (err) {
-      console.error("Failed to save submission to file:", err);
+      logger.error("Failed to save submission to file", { error: String(err) });
     }
 
-    // Send email notification (silent-fail if SMTP not configured)
-    try {
-      await sendNotificationEmail(data);
-    } catch (err) {
-      console.error("Failed to send email notification:", err);
-    }
-
-    // Push to Airtable (silent-fail if not configured)
-    try {
-      await createAirtableRecord(data, submission.submittedAt);
-    } catch (err) {
-      // Log only the message, not the full error object (may contain tokens)
-      console.error("Failed to create Airtable record:", err instanceof Error ? err.message : "unknown error");
-    }
-
+    // Respond immediately — don't block on email/Airtable
     res.json({
       success: true,
       message: "Thank you! We'll reach out within 2 hours.",
+    });
+
+    logger.info("Contact submission processed", {
+      name: data.name,
+      company: data.company,
+      industry: data.industry,
+      submittedAt: submission.submittedAt,
+    });
+
+    // Fire-and-forget: email + Airtable run concurrently after response
+    sendNotificationEmail(data).catch((err) => {
+      logger.error("Failed to send email notification", { error: String(err) });
+    });
+    createAirtableRecord(data, submission.submittedAt).catch((err) => {
+      logger.error("Failed to create Airtable record", {
+        error: err instanceof Error ? err.message : "unknown error",
+      });
     });
   });
 
@@ -310,7 +327,7 @@ async function startServer() {
   try {
     htmlTemplate = fs.readFileSync(indexPath, "utf-8");
   } catch {
-    console.warn("[seo] Could not read index.html template — meta injection disabled");
+    logger.warn("Could not read index.html template — meta injection disabled");
   }
 
   app.get("*", (req, res) => {
@@ -395,7 +412,7 @@ async function startServer() {
 
   const port = process.env.PORT || 3000;
   server.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}/`);
+    logger.info(`Server running on http://localhost:${port}/`);
   });
 }
 

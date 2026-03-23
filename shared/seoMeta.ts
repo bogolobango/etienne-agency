@@ -21,7 +21,7 @@ const staticRoutes: Record<string, PageMeta> = {
   "/how-it-works": {
     title: "How EIP Works | Revenue Intelligence for Med Spas",
     description:
-      "Connect your Zenoti or Boulevard account, and EIP surfaces revenue gaps across your locations in days. See how the AI Revenue Analyst, Command Center, and Smart Scheduling work together.",
+      "See how EIP connects to your booking platform and surfaces cross-location revenue gaps — no-show patterns, utilization gaps, and rebooking leakage — in days.",
   },
   "/med-spas": {
     title: "Revenue Intelligence for Multi-Location Med Spas | Etienne",
@@ -39,9 +39,9 @@ const staticRoutes: Record<string, PageMeta> = {
       "See how much revenue your med spa locations are losing to no-shows, utilization gaps, and missed rebookings. Free interactive calculator powered by the EIP leakage model.",
   },
   "/contact": {
-    title: "Free Revenue Audit for Multi-Location Med Spas | Etienne",
+    title: "Book a Revenue Call | Etienne",
     description:
-      "Connect your Zenoti or Boulevard account to get a 14-day revenue intelligence report that shows exactly where your locations are losing money. No cost, no commitment.",
+      "Book a 20-minute revenue call with the Etienne team. We'll show you exactly what EIP would surface from your booking data — no pitch deck, no commitment.",
   },
   "/about": {
     title: "About Etienne | Revenue Intelligence for Med Spas",
@@ -67,7 +67,7 @@ const breadcrumbLabels: Record<string, string> = {
   "/med-spas": "Med Spas",
   "/industries": "Med Spas",
   "/calculator": "Revenue Gap Calculator",
-  "/contact": "Free Revenue Audit",
+  "/contact": "Book a Revenue Call",
   "/about": "About",
   "/privacy": "Privacy Policy",
   "/terms": "Terms of Service",

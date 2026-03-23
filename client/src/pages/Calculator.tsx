@@ -27,7 +27,6 @@ import {
   CalendarX2,
   Calculator as CalcIcon,
 } from "lucide-react";
-import { Link } from "wouter";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
 import { useSEO } from "@/hooks/useSEO";
@@ -343,9 +342,9 @@ export default function Calculator() {
                   <div className="icon-container-lg mx-auto mb-3">
                     <Clock className="w-5 h-5 text-blue-500" />
                   </div>
-                  <p className="text-xs text-muted-foreground mb-1">After-Hours Loss</p>
+                  <p className="text-xs text-muted-foreground mb-1">Response Gap Loss</p>
                   <p className="font-display text-2xl text-foreground">{fmt(afterHoursLoss)}</p>
-                  <p className="text-xs text-muted-foreground mt-1">Missed after-hours inquiries</p>
+                  <p className="text-xs text-muted-foreground mt-1">Revenue lost to slow or missed lead follow-up across locations</p>
                 </div>
               </div>
 
@@ -413,17 +412,18 @@ export default function Calculator() {
                 <p className="text-muted-foreground mb-6 text-lg">
                   These are estimates. Want to know your <span className="font-semibold text-foreground">actual</span> numbers from real booking data?
                 </p>
-                <Link href="/contact">
+                <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
                   <Button
                     className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill"
-                    onClick={() => trackCTAClick("Get Your Free Revenue Audit", "Calculator Results", "primary")}
+                    onClick={() => trackCTAClick("Book a Revenue Call", "Calculator Results", "primary")}
                   >
-                    Get Your Free Revenue Audit — See Real Numbers
+                    Book a Revenue Call — See Your Real Numbers
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
-                </Link>
+                </a>
                 <p className="text-sm text-muted-foreground mt-4">
-                  We connect to Zenoti, Boulevard, or Mangomint and run the full leakage analysis on your actual data. Free. No strings.
+                  20 minutes. We'll show you exactly what EIP would surface from your booking data.<br />
+                  No pitch deck. No commitment.
                 </p>
               </div>
             </div>

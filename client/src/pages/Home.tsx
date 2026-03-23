@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import ProblemSection from "@/components/ProblemSection";
 import SolutionSection from "@/components/SolutionSection";
+import EarlyAdopterSection from "@/components/EarlyAdopterSection";
 import SocialProofSection from "@/components/SocialProofSection";
 import IndustriesSection from "@/components/IndustriesSection";
 import FinalCTASection from "@/components/FinalCTASection";
@@ -71,6 +72,7 @@ export default function Home() {
       <Hero />
       <ProblemSection />
       <SolutionSection />
+      <EarlyAdopterSection />
       {/* Product Preview (dark section) */}
       <SocialProofSection />
       {/* Integrations + Differentiation + Social Proof */}

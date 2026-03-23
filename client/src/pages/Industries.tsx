@@ -9,7 +9,6 @@ import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
 import { useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
 import { ArrowRight, CheckCircle2, XCircle } from "lucide-react";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 
@@ -26,11 +25,6 @@ export default function Industries() {
       title: "The Multi-Location Visibility Gap",
       problem: "Your booking platform shows you one location at a time. You toggle between centers, export CSVs, and paste into spreadsheets. By the time you've compared performance across all 5 locations, the data is a week old, and you've burned half a Sunday.",
       solution: "One dashboard, all centers, real-time. Compare any metric across any location instantly. Ask the AI Analyst, \"Which center is underperforming?\" and get a ranked table with dollar impact in 30 seconds.",
-    },
-    {
-      title: "Revenue Leaking Between the Cracks",
-      problem: "Missed calls during the lunch rush. Web inquiries that sat for 6 hours. A $2,400 injectable package lead who called twice, got voicemail both times, and booked with the med spa down the street. Your booking system logged the appointment that DID happen. It has no idea about the three that didn't.",
-      solution: "Every inbound inquiry — phone, text, web, or social — is captured, responded to, and tracked. See the full AI conversation that converted an 11 pm inquiry into a morning booking. See exactly which leads slipped through and what they were worth.",
     },
     {
       title: "No-Shows Eating Your Revenue",
@@ -54,7 +48,7 @@ export default function Industries() {
   const isNotFor = [
     "Single-location practices (you don't need cross-center intelligence yet)",
     "Businesses looking to replace their booking system (we sit on top, not instead of)",
-    "Anyone who thinks their missed call problem is solved (it's not \u2014 but that's just the start)",
+    "Operators who want a replacement for their booking system (EIP sits on top \u2014 we never replace Zenoti, Boulevard, or Mangomint)",
   ];
 
   return (
@@ -75,11 +69,11 @@ export default function Industries() {
             <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-10">
               You didn't build a multi-location practice to spend Sundays pulling reports. EIP gives you cross-center intelligence that your booking system is not designed to provide.
             </p>
-            <Link href="/calculator">
+            <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
               <Button className="rounded-full px-8 py-6 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill">
-                Get Your Free Revenue Audit <ArrowRight className="ml-2 h-4 w-4" />
+                Book a Revenue Call <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -161,14 +155,15 @@ export default function Industries() {
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">
               How much revenue are your locations missing?
             </h2>
-            <p className="text-base sm:text-lg text-white/70 mb-10">
-              We'll connect to your booking data, run a 7-day analysis, and show you exactly where the gaps are. If there aren't any, we'll tell you that too.
-            </p>
-            <Link href="/calculator">
+            <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
               <Button className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill">
-                Get Your Free Revenue Audit <ArrowRight className="ml-2 h-5 w-5" />
+                Book a Revenue Call <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-            </Link>
+            </a>
+            <p className="text-sm text-white/40 mt-6">
+              20 minutes. We'll show you exactly what EIP would surface from your booking data.<br />
+              No pitch deck. No commitment.
+            </p>
           </div>
         </div>
       </section>

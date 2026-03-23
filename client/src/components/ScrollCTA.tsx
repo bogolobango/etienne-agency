@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "wouter";
 import { ArrowRight, X } from "lucide-react";
 import { trackCTAClick } from "@/lib/analytics";
 
@@ -50,15 +49,15 @@ export default function ScrollCTA() {
             See where your locations are leaking revenue.
           </p>
           <div className="flex items-center gap-3 flex-shrink-0">
-            <Link href="/calculator">
+            <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
               <button
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors shadow-sm"
-                onClick={() => trackCTAClick('Get Free Revenue Audit', 'Scroll CTA', 'primary')}
+                onClick={() => trackCTAClick('Book a Revenue Call', 'Scroll CTA', 'primary')}
               >
-                Get your free revenue audit
+                Book a Revenue Call
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
-            </Link>
+            </a>
             <button
               onClick={handleDismiss}
               className="p-2.5 rounded-full hover:bg-muted transition-colors text-muted-foreground"

@@ -23,8 +23,8 @@ export default function IndustriesSection() {
   }, []);
 
   const integrations = [
-    { name: "Zenoti", status: "Connected" },
-    { name: "Boulevard", status: "Connected" },
+    { name: "Zenoti", status: "Available" },
+    { name: "Boulevard", status: "Available" },
     { name: "Mangomint", status: "Available" },
     { name: "Pabau", status: "Coming Soon" },
     { name: "Google Calendar", status: "Available" },
@@ -140,7 +140,7 @@ export default function IndustriesSection() {
           <div className="max-w-3xl mx-auto">
             <blockquote className="card-premium p-8 sm:p-10 text-center">
               <p className="font-display text-lg sm:text-xl md:text-2xl text-foreground leading-relaxed mb-4 italic">
-                &ldquo;The average 5-location med spa is losing $18K/month to gaps their booking system can't see. EIP is built to find those gaps, and recommend ways to plug them.&rdquo;
+                &ldquo;The average 5-location med spa is running with a 15&ndash;23% no-show rate and has no idea which provider, day, or location is driving it. EIP is built to find that answer in days, not spreadsheets.&rdquo;
               </p>
               <footer className="text-sm text-muted-foreground">
                 <span className="font-semibold text-foreground">Jim Stephen</span>, Founder

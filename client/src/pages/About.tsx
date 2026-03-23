@@ -9,7 +9,6 @@ import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
 import { useSEO } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { trackCTAClick } from "@/lib/analytics";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
@@ -33,14 +32,14 @@ export default function About() {
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground leading-[1.1] mb-6">
               We built the intelligence layer your booking system should have included.
             </h1>
-            <Link href="/calculator">
+            <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
               <Button
                 className="rounded-full px-8 py-6 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
-                onClick={() => trackCTAClick('Get Your Free Revenue Audit', 'About Hero', 'primary')}
+                onClick={() => trackCTAClick('Book a Revenue Call', 'About Hero', 'primary')}
               >
-                Get Your Free Revenue Audit <ArrowRight className="ml-2 h-4 w-4" />
+                Book a Revenue Call <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -57,7 +56,7 @@ export default function About() {
                 Etienne started with a question: if multi-location med spas are running some of the most sophisticated booking and CRM platforms in the service industry, why are they still losing $15K&ndash;$20K/month in revenue they can't see?
               </p>
               <p>
-                The answer is simple: booking platforms are tools for operations. They're built to manage appointments, process payments, and track guest records. They're excellent at what they do. But they were never designed to be intelligence tools &mdash; to tell you why Williamsburg is underperforming, or how much your Tuesday no-shows are really costing you, or which leads your front desk dropped last week, and what those leads were worth.
+                The answer is simple: booking platforms are tools for operations. They're built to manage appointments, process payments, and track guest records. They're excellent at what they do. But they were never designed to be intelligence tools &mdash; to tell you why Williamsburg is underperforming, how much your Tuesday no-shows are really costing you, or why your rebooking rate at one center is 14 points lower than the others.
               </p>
               <p className="font-semibold text-foreground">
                 That's the gap we fill.
@@ -78,7 +77,7 @@ export default function About() {
               <h3 className="font-display text-2xl text-foreground mb-1">Jim Stephen</h3>
               <p className="text-sm text-primary font-semibold mb-6">Founder &amp; CEO</p>
               <p className="text-base text-muted-foreground leading-relaxed">
-                Formerly led AI-powered go-to-market strategy at the Fortune 500 level. Built Etienne to bring enterprise-grade revenue intelligence to the $21 billion medical aesthetics market &mdash; specifically for operators running 3&ndash;25 locations who need cross-center intelligence without hiring a data team.
+                Eight years closing enterprise SaaS deals with Fortune 500 manufacturers and retailers &mdash; including multiple President&rsquo;s Club finishes &mdash; before building Etienne to bring the same intelligence infrastructure to the $21 billion medical aesthetics market. Jim built EIP specifically for operators who are running 3&ndash;25 locations and making decisions from spreadsheets.
               </p>
             </div>
           </div>
@@ -93,14 +92,15 @@ export default function About() {
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">
               See what your locations are missing
             </h2>
-            <p className="text-base sm:text-lg text-white/70 mb-10">
-              15 minutes. No pitch deck. Just numbers.
-            </p>
-            <Link href="/calculator">
+            <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
               <Button className="rounded-full px-8 py-6 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill">
-                Get Your Free Revenue Audit <ArrowRight className="ml-2 w-4 h-4" />
+                Book a Revenue Call <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
-            </Link>
+            </a>
+            <p className="text-sm text-white/40 mt-6">
+              20 minutes. We'll show you exactly what EIP would surface from your booking data.<br />
+              No pitch deck. No commitment.
+            </p>
           </div>
         </div>
       </section>

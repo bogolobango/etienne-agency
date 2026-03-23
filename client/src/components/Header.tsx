@@ -114,15 +114,15 @@ export default function Header() {
             </nav>
 
             {/* Desktop CTA Button */}
-            <Link href="/calculator">
+            <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
               <Button
                 className="hidden md:inline-flex rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                 size="default"
-                onClick={() => trackCTAClick('Free Revenue Audit', 'Header', 'primary')}
+                onClick={() => trackCTAClick('Book a Call', 'Header', 'primary')}
               >
-                Free Revenue Audit
+                Book a Call
               </Button>
-            </Link>
+            </a>
 
             {/* Mobile Menu Button */}
             <button
@@ -210,15 +210,15 @@ export default function Header() {
           </nav>
 
           <div className="p-6 border-t border-border">
-            <Link href="/calculator" onClick={handleLinkClick}>
+            <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer" onClick={handleLinkClick}>
               <Button
                 className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                 size="lg"
-                onClick={() => trackCTAClick('Free Revenue Audit', 'Mobile Menu', 'primary')}
+                onClick={() => trackCTAClick('Book a Call', 'Mobile Menu', 'primary')}
               >
-                Free Revenue Audit
+                Book a Call
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </div>

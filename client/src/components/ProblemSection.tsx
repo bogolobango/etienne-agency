@@ -21,18 +21,18 @@ export default function ProblemSection() {
 
   const stats = [
     {
-      stat: "$18,400/mo",
-      description: "Average revenue lost to delayed lead response at a 5-location med spa",
+      stat: "23%",
+      description: "Industry average no-show rate — a 5-location practice at $536/visit loses $40K+/month to empty chairs",
       coral: true,
     },
     {
-      stat: "23%",
-      description: "Industry average no-show rate for aesthetic practices without predictive intervention",
+      stat: "50%",
+      description: "Average utilization drop when practices scale from 2 to 4+ treatment rooms — invisible without cross-location data",
       coral: false,
     },
     {
-      stat: "47 min",
-      description: "Average time to return a missed call during business hours",
+      stat: "47%",
+      description: "Rebooking rate at the average med spa vs. 61%+ at top-performing groups — a gap worth finding",
       coral: false,
     },
   ];
@@ -61,7 +61,7 @@ export default function ProblemSection() {
               Your booking platform tracks every appointment, every no-show, and every invoice. But when you want to know why Williamsburg is underperforming, or how much your White Plains no-show rate is actually costing you, or which provider has the worst rebooking rate — you're pulling reports from three different screens, exporting to Excel, and spending your Sunday doing math.
             </p>
             <p>
-              Meanwhile, your front desk missed 4 calls during the lunch rush, 2 web inquiries sat for 6 hours, and a $1,200 body contouring lead went to your competitor because nobody called her back.
+              The data exists. It's sitting inside Zenoti, Boulevard, or Mangomint right now. But no one is connecting it across locations, quantifying what it's costing you, or telling you what to do about it.
             </p>
             <p className="font-semibold text-foreground">
               You don't have a software problem. You have an intelligence problem.
@@ -88,7 +88,7 @@ export default function ProblemSection() {
           ))}
         </div>
         <p className="text-center text-xs text-muted-foreground/50 italic mt-6">
-          Based on industry data from AmSpa, ASAPS, and analysis of 500+ multi-location practices
+          Based on industry data from AmSpa, ASAPS, and Zenoti market research
         </p>
       </div>
     </section>

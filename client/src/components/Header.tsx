@@ -114,7 +114,7 @@ export default function Header() {
             </nav>
 
             {/* Desktop CTA Button */}
-            <Link href="/contact">
+            <Link href="/calculator">
               <Button
                 className="hidden md:inline-flex rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                 size="default"
@@ -210,7 +210,7 @@ export default function Header() {
           </nav>
 
           <div className="p-6 border-t border-border">
-            <Link href="/contact" onClick={handleLinkClick}>
+            <Link href="/calculator" onClick={handleLinkClick}>
               <Button
                 className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                 size="lg"

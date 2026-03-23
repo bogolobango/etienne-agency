@@ -75,7 +75,7 @@ export default function Industries() {
             <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-10">
               You didn't build a multi-location practice to spend Sundays pulling reports. EIP gives you cross-center intelligence that your booking system is not designed to provide.
             </p>
-            <Link href="/contact">
+            <Link href="/calculator">
               <Button className="rounded-full px-8 py-6 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill">
                 Get Your Free Revenue Audit <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -164,7 +164,7 @@ export default function Industries() {
             <p className="text-base sm:text-lg text-white/70 mb-10">
               We'll connect to your booking data, run a 7-day analysis, and show you exactly where the gaps are. If there aren't any, we'll tell you that too.
             </p>
-            <Link href="/contact">
+            <Link href="/calculator">
               <Button className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill">
                 Get Your Free Revenue Audit <ArrowRight className="ml-2 h-5 w-5" />
               </Button>

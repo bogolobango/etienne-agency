@@ -50,7 +50,7 @@ export default function ScrollCTA() {
             See where your locations are leaking revenue.
           </p>
           <div className="flex items-center gap-3 flex-shrink-0">
-            <Link href="/contact">
+            <Link href="/calculator">
               <button
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors shadow-sm"
                 onClick={() => trackCTAClick('Get Free Revenue Audit', 'Scroll CTA', 'primary')}

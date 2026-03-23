@@ -43,7 +43,7 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-3 mb-10">
-            <Link href="/contact">
+            <Link href="/calculator">
               <Button
                 className="rounded-full px-8 py-6 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
                 onClick={() => trackCTAClick('Get Your Free Revenue Audit', 'Hero Section', 'primary')}

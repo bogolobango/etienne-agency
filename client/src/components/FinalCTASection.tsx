@@ -37,7 +37,7 @@ export default function FinalCTASection() {
             Find out what your locations are missing.
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-white/70 mb-10">
-            Our free Revenue Audit connects to your booking data and shows you exactly where revenue is slipping through the cracks. No commitment. No sales pitch. Just numbers.
+            Run your numbers through our revenue gap calculator to see an instant estimate. Then, if the gaps are real, we'll connect to your booking data and show you the exact dollars.
           </p>
 
           <div className="flex justify-center mb-6">
@@ -53,7 +53,7 @@ export default function FinalCTASection() {
           </div>
 
           <p className="text-sm text-white/40">
-            Takes 15 minutes to set up. Results in 7 days. We'll show you the gaps, and you decide what to do about them.
+            2 minutes to run the calculator. 15 minutes to set up the full audit. Results in 7 days. No commitment.
           </p>
         </div>
       </div>

@@ -67,8 +67,11 @@ export default function HowItWorks() {
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-6">
               Connect. Analyze. Recover.
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-10">
+            <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-4">
               EIP reads your booking data and turns it into cross-location revenue intelligence. Here's how.
+            </p>
+            <p className="text-sm text-white/40 max-w-2xl mx-auto mb-10">
+              We're onboarding early-access partners now. The platform is live and generating insights for real multi-location med spas.
             </p>
             <Link href="/calculator">
               <Button
@@ -158,8 +161,11 @@ export default function HowItWorks() {
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">
               See it on your data.
             </h2>
-            <p className="text-base sm:text-lg text-white/70 mb-10">
+            <p className="text-base sm:text-lg text-white/70 mb-4">
               Connect your booking system and see exactly what EIP surfaces in the first week.
+            </p>
+            <p className="text-sm text-white/40 mb-10">
+              Start with the calculator to estimate your gaps. Then we'll run the full analysis on your real data — free, 15 minutes to set up.
             </p>
             <Link href="/calculator">
               <Button className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill">

@@ -57,7 +57,7 @@ export default function About() {
                 Etienne started with a question: if multi-location med spas are running some of the most sophisticated booking and CRM platforms in the service industry, why are they still losing $15K&ndash;$20K/month in revenue they can't see?
               </p>
               <p>
-                The answer is simple: booking platforms are tools for operations. They're built to manage appointments, process payments, and track guest records. They're excellent at what they do. But they were never designed to be intelligence tools &mdash; to tell you why Williamsburg is underperforming, or how much your Tuesday no-shows are really costing you, or which leads your front desk dropped last week, and what those leads were worth.
+                The answer is simple: booking platforms are tools for operations. They're built to manage appointments, process payments, and track guest records. They're excellent at what they do. But they were never designed to be intelligence tools &mdash; to tell you why Williamsburg is underperforming, how much your Tuesday no-shows are really costing you, or why your rebooking rate at one center is 14 points lower than the others.
               </p>
               <p className="font-semibold text-foreground">
                 That's the gap we fill.
@@ -78,7 +78,7 @@ export default function About() {
               <h3 className="font-display text-2xl text-foreground mb-1">Jim Stephen</h3>
               <p className="text-sm text-primary font-semibold mb-6">Founder &amp; CEO</p>
               <p className="text-base text-muted-foreground leading-relaxed">
-                Formerly led AI-powered go-to-market strategy at the Fortune 500 level. Built Etienne to bring enterprise-grade revenue intelligence to the $21 billion medical aesthetics market &mdash; specifically for operators running 3&ndash;25 locations who need cross-center intelligence without hiring a data team.
+                Led AI-powered go-to-market strategy for Fortune 500 enterprise software &mdash; designing the analytics and revenue-intelligence systems that scaled across hundreds of accounts. Built Etienne to bring that same rigor to the $21 billion medical aesthetics market, specifically for operators running 3&ndash;25 locations who need cross-center intelligence without hiring a data team.
               </p>
             </div>
           </div>
@@ -93,8 +93,11 @@ export default function About() {
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">
               See what your locations are missing
             </h2>
-            <p className="text-base sm:text-lg text-white/70 mb-10">
+            <p className="text-base sm:text-lg text-white/70 mb-4">
               15 minutes. No pitch deck. Just numbers.
+            </p>
+            <p className="text-sm text-white/40 mb-10">
+              Run the calculator first to see your estimated gaps. If the numbers look real, we'll connect to your booking data and show you the actuals.
             </p>
             <Link href="/calculator">
               <Button className="rounded-full px-8 py-6 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill">

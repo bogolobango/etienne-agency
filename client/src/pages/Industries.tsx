@@ -28,9 +28,9 @@ export default function Industries() {
       solution: "One dashboard, all centers, real-time. Compare any metric across any location instantly. Ask the AI Analyst, \"Which center is underperforming?\" and get a ranked table with dollar impact in 30 seconds.",
     },
     {
-      title: "Revenue Leaking Between the Cracks",
-      problem: "Missed calls during the lunch rush. Web inquiries that sat for 6 hours. A $2,400 injectable package lead who called twice, got voicemail both times, and booked with the med spa down the street. Your booking system logged the appointment that DID happen. It has no idea about the three that didn't.",
-      solution: "Every inbound inquiry — phone, text, web, or social — is captured, responded to, and tracked. See the full AI conversation that converted an 11 pm inquiry into a morning booking. See exactly which leads slipped through and what they were worth.",
+      title: "The Lead Pipeline You Can't See",
+      problem: "Your booking system tracks the appointments that happened. It can't tell you which high-value prospects inquired, didn't book, and never came back. It can't quantify what those lost opportunities cost you across 5 or 10 locations, or show you which centers convert inquiries and which let them drop.",
+      solution: "EIP surfaces your full lead pipeline across all centers — who inquired, who booked, who didn't, and the dollar value of each gap. See conversion rates by location, identify which centers are leaving revenue on the table, and get specific recommendations to close the gap.",
     },
     {
       title: "No-Shows Eating Your Revenue",
@@ -54,7 +54,7 @@ export default function Industries() {
   const isNotFor = [
     "Single-location practices (you don't need cross-center intelligence yet)",
     "Businesses looking to replace their booking system (we sit on top, not instead of)",
-    "Anyone who thinks their missed call problem is solved (it's not \u2014 but that's just the start)",
+    "Teams that only want a single-metric dashboard (EIP is built for cross-center intelligence, not vanity reporting)",
   ];
 
   return (
@@ -161,8 +161,11 @@ export default function Industries() {
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">
               How much revenue are your locations missing?
             </h2>
-            <p className="text-base sm:text-lg text-white/70 mb-10">
-              We'll connect to your booking data, run a 7-day analysis, and show you exactly where the gaps are. If there aren't any, we'll tell you that too.
+            <p className="text-base sm:text-lg text-white/70 mb-4">
+              Start with the calculator — plug in your numbers and see an instant estimate. Then we'll connect to your booking data for the real analysis.
+            </p>
+            <p className="text-sm text-white/40 mb-10">
+              2 minutes for the estimate. 15 minutes to set up the full audit. If there are no gaps, we'll tell you that too.
             </p>
             <Link href="/calculator">
               <Button className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill">

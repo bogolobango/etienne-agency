@@ -42,8 +42,8 @@ export default function SocialProofSection() {
   }, []);
 
   const features = [
-    { title: "Command Center", description: "Every AI conversation across all channels, one inbox." },
-    { title: "Revenue Intelligence", description: "See exactly how much revenue your AI recovered, by location." },
+    { title: "Cross-Location View", description: "Every center's revenue, utilization, and rebooking rate — one screen." },
+    { title: "Revenue Intelligence", description: "See exactly where revenue is leaking and what each gap is costing you." },
     { title: "AI Analyst", description: "Ask questions about your business in plain English. Get answers backed by your data." },
   ];
 
@@ -83,7 +83,7 @@ export default function SocialProofSection() {
               </div>
               <div className="flex-1 mx-4">
                 <div className="bg-white/5 rounded-md px-3 py-1 text-xs text-white/40 text-center">
-                  app.etienneagency.com/dashboard
+                  eip.etienneagency.com
                 </div>
               </div>
             </div>

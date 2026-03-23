@@ -28,8 +28,8 @@ export default function SolutionSection() {
     },
     {
       icon: Headset,
-      title: "Command Center",
-      description: "Every missed call, delayed text, and abandoned web inquiry is captured, logged, and acted on before the lead goes cold. See the full AI conversation that turned a Saturday-night inquiry into a Monday-morning booking. Know exactly which leads your team dropped and how much it cost you.",
+      title: "Cross-Location Command Center",
+      description: "See every center's KPIs in one view — revenue, utilization, no-show rate, rebooking rate, and provider performance. No more toggling between locations or exporting CSVs. The Command Center surfaces what changed, what's trending down, and where to focus this week.",
     },
     {
       icon: CalendarDays,

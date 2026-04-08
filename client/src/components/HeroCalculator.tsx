@@ -17,7 +17,7 @@
  *  - Mobile: inputs stack vertically, result + CTA compress below.
  */
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Info } from "lucide-react";
 import { Link } from "wouter";
@@ -27,12 +27,11 @@ import {
   formatCurrencyCompact,
   BENCHMARKS,
 } from "@/lib/leakage";
+import { useCalculator } from "@/context/CalculatorContext";
+import MagneticButton from "@/components/MagneticButton";
 
 export default function HeroCalculator() {
-  const [locations, setLocations] = useState(5);
-  const [apptsPerLocation, setApptsPerLocation] = useState(250);
-  const [avgTicket, setAvgTicket] = useState(425);
-  const [hasInteracted, setHasInteracted] = useState(false);
+  const { locations, apptsPerLocation, avgTicket, hasInteracted, setInputs } = useCalculator();
 
   const result = useMemo(
     () =>
@@ -45,9 +44,9 @@ export default function HeroCalculator() {
     [locations, apptsPerLocation, avgTicket]
   );
 
-  function handleInteraction() {
+  function handleInteraction(patch: Partial<{ locations: number; apptsPerLocation: number; avgTicket: number }>) {
+    setInputs({ ...patch });
     if (!hasInteracted) {
-      setHasInteracted(true);
       trackFormSubmit("Hero Calculator Interaction", {
         locations: String(locations),
         appts_per_location: String(apptsPerLocation),
@@ -84,10 +83,7 @@ export default function HeroCalculator() {
           value={locations}
           min={1}
           max={100}
-          onChange={(v) => {
-            setLocations(v);
-            handleInteraction();
-          }}
+          onChange={(v) => handleInteraction({ locations: v })}
         />
         <Field
           label="Appts / location / mo"
@@ -95,10 +91,7 @@ export default function HeroCalculator() {
           value={apptsPerLocation}
           min={1}
           max={5000}
-          onChange={(v) => {
-            setApptsPerLocation(v);
-            handleInteraction();
-          }}
+          onChange={(v) => handleInteraction({ apptsPerLocation: v })}
         />
         <Field
           label="Avg ticket ($)"
@@ -106,10 +99,7 @@ export default function HeroCalculator() {
           value={avgTicket}
           min={1}
           max={5000}
-          onChange={(v) => {
-            setAvgTicket(v);
-            handleInteraction();
-          }}
+          onChange={(v) => handleInteraction({ avgTicket: v })}
         />
       </div>
 
@@ -136,20 +126,22 @@ export default function HeroCalculator() {
 
       {/* CTAs */}
       <div className="flex flex-col sm:flex-row items-center gap-3">
-        <a
-          href="https://calendly.com/jim-etienneagency/30min"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full sm:w-auto sm:flex-1"
-        >
-          <Button
-            className="w-full rounded-full px-6 py-6 h-auto text-base sm:text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
-            onClick={() => trackCTAClick(ctaLabel, "Hero Calculator", "primary")}
+        <MagneticButton className="w-full sm:w-auto sm:flex-1">
+          <a
+            href="https://calendly.com/jim-etienneagency/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full"
           >
-            {ctaLabel}
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        </a>
+            <Button
+              className="w-full rounded-full px-6 py-6 h-auto text-base sm:text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
+              onClick={() => trackCTAClick(ctaLabel, "Hero Calculator", "primary")}
+            >
+              {ctaLabel}
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </a>
+        </MagneticButton>
         <Link href="/calculator">
           <span
             className="text-sm text-white/60 hover:text-white underline-offset-4 hover:underline cursor-pointer whitespace-nowrap"

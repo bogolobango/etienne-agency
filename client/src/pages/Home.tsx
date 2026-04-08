@@ -16,6 +16,7 @@ import ScrollCTA from "@/components/ScrollCTA";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
 import { useSEO } from "@/hooks/useSEO";
+import { CalculatorProvider } from "@/context/CalculatorContext";
 
 const jsonLd = [
   {
@@ -67,19 +68,21 @@ export default function Home() {
   }, []);
 
   return (
-    <div id="main-content" className="min-h-screen">
-      <Header />
-      <Hero />
-      <ProblemSection />
-      <SolutionSection />
-      <EarlyAdopterSection />
-      {/* Product Preview (dark section) */}
-      <SocialProofSection />
-      {/* Integrations + Differentiation + Social Proof */}
-      <IndustriesSection />
-      <FinalCTASection />
-      <Footer />
-      <ScrollCTA />
-    </div>
+    <CalculatorProvider>
+      <div id="main-content" className="min-h-screen">
+        <Header />
+        <Hero />
+        <ProblemSection />
+        <SolutionSection />
+        <EarlyAdopterSection />
+        {/* Product Preview (dark section) */}
+        <SocialProofSection />
+        {/* Integrations + Differentiation + Social Proof */}
+        <IndustriesSection />
+        <FinalCTASection />
+        <Footer />
+        <ScrollCTA />
+      </div>
+    </CalculatorProvider>
   );
 }

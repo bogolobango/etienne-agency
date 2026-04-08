@@ -25,6 +25,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { trackCTAClick } from "@/lib/analytics";
+import { useCalculator } from "@/context/CalculatorContext";
+import { formatCurrencyCompact } from "@shared/leakage";
+import MagneticButton from "@/components/MagneticButton";
+import SpotlightCard from "@/components/SpotlightCard";
 
 interface Tier {
   name: string;
@@ -133,6 +137,12 @@ const faqs = [
 
 export default function EarlyAdopterSection() {
   const [inView, setInView] = useState(false);
+  const { hasInteracted, result } = useCalculator();
+
+  // Personalized CTA label on the highlighted tier — only if they've interacted
+  const personalizedCtaLabel = hasInteracted && result.recoveryAnnual.expected > 0
+    ? `Reclaim your ${formatCurrencyCompact(result.recoveryAnnual.expected)}/yr`
+    : null;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -171,7 +181,11 @@ export default function EarlyAdopterSection() {
           }`}
         >
           {tiers.map((tier) => (
-            <PricingCard key={tier.name} tier={tier} />
+            <PricingCard
+              key={tier.name}
+              tier={tier}
+              personalizedCtaLabel={tier.highlighted ? personalizedCtaLabel : null}
+            />
           ))}
         </div>
 
@@ -236,17 +250,19 @@ export default function EarlyAdopterSection() {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
-            <Button
-              className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill"
-              onClick={() => trackCTAClick('Book a Revenue Call', 'Early Access Section', 'primary')}
-            >
-              Book a Revenue Call
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </a>
+          <MagneticButton className="inline-block">
+            <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
+              <Button
+                className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill"
+                onClick={() => trackCTAClick(personalizedCtaLabel ?? "Book a Revenue Call", 'Early Access Section', 'primary')}
+              >
+                {personalizedCtaLabel ?? "Book a Revenue Call"}
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </a>
+          </MagneticButton>
           <p className="text-sm text-muted-foreground mt-4">
-            20 minutes. We'll walk through your numbers together. Founding pricing available while the 3 spots last.
+            20 minutes with Jim. We'll walk through your numbers together. Founding pricing available while the 3 spots last.
           </p>
         </div>
       </div>
@@ -254,15 +270,22 @@ export default function EarlyAdopterSection() {
   );
 }
 
-function PricingCard({ tier }: { tier: Tier }) {
+interface PricingCardProps {
+  tier: Tier;
+  personalizedCtaLabel: string | null;
+}
+
+function PricingCard({ tier, personalizedCtaLabel }: PricingCardProps) {
   const base =
-    "relative rounded-2xl border p-7 sm:p-8 flex flex-col h-full transition-all duration-200 ";
+    "relative rounded-2xl border p-7 sm:p-8 flex flex-col h-full interactive-card ";
   const visual = tier.highlighted
-    ? "bg-white border-primary/60 shadow-xl shadow-primary/10 scale-[1.02] md:scale-[1.04]"
+    ? "bg-white border-primary/60 shadow-xl shadow-primary/10 md:scale-[1.03]"
     : "bg-white/80 border-border/60 shadow-sm";
 
-  return (
-    <div className={base + visual}>
+  const effectiveCtaLabel = personalizedCtaLabel ?? tier.ctaLabel;
+
+  const cardContent = (
+    <>
       {tier.badge && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-primary text-primary-foreground text-[11px] font-semibold uppercase tracking-wider whitespace-nowrap">
           {tier.badge}
@@ -306,11 +329,22 @@ function PricingCard({ tier }: { tier: Tier }) {
               ? "bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
               : "bg-white border-2 border-border text-foreground hover:border-primary/40 hover:bg-primary/5"
           }`}
-          onClick={() => trackCTAClick(tier.ctaLabel, `Pricing ${tier.name}`, tier.highlighted ? "primary" : "secondary")}
+          onClick={() => trackCTAClick(effectiveCtaLabel, `Pricing ${tier.name}`, tier.highlighted ? "primary" : "secondary")}
         >
-          {tier.ctaLabel}
+          {effectiveCtaLabel}
         </Button>
       </a>
-    </div>
+    </>
   );
+
+  // Highlighted tier gets a spotlight cursor effect
+  if (tier.highlighted) {
+    return (
+      <SpotlightCard className={`rounded-2xl ${base} ${visual}`} intensity={0.1} radius={420}>
+        {cardContent}
+      </SpotlightCard>
+    );
+  }
+
+  return <div className={base + visual}>{cardContent}</div>;
 }

@@ -6,7 +6,7 @@
 import { useEffect, useState, useRef } from "react";
 import { CheckCircle2 } from "lucide-react";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
-import DashboardPreview from "@/components/DashboardPreview";
+import PlaygroundDashboard from "@/components/PlaygroundDashboard";
 
 export default function SocialProofSection() {
   const [inView, setInView] = useState(false);
@@ -68,15 +68,21 @@ export default function SocialProofSection() {
           </p>
         </div>
 
-        {/* Primary visual: bento dashboard preview built with real chart primitives.
-            The video demo lives below as secondary proof. */}
+        {/* Primary visual: interactive playground dashboard. Recomputes live
+            from the visitor's calculator inputs + booking system tab +
+            location scale. Tiles are click-expandable. */}
         <div
           className={`max-w-5xl mx-auto mb-10 transition-all duration-700 delay-200 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <DashboardPreview />
+          <PlaygroundDashboard />
         </div>
+
+        <p className="text-center text-xs text-white/40 mb-10 max-w-xl mx-auto">
+          Switch booking systems. Change the location count. The dashboard
+          recalculates. Click any tile to drill in.
+        </p>
 
         {/* Secondary: motion demo (lazy-loaded) */}
         <div

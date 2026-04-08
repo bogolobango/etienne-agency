@@ -9,6 +9,7 @@ import rateLimit from "express-rate-limit";
 import morgan from "morgan";
 import nodemailer from "nodemailer";
 import { contactSchema, escapeHtml, sanitizeHeader, type ContactFormData } from "./contact.schema.js";
+import { revenueReportSchema, buildReportEmail } from "./revenue-report.schema.js";
 import { getPageMeta, getBreadcrumbJsonLd, BASE_URL, OG_IMAGE, SITE_NAME } from "../shared/seoMeta.js";
 import { logger } from "./logger.js";
 
@@ -305,6 +306,103 @@ async function startServer() {
         error: err instanceof Error ? err.message : "unknown error",
       });
     });
+  });
+
+  // --- Revenue report endpoint ---
+  const reportLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 5,
+    message: { error: "Too many requests. Please try again later." },
+    standardHeaders: true,
+    legacyHeaders: false,
+  });
+
+  app.post("/api/revenue-report", reportLimiter, async (req, res) => {
+    // CSRF layer 1: verify Origin header in production
+    if (process.env.NODE_ENV === "production") {
+      const origin = req.header("Origin") || req.header("Referer") || "";
+      const expected = process.env.CORS_ORIGIN || "https://etienneagency.com";
+      if (!origin.startsWith(expected)) {
+        res.status(403).json({ error: "Forbidden" });
+        return;
+      }
+    }
+
+    // CSRF layer 2: custom header
+    if (req.header("X-Requested-With") !== "fetch") {
+      res.status(403).json({ error: "Forbidden" });
+      return;
+    }
+
+    const parsed = revenueReportSchema.safeParse(req.body);
+    if (!parsed.success) {
+      res.status(400).json({
+        error: "Validation failed",
+        details: parsed.error.issues.map((i) => ({
+          field: i.path.join("."),
+          message: i.message,
+        })),
+      });
+      return;
+    }
+
+    const data = parsed.data;
+
+    // Respond immediately — email send is fire-and-forget
+    res.json({
+      success: true,
+      message: "Report sent. Check your inbox.",
+    });
+
+    logger.info("Revenue report request processed", {
+      email: data.email,
+      locations: data.locations,
+      submittedAt: new Date().toISOString(),
+    });
+
+    // Fire-and-forget: send the report to the visitor + notify Jim
+    (async () => {
+      const transporter = getSmtpTransporter();
+      if (!transporter) {
+        logger.warn("SMTP not configured — skipping revenue report email delivery");
+        return;
+      }
+
+      try {
+        const { subject, html, text } = buildReportEmail(data);
+
+        await transporter.sendMail({
+          from: process.env.SMTP_FROM || "noreply@etienneagency.com",
+          to: data.email,
+          subject: sanitizeHeader(subject),
+          html,
+          text,
+        });
+
+        if (process.env.NOTIFY_EMAIL) {
+          await transporter.sendMail({
+            from: process.env.SMTP_FROM || "noreply@etienneagency.com",
+            to: process.env.NOTIFY_EMAIL,
+            subject: sanitizeHeader(`New Revenue Gap Report Request: ${data.email}`),
+            html: `
+              <div style="font-family: -apple-system, sans-serif; max-width: 600px; margin: 0 auto;">
+                <h2 style="color: #00D4AA;">New report sent — possible warm lead</h2>
+                <table style="width: 100%; border-collapse: collapse;">
+                  <tr><td style="padding: 6px 0; color: #6B7280; width: 160px;">Email</td><td style="padding: 6px 0;"><a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></td></tr>
+                  ${data.name ? `<tr><td style="padding: 6px 0; color: #6B7280;">Name</td><td style="padding: 6px 0;">${escapeHtml(data.name)}</td></tr>` : ""}
+                  ${data.company ? `<tr><td style="padding: 6px 0; color: #6B7280;">Company</td><td style="padding: 6px 0;">${escapeHtml(data.company)}</td></tr>` : ""}
+                  <tr><td style="padding: 6px 0; color: #6B7280;">Locations</td><td style="padding: 6px 0;">${data.locations}</td></tr>
+                  <tr><td style="padding: 6px 0; color: #6B7280;">Appts / location / mo</td><td style="padding: 6px 0;">${data.apptsPerLocation}</td></tr>
+                  <tr><td style="padding: 6px 0; color: #6B7280;">Avg ticket</td><td style="padding: 6px 0;">$${data.avgTicket}</td></tr>
+                </table>
+              </div>
+            `,
+          });
+        }
+      } catch (err) {
+        logger.error("Failed to deliver revenue report email", { error: String(err) });
+      }
+    })();
   });
 
   // --- Static files ---

@@ -5,17 +5,20 @@
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import SundayProblemSection from "@/components/SundayProblemSection";
 import ProblemSection from "@/components/ProblemSection";
-import SolutionSection from "@/components/SolutionSection";
+import InteractiveSolutions from "@/components/InteractiveSolutions";
 import EarlyAdopterSection from "@/components/EarlyAdopterSection";
 import SocialProofSection from "@/components/SocialProofSection";
 import IndustriesSection from "@/components/IndustriesSection";
-import FinalCTASection from "@/components/FinalCTASection";
+import FounderSection from "@/components/FounderSection";
+import TwoStepClose from "@/components/TwoStepClose";
 import Footer from "@/components/Footer";
 import ScrollCTA from "@/components/ScrollCTA";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
 import { useSEO } from "@/hooks/useSEO";
+import { CalculatorProvider } from "@/context/CalculatorContext";
 
 const jsonLd = [
   {
@@ -67,19 +70,40 @@ export default function Home() {
   }, []);
 
   return (
-    <div id="main-content" className="min-h-screen">
-      <Header />
-      <Hero />
-      <ProblemSection />
-      <SolutionSection />
-      <EarlyAdopterSection />
-      {/* Product Preview (dark section) */}
-      <SocialProofSection />
-      {/* Integrations + Differentiation + Social Proof */}
-      <IndustriesSection />
-      <FinalCTASection />
-      <Footer />
-      <ScrollCTA />
-    </div>
+    <CalculatorProvider>
+      <div id="main-content" className="min-h-screen">
+        <Header />
+
+        {/* 1 — Recognition: hero with personalized calculator */}
+        <Hero />
+
+        {/* 2 — Empathy: the Sunday problem */}
+        <SundayProblemSection />
+
+        {/* 3 — Quantification: industry benchmarks + personalized projection */}
+        <ProblemSection />
+
+        {/* 4 — Intelligence layer: 3 interactive module demos */}
+        <InteractiveSolutions />
+
+        {/* 5 — Flagship playground: interactive dashboard (dark section) */}
+        <SocialProofSection />
+
+        {/* 6 — Integrations + differentiation (industries section) */}
+        <IndustriesSection />
+
+        {/* 7 — Founder POV: the only real face on the site */}
+        <FounderSection />
+
+        {/* 8 — The deal: Early Access Program with personalized CTA */}
+        <EarlyAdopterSection />
+
+        {/* 9 — Final close: two-step email-gated CTA with walkthrough */}
+        <TwoStepClose />
+
+        <Footer />
+        <ScrollCTA />
+      </div>
+    </CalculatorProvider>
   );
 }

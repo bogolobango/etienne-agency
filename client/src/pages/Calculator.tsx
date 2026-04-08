@@ -29,7 +29,7 @@ import { useSEO } from "@/hooks/useSEO";
 import { trackCTAClick, trackFormSubmit } from "@/lib/analytics";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
-import { computeLeakage, formatCurrency, BENCHMARKS, RECOVERY } from "@/lib/leakage";
+import { computeLeakage, formatCurrency, BENCHMARKS, RECOVERY } from "@shared/leakage";
 
 const heroOrbs: OrbConfig[] = [
   { size: 480, color: "#00D4AA", x: "-6%", y: "-8%", opacity: 0.32, duration: 14, delay: 0, parallaxFactor: 50 },

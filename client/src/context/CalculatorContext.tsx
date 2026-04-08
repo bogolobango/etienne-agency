@@ -13,7 +13,7 @@
  */
 
 import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
-import { computeLeakage, BENCHMARKS, type LeakageBreakdown } from "@/lib/leakage";
+import { computeLeakage, BENCHMARKS, type LeakageBreakdown } from "@shared/leakage";
 
 interface CalculatorInputs {
   locations: number;

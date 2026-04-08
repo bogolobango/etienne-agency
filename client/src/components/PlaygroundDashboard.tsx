@@ -26,7 +26,7 @@ import {
 } from "recharts";
 import { Sparkles, TrendingUp, TrendingDown, AlertCircle, ChevronDown, ChevronUp } from "lucide-react";
 import { useCalculator } from "@/context/CalculatorContext";
-import { formatCurrencyCompact } from "@/lib/leakage";
+import { formatCurrencyCompact } from "@shared/leakage";
 
 type BookingSystem = "zenoti" | "boulevard" | "mangomint";
 

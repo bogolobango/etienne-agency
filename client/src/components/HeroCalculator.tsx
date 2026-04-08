@@ -26,7 +26,7 @@ import {
   computeLeakage,
   formatCurrencyCompact,
   BENCHMARKS,
-} from "@/lib/leakage";
+} from "@shared/leakage";
 import { useCalculator } from "@/context/CalculatorContext";
 import MagneticButton from "@/components/MagneticButton";
 

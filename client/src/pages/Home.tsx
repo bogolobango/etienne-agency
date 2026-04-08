@@ -12,7 +12,7 @@ import EarlyAdopterSection from "@/components/EarlyAdopterSection";
 import SocialProofSection from "@/components/SocialProofSection";
 import IndustriesSection from "@/components/IndustriesSection";
 import FounderSection from "@/components/FounderSection";
-import FinalCTASection from "@/components/FinalCTASection";
+import TwoStepClose from "@/components/TwoStepClose";
 import Footer from "@/components/Footer";
 import ScrollCTA from "@/components/ScrollCTA";
 import { usePageView } from "@/hooks/usePageView";
@@ -98,8 +98,8 @@ export default function Home() {
         {/* 8 — The deal: Early Access Program with personalized CTA */}
         <EarlyAdopterSection />
 
-        {/* 9 — Final close (upgraded to TwoStepClose in the next commit) */}
-        <FinalCTASection />
+        {/* 9 — Final close: two-step email-gated CTA with walkthrough */}
+        <TwoStepClose />
 
         <Footer />
         <ScrollCTA />

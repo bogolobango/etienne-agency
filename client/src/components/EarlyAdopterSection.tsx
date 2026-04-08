@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/accordion";
 import { trackCTAClick } from "@/lib/analytics";
 import { useCalculator } from "@/context/CalculatorContext";
-import { formatCurrencyCompact } from "@/lib/leakage";
+import { formatCurrencyCompact } from "@shared/leakage";
 import MagneticButton from "@/components/MagneticButton";
 import SpotlightCard from "@/components/SpotlightCard";
 

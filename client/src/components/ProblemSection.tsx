@@ -10,7 +10,7 @@
 
 import { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, Cell, ResponsiveContainer, LabelList } from "recharts";
-import { BENCHMARKS, formatCurrencyCompact } from "@/lib/leakage";
+import { BENCHMARKS, formatCurrencyCompact } from "@shared/leakage";
 import { useCalculator } from "@/context/CalculatorContext";
 import CountUp from "@/components/CountUp";
 

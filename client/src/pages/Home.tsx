@@ -5,11 +5,13 @@
 import { useEffect } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import SundayProblemSection from "@/components/SundayProblemSection";
 import ProblemSection from "@/components/ProblemSection";
-import SolutionSection from "@/components/SolutionSection";
+import InteractiveSolutions from "@/components/InteractiveSolutions";
 import EarlyAdopterSection from "@/components/EarlyAdopterSection";
 import SocialProofSection from "@/components/SocialProofSection";
 import IndustriesSection from "@/components/IndustriesSection";
+import FounderSection from "@/components/FounderSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
 import ScrollCTA from "@/components/ScrollCTA";
@@ -71,15 +73,34 @@ export default function Home() {
     <CalculatorProvider>
       <div id="main-content" className="min-h-screen">
         <Header />
+
+        {/* 1 — Recognition: hero with personalized calculator */}
         <Hero />
+
+        {/* 2 — Empathy: the Sunday problem */}
+        <SundayProblemSection />
+
+        {/* 3 — Quantification: industry benchmarks + personalized projection */}
         <ProblemSection />
-        <SolutionSection />
-        <EarlyAdopterSection />
-        {/* Product Preview (dark section) */}
+
+        {/* 4 — Intelligence layer: 3 interactive module demos */}
+        <InteractiveSolutions />
+
+        {/* 5 — Flagship playground: interactive dashboard (dark section) */}
         <SocialProofSection />
-        {/* Integrations + Differentiation + Social Proof */}
+
+        {/* 6 — Integrations + differentiation (industries section) */}
         <IndustriesSection />
+
+        {/* 7 — Founder POV: the only real face on the site */}
+        <FounderSection />
+
+        {/* 8 — The deal: Early Access Program with personalized CTA */}
+        <EarlyAdopterSection />
+
+        {/* 9 — Final close (upgraded to TwoStepClose in the next commit) */}
         <FinalCTASection />
+
         <Footer />
         <ScrollCTA />
       </div>

@@ -606,6 +606,12 @@
 .gradient-orb-float-2 { animation: orb-float-2 ease-in-out infinite; }
 .gradient-orb-float-3 { animation: orb-float-3 ease-in-out infinite; }
 
+/* Used by InteractiveSolutions AI Analyst demo lines */
+@keyframes eip-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   *,

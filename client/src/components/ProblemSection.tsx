@@ -10,7 +10,9 @@
 
 import { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, Cell, ResponsiveContainer, LabelList } from "recharts";
-import { BENCHMARKS } from "@/lib/leakage";
+import { BENCHMARKS, formatCurrencyCompact } from "@/lib/leakage";
+import { useCalculator } from "@/context/CalculatorContext";
+import CountUp from "@/components/CountUp";
 
 interface ComparisonStat {
   label: string;
@@ -58,6 +60,7 @@ const stats: ComparisonStat[] = [
 
 export default function ProblemSection() {
   const [inView, setInView] = useState(false);
+  const { hasInteracted, result, locations } = useCalculator();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -113,6 +116,25 @@ export default function ProblemSection() {
             />
           ))}
         </div>
+
+        {/* Personalized projection line — only shown if the visitor has actually
+            touched the hero calculator. Otherwise we don't fabricate a number. */}
+        {hasInteracted && result.totalAnnualGap > 0 && (
+          <div className="max-w-3xl mx-auto mt-10 text-center">
+            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full border border-primary/30 bg-primary/[0.04]">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              <p className="text-sm sm:text-base text-foreground">
+                For a {locations}-location group like yours, we project roughly{" "}
+                <CountUp
+                  value={result.totalAnnualGap}
+                  format={(n) => formatCurrencyCompact(n)}
+                  className="font-display text-lg sm:text-xl text-primary font-semibold"
+                />
+                <span className="text-muted-foreground"> /year of addressable leakage.</span>
+              </p>
+            </div>
+          </div>
+        )}
 
         <p className="text-center text-xs text-muted-foreground/60 italic mt-8 max-w-2xl mx-auto">
           Benchmarks sourced from AmSpa, Mindbody Wellness Index, and Zenoti industry data. Typical values are the median of published ranges; top-performer values reflect top-decile or top-quartile operators.

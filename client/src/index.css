@@ -143,18 +143,30 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  h1, h2, h3, h4, h5, h6 {
+  /* Sub-section headings stay sans (DM Sans) for UI density. */
+  h3, h4, h5, h6 {
     font-family: 'DM Sans', -apple-system, system-ui, sans-serif;
     color: var(--foreground);
     letter-spacing: -0.02em;
-    line-height: 1.15;
+    line-height: 1.2;
+    font-weight: 600;
+  }
+  /* Display headings (h1, h2) use Playfair Display — editorial serif pairing
+     sourced from the ui-ux-pro-max skill typography database (entry #1:
+     "Classic Elegant", best-for explicitly lists spa/beauty/editorial). */
+  h1, h2 {
+    font-family: 'Playfair Display', 'DM Sans', Georgia, serif;
+    color: var(--foreground);
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+    font-weight: 700;
   }
   h1 { font-weight: 700; }
   h2 { font-weight: 600; }
-  h3 { font-weight: 600; }
   .font-display {
-    font-family: 'DM Sans', -apple-system, system-ui, sans-serif;
+    font-family: 'Playfair Display', 'DM Sans', Georgia, serif;
     font-weight: 700;
+    letter-spacing: -0.015em;
   }
   .font-sans {
     font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -272,12 +284,20 @@
       linear-gradient(135deg, #F0FDF9 0%, #F3F4F8 50%, #EFF6FF 100%);
   }
 
-  /* Dark section for hero, product preview, CTA */
+  /* Dark section for hero, product preview, CTA.
+     Now includes a subtle editorial grid underlay (barely perceptible —
+     evokes data-product precision without overpowering content). */
   .section-dark {
-    background: linear-gradient(135deg, #0A0F1C 0%, #141929 100%);
+    background-color: #0A0F1C;
+    background-image:
+      linear-gradient(135deg, #0A0F1C 0%, #141929 100%),
+      linear-gradient(rgba(0, 212, 170, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 170, 0.025) 1px, transparent 1px);
+    background-size: auto, 48px 48px, 48px 48px;
+    background-blend-mode: normal, overlay, overlay;
   }
 
-  /* Subtle dot pattern */
+  /* Subtle dot pattern (still available as a utility class) */
   .section-dot-pattern {
     background-image: radial-gradient(circle, rgba(0, 212, 170, 0.08) 1px, transparent 1px);
     background-size: 24px 24px;

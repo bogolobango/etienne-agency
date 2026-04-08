@@ -6,6 +6,7 @@
 import { useEffect, useState, useRef } from "react";
 import { CheckCircle2 } from "lucide-react";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
+import DashboardPreview from "@/components/DashboardPreview";
 
 export default function SocialProofSection() {
   const [inView, setInView] = useState(false);
@@ -67,27 +68,26 @@ export default function SocialProofSection() {
           </p>
         </div>
 
-        {/* Product screenshot placeholder */}
+        {/* Primary visual: bento dashboard preview built with real chart primitives.
+            The video demo lives below as secondary proof. */}
         <div
-          className={`max-w-4xl mx-auto mb-16 transition-all duration-700 delay-200 ${
+          className={`max-w-5xl mx-auto mb-10 transition-all duration-700 delay-200 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
+          <DashboardPreview />
+        </div>
+
+        {/* Secondary: motion demo (lazy-loaded) */}
+        <div
+          className={`max-w-4xl mx-auto mb-16 transition-all duration-700 delay-300 ${
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          <p className="text-center text-[11px] uppercase tracking-widest text-white/40 mb-4">
+            See it in motion
+          </p>
           <div className="rounded-xl border border-white/10 overflow-hidden shadow-2xl shadow-black/40">
-            {/* Minimal browser chrome */}
-            <div className="bg-[#1E2436] px-4 py-3 flex items-center gap-2">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-white/10" />
-                <div className="w-3 h-3 rounded-full bg-white/10" />
-                <div className="w-3 h-3 rounded-full bg-white/10" />
-              </div>
-              <div className="flex-1 mx-4">
-                <div className="bg-white/5 rounded-md px-3 py-1 text-xs text-white/40 text-center">
-                  EIP Dashboard — Revenue Intelligence
-                </div>
-              </div>
-            </div>
-            {/* Dashboard demo — lazy-loaded to avoid 24MB eager download */}
             <div ref={videoContainerRef} className="bg-[#0A0F1C]" style={{ aspectRatio: "16/9" }}>
               {videoVisible && (
                 <video

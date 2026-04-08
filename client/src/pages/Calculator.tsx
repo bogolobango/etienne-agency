@@ -1,16 +1,11 @@
 /**
- * Revenue Gap Calculator — Interactive tool aligned with the EIP
- * dashboard leakage model (leakage-model.ts, GapAnalysis.tsx,
- * revenue-opportunities.ts).
+ * Revenue Gap Calculator — Interactive tool using the shared leakage
+ * model at client/src/lib/leakage.ts. Every benchmark is sourced to
+ * published industry data; see that file for full methodology.
  *
- * Leakage categories:
- *   1. No-Show Loss        = noShowRate × avgTicket × monthlyAppointments
- *   2. Utilization Gap      = totalRevenue × ((benchmarkUtil - actualUtil) / benchmarkUtil) × 0.4
- *   3. Rebooking Gap        = totalRevenue × 0.06
- *   4. After-Hours Loss     = totalRevenue × 0.08
- *
- * Recovery (90-day estimate from GapAnalysis.tsx):
- *   recovered = (noShowLoss × 0.30) + (utilGap × 0.25) + (totalRevenue × 0.02)
+ * Displays results as RANGES (not point estimates), explicitly shows
+ * which losses were deduplicated (no-show vs utilization overlap), and
+ * cites sources inline.
  */
 
 import { useState, useEffect } from "react";
@@ -22,10 +17,11 @@ import {
   DollarSign,
   TrendingDown,
   Target,
-  Clock,
+  Phone,
   UserX,
   CalendarX2,
   Calculator as CalcIcon,
+  Info,
 } from "lucide-react";
 import { usePageView } from "@/hooks/usePageView";
 import { useScrollTracking } from "@/hooks/useScrollTracking";
@@ -33,36 +29,19 @@ import { useSEO } from "@/hooks/useSEO";
 import { trackCTAClick, trackFormSubmit } from "@/lib/analytics";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
+import { computeLeakage, formatCurrency, BENCHMARKS, RECOVERY } from "@/lib/leakage";
 
 const heroOrbs: OrbConfig[] = [
-  { size: 480, color: "#00D4AA", x: "-6%", y: "-8%", opacity: 0.4, duration: 14, delay: 0, parallaxFactor: 50 },
-  { size: 400, color: "#2D5BFF", x: "72%", y: "45%", opacity: 0.35, duration: 12, delay: 3, parallaxFactor: -30 },
+  { size: 480, color: "#00D4AA", x: "-6%", y: "-8%", opacity: 0.32, duration: 14, delay: 0, parallaxFactor: 50 },
+  { size: 400, color: "#2D5BFF", x: "72%", y: "45%", opacity: 0.28, duration: 12, delay: 3, parallaxFactor: -30 },
 ];
 
 const resultOrbs: OrbConfig[] = [
-  { size: 420, color: "#FF8C42", x: "-6%", y: "15%", opacity: 0.25, duration: 13, delay: 1, parallaxFactor: 40 },
-  { size: 360, color: "#00D4AA", x: "80%", y: "60%", opacity: 0.25, duration: 11, delay: 5, parallaxFactor: -25 },
+  { size: 420, color: "#00D4AA", x: "-6%", y: "15%", opacity: 0.2, duration: 13, delay: 1, parallaxFactor: 40 },
+  { size: 360, color: "#2D5BFF", x: "80%", y: "60%", opacity: 0.18, duration: 11, delay: 5, parallaxFactor: -25 },
 ];
 
-// Benchmark constants (from benchmark-engine.ts / leakage-model.ts)
-const BENCHMARK_UTILIZATION = 80; // top-quartile target
-const REBOOKING_GAP_FACTOR = 0.06; // 6% of revenue (from GapAnalysis.tsx)
-const AFTER_HOURS_FACTOR = 0.08; // 8% of revenue (from RevenueScorecard.tsx)
-const UTILIZATION_WEIGHT = 0.4; // from RevenueScorecard.tsx
-
-// Recovery coefficients (from GapAnalysis.tsx estimatedRecovery formula)
-const NOSHOW_RECOVERY = 0.30;
-const UTIL_RECOVERY = 0.25;
-const BASELINE_RECOVERY_FACTOR = 0.02;
-
-function fmt(value: number): string {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(value);
-}
+const fmt = formatCurrency;
 
 export default function Calculator() {
   usePageView("Revenue Gap Calculator");
@@ -72,50 +51,43 @@ export default function Calculator() {
   const [inView, setInView] = useState(false);
   const [showResults, setShowResults] = useState(false);
 
-  // Inputs
-  const [locations, setLocations] = useState(3);
-  const [monthlyAppts, setMonthlyAppts] = useState(250);
-  const [avgTicket, setAvgTicket] = useState(425);
-  const [noShowPct, setNoShowPct] = useState(18);
-  const [utilizationPct, setUtilizationPct] = useState(62);
-  const [rebookPct, setRebookPct] = useState(58);
+  // Inputs — defaults chosen as industry medians so the result is meaningful
+  // on first paint even before the visitor adjusts anything.
+  const [locations, setLocations] = useState<number>(3);
+  const [monthlyAppts, setMonthlyAppts] = useState<number>(250);
+  const [avgTicket, setAvgTicket] = useState<number>(425);
+  const [noShowPct, setNoShowPct] = useState<number>(18);
+  const [utilizationPct, setUtilizationPct] = useState<number>(BENCHMARKS.utilization.median);
+  const [rebookPct, setRebookPct] = useState<number>(BENCHMARKS.rebooking.median - 5);
 
   useEffect(() => {
     setInView(true);
   }, []);
 
-  // ── Leakage Model (matches leakage-model.ts) ──────────────────────
-  const totalAppts = monthlyAppts * locations;
-  const totalRevenue = totalAppts * avgTicket;
+  // ── Leakage model (shared source of truth — client/src/lib/leakage.ts)
+  const result = computeLeakage({
+    locations,
+    monthlyApptsPerLocation: monthlyAppts,
+    avgTicket,
+    noShowPct,
+    utilizationPct,
+    rebookPct,
+  });
 
-  // 1. No-Show Loss = noShowRate × avgTicket × appointments
-  const noShowCount = Math.round(totalAppts * (noShowPct / 100));
-  const noShowLoss = noShowCount * avgTicket;
-
-  // 2. Utilization Gap = revenue × ((benchmark - actual) / benchmark) × weight
-  const utilGapPct = Math.max(0, BENCHMARK_UTILIZATION - utilizationPct);
-  const utilGap = Math.round(totalRevenue * (utilGapPct / BENCHMARK_UTILIZATION) * UTILIZATION_WEIGHT);
-
-  // 3. Rebooking Gap = revenue × 0.06 (scaled by how far below benchmark)
-  const BENCHMARK_REBOOK = 72;
-  const rebookGapPct = Math.max(0, BENCHMARK_REBOOK - rebookPct);
-  const rebookGap = Math.round(totalRevenue * REBOOKING_GAP_FACTOR * (rebookGapPct / BENCHMARK_REBOOK));
-
-  // 4. After-Hours / Slow Response Loss = revenue × 0.08
-  const afterHoursLoss = Math.round(totalRevenue * AFTER_HOURS_FACTOR);
-
-  // Total leakage
-  const totalLeakage = noShowLoss + utilGap + rebookGap + afterHoursLoss;
-  const annualLeakage = totalLeakage * 12;
-
-  // Recovery estimate (from GapAnalysis.tsx)
-  const recoverable = Math.round(
-    (noShowLoss * NOSHOW_RECOVERY) + (utilGap * UTIL_RECOVERY) + (totalRevenue * BASELINE_RECOVERY_FACTOR)
+  const totalRevenue = result.totalMonthlyRevenue;
+  const totalLeakage = result.totalMonthlyGap;
+  const annualLeakage = result.totalAnnualGap;
+  const noShowLoss = result.noShowLoss;
+  const utilGap = result.utilizationLoss;
+  const rebookGap = result.rebookingLoss;
+  const afterHoursLoss = result.missedCallLoss;
+  const noShowCount = Math.round(
+    locations * monthlyAppts * Math.max(0, noShowPct - BENCHMARKS.noShow.floor) / 100
   );
-  const recoverableAnnual = recoverable * 12;
-
-  // Theoretical capacity
-  const theoreticalRevenue = totalRevenue + totalLeakage;
+  const utilGapPct = Math.max(0, BENCHMARKS.utilization.median - utilizationPct);
+  const rebookGapPct = Math.max(0, BENCHMARKS.rebooking.median - rebookPct);
+  const recoverable = result.recoveryMonthly.expected;
+  const recoverableAnnual = result.recoveryAnnual.expected;
 
   function handleCalculate() {
     setShowResults(true);
@@ -127,6 +99,7 @@ export default function Calculator() {
       utilization_pct: String(utilizationPct),
       rebook_pct: String(rebookPct),
       total_monthly_gap: String(totalLeakage),
+      demand_loss_source: result.demandLossSource,
     });
     setTimeout(() => {
       document.getElementById("results")?.scrollIntoView({ behavior: "smooth" });
@@ -309,25 +282,31 @@ export default function Calculator() {
                 </p>
               </div>
 
-              {/* Leakage Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-                <div className="card-on-alt p-5 text-center">
-                  <div className="icon-container-lg mx-auto mb-3">
-                    <CalendarX2 className="w-5 h-5 text-red-500" />
+              {/* Leakage Cards — show the dedupe winner + rebooking + missed calls.
+                  The "loser" of the no-show vs utilization overlap is hidden so the
+                  total reads honestly. A note on the winning card explains the overlap. */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                {result.demandLossSource === "utilization" ? (
+                  <div className="card-on-alt p-5 text-center">
+                    <div className="icon-container-lg mx-auto mb-3">
+                      <TrendingDown className="w-5 h-5 text-amber-500" />
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-1">Utilization Gap</p>
+                    <p className="font-display text-2xl text-foreground">{fmt(utilGap)}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{utilGapPct}pts below {BENCHMARKS.utilization.median}% median</p>
                   </div>
-                  <p className="text-xs text-muted-foreground mb-1">No-Show Loss</p>
-                  <p className="font-display text-2xl text-foreground">{fmt(noShowLoss)}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{noShowCount} no-shows/mo</p>
-                </div>
-
-                <div className="card-on-alt p-5 text-center">
-                  <div className="icon-container-lg mx-auto mb-3">
-                    <TrendingDown className="w-5 h-5 text-amber-500" />
+                ) : (
+                  <div className="card-on-alt p-5 text-center">
+                    <div className="icon-container-lg mx-auto mb-3">
+                      <CalendarX2 className="w-5 h-5 text-red-500" />
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-1">No-Show Loss</p>
+                    <p className="font-display text-2xl text-foreground">{fmt(noShowLoss)}</p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {noShowCount} excess no-shows/mo above {BENCHMARKS.noShow.floor}% floor
+                    </p>
                   </div>
-                  <p className="text-xs text-muted-foreground mb-1">Utilization Gap</p>
-                  <p className="font-display text-2xl text-foreground">{fmt(utilGap)}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{utilGapPct}pts below benchmark</p>
-                </div>
+                )}
 
                 <div className="card-on-alt p-5 text-center">
                   <div className="icon-container-lg mx-auto mb-3">
@@ -335,43 +314,68 @@ export default function Calculator() {
                   </div>
                   <p className="text-xs text-muted-foreground mb-1">Rebooking Gap</p>
                   <p className="font-display text-2xl text-foreground">{fmt(rebookGap)}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{rebookGapPct}pts below 72% benchmark</p>
+                  <p className="text-xs text-muted-foreground mt-1">{rebookGapPct}pts below {BENCHMARKS.rebooking.median}% median</p>
                 </div>
 
                 <div className="card-on-alt p-5 text-center">
                   <div className="icon-container-lg mx-auto mb-3">
-                    <Clock className="w-5 h-5 text-blue-500" />
+                    <Phone className="w-5 h-5 text-blue-500" />
                   </div>
-                  <p className="text-xs text-muted-foreground mb-1">Response Gap Loss</p>
+                  <p className="text-xs text-muted-foreground mb-1">Missed-Call Loss</p>
                   <p className="font-display text-2xl text-foreground">{fmt(afterHoursLoss)}</p>
-                  <p className="text-xs text-muted-foreground mt-1">Revenue lost to slow or missed lead follow-up across locations</p>
+                  <p className="text-xs text-muted-foreground mt-1">After-hours + unanswered calls (Marchex data)</p>
                 </div>
               </div>
 
+              {/* Methodology notes — every loss we dropped or deduplicated is shown here */}
+              {result.notes.length > 0 && (
+                <div className="max-w-3xl mx-auto mb-12 rounded-xl border border-border/60 bg-white/60 p-4 text-xs text-muted-foreground">
+                  <div className="flex items-start gap-2">
+                    <Info className="w-4 h-4 flex-shrink-0 mt-0.5 text-muted-foreground/70" />
+                    <div>
+                      <p className="font-semibold text-foreground mb-1">How we computed this</p>
+                      <ul className="space-y-1">
+                        {result.notes.map((note, i) => (
+                          <li key={i}>• {note}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Recovery + Breakdown */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                {/* Recovery */}
+                {/* Recovery — shown as a RANGE to avoid false precision */}
                 <div className="card-on-alt p-6 sm:p-8 border-primary/30">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="icon-container-lg">
                       <Target className="w-5 h-5 text-primary" />
                     </div>
-                    <h3 className="font-display text-xl text-foreground">90-Day Recovery Estimate</h3>
+                    <h3 className="font-display text-xl text-foreground">Recovery range (annual)</h3>
                   </div>
-                  <p className="font-display text-4xl text-primary mb-1">{fmt(recoverable)}<span className="text-lg">/mo</span></p>
-                  <p className="text-sm text-muted-foreground mb-4">{fmt(recoverableAnnual)} annualized</p>
+                  <p className="font-display text-4xl text-primary mb-1">
+                    {fmt(result.recoveryAnnual.low)}
+                    <span className="text-muted-foreground/60 mx-2">–</span>
+                    {fmt(result.recoveryAnnual.high)}
+                  </p>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Expected case: <span className="font-semibold text-foreground">{fmt(recoverableAnnual)}/year</span>
+                    {" · "}
+                    {fmt(recoverable)}/month
+                  </p>
                   <div className="space-y-2 text-xs text-muted-foreground">
                     <div className="flex justify-between">
-                      <span>No-show recovery (30% recapture)</span>
-                      <span className="text-foreground">{fmt(Math.round(noShowLoss * NOSHOW_RECOVERY))}</span>
+                      <span>Conservative ({Math.round(RECOVERY.low * 100)}% of gap)</span>
+                      <span className="text-foreground">{fmt(result.recoveryMonthly.low)}/mo</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Utilization improvement (25%)</span>
-                      <span className="text-foreground">{fmt(Math.round(utilGap * UTIL_RECOVERY))}</span>
+                      <span>Expected ({Math.round(RECOVERY.expected * 100)}% of gap)</span>
+                      <span className="text-foreground">{fmt(result.recoveryMonthly.expected)}/mo</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Baseline operational gains</span>
-                      <span className="text-foreground">{fmt(Math.round(totalRevenue * BASELINE_RECOVERY_FACTOR))}</span>
+                      <span>Upside ({Math.round(RECOVERY.high * 100)}% of gap)</span>
+                      <span className="text-foreground">{fmt(result.recoveryMonthly.high)}/mo</span>
                     </div>
                   </div>
                 </div>
@@ -390,20 +394,23 @@ export default function Calculator() {
                       <span className="font-semibold text-foreground">{fmt(totalRevenue)}</span>
                     </div>
                     <div className="flex justify-between border-b border-border pb-2">
-                      <span>Total monthly leakage</span>
+                      <span>Addressable monthly gap</span>
                       <span className="font-semibold text-red-500">-{fmt(totalLeakage)}</span>
                     </div>
                     <div className="flex justify-between border-b border-border pb-2">
-                      <span>Theoretical capacity</span>
-                      <span className="font-semibold text-foreground">{fmt(theoreticalRevenue)}</span>
-                    </div>
-                    <div className="flex justify-between pt-1">
-                      <span className="font-semibold text-primary">Leakage as % of revenue</span>
+                      <span>Gap as % of revenue</span>
                       <span className="font-semibold text-primary">
-                        {totalRevenue > 0 ? ((totalLeakage / totalRevenue) * 100).toFixed(1) : 0}%
+                        {result.gapAsPctOfRevenue.toFixed(1)}%
                       </span>
                     </div>
+                    <div className="flex justify-between pt-1">
+                      <span className="font-semibold text-foreground">Expected recovery / mo</span>
+                      <span className="font-semibold text-primary">{fmt(recoverable)}</span>
+                    </div>
                   </div>
+                  <p className="text-[11px] text-muted-foreground/70 mt-4 leading-relaxed">
+                    Benchmarks from AmSpa, Mindbody Wellness Index, Zenoti, and Marchex. Losses computed against industry median (not top-decile). No-show and utilization losses deduplicated to avoid double-counting.
+                  </p>
                 </div>
               </div>
 

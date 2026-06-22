@@ -1,5 +1,5 @@
 /**
- * Home Page — Revenue Intelligence for Multi-Location Med Spas
+ * Home Page — Revenue Recovery for Multi-Location Medspas
  */
 
 import { useEffect } from "react";
@@ -23,21 +23,17 @@ import { CalculatorProvider } from "@/context/CalculatorContext";
 const jsonLd = [
   {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "EIP — Etienne Intelligence Platform",
-    applicationCategory: "BusinessApplication",
-    operatingSystem: "Web",
-    description:
-      "Revenue intelligence platform for multi-location med spas. Connects to Zenoti, Boulevard, and Mangomint to surface revenue gaps across locations.",
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-    },
-    author: {
+    "@type": "Service",
+    name: "Etienne Revenue Recovery",
+    serviceType: "Revenue recovery consulting for multi-location medspas",
+    provider: {
       "@type": "Organization",
       name: "Etienne Agency",
       url: "https://etienneagency.com",
     },
+    areaServed: { "@type": "Country", name: "US" },
+    description:
+      "Done-for-you revenue recovery for multi-location medspas. We pull your data, deliver a 4-page audit in 48 hours, and run the recovery playbook with you.",
   },
   {
     "@context": "https://schema.org",
@@ -47,7 +43,7 @@ const jsonLd = [
     logo: "https://etienneagency.com/images/logo.png",
     email: "jim@etienneagency.com",
     description:
-      "Revenue intelligence for multi-location med spas.",
+      "Revenue recovery for multi-location medspas. Done for you.",
     areaServed: { "@type": "Country", name: "US" },
     sameAs: [],
   },

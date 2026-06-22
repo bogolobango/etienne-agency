@@ -11,7 +11,9 @@
  *  - Result is a RANGE ($X–$Y/yr recovery) to signal honesty about
  *    uncertainty. Point estimates read as false precision.
  *  - Primary CTA changes copy once the visitor has personalized their
- *    number: "Book a call about your $420K" vs. generic "Book a call".
+ *    number: pre-interact is "Get Your Free Revenue Audit", post-interact
+ *    is "Claim Your Free Audit Slot". The dollar figure is no longer in
+ *    the CTA text.
  *  - Secondary link goes to the full /calculator page, not another marketing
  *    page — keeps the funnel tight.
  *  - Mobile: inputs stack vertically, result + CTA compress below.
@@ -58,8 +60,8 @@ export default function HeroCalculator() {
   const annualLow = result.recoveryAnnual.low;
   const annualHigh = result.recoveryAnnual.high;
   const ctaLabel = hasInteracted
-    ? `Book a call about your ${formatCurrencyCompact(result.recoveryAnnual.expected)}`
-    : "Book a Revenue Call";
+    ? "Claim Your Free Audit Slot"
+    : "Get Your Free Revenue Audit";
 
   return (
     <div
@@ -110,7 +112,7 @@ export default function HeroCalculator() {
         </p>
         <p className="font-display text-3xl sm:text-4xl text-white leading-tight">
           <span className="text-primary">{formatCurrencyCompact(annualLow)}</span>
-          <span className="text-white/40 mx-2">—</span>
+          <span className="text-white/40 mx-2">to</span>
           <span className="text-primary">{formatCurrencyCompact(annualHigh)}</span>
           <span className="text-base sm:text-lg text-white/60 ml-2">/year</span>
         </p>
@@ -118,36 +120,42 @@ export default function HeroCalculator() {
           <Info className="w-3 h-3 flex-shrink-0 mt-0.5" aria-hidden="true" />
           <span>
             Based on AmSpa, Zenoti, Mindbody, and Marchex industry benchmarks.
-            Range reflects 25–45% of total addressable gap. Your actuals depend
+            Range reflects 25-45% of total addressable gap. Your actuals depend
             on specific operations.
           </span>
+        </p>
+        <p className="text-xs text-white/60 mt-3 border-t border-white/10 pt-3">
+          That's an estimate. Send us a CSV from your booking system and we'll show you the exact number, broken down by location, provider, and day of week. Free.
         </p>
       </div>
 
       {/* CTAs */}
       <div className="flex flex-col sm:flex-row items-center gap-3">
         <MagneticButton className="w-full sm:w-auto sm:flex-1">
-          <a
-            href="https://calendly.com/jim-etienneagency/30min"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block w-full"
-          >
-            <Button
-              className="w-full rounded-full px-6 py-6 h-auto text-base sm:text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
-              onClick={() => trackCTAClick(ctaLabel, "Hero Calculator", "primary")}
+          <div className="flex flex-col items-center gap-1 w-full">
+            <a
+              href="https://calendly.com/jim-etienneagency/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full"
             >
-              {ctaLabel}
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </a>
+              <Button
+                className="w-full rounded-full px-6 py-6 h-auto text-base sm:text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
+                onClick={() => trackCTAClick(ctaLabel, "Hero Calculator", "primary")}
+              >
+                {ctaLabel}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </a>
+            <span className="text-xs text-white/50">5 spots remaining this week</span>
+          </div>
         </MagneticButton>
         <Link href="/calculator">
           <span
             className="text-sm text-white/60 hover:text-white underline-offset-4 hover:underline cursor-pointer whitespace-nowrap"
             onClick={() => trackCTAClick("See full breakdown", "Hero Calculator", "secondary")}
           >
-            See the full breakdown →
+            See the full breakdown
           </span>
         </Link>
       </div>

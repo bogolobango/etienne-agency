@@ -34,7 +34,7 @@ export default function IndustriesSection() {
   const credibility = [
     "Built by a team with Fortune 500 AI deployment experience, applied to the $21B medical aesthetics market.",
     "Designed for multi-location operators managing $1M\u2013$20M in annual revenue across 3\u201325 centers.",
-    "Integrates with the platforms 30,000+ med spas already trust: Zenoti, Boulevard, Mangomint.",
+    "Works with the booking systems 30,000+ med spas already use: Zenoti, Boulevard, Mangomint.",
   ];
 
   return (
@@ -52,7 +52,7 @@ export default function IndustriesSection() {
               Works with your stack. Not against it.
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              EIP connects to the platforms you already run. One API key, 30 seconds to set up, and your data starts flowing. We read your data — we never change it.
+              We work with your Zenoti, Boulevard, or Mangomint data. You share a CSV or drop an API key, and your data starts flowing. We read your data. We never change it.
             </p>
           </div>
 
@@ -73,7 +73,7 @@ export default function IndustriesSection() {
             ))}
           </div>
           <p className="text-center text-sm text-muted-foreground max-w-2xl mx-auto">
-            Your intelligence layer, regardless of what scheduling platform you're on. Running Boulevard at 3 locations and Zenoti at 2? We see them all.
+            Works across your booking systems, whatever the mix. Running Boulevard at 3 locations and Zenoti at 2? We see them all.
           </p>
         </div>
       </section>
@@ -89,10 +89,10 @@ export default function IndustriesSection() {
             </div>
             <div className="space-y-6 text-base sm:text-lg text-white/70 leading-relaxed">
               <p>
-                Your booking platform shows you what happened. It tells you there were 47 appointments at SoHo last Tuesday and 3 no-shows.
+                Your booking software shows you what happened. It tells you there were 47 appointments at SoHo last Tuesday and 3 no-shows.
               </p>
               <p>
-                EIP tells you <span className="text-white font-semibold">why it happened and what to do next</span>. Your no-show rate at SoHo is 60% higher on Tuesdays than on Fridays, driven by one provider whose patients cancel at 2x the practice average. Implementing a tiered deposit for that provider's Tuesday slots would recover an estimated $4,200/month.
+                Etienne tells you <span className="text-white font-semibold">why it happened and what to do next</span>. Your no-show rate at SoHo is 60% higher on Tuesdays than on Fridays, driven by one provider whose patients cancel at 2x the practice average. Implementing a tiered deposit for that provider's Tuesday slots would recover an estimated $4,200/month.
               </p>
               <p className="text-primary font-semibold">
                 That's the difference between data and intelligence.
@@ -100,10 +100,10 @@ export default function IndustriesSection() {
             </div>
             <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
-                { label: "Zenoti HyperConnect", desc: "Great at phone capture and SMS follow-up — if you're on Zenoti" },
+                { label: "Zenoti HyperConnect", desc: "Great at phone capture and SMS follow-up, but only if you're on Zenoti" },
                 { label: "Eva AI", desc: "Voice-only, single-location focus" },
-                { label: "Your CRM's reporting", desc: "Canned dashboards that show metrics without context" },
-                { label: "EIP", desc: "Cross-location revenue intelligence that works with any platform and tells you what to do", highlight: true },
+                { label: "Your CRM's reporting", desc: "Canned reports that show metrics without context. You still have to figure out what to do" },
+                { label: "Etienne", desc: "Cross-location revenue patterns surfaced by a real analyst. We deliver the report. You don't learn a new tool.", highlight: true },
               ].map((item, i) => (
                 <div key={i} className={`p-4 rounded-xl border ${item.highlight ? "border-primary/40 bg-primary/5" : "border-white/10 bg-white/5"}`}>
                   <p className={`text-sm font-semibold mb-1 ${item.highlight ? "text-primary" : "text-white/80"}`}>{item.label}</p>
@@ -121,7 +121,7 @@ export default function IndustriesSection() {
           <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
             <p className="section-label">CREDIBILITY</p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1]">
-              Built for operators who run 3&ndash;25 locations
+              Built for operators who run 3-25 locations
             </h2>
           </div>
 
@@ -140,7 +140,7 @@ export default function IndustriesSection() {
           <div className="max-w-3xl mx-auto">
             <blockquote className="card-premium p-8 sm:p-10 text-center">
               <p className="font-display text-lg sm:text-xl md:text-2xl text-foreground leading-relaxed mb-4 italic">
-                &ldquo;The average 5-location med spa is running with a 15&ndash;23% no-show rate and has no idea which provider, day, or location is driving it. EIP is built to find that answer in days, not spreadsheets.&rdquo;
+                &ldquo;The average 5-location med spa is running with a 15 to 23% no-show rate and has no idea which provider, day, or location is driving it. Etienne is built to find that answer in days, not spreadsheets.&rdquo;
               </p>
               <footer className="text-sm text-muted-foreground">
                 <span className="font-semibold text-foreground">Jim Stephen</span>, Founder

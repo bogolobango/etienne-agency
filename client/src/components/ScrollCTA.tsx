@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { trackCTAClick } from "@/lib/analytics";
 
 export default function ScrollCTA() {
@@ -46,17 +47,17 @@ export default function ScrollCTA() {
       <div className="bg-card/95 backdrop-blur-md border-t border-border shadow-lg">
         <div className="container py-3 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
           <p className="text-sm text-foreground font-medium text-center sm:text-left">
-            See where your locations are leaking revenue.
+            Get your free 4-page audit. 48-hour delivery.
           </p>
           <div className="flex items-center gap-3 flex-shrink-0">
-            <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
-              <button
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors shadow-sm"
-                onClick={() => trackCTAClick('Book a Revenue Call', 'Scroll CTA', 'primary')}
+            <a href="#hero-calculator">
+              <Button
+                className="rounded-full px-4 py-2 h-auto text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm inline-flex items-center gap-1.5"
+                onClick={() => trackCTAClick('Start', 'ScrollCTA', 'primary')}
               >
-                Book a Revenue Call
+                Start
                 <ArrowRight className="w-3.5 h-3.5" />
-              </button>
+              </Button>
             </a>
             <button
               onClick={handleDismiss}

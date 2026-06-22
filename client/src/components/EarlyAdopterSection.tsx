@@ -122,7 +122,7 @@ export default function EarlyAdopterSection() {
           }`}
         >
           <p className="section-label">THE OFFER</p>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.05] mb-6">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.05] mb-0">
             One offer. Three steps. 60 days to recovered revenue.
           </h2>
         </div>
@@ -258,7 +258,7 @@ function StepCard({ step, personalizedCtaLabel }: StepCardProps) {
           onClick={() =>
             trackCTAClick(
               effectiveCtaLabel,
-              "Early Adopter",
+              `Early Adopter - ${step.name}`,
               step.highlighted ? "primary" : "secondary"
             )
           }

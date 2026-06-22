@@ -14,12 +14,12 @@ export interface PageMeta {
 
 const staticRoutes: Record<string, PageMeta> = {
   "/": {
-    title: "Done-for-You Revenue Recovery for Multi-Location Medspas | Etienne",
+    title: "Done-for-You Revenue Recovery for Medspas | Etienne",
     description:
-      "Etienne finds where your medspa locations are losing revenue and hands you a 4-page audit in 48 hours. No platform to log into. Built for owners running 3-25 centers.",
+      "Etienne finds where your medspa locations are losing revenue and hands you a 4-page audit in 48 hours. Built for owners running 3-25 centers.",
   },
   "/how-it-works": {
-    title: "How Etienne Works | Revenue Recovery for Multi-Location Medspas",
+    title: "How Etienne Works | Revenue Recovery for Medspas",
     description:
       "Three steps: share your booking data, get a 4-page audit in 48 hours, act on clear findings. Done-for-you revenue recovery for multi-location medspa operators.",
   },
@@ -36,7 +36,7 @@ const staticRoutes: Record<string, PageMeta> = {
   "/calculator": {
     title: "Revenue Gap Calculator for Multi-Location Medspas | Etienne",
     description:
-      "See how much revenue your medspa locations are losing to no-shows, utilization gaps, and missed rebookings. Free calculator based on AmSpa and Zenoti benchmarks.",
+      "See how much revenue your medspa locations are losing to no-shows, utilization gaps, and missed rebookings. Free, based on AmSpa and Zenoti benchmarks.",
   },
   "/contact": {
     title: "Get in Touch | Etienne Revenue Recovery",
@@ -59,7 +59,7 @@ const staticRoutes: Record<string, PageMeta> = {
   "/sample-audit": {
     title: "Sample Revenue Recovery Audit | See What You Get | Etienne",
     description:
-      "See all 4 pages of a real Revenue Recovery Audit before you send a CSV. Executive summary, leakage map, benchmark comparison, and 60-day roadmap. Yours in 48 hours with your actual data.",
+      "See a real 4-page Revenue Recovery Audit before you send a CSV. Yours arrives in 48 hours with your actual numbers.",
   },
 };
 

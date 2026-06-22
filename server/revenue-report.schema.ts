@@ -49,7 +49,7 @@ export function buildReportEmail(data: RevenueReportData): {
   const name = data.name || "there";
   const greeting = data.name ? escapeHtml(data.name) : "there";
 
-  const subject = `Your revenue gap report — ${formatCurrencyCompact(result.recoveryAnnual.expected)} estimated recovery`;
+  const subject = `Your revenue gap report: ${formatCurrencyCompact(result.recoveryAnnual.expected)} estimated recovery`;
 
   // Plain-text fallback for clients that don't render HTML
   const text = `
@@ -88,7 +88,7 @@ to avoid double-counting.
 Ready to see your actual numbers from real booking data?
 Book a 20-minute call with Jim: https://calendly.com/jim-etienneagency/30min
 
-— The Etienne team
+The Etienne team
 `.trim();
 
   // HTML version
@@ -113,7 +113,7 @@ Book a 20-minute call with Jim: https://calendly.com/jim-etienneagency/30min
         YOUR REVENUE GAP REPORT
       </p>
       <h1 style="font-family: Georgia, serif; font-size: 28px; line-height: 1.15; margin: 0 0 16px 0; color: #ffffff; font-weight: 700;">
-        Hi ${greeting} — here's what we estimate you're leaving on the table.
+        Hi ${greeting}, here's what we estimate you're leaving on the table.
       </h1>
       <p style="margin: 0; color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.55;">
         This is an industry-benchmark estimate using the same leakage model Etienne applies to real booking data.
@@ -126,7 +126,7 @@ Book a 20-minute call with Jim: https://calendly.com/jim-etienneagency/30min
         Estimated recovery, annualized
       </p>
       <p style="font-family: Georgia, serif; font-size: 36px; line-height: 1.1; margin: 0 0 6px 0; color: #00D4AA; font-weight: 700;">
-        ${formatCurrency(result.recoveryAnnual.low)} – ${formatCurrency(result.recoveryAnnual.high)}
+        ${formatCurrency(result.recoveryAnnual.low)} to ${formatCurrency(result.recoveryAnnual.high)}
       </p>
       <p style="margin: 0 0 20px 0; color: #4A5568; font-size: 14px;">
         Expected case: <strong style="color: #0A0F1C;">${formatCurrency(result.recoveryAnnual.expected)}/year</strong>
@@ -212,7 +212,7 @@ Book a 20-minute call with Jim: https://calendly.com/jim-etienneagency/30min
     <p style="margin: 20px 0 0 0; padding: 0 4px; color: #9CA3AF; font-size: 11px; line-height: 1.6; text-align: center;">
       Benchmarks sourced from AmSpa, Mindbody Wellness Index, Zenoti, and Marchex industry data.
       Losses computed against industry median (not top-decile) and deduplicated to avoid double-counting.
-      Recovery range reflects 25–45% of total addressable gap.
+      Recovery range reflects 25-45% of total addressable gap.
     </p>
     <p style="margin: 12px 0 0 0; color: #9CA3AF; font-size: 11px; text-align: center;">
       Etienne Agency · <a href="https://etienneagency.com" style="color: #00D4AA; text-decoration: none;">etienneagency.com</a>

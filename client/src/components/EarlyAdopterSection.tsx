@@ -70,16 +70,24 @@ const steps: Step[] = [
 
 const faqs = [
   {
-    q: "What if I'm on Pabau, not Zenoti/Boulevard/Mangomint?",
-    a: "Pabau is on the integration roadmap. Until it ships, the free Revenue Recovery Audit still works for Pabau-based medspas - just email a CSV export and we'll run the same analysis.",
+    q: "Is this a software platform I log into?",
+    a: "No. We deliver the report and the recovery work to you. You can log into Zenoti or Boulevard for your booking. We sit on top, find what's broken, and fix it with you. A real platform comes later. Right now, you get the outcome without the implementation.",
   },
   {
-    q: "How long does onboarding take?",
-    a: "For a supported booking system (Zenoti, Boulevard, Mangomint), initial data connection is 1-2 days. Full historical backfill and benchmarking takes 5-7 days. You'll see your first cross-location revenue gaps surface within the first week.",
+    q: "What does the free audit actually include?",
+    a: "A 4-page PDF with: (1) your dollar-quantified revenue leaks ranked by size, (2) what's causing each one based on your CSV data, (3) a 60-day recovery roadmap, (4) the benchmark comparison against multi-location medspas your size. Delivered in 48 hours from when you send the export.",
   },
   {
-    q: "Does EIP replace my booking system?",
-    a: "No. EIP sits on top of your existing booking system - Zenoti, Boulevard, or Mangomint - and makes sense of the data across every location. You keep using your booking software exactly as you do today.",
+    q: "Do I need to give you access to my Zenoti / Boulevard account?",
+    a: "Not for the free audit. You export a CSV (we send a 2-minute Loom showing exactly how). For paid retainers, we set up a read-only data connection so reports run weekly without you exporting anything.",
+  },
+  {
+    q: "How long until I see recovered revenue?",
+    a: "Most clients see the first dollar recovery in week 2. Material recovery (5-figures per location) in 30-60 days. The full 60-day plan typically recovers 5-10x the retainer fee.",
+  },
+  {
+    q: "What if I'm not on Zenoti, Boulevard, or Mangomint?",
+    a: "Email Jim direct (jim@etienneagency.com). If you're on Pabau, Mindbody, or anything similar, we can still run the audit. The leakage model is the same.",
   },
   {
     q: "What if I have 30+ locations?",
@@ -160,7 +168,7 @@ export default function EarlyAdopterSection() {
           }`}
         >
           <h3 className="font-display text-2xl sm:text-3xl text-foreground text-center mb-8">
-            The four questions everyone asks first
+            Questions we hear every time
           </h3>
           <Accordion type="single" collapsible className="space-y-3">
             {faqs.map((faq, i) => (

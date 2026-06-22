@@ -41,21 +41,44 @@ export default function Hero() {
           }`}
         >
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] mb-6 tracking-tight">
-            You're running 5 locations and still pulling reports in Excel.{" "}
-            <span className="text-primary">That ends now.</span>
+            Multi-location medspas are leaking $200K to $500K a year.{" "}
+            <span className="text-primary">We find it and recover it in 60 days.</span>
           </h1>
 
-          <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-10">
-            EIP connects to Zenoti, Boulevard, or Mangomint and gives you cross-location revenue intelligence your booking system was never designed to provide. One view. Every center. Real answers&nbsp;&mdash;&nbsp;not more dashboards.
+          <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-6">
+            Built for owners of 5 to 25 location medspas running Zenoti, Boulevard, or Mangomint. We pull your data, build the report your booking system won't, and run the recovery playbook with you. Done-for-you, not done-by-you.
           </p>
+
+          <div className="flex flex-col items-center gap-2 mb-10">
+            <a
+              href="https://calendly.com/jim-etienneagency/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="rounded-full px-8 py-4 text-base sm:text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill transition-colors">
+                Get Your Free Revenue Audit
+              </button>
+            </a>
+            <p className="text-xs text-white/50">
+              No call required. Send a CSV from your booking system, get a 4-page report back in 48 hours.
+            </p>
+          </div>
         </div>
 
-        {/* Inline calculator — the primary conversion surface */}
+        {/* Calculator section headline + inline calculator */}
         <div
           className={`transition-all duration-700 ease-out delay-150 ${
             mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
+          <div className="max-w-2xl mx-auto text-center mb-5">
+            <h2 className="font-display text-2xl sm:text-3xl text-white mb-2">
+              Estimate what you're leaking in 30 seconds.
+            </h2>
+            <p className="text-sm text-white/60">
+              Three numbers from your last 30 days. Real benchmarks, not industry fluff.
+            </p>
+          </div>
           <HeroCalculator />
         </div>
 
@@ -65,13 +88,9 @@ export default function Hero() {
             mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
-          <p className="text-sm text-white/40 mb-4">
-            20 minutes. We'll show you exactly what EIP would surface from your booking data.
-            No pitch deck. No commitment.
-          </p>
-          <Link href="/how-it-works">
+          <Link href="/sample-audit">
             <span className="text-sm text-white/60 hover:text-white underline-offset-4 hover:underline cursor-pointer">
-              Or see how it works →
+              See what a Recovery Audit looks like
             </span>
           </Link>
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs text-white/40 mt-8">

@@ -58,8 +58,8 @@ export default function HeroCalculator() {
   const annualLow = result.recoveryAnnual.low;
   const annualHigh = result.recoveryAnnual.high;
   const ctaLabel = hasInteracted
-    ? `Book a call about your ${formatCurrencyCompact(result.recoveryAnnual.expected)}`
-    : "Book a Revenue Call";
+    ? `Claim Your Free Audit Slot`
+    : "Get Your Free Revenue Audit";
 
   return (
     <div
@@ -110,7 +110,7 @@ export default function HeroCalculator() {
         </p>
         <p className="font-display text-3xl sm:text-4xl text-white leading-tight">
           <span className="text-primary">{formatCurrencyCompact(annualLow)}</span>
-          <span className="text-white/40 mx-2">—</span>
+          <span className="text-white/40 mx-2">to</span>
           <span className="text-primary">{formatCurrencyCompact(annualHigh)}</span>
           <span className="text-base sm:text-lg text-white/60 ml-2">/year</span>
         </p>
@@ -118,9 +118,12 @@ export default function HeroCalculator() {
           <Info className="w-3 h-3 flex-shrink-0 mt-0.5" aria-hidden="true" />
           <span>
             Based on AmSpa, Zenoti, Mindbody, and Marchex industry benchmarks.
-            Range reflects 25–45% of total addressable gap. Your actuals depend
+            Range reflects 25-45% of total addressable gap. Your actuals depend
             on specific operations.
           </span>
+        </p>
+        <p className="text-xs text-white/60 mt-3 border-t border-white/10 pt-3">
+          That's an estimate. Send us a CSV from your booking system and we'll show you the exact number, broken down by location, provider, and day of week. Free.
         </p>
       </div>
 
@@ -147,7 +150,7 @@ export default function HeroCalculator() {
             className="text-sm text-white/60 hover:text-white underline-offset-4 hover:underline cursor-pointer whitespace-nowrap"
             onClick={() => trackCTAClick("See full breakdown", "Hero Calculator", "secondary")}
           >
-            See the full breakdown →
+            See the full breakdown
           </span>
         </Link>
       </div>

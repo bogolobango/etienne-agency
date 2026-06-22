@@ -97,7 +97,7 @@ export default function HowItWorks() {
     <div id="main-content" className="min-h-screen">
       <Header />
 
-      {/* Hero -- dark */}
+      {/* Hero - dark */}
       <section className="relative pt-24 pb-12 sm:pt-36 sm:pb-20 md:pt-44 md:pb-28 section-dark overflow-hidden">
         <FloatingDustMotes particleCount={50} />
         <div
@@ -251,7 +251,7 @@ export default function HowItWorks() {
         </div>
       </section>
 
-      {/* Closing CTA -- dark */}
+      {/* Closing CTA - dark */}
       <section className="relative py-20 md:py-28 lg:py-36 section-dark overflow-hidden">
         <FloatingDustMotes particleCount={40} />
         <div className="container relative z-10">

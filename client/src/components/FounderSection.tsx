@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Quote } from "lucide-react";
 import MagneticButton from "@/components/MagneticButton";
 import { trackCTAClick } from "@/lib/analytics";
+import { CALENDLY_URL } from "@/const";
 
 export default function FounderSection() {
   const [inView, setInView] = useState(false);
@@ -148,7 +149,7 @@ export default function FounderSection() {
             <div className="mt-10 flex flex-col items-start">
               <MagneticButton className="inline-block">
                 <a
-                  href="https://calendly.com/jim-etienneagency/30min"
+                  href={CALENDLY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

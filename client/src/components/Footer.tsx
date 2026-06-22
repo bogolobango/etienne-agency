@@ -5,6 +5,7 @@
 
 import { Link } from "wouter";
 import { trackNavigationClick, trackCTAClick } from "@/lib/analytics";
+import { CALENDLY_URL } from "@/const";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -35,7 +36,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li><Link href="/how-it-works" onClick={() => trackNavigationClick('How It Works', '/how-it-works', 'footer')}><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">How It Works</span></Link></li>
               <li><Link href="/med-spas" onClick={() => trackNavigationClick('Med Spas', '/med-spas', 'footer')}><span className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Med Spas</span></Link></li>
-              <li><a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer" onClick={() => trackCTAClick('Book a Call', 'Footer', 'primary')} className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Book a Call</a></li>
+              <li><a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackCTAClick('Book a Call', 'Footer', 'primary')} className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">Book a Call</a></li>
             </ul>
           </div>
 

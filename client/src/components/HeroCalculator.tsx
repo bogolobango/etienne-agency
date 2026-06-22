@@ -31,6 +31,7 @@ import {
 } from "@shared/leakage";
 import { useCalculator } from "@/context/CalculatorContext";
 import MagneticButton from "@/components/MagneticButton";
+import { CALENDLY_URL } from "@/const";
 
 export default function HeroCalculator() {
   const { locations, apptsPerLocation, avgTicket, hasInteracted, setInputs } = useCalculator();
@@ -134,7 +135,7 @@ export default function HeroCalculator() {
         <MagneticButton className="w-full sm:w-auto sm:flex-1">
           <div className="flex flex-col items-center gap-1 w-full">
             <a
-              href="https://calendly.com/jim-etienneagency/30min"
+              href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full"

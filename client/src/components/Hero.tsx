@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { trackCTAClick } from "@/lib/analytics";
 import HeroCalculator from "@/components/HeroCalculator";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
+import { CALENDLY_URL } from "@/const";
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -54,7 +55,7 @@ export default function Hero() {
           <div className="flex flex-col items-center gap-2 mb-10">
             <div className="flex flex-col items-center gap-1">
               <a
-                href="https://calendly.com/jim-etienneagency/30min"
+                href={CALENDLY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
               >

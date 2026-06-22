@@ -20,6 +20,7 @@ import { formatCurrencyCompact } from "@shared/leakage";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 import MagneticButton from "@/components/MagneticButton";
 import { trackCTAClick, trackFormSubmit } from "@/lib/analytics";
+import { CALENDLY_URL } from "@/const";
 
 type SubmitState = "idle" | "loading" | "success" | "error";
 
@@ -269,7 +270,7 @@ function SuccessPanel({ result }: { result: ReturnType<typeof useCalculator>["re
 
       <MagneticButton className="inline-block">
         <a
-          href="https://calendly.com/jim-etienneagency/30min"
+          href={CALENDLY_URL}
           target="_blank"
           rel="noopener noreferrer"
         >

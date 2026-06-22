@@ -30,6 +30,7 @@ import { trackCTAClick, trackFormSubmit } from "@/lib/analytics";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
 import { computeLeakage, formatCurrency, BENCHMARKS, RECOVERY } from "@shared/leakage";
+import { CALENDLY_URL } from "@/const";
 
 const heroOrbs: OrbConfig[] = [
   { size: 480, color: "#00D4AA", x: "-6%", y: "-8%", opacity: 0.32, duration: 14, delay: 0, parallaxFactor: 50 },
@@ -125,7 +126,7 @@ export default function Calculator() {
               <span className="text-primary">slipping away?</span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto">
-              Plug in your numbers. The same leakage model EIP uses on real booking data will estimate how much no-shows, utilization gaps, and missed rebookings are costing you each month.
+              Plug in your numbers. The same leakage model we use to find revenue gaps in real medspa data will estimate how much no-shows, utilization gaps, and missed rebookings are costing you each month.
             </p>
           </div>
         </div>
@@ -419,19 +420,30 @@ export default function Calculator() {
                 <p className="text-muted-foreground mb-6 text-lg">
                   These are estimates. Want to know your <span className="font-semibold text-foreground">actual</span> numbers from real booking data?
                 </p>
-                <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
+                <a href="/#early-adopter-section">
                   <Button
                     className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill"
-                    onClick={() => trackCTAClick("Book a Revenue Call", "Calculator Results", "primary")}
+                    onClick={() => trackCTAClick("Get Your Free Audit", "Calculator", "primary")}
                   >
-                    Book a Revenue Call — See Your Real Numbers
+                    Get Your Free Audit
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </a>
                 <p className="text-sm text-muted-foreground mt-4">
-                  20 minutes. We'll show you exactly what EIP would surface from your booking data.<br />
+                  20 minutes. We'll show you exactly what Etienne would surface from your booking data.<br />
                   No pitch deck. No commitment.
                 </p>
+                <div className="mt-4">
+                  <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+                    <Button
+                      variant="ghost"
+                      className="rounded-full text-sm text-muted-foreground hover:text-foreground"
+                      onClick={() => trackCTAClick("Schedule a 20-minute call", "Calculator", "secondary")}
+                    >
+                      Schedule a 20-minute call
+                    </Button>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

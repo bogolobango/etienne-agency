@@ -25,8 +25,7 @@ import { useCalculator } from "@/context/CalculatorContext";
 import { formatCurrencyCompact } from "@shared/leakage";
 import MagneticButton from "@/components/MagneticButton";
 import SpotlightCard from "@/components/SpotlightCard";
-
-const CALENDLY = "https://calendly.com/jim-etienneagency/30min";
+import { CALENDLY_URL } from "@/const";
 
 interface Step {
   stepLabel: string;
@@ -195,7 +194,7 @@ export default function EarlyAdopterSection() {
           }`}
         >
           <MagneticButton className="inline-block">
-            <a href={CALENDLY} target="_blank" rel="noopener noreferrer">
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
               <Button
                 className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill"
                 onClick={() =>
@@ -256,7 +255,7 @@ function StepCard({ step, personalizedCtaLabel }: StepCardProps) {
 
       <p className="text-sm text-muted-foreground mb-7 leading-relaxed flex-1">{step.body}</p>
 
-      <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="block">
+      <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="block">
         <Button
           className={`w-full rounded-full py-5 h-auto text-sm font-semibold ${
             step.highlighted

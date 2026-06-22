@@ -132,25 +132,20 @@ export default function FounderSection() {
             <p className="section-label mb-5">A NOTE FROM THE FOUNDER</p>
             <Quote className="w-8 h-8 text-primary/30 mb-4" aria-hidden="true" />
 
-            <div className="font-display text-2xl sm:text-3xl md:text-[2.1rem] text-foreground leading-[1.25] tracking-tight mb-8">
-              <p>
-                Eight years ago I was selling revenue intelligence to Fortune 500 operators. My wife was spending her weekends at medspas. She kept coming home with stories her own providers couldn't answer — which day she should book, why rebooking prompts never landed, why her favorite provider was somehow always double-booked.
-              </p>
-            </div>
+            <h2 className="font-display text-2xl sm:text-3xl md:text-[2.1rem] text-foreground leading-[1.25] tracking-tight mb-8">
+              You'll talk to Jim. Every time.
+            </h2>
 
             <div className="space-y-4 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
               <p>
-                I realized the $21B medical aesthetics industry was running on the same spreadsheet-and-guesswork playbook that manufacturing ran on in 2010. The data was all there. Nobody was looking at it across locations. Nobody was telling operators what it was costing them.
+                I spent eight years selling revenue intelligence to Fortune 500 operators. President's Club, multiple years. I started Etienne after my wife's medspa providers couldn't tell her which location was bleeding cash on a Tuesday. The booking software they paid for couldn't tell them either.
               </p>
               <p>
-                I'd already sold the fix at that scale, with multiple President's Club finishes to show for it. I decided to build it for the people who've been quietly waiting for someone to bring it down-market.
-              </p>
-              <p className="text-foreground font-semibold">
-                EIP is what I wish my wife's favorite medspa had three years ago.
+                Every audit, every report, every recovery plan goes through me personally. I run the model. I write the report. I take the call. When you hire Etienne, you hire me. Not an account manager, not a customer success team, not a dashboard.
               </p>
             </div>
 
-            <div className="mt-10">
+            <div className="mt-10 flex flex-col items-start">
               <MagneticButton className="inline-block">
                 <a
                   href="https://calendly.com/jim-etienneagency/30min"
@@ -159,16 +154,16 @@ export default function FounderSection() {
                 >
                   <Button
                     className="rounded-full px-8 py-6 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
-                    onClick={() => trackCTAClick("Talk to Jim directly", "Founder Section", "primary")}
+                    onClick={() => trackCTAClick("Book 20 minutes with Jim", "Founder Section", "primary")}
                   >
-                    Talk to Jim directly
+                    Book 20 minutes with Jim
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </a>
               </MagneticButton>
-              <p className="text-xs text-muted-foreground mt-3">
-                The call is with Jim himself, not a BDR. 20 minutes.
-              </p>
+              <span className="text-xs text-muted-foreground mt-3">
+                (no slide deck, just your data)
+              </span>
             </div>
           </div>
         </div>

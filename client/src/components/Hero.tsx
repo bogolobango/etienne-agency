@@ -12,6 +12,8 @@
 
 import { useEffect, useState } from "react";
 import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
+import { trackCTAClick } from "@/lib/analytics";
 import HeroCalculator from "@/components/HeroCalculator";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 
@@ -56,9 +58,12 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <button className="rounded-full px-8 py-4 text-base sm:text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill transition-colors">
+                <Button
+                  className="rounded-full px-8 py-4 text-base sm:text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill transition-colors"
+                  onClick={() => trackCTAClick("Get Your Free Revenue Audit", "Hero", "primary")}
+                >
                   Get Your Free Revenue Audit
-                </button>
+                </Button>
               </a>
               <span className="text-xs text-white/50 mt-0.5">48-hour delivery</span>
             </div>

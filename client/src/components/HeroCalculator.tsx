@@ -11,7 +11,9 @@
  *  - Result is a RANGE ($X–$Y/yr recovery) to signal honesty about
  *    uncertainty. Point estimates read as false precision.
  *  - Primary CTA changes copy once the visitor has personalized their
- *    number: "Book a call about your $420K" vs. generic "Book a call".
+ *    number: pre-interact is "Get Your Free Revenue Audit", post-interact
+ *    is "Claim Your Free Audit Slot". The dollar figure is no longer in
+ *    the CTA text.
  *  - Secondary link goes to the full /calculator page, not another marketing
  *    page — keeps the funnel tight.
  *  - Mobile: inputs stack vertically, result + CTA compress below.
@@ -58,7 +60,7 @@ export default function HeroCalculator() {
   const annualLow = result.recoveryAnnual.low;
   const annualHigh = result.recoveryAnnual.high;
   const ctaLabel = hasInteracted
-    ? `Claim Your Free Audit Slot`
+    ? "Claim Your Free Audit Slot"
     : "Get Your Free Revenue Audit";
 
   return (

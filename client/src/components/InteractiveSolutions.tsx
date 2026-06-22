@@ -7,6 +7,7 @@
  * Step 3: Get the 4-page PDF
  */
 
+import type { ComponentType } from "react";
 import { Download, BarChart3, FileText, ArrowRight } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -14,11 +15,12 @@ import { trackCTAClick } from "@/lib/analytics";
 
 interface Step {
   id: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: ComponentType<{ className?: string }>;
   label: string;
   title: string;
   description: string;
   timeframe: string;
+  subNote: string;
 }
 
 const steps: Step[] = [
@@ -30,6 +32,7 @@ const steps: Step[] = [
     description:
       "We send you a 2-minute Loom showing exactly where the export button is in your booking system. Zenoti, Boulevard, Mangomint, or Mindbody. You do not install anything. No API keys. No integration. Just a CSV.",
     timeframe: "5 minutes",
+    subNote: "From sending you the Loom to us having your CSV in hand.",
   },
   {
     id: "analyze",
@@ -39,6 +42,7 @@ const steps: Step[] = [
     description:
       "Within 48 hours we analyze your data against multi-location medspa benchmarks from AmSpa, Mindbody, and Zenoti. We find the leaks worth chasing: no-show rate gaps, utilization holes, rebooking rate drops. Every finding is dollar-quantified.",
     timeframe: "48 hours",
+    subNote: "From receiving your CSV to delivering the completed PDF.",
   },
   {
     id: "pdf",
@@ -48,6 +52,7 @@ const steps: Step[] = [
     description:
       "The report is yours to keep. It shows your revenue leaks ranked by size, what is driving each one, and a 60-day recovery roadmap. No dashboard to log into. No subscription to start. Just a document you can act on.",
     timeframe: "Delivered same day",
+    subNote: "No recurring charge. No follow-up required to claim it.",
   },
 ];
 
@@ -134,9 +139,7 @@ function StepPanel({ step }: { step: Step }) {
             {step.timeframe}
           </p>
           <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
-            {step.id === "export" && "From sending you the Loom to us having your CSV in hand."}
-            {step.id === "analyze" && "From receiving your CSV to delivering the completed PDF."}
-            {step.id === "pdf" && "No recurring charge. No follow-up required to claim it."}
+            {step.subNote}
           </p>
         </div>
       </div>

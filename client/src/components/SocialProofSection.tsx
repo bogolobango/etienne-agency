@@ -109,78 +109,80 @@ function AuditPDFPreview() {
   ];
 
   return (
-    <div className="relative rounded-2xl border border-white/10 bg-[#FAFAF9] shadow-2xl shadow-black/60 overflow-hidden">
+    /* bg-white: intentional paper-document feel; departs from bg-background (#FAFBFD) by design */
+    <div className="relative rounded-2xl border border-white/10 bg-white shadow-2xl shadow-black/60 overflow-hidden">
       {/* Document header */}
-      <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-[#E8E4DC]">
+      <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-border">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
             <FileText className="w-4 h-4 text-primary" />
           </div>
           <div>
-            <p className="text-xs font-semibold text-[#1A1A1A]">Revenue Leak Audit</p>
-            <p className="text-[10px] text-[#6B7280]">Confidential - Prepared by Etienne Agency</p>
+            <p className="text-xs font-semibold text-foreground">Revenue Leak Audit</p>
+            <p className="text-[10px] text-muted-foreground">Confidential - Prepared by Etienne Agency</p>
           </div>
         </div>
         <div className="text-right">
-          <p className="text-[10px] text-[#6B7280]">Page 1 of 4</p>
-          <p className="text-[10px] text-[#9CA3AF]">Illustrative sample</p>
+          <p className="text-[10px] text-muted-foreground">Page 1 of 4</p>
+          <p className="text-[10px] text-muted-foreground/60">Illustrative sample</p>
         </div>
       </div>
 
       {/* Hero number */}
-      <div className="px-6 pt-6 pb-4 bg-white border-b border-[#E8E4DC]">
-        <p className="text-[10px] uppercase tracking-widest text-[#6B7280] font-semibold mb-2">
+      <div className="px-6 pt-6 pb-4 bg-white border-b border-border">
+        <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold mb-2">
           Total recoverable revenue identified
         </p>
         <div className="flex items-baseline gap-3">
-          <p className="font-display text-5xl text-[#1A1A1A] leading-none">$74K</p>
-          <p className="text-sm text-[#6B7280]">per month across 5 locations</p>
+          <p className="font-display text-5xl text-foreground leading-none">$74K</p>
+          <p className="text-sm text-muted-foreground">per month across 5 locations</p>
         </div>
-        <p className="text-xs text-[#9CA3AF] mt-2">
+        <p className="text-xs text-muted-foreground/60 mt-2">
           Benchmark sources: AmSpa 2024 State of the Industry, Mindbody Wellness Index, Zenoti Medspa Report
         </p>
       </div>
 
       {/* Findings table */}
       <div className="px-6 py-5">
-        <p className="text-[10px] uppercase tracking-widest text-[#6B7280] font-semibold mb-4">
+        <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-semibold mb-4">
           Findings ranked by revenue impact
         </p>
         <div className="space-y-3">
           {findings.map((f) => (
-            <div key={f.rank} className="flex items-start gap-4 p-3 rounded-lg border border-[#E8E4DC] bg-white">
+            <div key={f.rank} className="flex items-start gap-4 p-3 rounded-lg border border-border bg-white">
               <div className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold ${
-                f.severity === "high" ? "bg-[#FEE2E2] text-[#DC2626]" : "bg-[#FEF3C7] text-[#D97706]"
+                /* high = destructive severity; medium = amber (no warning token in design system) */
+                f.severity === "high" ? "bg-destructive/10 text-destructive" : "bg-amber-100 text-amber-600"
               }`}>
                 {f.rank}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2 mb-0.5">
-                  <p className="text-xs font-semibold text-[#1A1A1A] leading-snug">{f.label}</p>
+                  <p className="text-xs font-semibold text-foreground leading-snug">{f.label}</p>
                   <p className={`text-xs font-bold flex-shrink-0 ${
-                    f.severity === "high" ? "text-[#DC2626]" : "text-[#D97706]"
+                    f.severity === "high" ? "text-destructive" : "text-amber-600"
                   }`}>{f.impact}</p>
                 </div>
-                <p className="text-[10px] text-[#6B7280] leading-snug">{f.note}</p>
+                <p className="text-[10px] text-muted-foreground leading-snug">{f.note}</p>
               </div>
               <div className="flex-shrink-0">
                 {f.severity === "high" ? (
-                  <AlertCircle className="w-3.5 h-3.5 text-[#DC2626]" />
+                  <AlertCircle className="w-3.5 h-3.5 text-destructive" />
                 ) : (
-                  <TrendingDown className="w-3.5 h-3.5 text-[#D97706]" />
+                  <TrendingDown className="w-3.5 h-3.5 text-amber-600" />
                 )}
               </div>
             </div>
           ))}
         </div>
-        <p className="text-[10px] text-[#9CA3AF] mt-4 italic">
+        <p className="text-[10px] text-muted-foreground/60 mt-4 italic">
           Pages 2-4 include root-cause analysis per finding, benchmark comparisons, and a 60-day recovery roadmap.
         </p>
       </div>
 
       {/* Watermark overlay */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center rotate-[-20deg] opacity-[0.04]">
-        <p className="font-display text-7xl font-black text-[#1A1A1A] tracking-tight select-none">SAMPLE</p>
+        <p className="font-display text-7xl font-black text-foreground tracking-tight select-none">SAMPLE</p>
       </div>
     </div>
   );

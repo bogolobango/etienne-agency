@@ -14,7 +14,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, Mail, Calendar, MessageSquare, Sparkles, FileText, Video } from "lucide-react";
+import { ArrowRight, CheckCircle2, Mail, Calendar, Sparkles, FileText, Video } from "lucide-react";
 import { useCalculator } from "@/context/CalculatorContext";
 import { formatCurrencyCompact } from "@shared/leakage";
 import FloatingDustMotes from "@/components/FloatingDustMotes";

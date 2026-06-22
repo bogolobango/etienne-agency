@@ -71,7 +71,7 @@ const steps: Step[] = [
 const faqs = [
   {
     q: "What if I'm on Pabau, not Zenoti/Boulevard/Mangomint?",
-    a: "Pabau is on the integration roadmap. Founding clients can reserve a spot now and get prioritized when the Pabau integration ships. If you'd rather not wait, we can talk through a custom data-sync path during the onboarding call.",
+    a: "Pabau is on the integration roadmap. Until it ships, the free Revenue Recovery Audit still works for Pabau-based medspas - just email a CSV export and we'll run the same analysis.",
   },
   {
     q: "How long does onboarding take?",

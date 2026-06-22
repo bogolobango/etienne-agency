@@ -1,6 +1,6 @@
 /**
- * Header Component — Revenue Intelligence positioning
- * Minimal sticky nav: Logo | How It Works · Med Spas · About | [Free Revenue Audit]
+ * Header Component — Revenue Recovery positioning
+ * Minimal sticky nav: Logo | How It Works · Med Spas · About | [Get Your Free Audit]
  */
 
 import { Button } from "@/components/ui/button";
@@ -114,13 +114,13 @@ export default function Header() {
             </nav>
 
             {/* Desktop CTA Button */}
-            <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
+            <a href="#hero-calculator">
               <Button
                 className="hidden md:inline-flex rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                 size="default"
-                onClick={() => trackCTAClick('Book a Call', 'Header', 'primary')}
+                onClick={() => trackCTAClick('Get Your Free Audit', 'Header', 'primary')}
               >
-                Book a Call
+                Get Your Free Audit
               </Button>
             </a>
 
@@ -210,13 +210,13 @@ export default function Header() {
           </nav>
 
           <div className="p-6 border-t border-border">
-            <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer" onClick={handleLinkClick}>
+            <a href="#hero-calculator" onClick={handleLinkClick}>
               <Button
                 className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                 size="lg"
-                onClick={() => trackCTAClick('Book a Call', 'Mobile Menu', 'primary')}
+                onClick={() => trackCTAClick('Get Your Free Audit', 'Header', 'primary')}
               >
-                Book a Call
+                Get Your Free Audit
               </Button>
             </a>
           </div>

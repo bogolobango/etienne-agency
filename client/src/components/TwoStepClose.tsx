@@ -1,24 +1,20 @@
 /**
- * TwoStepClose — the new home-page final CTA.
+ * TwoStepClose — the home-page final CTA.
  *
- * Instead of a single "Book a call" Calendly ask, we do a two-step
- * micro-commitment:
- *   1. Visitor enters their email → we POST /api/revenue-report →
- *      the server sends them a 1-page HTML report of their
- *      personalized leakage estimate.
- *   2. Success screen reveals the Calendly link + "what happens
- *      when you book" walkthrough.
+ * Two-step micro-commitment:
+ *   1. Visitor enters their email to get their free 4-page Revenue Recovery Audit.
+ *   2. Success screen reveals the Calendly link + 5-step "what happens next" walkthrough.
  *
- * The 3-step walkthrough is scroll-revealed at the bottom either way.
+ * The walkthrough is scroll-revealed at the bottom either way.
  *
- * Uses CalculatorContext so the report reflects whatever the visitor
+ * Uses CalculatorContext so the audit reflects whatever the visitor
  * entered in the hero calculator. If they never touched it, the report
  * uses industry-median defaults.
  */
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, Mail, Calendar, MessageSquare, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle2, Mail, Calendar, MessageSquare, Sparkles, FileText, Video } from "lucide-react";
 import { useCalculator } from "@/context/CalculatorContext";
 import { formatCurrencyCompact } from "@shared/leakage";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
@@ -85,7 +81,7 @@ export default function TwoStepClose() {
       }
 
       setState("success");
-      trackFormSubmit("Revenue Report Request", {
+      trackFormSubmit("Revenue Audit Request", {
         locations: String(locations),
         appts_per_location: String(apptsPerLocation),
         avg_ticket: String(avgTicket),
@@ -105,17 +101,17 @@ export default function TwoStepClose() {
       <div className="container relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <p className="section-label mb-5" style={{ color: "rgba(94, 236, 200, 0.85)" }}>
-            THE FINAL STEP
+            FREE REVENUE AUDIT
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.05] mb-6 tracking-tight">
             {state === "success"
-              ? "Report sent. Now let's talk."
-              : "Get your personalized revenue gap report."}
+              ? "Audit on its way. Book 20 minutes with Jim."
+              : "Get your 4-page Revenue Recovery Audit."}
           </h2>
 
           {state !== "success" && (
             <p className="text-base sm:text-lg text-white/70 leading-relaxed max-w-2xl mx-auto mb-10">
-              Enter your email and we'll send you a 1-page report showing your estimated monthly and annual gap — broken down by leakage type, with methodology and sources. No sales call required.
+              Enter your email. We send a 2-minute Loom showing you how to export your booking data, you send it back, and we deliver a 4-page audit PDF in 48 hours. No sales call required.
             </p>
           )}
 
@@ -149,13 +145,13 @@ export default function TwoStepClose() {
                     type="submit"
                     disabled={state === "loading"}
                     className="w-full rounded-full px-8 py-4 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
-                    onClick={() => trackCTAClick("Send my report", "Two-Step Close", "primary")}
+                    onClick={() => trackCTAClick("Get My Free Audit", "TwoStepClose", "primary")}
                   >
                     {state === "loading" ? (
                       <>Sending…</>
                     ) : (
                       <>
-                        Send my report
+                        Get My Free Audit
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </>
                     )}
@@ -166,19 +162,19 @@ export default function TwoStepClose() {
                 <p className="mt-3 text-sm text-[#FCA5A5]">{errorMessage}</p>
               )}
               <p className="mt-4 text-xs text-white/40 text-center">
-                We'll email you the report from{" "}
+                We'll email you the Loom from{" "}
                 <span className="text-white/60">jim@etienneagency.com</span>.
                 No spam. No list. One email.
               </p>
             </form>
           )}
 
-          {/* 3-step walkthrough — scroll-revealed either way */}
+          {/* 5-step walkthrough — scroll-revealed either way */}
           <div ref={stepsRef} className="pt-10 border-t border-white/10">
             <p className="text-[11px] uppercase tracking-widest text-white/40 mb-8">
               What happens next
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left max-w-3xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 text-left max-w-5xl mx-auto">
               {STEPS.map((step, i) => {
                 const Icon = step.icon;
                 return (
@@ -217,21 +213,33 @@ export default function TwoStepClose() {
 const STEPS = [
   {
     icon: Mail,
-    title: "You get the report by email",
+    title: "Submit your email",
     description:
-      "1-page HTML report of your estimated leakage, broken down by type, with methodology and sources. Arrives in under 60 seconds.",
+      "Enter your work email above. That's the only thing we ask right now.",
+  },
+  {
+    icon: Video,
+    title: "We send a 2-min Loom",
+    description:
+      "A short screen recording showing exactly how to export your booking data CSV from your software.",
+  },
+  {
+    icon: FileText,
+    title: "You email back the CSV",
+    description:
+      "One file, one reply. Takes about 2 minutes on your end.",
+  },
+  {
+    icon: Sparkles,
+    title: "Audit PDF in 48 hours",
+    description:
+      "A 4-page Revenue Recovery Audit lands in your inbox. Real numbers, real gaps, real recommendations.",
   },
   {
     icon: Calendar,
-    title: "You pick a 20-min slot",
+    title: "Optional: book 20 min with Jim",
     description:
-      "Calendly link included in the email. The call is with Jim himself, not a BDR. No pitch deck, no demo queue.",
-  },
-  {
-    icon: MessageSquare,
-    title: "Jim walks through your numbers",
-    description:
-      "We pull the same metrics against your actual booking data and tell you exactly where the gaps are. You decide what to do next.",
+      "Walk through the audit live. Jim himself, no BDR, no pitch deck. You decide what to do next.",
   },
 ];
 
@@ -243,16 +251,16 @@ function SuccessPanel({ result }: { result: ReturnType<typeof useCalculator>["re
           <CheckCircle2 className="w-6 h-6 text-primary" />
         </div>
         <p className="text-base sm:text-lg text-white/90 mb-2">
-          Your report is on its way.
+          Loom on its way.
         </p>
         <p className="text-sm text-white/60">
-          Check your inbox in the next minute. It includes your full leakage breakdown, sources, and a link to book time with Jim.
+          Check your inbox. We'll send a 2-minute Loom showing how to export your CSV. Reply with the file and your 4-page audit arrives within 48 hours.
         </p>
         {result.recoveryAnnual.expected > 0 && (
           <div className="mt-5 pt-5 border-t border-white/10 text-center">
             <p className="text-[11px] uppercase tracking-wider text-white/40 mb-1">Your estimated recovery</p>
             <p className="font-display text-2xl text-primary">
-              {formatCurrencyCompact(result.recoveryAnnual.low)} — {formatCurrencyCompact(result.recoveryAnnual.high)}
+              {formatCurrencyCompact(result.recoveryAnnual.low)} to {formatCurrencyCompact(result.recoveryAnnual.high)}
               <span className="text-base text-white/60 ml-2">/year</span>
             </p>
           </div>
@@ -267,10 +275,10 @@ function SuccessPanel({ result }: { result: ReturnType<typeof useCalculator>["re
         >
           <Button
             className="rounded-full px-8 py-6 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
-            onClick={() => trackCTAClick("Book the call (post-report)", "Two-Step Close Success", "primary")}
+            onClick={() => trackCTAClick("Book 20 minutes with Jim", "TwoStepClose", "primary")}
           >
             <Sparkles className="mr-2 h-4 w-4" />
-            Book the call now
+            Book 20 minutes with Jim
           </Button>
         </a>
       </MagneticButton>

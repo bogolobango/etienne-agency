@@ -1,5 +1,5 @@
 /**
- * Footer Component — Revenue Intelligence positioning
+ * Footer Component — Revenue Recovery positioning
  * Product, Company, Connect columns
  */
 
@@ -25,7 +25,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Revenue intelligence for multi-location med spas.
+              Revenue recovery for multi-location medspas. Done for you.
             </p>
           </div>
 

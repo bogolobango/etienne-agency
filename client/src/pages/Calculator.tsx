@@ -30,6 +30,7 @@ import { trackCTAClick, trackFormSubmit } from "@/lib/analytics";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 import GradientOrbs, { type OrbConfig } from "@/components/GradientOrbs";
 import { computeLeakage, formatCurrency, BENCHMARKS, RECOVERY } from "@shared/leakage";
+import { CALENDLY_URL } from "@/const";
 
 const heroOrbs: OrbConfig[] = [
   { size: 480, color: "#00D4AA", x: "-6%", y: "-8%", opacity: 0.32, duration: 14, delay: 0, parallaxFactor: 50 },
@@ -433,7 +434,7 @@ export default function Calculator() {
                   No pitch deck. No commitment.
                 </p>
                 <div className="mt-4">
-                  <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
+                  <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
                     <Button
                       variant="ghost"
                       className="rounded-full text-sm text-muted-foreground hover:text-foreground"

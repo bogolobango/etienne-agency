@@ -7,6 +7,7 @@ import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { trackCTAClick } from "@/lib/analytics";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
+import { CALENDLY_URL } from "@/const";
 
 export default function FinalCTASection() {
   const [inView, setInView] = useState(false);
@@ -36,7 +37,7 @@ export default function FinalCTASection() {
             Find out what your locations are missing.
           </h2>
           <div className="flex justify-center mb-6">
-            <a href="https://calendly.com/jim-etienneagency/30min" target="_blank" rel="noopener noreferrer">
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
               <Button
                 className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill"
                 onClick={() => trackCTAClick('Book a Revenue Call', 'Final CTA Section', 'primary')}

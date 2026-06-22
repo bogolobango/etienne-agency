@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { trackCTAClick } from "@/lib/analytics";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
+import { CALENDLY_URL } from "@/const";
 
 export default function Contact() {
   usePageView("Contact");
@@ -106,7 +107,7 @@ export default function Contact() {
               </p>
               <div
                 className="calendly-inline-widget"
-                data-url="https://calendly.com/jim-etienneagency/30min"
+                data-url={CALENDLY_URL}
                 style={{ minWidth: "320px", height: "700px" }}
               />
             </div>

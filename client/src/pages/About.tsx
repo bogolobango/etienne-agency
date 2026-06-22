@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { trackCTAClick } from "@/lib/analytics";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
+import { CALENDLY_URL } from "@/const";
 
 export default function About() {
   usePageView("About");
@@ -179,7 +180,7 @@ export default function About() {
               If you want to talk through the numbers first, grab a 20-minute call below.
             </p>
             <a
-              href="https://calendly.com/jim-etienneagency/30min"
+              href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-3 inline-block"

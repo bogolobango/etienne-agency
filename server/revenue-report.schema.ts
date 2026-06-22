@@ -116,7 +116,7 @@ Book a 20-minute call with Jim: https://calendly.com/jim-etienneagency/30min
         Hi ${greeting} — here's what we estimate you're leaving on the table.
       </h1>
       <p style="margin: 0; color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.55;">
-        Computed from the same leakage model the Etienne Intelligence Platform uses on real booking data.
+        This is an industry-benchmark estimate using the same leakage model Etienne applies to real booking data.
       </p>
     </div>
 

@@ -14,39 +14,39 @@ export interface PageMeta {
 
 const staticRoutes: Record<string, PageMeta> = {
   "/": {
-    title: "Revenue Intelligence for Multi-Location Med Spas | Etienne",
+    title: "Done-for-You Revenue Recovery for Multi-Location Medspas | Etienne",
     description:
-      "EIP connects to your Zenoti, Boulevard, or Mangomint data and shows you exactly where you're losing revenue across locations — AI-powered insights for med spa owners running 3-25 centers.",
+      "Etienne finds where your medspa locations are losing revenue and hands you a 4-page audit in 48 hours. No platform to log into. Built for owners running 3-25 centers.",
   },
   "/how-it-works": {
-    title: "How EIP Works | Revenue Intelligence for Med Spas",
+    title: "How Etienne Works | Revenue Recovery for Multi-Location Medspas",
     description:
-      "See how EIP connects to your booking platform and surfaces cross-location revenue gaps — no-show patterns, utilization gaps, and rebooking leakage — in days.",
+      "Three steps: share your booking data, get a 4-page audit in 48 hours, act on clear findings. Done-for-you revenue recovery for multi-location medspa operators.",
   },
   "/med-spas": {
-    title: "Revenue Intelligence for Multi-Location Med Spas | Etienne",
+    title: "Built for Multi-Location Medspas | Etienne Revenue Recovery",
     description:
-      "Running 3-25 med spa locations? EIP shows you where revenue is leaking across your centers — no-shows, missed leads, and utilization gaps — and tells you exactly what to do about it.",
+      "Running 3-25 medspa locations? Etienne delivers a done-for-you audit showing exactly where you're losing revenue to no-shows, rebooking gaps, and missed calls.",
   },
   "/industries": {
-    title: "Revenue Intelligence for Multi-Location Med Spas | Etienne",
+    title: "Built for Multi-Location Medspas | Etienne Revenue Recovery",
     description:
-      "Running 3-25 med spa locations? EIP shows you where revenue is leaking across your centers — no-shows, missed leads, and utilization gaps — and tells you exactly what to do about it.",
+      "Running 3-25 medspa locations? Etienne delivers a done-for-you audit showing exactly where you're losing revenue to no-shows, rebooking gaps, and missed calls.",
   },
   "/calculator": {
-    title: "Revenue Gap Calculator for Med Spas | Etienne",
+    title: "Revenue Gap Calculator for Multi-Location Medspas | Etienne",
     description:
-      "See how much revenue your med spa locations are losing to no-shows, utilization gaps, and missed rebookings. Free interactive calculator powered by the EIP leakage model.",
+      "See how much revenue your medspa locations are losing to no-shows, utilization gaps, and missed rebookings. Free calculator based on AmSpa and Zenoti benchmarks.",
   },
   "/contact": {
-    title: "Book a Revenue Call | Etienne",
+    title: "Get in Touch | Etienne Revenue Recovery",
     description:
-      "Book a 20-minute revenue call with the Etienne team. We'll show you exactly what EIP would surface from your booking data — no pitch deck, no commitment.",
+      "Talk to the Etienne team. We'll walk you through what a done-for-you audit would surface from your booking data. No pitch deck. No commitment.",
   },
   "/about": {
-    title: "About Etienne | Revenue Intelligence for Med Spas",
+    title: "About Etienne | Done-for-You Revenue Recovery",
     description:
-      "Etienne builds revenue intelligence for multi-location med spas. Founded by Fortune 500 AI veterans bringing enterprise-grade intelligence to the $21B medical aesthetics industry.",
+      "Etienne delivers done-for-you revenue recovery audits for multi-location medspa operators. A 4-page report in 48 hours showing exactly where revenue is leaking.",
   },
   "/privacy": {
     title: "Privacy Policy | Etienne",
@@ -67,7 +67,7 @@ const breadcrumbLabels: Record<string, string> = {
   "/med-spas": "Med Spas",
   "/industries": "Med Spas",
   "/calculator": "Revenue Gap Calculator",
-  "/contact": "Book a Revenue Call",
+  "/contact": "Get in Touch",
   "/about": "About",
   "/privacy": "Privacy Policy",
   "/terms": "Terms of Service",

@@ -121,7 +121,7 @@ export default function HowItWorks() {
             <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-10">
               Done-for-you revenue recovery in 3 steps. No platform to learn. No software to log into. You send a CSV. We send back a plan.
             </p>
-            <a href="#step-01">
+            <a href="/#early-adopter-section">
               <Button
                 className="rounded-full px-8 py-6 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
                 onClick={() =>

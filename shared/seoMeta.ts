@@ -56,6 +56,11 @@ const staticRoutes: Record<string, PageMeta> = {
     title: "Terms of Service | Etienne",
     description: "Read the Etienne Agency terms of service and conditions of use.",
   },
+  "/sample-audit": {
+    title: "Sample Revenue Recovery Audit | See What You Get | Etienne",
+    description:
+      "See all 4 pages of a real Revenue Recovery Audit before you send a CSV. Executive summary, leakage map, benchmark comparison, and 60-day roadmap. Yours in 48 hours with your actual data.",
+  },
 };
 
 const industryRoutes: Record<string, PageMeta> = {};
@@ -71,6 +76,7 @@ const breadcrumbLabels: Record<string, string> = {
   "/about": "About",
   "/privacy": "Privacy Policy",
   "/terms": "Terms of Service",
+  "/sample-audit": "Sample Audit",
 };
 
 export function getBreadcrumbJsonLd(pathname: string): object | null {

@@ -46,7 +46,7 @@ export default function Contact() {
             }`}
           >
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-6">
-              Send Jim a note
+              Get in touch with Jim
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-4">
               The fastest path is the free Revenue Recovery Audit. Send a CSV, get a 4-page PDF back in 48 hours. No call required.

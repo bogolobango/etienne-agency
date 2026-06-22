@@ -82,7 +82,7 @@ export default function About() {
                 Then his wife started going to a multi-location medspa. One of her providers left. The location near their home felt slower every month. She asked the front desk about it and got a shrug.
               </p>
               <p>
-                Jim pulled the public data out of curiosity. The location was down 22% on rebooking. Provider utilization had dropped 18 points. The medspa was paying thousands a month for booking software that could not tell them any of this.
+                The location near their home felt slower every month. The medspa owners were paying thousands a month for booking software that could not tell them which location was bleeding cash or why.
               </p>
               <p className="font-semibold text-foreground">
                 He built Etienne to fix that gap.
@@ -162,7 +162,7 @@ export default function About() {
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">
-              Get your free audit
+              Get Your Free Audit
             </h2>
             <p className="text-base sm:text-lg text-white/70 leading-relaxed mb-10 max-w-xl mx-auto">
               Send your CSV. Get the 4-page PDF in 48 hours. No call required. No commitment.

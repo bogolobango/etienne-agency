@@ -102,7 +102,7 @@ export default function IndustriesSection() {
               {[
                 { label: "Zenoti HyperConnect", desc: "Great at phone capture and SMS follow-up, but only if you're on Zenoti" },
                 { label: "Eva AI", desc: "Voice-only, single-location focus" },
-                { label: "Your CRM's reporting", desc: "Canned reports that show metrics without context -- you still have to figure out what to do" },
+                { label: "Your CRM's reporting", desc: "Canned reports that show metrics without context. You still have to figure out what to do" },
                 { label: "Etienne", desc: "Cross-location revenue patterns surfaced by a real analyst. We deliver the report. You don't learn a new tool.", highlight: true },
               ].map((item, i) => (
                 <div key={i} className={`p-4 rounded-xl border ${item.highlight ? "border-primary/40 bg-primary/5" : "border-white/10 bg-white/5"}`}>
@@ -121,7 +121,7 @@ export default function IndustriesSection() {
           <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
             <p className="section-label">CREDIBILITY</p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1]">
-              Built for operators who run 3&ndash;25 locations
+              Built for operators who run 3-25 locations
             </h2>
           </div>
 
@@ -140,7 +140,7 @@ export default function IndustriesSection() {
           <div className="max-w-3xl mx-auto">
             <blockquote className="card-premium p-8 sm:p-10 text-center">
               <p className="font-display text-lg sm:text-xl md:text-2xl text-foreground leading-relaxed mb-4 italic">
-                &ldquo;The average 5-location med spa is running with a 15&ndash;23% no-show rate and has no idea which provider, day, or location is driving it. Etienne is built to find that answer in days, not spreadsheets.&rdquo;
+                &ldquo;The average 5-location med spa is running with a 15 to 23% no-show rate and has no idea which provider, day, or location is driving it. Etienne is built to find that answer in days, not spreadsheets.&rdquo;
               </p>
               <footer className="text-sm text-muted-foreground">
                 <span className="font-semibold text-foreground">Jim Stephen</span>, Founder

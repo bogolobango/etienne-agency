@@ -5,9 +5,9 @@
  * /images/jim-stephen.png — if it fails to load, we show an initials
  * fallback tile so the section stays visually complete.
  *
- * Copy was drafted from Jim's own notes and tightened for a multi-location
- * operator audience: concrete credentials, specific wife-introduced origin
- * story, clear statement of why this market instead of another.
+ * Founder-as-the-service positioning. You talk to Jim every time.
+ * No account manager, no dashboard. Every audit and recovery plan goes through him.
+ * CTA leads to direct booking.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -161,9 +161,9 @@ export default function FounderSection() {
                   </Button>
                 </a>
               </MagneticButton>
-              <span className="text-xs text-muted-foreground mt-3">
+              <p className="text-xs text-muted-foreground mt-3">
                 (no slide deck, just your data)
-              </span>
+              </p>
             </div>
           </div>
         </div>

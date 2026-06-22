@@ -79,7 +79,7 @@ export default function About() {
                 Jim spent eight years selling revenue intelligence to Fortune 500 manufacturers and retailers. He closed deals that put reporting in front of operators who had never seen their numbers laid out that clearly before. Multiple President's Club finishes. He knew what it felt like to hand someone a document that changed how they ran their business.
               </p>
               <p>
-                Then his wife started going to a multi-location medspa. One of her providers left. The location near their home felt slower every month. She asked the front desk about it and got a shrug.
+                Then his wife started going to a multi-location medspa. One of her providers left. She asked the front desk about it and got a shrug.
               </p>
               <p>
                 The location near their home felt slower every month. The medspa owners were paying thousands a month for booking software that could not tell them which location was bleeding cash or why.

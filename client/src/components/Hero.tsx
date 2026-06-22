@@ -50,15 +50,18 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-col items-center gap-2 mb-10">
-            <a
-              href="https://calendly.com/jim-etienneagency/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <button className="rounded-full px-8 py-4 text-base sm:text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill transition-colors">
-                Get Your Free Revenue Audit
-              </button>
-            </a>
+            <div className="flex flex-col items-center gap-1">
+              <a
+                href="https://calendly.com/jim-etienneagency/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className="rounded-full px-8 py-4 text-base sm:text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill transition-colors">
+                  Get Your Free Revenue Audit
+                </button>
+              </a>
+              <span className="text-xs text-white/50 mt-0.5">48-hour delivery</span>
+            </div>
             <p className="text-xs text-white/50">
               No call required. Send a CSV from your booking system, get a 4-page report back in 48 hours.
             </p>

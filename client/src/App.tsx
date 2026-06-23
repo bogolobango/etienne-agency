@@ -7,6 +7,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { captureUTMParams } from "@/lib/utm";
+import { ScrollToTop } from "./components/ScrollToTop";
 
 // Lazy-loaded page components (code-split per route)
 const Home = lazy(() => import("./pages/Home"));
@@ -31,6 +32,7 @@ function PageLoader() {
 function Router() {
   return (
     <Suspense fallback={<PageLoader />}>
+      <ScrollToTop />
       <Switch>
         <Route path={"/"} component={Home} />
         <Route path={"/how-it-works"} component={HowItWorks} />

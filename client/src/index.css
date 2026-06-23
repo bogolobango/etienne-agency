@@ -130,6 +130,15 @@
   --section-alt: #141929;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+html {
+  scroll-padding-top: 80px;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

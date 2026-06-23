@@ -5,7 +5,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "wouter";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import { trackNavigationClick, trackCTAClick } from "@/lib/analytics";
 
@@ -16,6 +16,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [location] = useLocation();
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const hasDarkHero = DARK_HERO_ROUTES.some(
     (path) => location === path || (path !== "/" && location.startsWith(path))
@@ -45,6 +46,38 @@ export default function Header() {
     return () => {
       document.body.style.overflow = "unset";
     };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen || !mobileMenuRef.current) return;
+    const focusable = mobileMenuRef.current.querySelectorAll<HTMLElement>(
+      'a, button, input, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    first.focus();
+    const onTab = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    window.addEventListener("keydown", onTab);
+    return () => window.removeEventListener("keydown", onTab);
   }, [mobileMenuOpen]);
 
   return (
@@ -159,6 +192,9 @@ export default function Header() {
 
       {/* Mobile Menu Drawer */}
       <div
+        ref={mobileMenuRef}
+        role="dialog"
+        aria-modal="true"
         className={`fixed top-0 right-0 bottom-0 w-full max-w-sm bg-background z-[70] transition-transform duration-300 ease-out md:hidden ${
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}

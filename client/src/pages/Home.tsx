@@ -56,13 +56,15 @@ export default function Home() {
 
   useEffect(() => {
     const existing = document.getElementById("json-ld-home");
-    if (!existing) {
-      const script = document.createElement("script");
-      script.id = "json-ld-home";
-      script.type = "application/ld+json";
-      script.textContent = JSON.stringify(jsonLd);
-      document.head.appendChild(script);
-    }
+    if (existing) existing.remove(); // ensures no duplicate on route flap
+    const script = document.createElement("script");
+    script.id = "json-ld-home";
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+    return () => {
+      document.getElementById("json-ld-home")?.remove();
+    };
   }, []);
 
   return (

@@ -155,28 +155,30 @@ export default function IndustryDetail() {
     if (!industry || !slug) return;
     setInView(true);
 
-    // Inject JSON-LD structured data for this industry page
     const ldId = `json-ld-industry-${slug}`;
-    if (!document.getElementById(ldId)) {
-      const script = document.createElement("script");
-      script.id = ldId;
-      script.type = "application/ld+json";
-      script.textContent = JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Service",
-        name: `AI Receptionist for ${industry.name}`,
-        description: industry.metaDescription,
-        url: `https://www.etienneagency.com/industries/${slug}`,
-        provider: {
-          "@type": "ProfessionalService",
-          name: "Etienne Agency",
-          url: "https://www.etienneagency.com",
-        },
-        areaServed: "US",
-        serviceType: "AI Receptionist & Appointment Scheduling",
-      });
-      document.head.appendChild(script);
-    }
+    const existing = document.getElementById(ldId);
+    if (existing) existing.remove(); // ensures no duplicate on route flap
+    const script = document.createElement("script");
+    script.id = ldId;
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: `AI Receptionist for ${industry.name}`,
+      description: industry.metaDescription,
+      url: `https://www.etienneagency.com/industries/${slug}`,
+      provider: {
+        "@type": "ProfessionalService",
+        name: "Etienne Agency",
+        url: "https://www.etienneagency.com",
+      },
+      areaServed: "US",
+      serviceType: "AI Receptionist & Appointment Scheduling",
+    });
+    document.head.appendChild(script);
+    return () => {
+      document.getElementById(ldId)?.remove();
+    };
   }, [industry, slug]);
 
   // Redirect to /industries if slug doesn't match any industry

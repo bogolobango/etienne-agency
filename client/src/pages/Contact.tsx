@@ -110,11 +110,13 @@ export default function Contact() {
               <p className="text-sm text-muted-foreground text-center mb-6">
                 Prefer a 20-minute call instead? Pick a time that works for you.
               </p>
-              <div
-                className="calendly-inline-widget"
-                data-url={CALENDLY_URL}
-                style={{ minWidth: "320px", height: "700px" }}
-              />
+              <div style={{ minHeight: "700px" }}>
+                <div
+                  className="calendly-inline-widget"
+                  data-url={CALENDLY_URL}
+                  style={{ minWidth: "320px", height: "700px" }}
+                />
+              </div>
             </div>
 
           </div>

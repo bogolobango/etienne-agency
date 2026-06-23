@@ -60,7 +60,7 @@ export default function CountUp({
           observer.disconnect();
         }
       },
-      { threshold: 0.3, rootMargin: "0px 0px -10% 0px" }
+      { threshold: 0.3, rootMargin: "0px 0px 50px 0px" }
     );
     observer.observe(node);
     return () => observer.disconnect();

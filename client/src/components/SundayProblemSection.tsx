@@ -10,27 +10,13 @@
  * treatment via .font-display (Playfair Display from Phase B).
  */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "wouter";
+import { useRevealAnimation } from "@/hooks/useRevealAnimation";
 
 export default function SundayProblemSection() {
-  const [inView, setInView] = useState(false);
-  const sectionRef = useRef<HTMLElement | null>(null);
+  const { ref: sectionRef, inView } = useRevealAnimation<HTMLElement>({ threshold: 0.15 });
   const bgRef = useRef<HTMLDivElement | null>(null);
-
-  // Reveal
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setInView(true);
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   // Parallax background (very subtle, ~60px max)
   useEffect(() => {
@@ -99,7 +85,7 @@ export default function SundayProblemSection() {
 
       <div className="container relative z-10">
         <div
-          className={`max-w-3xl mx-auto transition-all duration-1000 ease-out ${
+          className={`max-w-3xl mx-auto transition-all duration-[var(--duration-slow)] ease-out ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >

@@ -12,7 +12,7 @@
  * uses industry-median defaults.
  */
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, Mail, Calendar, Sparkles, FileText, Video } from "lucide-react";
 import { useCalculator } from "@/context/CalculatorContext";
@@ -21,6 +21,7 @@ import FloatingDustMotes from "@/components/FloatingDustMotes";
 import MagneticButton from "@/components/MagneticButton";
 import { trackCTAClick, trackFormSubmit } from "@/lib/analytics";
 import { CALENDLY_URL } from "@/const";
+import { useRevealAnimation } from "@/hooks/useRevealAnimation";
 
 type SubmitState = "idle" | "loading" | "success" | "error";
 
@@ -29,21 +30,7 @@ export default function TwoStepClose() {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [stepsInView, setStepsInView] = useState(false);
-  const stepsRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = stepsRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setStepsInView(true);
-      },
-      { threshold: 0.25 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const { ref: stepsRef, inView: stepsInView } = useRevealAnimation<HTMLDivElement>();
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -181,7 +168,7 @@ export default function TwoStepClose() {
                 return (
                   <div
                     key={i}
-                    className={`transition-all duration-700 ease-out ${
+                    className={`transition-all duration-[var(--duration-reveal)] ease-out ${
                       stepsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                     }`}
                     style={{ transitionDelay: `${i * 150}ms` }}

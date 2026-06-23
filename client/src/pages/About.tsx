@@ -2,7 +2,6 @@
  * About Page - Founder story + done-for-you service positioning
  */
 
-import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { usePageView } from "@/hooks/usePageView";
@@ -13,14 +12,18 @@ import { ArrowRight } from "lucide-react";
 import { trackCTAClick } from "@/lib/analytics";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 import { CALENDLY_URL } from "@/const";
+import { useRevealAnimation } from "@/hooks/useRevealAnimation";
 
 export default function About() {
   usePageView("About");
   useScrollTracking("About");
   useSEO("/about");
 
-  const [inView, setInView] = useState(false);
-  useEffect(() => { setInView(true); }, []);
+  // Hero is above the fold - reveal immediately, no scroll gate
+  const inView = true;
+  const { ref: originRef, inView: originInView } = useRevealAnimation();
+  const { ref: serviceRef, inView: serviceInView } = useRevealAnimation();
+  const { ref: founderRef, inView: founderInView } = useRevealAnimation();
 
   return (
     <div id="main-content" className="min-h-screen">
@@ -39,7 +42,7 @@ export default function About() {
         />
         <div className="container relative z-10">
           <div
-            className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${
+            className={`max-w-4xl mx-auto text-center transition-all duration-[var(--duration-slow)] ${
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
@@ -58,10 +61,11 @@ export default function About() {
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto">
             <h2
+              ref={originRef}
               className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground text-center mb-10"
               style={{
-                opacity: inView ? 1 : 0,
-                transform: inView ? "translateY(0)" : "translateY(20px)",
+                opacity: originInView ? 1 : 0,
+                transform: originInView ? "translateY(0)" : "translateY(20px)",
                 transition: "all 0.7s ease",
               }}
             >
@@ -70,8 +74,8 @@ export default function About() {
             <div
               className="space-y-6 text-base sm:text-lg text-muted-foreground leading-relaxed"
               style={{
-                opacity: inView ? 1 : 0,
-                transform: inView ? "translateY(0)" : "translateY(20px)",
+                opacity: originInView ? 1 : 0,
+                transform: originInView ? "translateY(0)" : "translateY(20px)",
                 transition: "all 0.7s ease",
                 transitionDelay: "150ms",
               }}
@@ -98,10 +102,11 @@ export default function About() {
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto">
             <h2
+              ref={serviceRef}
               className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground text-center mb-10"
               style={{
-                opacity: inView ? 1 : 0,
-                transform: inView ? "translateY(0)" : "translateY(20px)",
+                opacity: serviceInView ? 1 : 0,
+                transform: serviceInView ? "translateY(0)" : "translateY(20px)",
                 transition: "all 0.7s ease",
                 transitionDelay: "100ms",
               }}
@@ -111,8 +116,8 @@ export default function About() {
             <div
               className="space-y-6 text-base sm:text-lg text-muted-foreground leading-relaxed"
               style={{
-                opacity: inView ? 1 : 0,
-                transform: inView ? "translateY(0)" : "translateY(20px)",
+                opacity: serviceInView ? 1 : 0,
+                transform: serviceInView ? "translateY(0)" : "translateY(20px)",
                 transition: "all 0.7s ease",
                 transitionDelay: "250ms",
               }}
@@ -135,10 +140,11 @@ export default function About() {
       <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
         <div className="container relative z-10">
           <div
+            ref={founderRef}
             className="max-w-3xl mx-auto"
             style={{
-              opacity: inView ? 1 : 0,
-              transform: inView ? "translateY(0)" : "translateY(30px)",
+              opacity: founderInView ? 1 : 0,
+              transform: founderInView ? "translateY(0)" : "translateY(30px)",
               transition: "all 0.7s ease",
               transitionDelay: "200ms",
             }}

@@ -7,7 +7,6 @@
  * committing to sending a CSV.
  */
 
-import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { usePageView } from "@/hooks/usePageView";
@@ -27,6 +26,7 @@ import {
 import { trackCTAClick } from "@/lib/analytics";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 import { CALENDLY_URL } from "@/const";
+import { useRevealAnimation } from "@/hooks/useRevealAnimation";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -593,10 +593,11 @@ export default function SampleAudit() {
   useScrollTracking("Sample Audit");
   useSEO("/sample-audit");
 
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    setInView(true);
-  }, []);
+  // Hero is above the fold - reveal immediately, no scroll gate
+  const inView = true;
+  const { ref: previewRef, inView: previewInView } = useRevealAnimation();
+  const { ref: sendRef, inView: sendInView } = useRevealAnimation();
+  const { ref: closingRef, inView: closingInView } = useRevealAnimation();
 
   const previewSections = [
     {
@@ -650,7 +651,7 @@ export default function SampleAudit() {
         />
         <div className="container relative z-10">
           <div
-            className={`max-w-4xl mx-auto text-center transition-all duration-700 ease-out ${
+            className={`max-w-4xl mx-auto text-center transition-all duration-[var(--duration-reveal)] ease-out ${
               inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}
           >
@@ -692,8 +693,9 @@ export default function SampleAudit() {
         <div className="container relative z-10">
           {/* Section intro */}
           <div
-            className={`max-w-2xl mx-auto text-center mb-16 transition-all duration-700 ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            ref={previewRef}
+            className={`max-w-2xl mx-auto text-center mb-16 transition-all duration-[var(--duration-reveal)] ${
+              previewInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
             <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
@@ -717,10 +719,10 @@ export default function SampleAudit() {
                 <div
                   key={i}
                   style={{
-                    opacity: inView ? 1 : 0,
-                    transform: inView ? "translateY(0)" : "translateY(30px)",
+                    opacity: previewInView ? 1 : 0,
+                    transform: previewInView ? "translateY(0)" : "translateY(30px)",
                     transition: "all 0.7s ease",
-                    transitionDelay: `${i * 120}ms`,
+                    transitionDelay: `${i * 150}ms`,
                   }}
                 >
                   {/* Section label */}
@@ -780,8 +782,9 @@ export default function SampleAudit() {
       <section className="py-16 md:py-20 bg-primary/5 border-y border-primary/10">
         <div className="container">
           <div
-            className={`max-w-3xl mx-auto transition-all duration-700 ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            ref={sendRef}
+            className={`max-w-3xl mx-auto transition-all duration-[var(--duration-reveal)] ${
+              sendInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
             <h2
@@ -827,8 +830,9 @@ export default function SampleAudit() {
         <FloatingDustMotes particleCount={40} />
         <div className="container relative z-10">
           <div
-            className={`max-w-3xl mx-auto text-center transition-all duration-700 ${
-              inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            ref={closingRef}
+            className={`max-w-3xl mx-auto text-center transition-all duration-[var(--duration-reveal)] ${
+              closingInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
             <h2

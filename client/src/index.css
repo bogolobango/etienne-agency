@@ -50,6 +50,18 @@
 
 :root {
   /* Etienne Teal — Light marketing site with teal accents */
+  --header-height: 68px;
+
+  /* Motion tokens — single source of truth for animation timing.
+     Swap durations here to retune all reveal animations at once.
+     Quick: hover/micro feedback. Reveal: section enter. Slow: large editorial panels.
+     Stagger-step: per-item offset in list reveals. */
+  --duration-quick: 200ms;
+  --duration-reveal: 700ms;
+  --duration-slow: 1000ms;
+  --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-quick: cubic-bezier(0.4, 0, 0.2, 1);
+  --stagger-step: 150ms;
   --primary: #00D4AA;
   --primary-foreground: #0A0F1C;
   --sidebar-primary: #00D4AA;
@@ -128,6 +140,15 @@
   --highlight-coral: #FCA5A5;
   --highlight-green: #6EE7B7;
   --section-alt: #141929;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+html {
+  scroll-padding-top: calc(var(--header-height) + 12px);
 }
 
 @layer base {

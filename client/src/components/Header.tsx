@@ -5,7 +5,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "wouter";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import { trackNavigationClick, trackCTAClick } from "@/lib/analytics";
 
@@ -15,7 +15,10 @@ const DARK_HERO_ROUTES = ["/", "/how-it-works", "/med-spas"];
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(true);
+  const lastScrollYRef = useRef(0);
   const [location] = useLocation();
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const hasDarkHero = DARK_HERO_ROUTES.some(
     (path) => location === path || (path !== "/" && location.startsWith(path))
@@ -32,6 +35,40 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollYRef.current;
+
+      if (currentY < 80) {
+        setHeaderVisible(true);
+      } else if (mobileMenuOpen) {
+        setHeaderVisible(true);
+      } else if (delta > 4) {
+        setHeaderVisible(false);
+      } else if (delta < -4) {
+        setHeaderVisible(true);
+      }
+      lastScrollYRef.current = currentY;
+    };
+
+    let ticking = false;
+    const rafScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          onScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", rafScroll, { passive: true });
+    return () => window.removeEventListener("scroll", rafScroll);
+  }, [mobileMenuOpen]);
+
   const handleLinkClick = () => {
     setMobileMenuOpen(false);
   };
@@ -47,14 +84,46 @@ export default function Header() {
     };
   }, [mobileMenuOpen]);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen || !mobileMenuRef.current) return;
+    const focusable = mobileMenuRef.current.querySelectorAll<HTMLElement>(
+      'a, button, input, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    first.focus();
+    const onTab = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    window.addEventListener("keydown", onTab);
+    return () => window.removeEventListener("keydown", onTab);
+  }, [mobileMenuOpen]);
+
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 [transition:transform_var(--duration-quick)_var(--ease-quick),background-color_300ms_ease,backdrop-filter_300ms_ease,box-shadow_300ms_ease] ${
           scrolled
             ? "bg-background/95 backdrop-blur-sm shadow-sm"
             : "bg-transparent"
-        }`}
+        } ${headerVisible ? "translate-y-0" : "-translate-y-full"}`}
       >
         <div className="container">
           <div className="flex items-center justify-between h-[68px]">
@@ -159,6 +228,11 @@ export default function Header() {
 
       {/* Mobile Menu Drawer */}
       <div
+        ref={mobileMenuRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation menu"
+        aria-hidden={!mobileMenuOpen}
         className={`fixed top-0 right-0 bottom-0 w-full max-w-sm bg-background z-[70] transition-transform duration-300 ease-out md:hidden ${
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}

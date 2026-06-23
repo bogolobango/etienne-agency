@@ -19,13 +19,16 @@ interface MagneticButtonProps {
 
 export default function MagneticButton({
   children,
-  proximity = 80,
+  proximity: proximityProp = 80,
   maxPull = 8,
   className = "",
 }: MagneticButtonProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [disabled, setDisabled] = useState(false);
+
+  // Reduce proximity on narrow viewports to avoid accidental pull during scroll
+  const proximity = typeof window !== "undefined" && window.innerWidth < 768 ? Math.min(proximityProp, 40) : proximityProp;
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -75,7 +78,7 @@ export default function MagneticButton({
       className={className}
       style={{
         transform: `translate(${offset.x}px, ${offset.y}px)`,
-        transition: "transform 280ms cubic-bezier(0.22, 1, 0.36, 1)",
+        transition: "transform 280ms var(--ease-reveal)",
         willChange: "transform",
       }}
     >

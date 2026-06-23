@@ -8,11 +8,11 @@
  * "we actually handle data."
  */
 
-import { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, Cell, ResponsiveContainer, LabelList } from "recharts";
 import { BENCHMARKS, formatCurrencyCompact } from "@shared/leakage";
 import { useCalculator } from "@/context/CalculatorContext";
 import CountUp from "@/components/CountUp";
+import { useRevealAnimation } from "@/hooks/useRevealAnimation";
 
 interface ComparisonStat {
   label: string;
@@ -59,26 +59,14 @@ const stats: ComparisonStat[] = [
 ];
 
 export default function ProblemSection() {
-  const [inView, setInView] = useState(false);
+  const { ref, inView } = useRevealAnimation<HTMLElement>({ threshold: 0.2 });
   const { hasInteracted, result, locations } = useCalculator();
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setInView(true);
-      },
-      { threshold: 0.2 }
-    );
-    const el = document.getElementById("problem-section");
-    if (el) observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section id="problem-section" className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
+    <section ref={ref} id="problem-section" className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
       <div className="container relative z-10">
         <div
-          className={`max-w-3xl mx-auto text-center mb-12 md:mb-16 transition-all duration-700 ${
+          className={`max-w-3xl mx-auto text-center mb-12 md:mb-16 transition-all duration-[var(--duration-reveal)] ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -89,7 +77,7 @@ export default function ProblemSection() {
         </div>
 
         <div
-          className={`max-w-3xl mx-auto mb-16 transition-all duration-700 delay-100 ${
+          className={`max-w-3xl mx-auto mb-16 transition-all duration-[var(--duration-reveal)] delay-100 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >

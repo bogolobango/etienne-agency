@@ -11,7 +11,6 @@
  * No fabricated testimonials. No phantom customer quotes.
  */
 
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import {
@@ -26,6 +25,7 @@ import { formatCurrencyCompact } from "@shared/leakage";
 import MagneticButton from "@/components/MagneticButton";
 import SpotlightCard from "@/components/SpotlightCard";
 import { CALENDLY_URL } from "@/const";
+import { useRevealAnimation } from "@/hooks/useRevealAnimation";
 
 interface Step {
   stepLabel: string;
@@ -95,7 +95,7 @@ const faqs = [
 ];
 
 export default function EarlyAdopterSection() {
-  const [inView, setInView] = useState(false);
+  const { ref, inView } = useRevealAnimation<HTMLElement>({ threshold: 0.15 });
   const { hasInteracted, result } = useCalculator();
 
   // Personalized CTA label on the highlighted step — only if they've interacted
@@ -104,27 +104,16 @@ export default function EarlyAdopterSection() {
       ? `Reclaim your ${formatCurrencyCompact(result.recoveryAnnual.expected)}/yr`
       : null;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setInView(true);
-      },
-      { threshold: 0.15 }
-    );
-    const el = document.getElementById("early-adopter-section");
-    if (el) observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section
+      ref={ref}
       id="early-adopter-section"
       className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden"
     >
       <div className="container relative z-10">
         {/* Header */}
         <div
-          className={`max-w-3xl mx-auto text-center mb-14 md:mb-18 transition-all duration-700 ${
+          className={`max-w-3xl mx-auto text-center mb-14 md:mb-18 transition-all duration-[var(--duration-reveal)] ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -135,23 +124,26 @@ export default function EarlyAdopterSection() {
         </div>
 
         {/* Step Cards */}
-        <div
-          className={`max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-10 transition-all duration-700 delay-150 ${
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          {steps.map((step) => (
-            <StepCard
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-10">
+          {steps.map((step, i) => (
+            <div
               key={step.stepLabel}
-              step={step}
-              personalizedCtaLabel={step.highlighted ? personalizedCtaLabel : null}
-            />
+              className={`transition-all duration-[var(--duration-reveal)] ${
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: `${150 + i * 150}ms` }}
+            >
+              <StepCard
+                step={step}
+                personalizedCtaLabel={step.highlighted ? personalizedCtaLabel : null}
+              />
+            </div>
           ))}
         </div>
 
         {/* Section closer */}
         <div
-          className={`max-w-2xl mx-auto text-center mb-16 transition-all duration-700 delay-200 ${
+          className={`max-w-2xl mx-auto text-center mb-16 transition-all duration-[var(--duration-reveal)] delay-200 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -162,7 +154,7 @@ export default function EarlyAdopterSection() {
 
         {/* FAQ */}
         <div
-          className={`max-w-3xl mx-auto mb-14 transition-all duration-700 delay-250 ${
+          className={`max-w-3xl mx-auto mb-14 transition-all duration-[var(--duration-reveal)] delay-250 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -189,7 +181,7 @@ export default function EarlyAdopterSection() {
 
         {/* Final CTA */}
         <div
-          className={`text-center transition-all duration-700 delay-300 ${
+          className={`text-center transition-all duration-[var(--duration-reveal)] delay-300 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >

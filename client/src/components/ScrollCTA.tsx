@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { ArrowRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { trackCTAClick } from "@/lib/analytics";
+import { useLocation } from "wouter";
 
 export default function ScrollCTA() {
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const [path] = useLocation();
 
   useEffect(() => {
     if (sessionStorage.getItem("scrollCTADismissed")) {
@@ -13,22 +15,36 @@ export default function ScrollCTA() {
       return;
     }
 
-    const startTime = Date.now();
-    let hasScrolled = false;
+    // Reset visibility on route change
+    setVisible(false);
 
-    function handleScroll() {
-      const scrollPct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-      const elapsed = Date.now() - startTime;
+    let triggered = false;
 
-      if (scrollPct >= 0.6 && elapsed >= 8000 && !hasScrolled) {
-        hasScrolled = true;
+    function show() {
+      if (!triggered) {
+        triggered = true;
         setVisible(true);
       }
     }
 
+    // 8-second dwell timer — fires even on short pages that never reach 60% scroll
+    const timer = setTimeout(show, 8000);
+
+    function handleScroll() {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+      const scrollPct = window.scrollY / scrollable;
+      if (scrollPct >= 0.6) {
+        show();
+      }
+    }
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [path]);
 
   if (dismissed) return null;
 

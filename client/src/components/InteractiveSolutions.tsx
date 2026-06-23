@@ -12,6 +12,7 @@ import { Download, BarChart3, FileText, ArrowRight } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { trackCTAClick } from "@/lib/analytics";
+import { useRevealAnimation } from "@/hooks/useRevealAnimation";
 
 interface Step {
   id: string;
@@ -57,10 +58,16 @@ const steps: Step[] = [
 ];
 
 export default function InteractiveSolutions() {
+  const { ref, inView } = useRevealAnimation<HTMLElement>();
+
   return (
-    <section id="solution-section" className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
+    <section ref={ref} id="solution-section" className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
       <div className="container relative z-10">
-        <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
+        <div
+          className={`max-w-3xl mx-auto text-center mb-12 md:mb-16 transition-all duration-[var(--duration-reveal)] ${
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
           <p className="section-label">HOW THE FREE AUDIT WORKS</p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.05] mb-6">
             Three steps. 48 hours. A PDF with your revenue leaks ranked by size.
@@ -73,13 +80,16 @@ export default function InteractiveSolutions() {
         <div className="max-w-5xl mx-auto">
           <Tabs defaultValue="export" className="w-full">
             <TabsList className="w-full h-auto grid grid-cols-1 sm:grid-cols-3 gap-2 bg-white/60 p-2 rounded-2xl border border-border/60">
-              {steps.map((s) => {
+              {steps.map((s, i) => {
                 const Icon = s.icon;
                 return (
                   <TabsTrigger
                     key={s.id}
                     value={s.id}
-                    className="flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all"
+                    className={`flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md transition-all duration-[var(--duration-reveal)] ${
+                      inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                    }`}
+                    style={{ transitionDelay: `${150 + i * 150}ms` }}
                   >
                     <Icon className="w-4 h-4" />
                     <span className="text-sm font-semibold">{s.label}</span>

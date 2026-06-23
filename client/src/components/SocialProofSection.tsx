@@ -4,33 +4,21 @@
  * Replaces the old interactive PlaygroundDashboard / EIP showcase.
  */
 
-import { useEffect, useState } from "react";
 import { FileText, TrendingDown, AlertCircle, CheckCircle2, ArrowRight } from "lucide-react";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 import { Button } from "@/components/ui/button";
 import { trackCTAClick } from "@/lib/analytics";
+import { useRevealAnimation } from "@/hooks/useRevealAnimation";
 
 export default function SocialProofSection() {
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setInView(true);
-      },
-      { threshold: 0.2 }
-    );
-    const el = document.getElementById("product-section");
-    if (el) observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const { ref, inView } = useRevealAnimation<HTMLElement>({ threshold: 0.2 });
 
   return (
-    <section id="product-section" className="relative py-20 md:py-28 lg:py-36 section-dark overflow-hidden">
+    <section ref={ref} id="product-section" className="relative py-20 md:py-28 lg:py-36 section-dark overflow-hidden">
       <FloatingDustMotes particleCount={40} />
       <div className="container relative z-10">
         <div
-          className={`max-w-3xl mx-auto text-center mb-12 md:mb-16 transition-all duration-700 ${
+          className={`max-w-3xl mx-auto text-center mb-12 md:mb-16 transition-all duration-[var(--duration-reveal)] ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -46,7 +34,7 @@ export default function SocialProofSection() {
 
         {/* PDF mockup */}
         <div
-          className={`max-w-3xl mx-auto mb-12 transition-all duration-700 delay-200 ${
+          className={`max-w-3xl mx-auto mb-12 transition-all duration-[var(--duration-reveal)] delay-200 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -79,7 +67,7 @@ export default function SocialProofSection() {
         </div>
 
         <div
-          className={`text-center transition-all duration-700 delay-500 ${
+          className={`text-center transition-all duration-[var(--duration-reveal)] delay-500 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >

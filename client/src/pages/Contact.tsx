@@ -2,7 +2,7 @@
  * Contact page - outcome-positioned hero, primary audit CTA, Calendly embed for direct booking
  */
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { usePageView } from "@/hooks/usePageView";
@@ -13,14 +13,17 @@ import { ArrowRight } from "lucide-react";
 import { trackCTAClick } from "@/lib/analytics";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 import { CALENDLY_URL } from "@/const";
+import { useRevealAnimation } from "@/hooks/useRevealAnimation";
 
 export default function Contact() {
   usePageView("Contact");
   useScrollTracking("Contact");
   useSEO("/contact");
 
-  const [inView, setInView] = useState(false);
-  useEffect(() => { setInView(true); }, []);
+  // Hero is above the fold - reveal immediately, no scroll gate
+  const inView = true;
+  const { ref: ctaRef, inView: ctaInView } = useRevealAnimation();
+  const { ref: calendlyRef, inView: calendlyInView } = useRevealAnimation();
 
   // Load Calendly widget script
   useEffect(() => {
@@ -66,10 +69,11 @@ export default function Contact() {
 
             {/* Primary CTA */}
             <div
+              ref={ctaRef}
               className="text-center mb-14"
               style={{
-                opacity: inView ? 1 : 0,
-                transform: inView ? "translateY(0)" : "translateY(20px)",
+                opacity: ctaInView ? 1 : 0,
+                transform: ctaInView ? "translateY(0)" : "translateY(20px)",
                 transition: "all 0.7s ease",
               }}
             >
@@ -95,9 +99,10 @@ export default function Contact() {
 
             {/* Calendly Embed */}
             <div
+              ref={calendlyRef}
               style={{
-                opacity: inView ? 1 : 0,
-                transform: inView ? "translateY(0)" : "translateY(20px)",
+                opacity: calendlyInView ? 1 : 0,
+                transform: calendlyInView ? "translateY(0)" : "translateY(20px)",
                 transition: "all 0.7s ease",
                 transitionDelay: "150ms",
               }}

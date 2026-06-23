@@ -8,7 +8,7 @@
  * cites sources inline.
  */
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -49,7 +49,8 @@ export default function Calculator() {
   useScrollTracking("Revenue Gap Calculator");
   useSEO("/calculator");
 
-  const [inView, setInView] = useState(false);
+  // Hero is above the fold - reveal immediately, no scroll gate
+  const inView = true;
   const [showResults, setShowResults] = useState(false);
 
   // Inputs — defaults chosen as industry medians so the result is meaningful
@@ -60,10 +61,6 @@ export default function Calculator() {
   const [noShowPct, setNoShowPct] = useState<number>(18);
   const [utilizationPct, setUtilizationPct] = useState<number>(BENCHMARKS.utilization.median);
   const [rebookPct, setRebookPct] = useState<number>(BENCHMARKS.rebooking.median - 5);
-
-  useEffect(() => {
-    setInView(true);
-  }, []);
 
   // ── Leakage model (shared source of truth — client/src/lib/leakage.ts)
   const result = computeLeakage({

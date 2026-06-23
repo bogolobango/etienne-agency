@@ -3,7 +3,6 @@
  * Outcome repositioning: who we are for, what we deliver, who we are NOT for.
  */
 
-import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { usePageView } from "@/hooks/usePageView";
@@ -14,14 +13,18 @@ import { ArrowRight, CheckCircle2, XCircle } from "lucide-react";
 import { trackCTAClick } from "@/lib/analytics";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 import { CALENDLY_URL } from "@/const";
+import { useRevealAnimation } from "@/hooks/useRevealAnimation";
 
 export default function Industries() {
   usePageView("Med Spas");
   useScrollTracking("Med Spas");
   useSEO("/med-spas");
 
-  const [inView, setInView] = useState(false);
-  useEffect(() => { setInView(true); }, []);
+  // Hero is above the fold - reveal immediately, no scroll gate
+  const inView = true;
+  const { ref: fitRef, inView: fitInView } = useRevealAnimation();
+  const { ref: offerRef, inView: offerInView } = useRevealAnimation();
+  const { ref: distinctionRef, inView: distinctionInView } = useRevealAnimation();
 
   const isFor = [
     "Med spa groups running 5 to 25 locations on Zenoti, Boulevard, or Mangomint",
@@ -108,8 +111,9 @@ export default function Industries() {
             </div>
 
             <div
+              ref={fitRef}
               className={`grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-[var(--duration-reveal)] ${
-                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                fitInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
             >
               <div className="card-premium p-6 sm:p-8">
@@ -153,14 +157,14 @@ export default function Industries() {
               </p>
             </div>
 
-            <div className="space-y-6">
+            <div ref={offerRef} className="space-y-6">
               {offer.map((item, i) => (
                 <div
                   key={i}
                   className="card-on-alt p-6 sm:p-8"
                   style={{
-                    opacity: inView ? 1 : 0,
-                    transform: inView ? "translateY(0)" : "translateY(20px)",
+                    opacity: offerInView ? 1 : 0,
+                    transform: offerInView ? "translateY(0)" : "translateY(20px)",
                     transition: "all 0.7s ease",
                     transitionDelay: `${i * 120}ms`,
                   }}
@@ -200,9 +204,10 @@ export default function Industries() {
         <div className="container relative z-10">
           <div className="max-w-2xl mx-auto">
             <div
+              ref={distinctionRef}
               className="rounded-xl border border-primary/20 bg-primary/5 px-6 py-8 sm:px-10 sm:py-10 text-center"
               style={{
-                opacity: inView ? 1 : 0,
+                opacity: distinctionInView ? 1 : 0,
                 transition: "opacity 0.8s ease 0.3s",
               }}
             >

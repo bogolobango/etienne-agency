@@ -2,7 +2,6 @@
  * How It Works Page — 3-step outcome walkthrough (Free Audit, Deep Audit, Recovery Retainer)
  */
 
-import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { usePageView } from "@/hooks/usePageView";
@@ -13,14 +12,16 @@ import { ArrowRight, CheckCircle2, FileText, BarChart3, PhoneCall } from "lucide
 import { trackCTAClick } from "@/lib/analytics";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 import { CALENDLY_URL } from "@/const";
+import { useRevealAnimation } from "@/hooks/useRevealAnimation";
 
 export default function HowItWorks() {
   usePageView("How It Works");
   useScrollTracking("How It Works");
   useSEO("/how-it-works");
 
-  const [inView, setInView] = useState(false);
-  useEffect(() => { setInView(true); }, []);
+  // Hero is above the fold - reveal immediately, no scroll gate
+  const inView = true;
+  const { ref: stepsRef, inView: stepsInView } = useRevealAnimation();
 
   const steps = [
     {
@@ -139,7 +140,7 @@ export default function HowItWorks() {
       {/* Steps */}
       <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
         <div className="container relative z-10">
-          <div className="max-w-4xl mx-auto space-y-24 md:space-y-32">
+          <div ref={stepsRef} className="max-w-4xl mx-auto space-y-24 md:space-y-32">
             {steps.map((step, i) => {
               const Icon = step.icon;
               return (
@@ -147,8 +148,8 @@ export default function HowItWorks() {
                   key={i}
                   id={`step-${step.num}`}
                   style={{
-                    opacity: inView ? 1 : 0,
-                    transform: inView ? "translateY(0)" : "translateY(30px)",
+                    opacity: stepsInView ? 1 : 0,
+                    transform: stepsInView ? "translateY(0)" : "translateY(30px)",
                     transition: "all 0.7s ease",
                     transitionDelay: `${i * 150}ms`,
                   }}

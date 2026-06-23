@@ -99,7 +99,7 @@ export default function SundayProblemSection() {
 
       <div className="container relative z-10">
         <div
-          className={`max-w-3xl mx-auto transition-all duration-1000 ease-out ${
+          className={`max-w-3xl mx-auto transition-all duration-[var(--duration-slow)] ease-out ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >

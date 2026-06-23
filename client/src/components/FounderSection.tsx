@@ -78,7 +78,7 @@ export default function FounderSection() {
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-center">
           {/* Photo — 2 cols, left */}
           <div
-            className={`lg:col-span-2 transition-all duration-1000 ease-out ${
+            className={`lg:col-span-2 transition-all duration-[var(--duration-slow)] ease-out ${
               inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
             }`}
           >
@@ -126,7 +126,7 @@ export default function FounderSection() {
 
           {/* Copy — 3 cols, right */}
           <div
-            className={`lg:col-span-3 transition-all duration-1000 ease-out delay-200 ${
+            className={`lg:col-span-3 transition-all duration-[var(--duration-slow)] ease-out delay-200 ${
               inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
             }`}
           >

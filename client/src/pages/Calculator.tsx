@@ -116,7 +116,7 @@ export default function Calculator() {
         <FloatingDustMotes particleCount={50} />
         <GradientOrbs orbs={heroOrbs} />
         <div className="container relative z-10">
-          <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className={`max-w-4xl mx-auto text-center transition-all duration-[var(--duration-slow)] ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
               <CalcIcon className="w-4 h-4" />
               Free Revenue Gap Calculator

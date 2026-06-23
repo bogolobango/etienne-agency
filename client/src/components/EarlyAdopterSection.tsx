@@ -124,7 +124,7 @@ export default function EarlyAdopterSection() {
       <div className="container relative z-10">
         {/* Header */}
         <div
-          className={`max-w-3xl mx-auto text-center mb-14 md:mb-18 transition-all duration-700 ${
+          className={`max-w-3xl mx-auto text-center mb-14 md:mb-18 transition-all duration-[var(--duration-reveal)] ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -136,7 +136,7 @@ export default function EarlyAdopterSection() {
 
         {/* Step Cards */}
         <div
-          className={`max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-10 transition-all duration-700 delay-150 ${
+          className={`max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-10 transition-all duration-[var(--duration-reveal)] delay-150 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -151,7 +151,7 @@ export default function EarlyAdopterSection() {
 
         {/* Section closer */}
         <div
-          className={`max-w-2xl mx-auto text-center mb-16 transition-all duration-700 delay-200 ${
+          className={`max-w-2xl mx-auto text-center mb-16 transition-all duration-[var(--duration-reveal)] delay-200 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -162,7 +162,7 @@ export default function EarlyAdopterSection() {
 
         {/* FAQ */}
         <div
-          className={`max-w-3xl mx-auto mb-14 transition-all duration-700 delay-250 ${
+          className={`max-w-3xl mx-auto mb-14 transition-all duration-[var(--duration-reveal)] delay-250 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -189,7 +189,7 @@ export default function EarlyAdopterSection() {
 
         {/* Final CTA */}
         <div
-          className={`text-center transition-all duration-700 delay-300 ${
+          className={`text-center transition-all duration-[var(--duration-reveal)] delay-300 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >

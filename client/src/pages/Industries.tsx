@@ -74,7 +74,7 @@ export default function Industries() {
         />
         <div className="container relative z-10">
           <div
-            className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${
+            className={`max-w-4xl mx-auto text-center transition-all duration-[var(--duration-slow)] ${
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
@@ -108,7 +108,7 @@ export default function Industries() {
             </div>
 
             <div
-              className={`grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-700 ${
+              className={`grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-[var(--duration-reveal)] ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
             >

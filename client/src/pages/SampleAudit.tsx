@@ -650,7 +650,7 @@ export default function SampleAudit() {
         />
         <div className="container relative z-10">
           <div
-            className={`max-w-4xl mx-auto text-center transition-all duration-700 ease-out ${
+            className={`max-w-4xl mx-auto text-center transition-all duration-[var(--duration-reveal)] ease-out ${
               inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}
           >
@@ -692,7 +692,7 @@ export default function SampleAudit() {
         <div className="container relative z-10">
           {/* Section intro */}
           <div
-            className={`max-w-2xl mx-auto text-center mb-16 transition-all duration-700 ${
+            className={`max-w-2xl mx-auto text-center mb-16 transition-all duration-[var(--duration-reveal)] ${
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
@@ -780,7 +780,7 @@ export default function SampleAudit() {
       <section className="py-16 md:py-20 bg-primary/5 border-y border-primary/10">
         <div className="container">
           <div
-            className={`max-w-3xl mx-auto transition-all duration-700 ${
+            className={`max-w-3xl mx-auto transition-all duration-[var(--duration-reveal)] ${
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
@@ -827,7 +827,7 @@ export default function SampleAudit() {
         <FloatingDustMotes particleCount={40} />
         <div className="container relative z-10">
           <div
-            className={`max-w-3xl mx-auto text-center transition-all duration-700 ${
+            className={`max-w-3xl mx-auto text-center transition-all duration-[var(--duration-reveal)] ${
               inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >

@@ -75,7 +75,7 @@ export default function MagneticButton({
       className={className}
       style={{
         transform: `translate(${offset.x}px, ${offset.y}px)`,
-        transition: "transform 280ms cubic-bezier(0.22, 1, 0.36, 1)",
+        transition: "transform 280ms var(--ease-reveal)",
         willChange: "transform",
       }}
     >

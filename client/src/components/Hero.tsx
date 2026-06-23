@@ -18,6 +18,10 @@ import HeroCalculator from "@/components/HeroCalculator";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 import { CALENDLY_URL } from "@/const";
 
+// Stagger delays for the three hero reveal blocks.
+// Edit here to retune all at once; references --stagger-step (150ms) from CSS tokens.
+const HERO_STAGGER_MS = [0, 150, 300];
+
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
 
@@ -39,9 +43,10 @@ export default function Hero() {
       />
       <div className="container relative z-10">
         <div
-          className={`max-w-4xl mx-auto text-center transition-all duration-700 ease-out ${
+          className={`max-w-4xl mx-auto text-center transition-all duration-[var(--duration-reveal)] ease-out ${
             mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
+          style={{ transitionDelay: `${HERO_STAGGER_MS[0]}ms` }}
         >
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] mb-6 tracking-tight">
             Multi-location medspas are leaking $200K to $500K a year.{" "}
@@ -76,9 +81,10 @@ export default function Hero() {
 
         {/* Calculator section headline + inline calculator */}
         <div
-          className={`transition-all duration-700 ease-out delay-150 ${
+          className={`transition-all duration-[var(--duration-reveal)] ease-out ${
             mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
+          style={{ transitionDelay: `${HERO_STAGGER_MS[1]}ms` }}
         >
           <div className="max-w-2xl mx-auto text-center mb-5">
             <h2 className="font-display text-2xl sm:text-3xl text-white mb-2">
@@ -93,9 +99,10 @@ export default function Hero() {
 
         {/* Supporting copy + tertiary link (not a competing button) */}
         <div
-          className={`max-w-2xl mx-auto text-center mt-8 transition-all duration-700 ease-out delay-300 ${
+          className={`max-w-2xl mx-auto text-center mt-8 transition-all duration-[var(--duration-reveal)] ease-out ${
             mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
+          style={{ transitionDelay: `${HERO_STAGGER_MS[2]}ms` }}
         >
           <Link href="/sample-audit">
             <span className="text-sm text-white/60 hover:text-white underline-offset-4 hover:underline cursor-pointer">

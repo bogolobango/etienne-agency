@@ -10,7 +10,6 @@
  *    just restrained to let the calculator dominate visual weight.
  */
 
-import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { trackCTAClick } from "@/lib/analytics";
@@ -23,11 +22,8 @@ import { CALENDLY_URL } from "@/const";
 const HERO_STAGGER_MS = [0, 150, 300];
 
 export default function Hero() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // Above-the-fold: always visible on mount, no scroll trigger needed.
+  const inView = true;
 
   return (
     <section className="relative pt-24 pb-14 sm:pt-28 sm:pb-18 md:pt-36 md:pb-24 lg:pt-44 lg:pb-32 overflow-hidden section-dark">
@@ -44,7 +40,7 @@ export default function Hero() {
       <div className="container relative z-10">
         <div
           className={`max-w-4xl mx-auto text-center transition-all duration-[var(--duration-reveal)] ease-out ${
-            mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
           style={{ transitionDelay: `${HERO_STAGGER_MS[0]}ms` }}
         >
@@ -82,7 +78,7 @@ export default function Hero() {
         {/* Calculator section headline + inline calculator */}
         <div
           className={`transition-all duration-[var(--duration-reveal)] ease-out ${
-            mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
           style={{ transitionDelay: `${HERO_STAGGER_MS[1]}ms` }}
         >
@@ -100,7 +96,7 @@ export default function Hero() {
         {/* Supporting copy + tertiary link (not a competing button) */}
         <div
           className={`max-w-2xl mx-auto text-center mt-8 transition-all duration-[var(--duration-reveal)] ease-out ${
-            mounted ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            inView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
           style={{ transitionDelay: `${HERO_STAGGER_MS[2]}ms` }}
         >

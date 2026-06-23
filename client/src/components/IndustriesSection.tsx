@@ -4,23 +4,11 @@
  * + Social Proof Section — "Built for Operators Who Run 3-25 Locations"
  */
 
-import { useEffect, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
+import { useRevealAnimation } from "@/hooks/useRevealAnimation";
 
 export default function IndustriesSection() {
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setInView(true);
-      },
-      { threshold: 0.1 }
-    );
-    const el = document.getElementById("who-section");
-    if (el) observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const { ref, inView } = useRevealAnimation<HTMLElement>({ threshold: 0.1 });
 
   const integrations = [
     { name: "Zenoti", status: "Available" },
@@ -40,7 +28,7 @@ export default function IndustriesSection() {
   return (
     <>
       {/* Integration Section */}
-      <section id="who-section" className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
+      <section ref={ref} id="who-section" className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
         <div className="container relative z-10">
           <div
             className={`max-w-3xl mx-auto text-center mb-12 md:mb-16 transition-all duration-[var(--duration-reveal)] ${

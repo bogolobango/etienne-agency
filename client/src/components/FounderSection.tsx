@@ -16,26 +16,13 @@ import { ArrowRight, Quote } from "lucide-react";
 import MagneticButton from "@/components/MagneticButton";
 import { trackCTAClick } from "@/lib/analytics";
 import { CALENDLY_URL } from "@/const";
+import { useRevealAnimation } from "@/hooks/useRevealAnimation";
 
 export default function FounderSection() {
-  const [inView, setInView] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageFailed, setImageFailed] = useState(false);
-  const sectionRef = useRef<HTMLElement | null>(null);
+  const { ref: sectionRef, inView } = useRevealAnimation<HTMLElement>({ threshold: 0.2 });
   const photoWrapRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setInView(true);
-      },
-      { threshold: 0.2 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   // Subtle scroll-driven scale on the photo (Apple-style)
   useEffect(() => {

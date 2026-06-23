@@ -15,6 +15,8 @@ const DARK_HERO_ROUTES = ["/", "/how-it-works", "/med-spas"];
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(true);
+  const lastScrollYRef = useRef(0);
   const [location] = useLocation();
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
@@ -32,6 +34,40 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollYRef.current;
+
+      if (currentY < 80) {
+        setHeaderVisible(true);
+      } else if (mobileMenuOpen) {
+        setHeaderVisible(true);
+      } else if (delta > 4) {
+        setHeaderVisible(false);
+      } else if (delta < -4) {
+        setHeaderVisible(true);
+      }
+      lastScrollYRef.current = currentY;
+    };
+
+    let ticking = false;
+    const rafScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          onScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", rafScroll, { passive: true });
+    return () => window.removeEventListener("scroll", rafScroll);
+  }, [mobileMenuOpen]);
 
   const handleLinkClick = () => {
     setMobileMenuOpen(false);
@@ -83,11 +119,11 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 [transition:transform_var(--duration-quick)_var(--ease-quick),background-color_300ms_ease,backdrop-filter_300ms_ease,box-shadow_300ms_ease] ${
           scrolled
             ? "bg-background/95 backdrop-blur-sm shadow-sm"
             : "bg-transparent"
-        }`}
+        } ${headerVisible ? "translate-y-0" : "-translate-y-full"}`}
       >
         <div className="container">
           <div className="flex items-center justify-between h-[68px]">

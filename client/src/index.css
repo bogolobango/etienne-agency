@@ -50,6 +50,7 @@
 
 :root {
   /* Etienne Teal — Light marketing site with teal accents */
+  --header-height: 68px;
   --primary: #00D4AA;
   --primary-foreground: #0A0F1C;
   --sidebar-primary: #00D4AA;
@@ -136,7 +137,7 @@
   }
 }
 html {
-  scroll-padding-top: 80px;
+  scroll-padding-top: calc(var(--header-height) + 12px);
 }
 
 @layer base {

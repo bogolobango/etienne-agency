@@ -4,11 +4,12 @@
  * Replaces the old interactive PlaygroundDashboard / EIP showcase.
  */
 
-import { FileText, TrendingDown, AlertCircle, CheckCircle2, ArrowRight } from "lucide-react";
+import { TrendingDown, AlertCircle, CheckCircle2, ArrowRight } from "lucide-react";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
 import { Button } from "@/components/ui/button";
 import { trackCTAClick } from "@/lib/analytics";
 import { useRevealAnimation } from "@/hooks/useRevealAnimation";
+import { IsometricIcon } from "@/components/ui/isometric-icon";
 
 export default function SocialProofSection() {
   const { ref, inView } = useRevealAnimation<HTMLElement>({ threshold: 0.2 });
@@ -102,9 +103,7 @@ function AuditPDFPreview() {
       {/* Document header */}
       <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-border">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-            <FileText className="w-4 h-4 text-primary" />
-          </div>
+          <IsometricIcon name="report" className="w-9 h-9" />
           <div>
             <p className="text-xs font-semibold text-foreground">Revenue Leak Audit</p>
             <p className="text-[10px] text-muted-foreground">Confidential - Prepared by Etienne Agency</p>

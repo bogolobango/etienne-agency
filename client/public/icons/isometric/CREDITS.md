@@ -1,28 +1,26 @@
 # Isometric Icon Credits
 
-The PNG icons in this directory are sourced from the **Microsoft Fluent UI Emoji** project.
+The webp icons in this directory are sourced from **3dicons.co** (https://3dicons.co).
 
-- **Source:** https://github.com/microsoft/fluentui-emoji
-- **License:** MIT License (graphics) and Apache 2.0 (code)
-- **Attribution:** No attribution required for use, but preserved here for transparency
+- **License:** CC0 (public domain). No attribution required for use; preserved here for transparency.
+- **Format:** 400px webp, "front" angle, "color" style
+- **CDN:** Supabase storage at `bvconuycpdvgzbvbkijl.supabase.co`
 
-## File mapping
+## File-to-source mapping
 
-| Filename | Fluent UI Emoji source |
-|---|---|
-| `export.png` | `assets/Outbox tray/3D/outbox_tray_3d.png` |
-| `analyze.png` | `assets/Bar chart/3D/bar_chart_3d.png` |
-| `report.png` | `assets/Page facing up/3D/page_facing_up_3d.png` |
-| `verified.png` | `assets/Check mark button/3D/check_mark_button_3d.png` |
-| `email.png` | `assets/E-mail/3D/e-mail_3d.png` |
-| `video.png` | `assets/Video camera/3D/video_camera_3d.png` |
-| `magic.png` | `assets/Sparkles/3D/sparkles_3d.png` |
-| `calendar.png` | `assets/Calendar/3D/calendar_3d.png` |
+| Filename | 3dicons.co source slug | Direct URL |
+|---|---|---|
+| `export.webp` | `923d52-forward` | https://3dicons.co/icons/923d52-forward |
+| `analyze.webp` | `4a4275-chart` | https://3dicons.co/icons/4a4275-chart |
+| `report.webp` | `65d841-file-text` | https://3dicons.co/icons/65d841-file-text |
+| `verified.webp` | `1b714e-tick` | https://3dicons.co/icons/1b714e-tick |
+| `email.webp` | `8924a0-mail` | https://3dicons.co/icons/8924a0-mail |
+| `video.webp` | `b1dccf-video-cam` | https://3dicons.co/icons/b1dccf-video-cam |
+| `magic.webp` | `5cc402-magic-trick` | https://3dicons.co/icons/5cc402-magic-trick |
+| `calendar.webp` | `f32794-calendar` | https://3dicons.co/icons/f32794-calendar |
 
-## Why Fluent UI Emoji instead of 3dicons.co?
+## Notes
 
-The original plan called for 3dicons.co (CC0). After exploration, 3dicons.co serves
-assets via per-icon Supabase URLs with no name-to-ID mapping accessible without
-manual catalog browsing. Fluent UI Emoji was chosen as the documented fallback per
-the plan's Risk 5 mitigation: MIT-licensed, predictable GitHub raw URLs, cohesive
-3D-rendered style, all 8 needed concepts available.
+- **Export slot:** 3dicons.co does not currently ship a dedicated "download/upload/outbox" icon. The `923d52-forward` forward-arrow icon was chosen as the closest visual metaphor for "Send your CSV outward / export your data." If a more literal export icon ships to 3dicons later, swap by replacing `export.webp` in this directory.
+- **Asset URL pattern:** `https://bvconuycpdvgzbvbkijl.supabase.co/storage/v1/object/public/sizes/[ID]-[name]/front/[size]/color.webp`. Available sizes include 60, 200, 400. 512+ returns HTTP 400.
+- **Pulled:** 2026-06-26 via curl.

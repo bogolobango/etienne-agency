@@ -17,7 +17,7 @@ interface IsometricIconProps {
 export function IsometricIcon({ name, className, alt }: IsometricIconProps) {
   return (
     <img
-      src={`/icons/isometric/${name}.png`}
+      src={`/icons/isometric/${name}.webp`}
       alt={alt ?? ""}
       role={alt ? "img" : "presentation"}
       aria-hidden={alt ? undefined : "true"}

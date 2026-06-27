@@ -1,7 +1,7 @@
 /**
  * Integration Section — "Works With Your Stack. Not Against It."
  * + Differentiation Section — "Not Another Booking Tool."
- * + Social Proof Section — "Built for Operators Who Run 3-25 Locations"
+ * + Social Proof Section — "Built for Operators Who Run 5-25 Locations"
  */
 
 import { useRevealAnimation } from "@/hooks/useRevealAnimation";
@@ -21,7 +21,7 @@ export default function IndustriesSection() {
 
   const credibility = [
     "Built specifically for multi-location medspa operators on Zenoti, Boulevard, and Mangomint. No enterprise consultants. No integrations. No learning curve.",
-    "Designed for multi-location operators managing $1M-$20M in annual revenue across 3-25 centers.",
+    "Designed for multi-location operators managing $1M-$20M in annual revenue across 5-25 centers.",
     "Works with the booking systems 30,000+ med spas already use: Zenoti, Boulevard, Mangomint.",
   ];
 
@@ -107,9 +107,9 @@ export default function IndustriesSection() {
       <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
-            <p className="section-label">CREDIBILITY</p>
+            <p className="section-label">WHO THIS IS FOR</p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1]">
-              Built for operators who run 3-25 locations
+              Built for operators who run 5-25 locations
             </h2>
           </div>
 

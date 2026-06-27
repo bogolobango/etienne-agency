@@ -12,6 +12,7 @@ import EarlyAdopterSection from "@/components/EarlyAdopterSection";
 import SocialProofSection from "@/components/SocialProofSection";
 import IndustriesSection from "@/components/IndustriesSection";
 import FounderSection from "@/components/FounderSection";
+import ValuationSection from "@/components/ValuationSection";
 import TwoStepClose from "@/components/TwoStepClose";
 import Footer from "@/components/Footer";
 import ScrollCTA from "@/components/ScrollCTA";
@@ -93,7 +94,10 @@ export default function Home() {
         {/* 7 — Founder POV: the only real face on the site */}
         <FounderSection />
 
-        {/* 8 — The deal: Early Access Program with personalized CTA */}
+        {/* 8 — Exit math: PE multiple reframe before the offer */}
+        <ValuationSection />
+
+        {/* 9 — The deal: Early Access Program with personalized CTA */}
         <EarlyAdopterSection />
 
         {/* 9 — Final close: two-step email-gated CTA with walkthrough */}

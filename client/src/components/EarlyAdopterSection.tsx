@@ -2,17 +2,19 @@
  * Offer Section — 3-step outcome-based offer replacing the old Early Adopter pricing block.
  *
  * Structure:
- *   1. Section headline ("One offer. Three steps. 60 days to recovered revenue.")
- *   2. Three step cards (Free Audit / Deep Audit / Retainer) with middle card highlighted
- *   3. Section closer (plain-copy guarantee line)
- *   4. FAQ accordion (preserved from v1 — Task 4 handles additions)
- *   5. Final CTA
+ *   1. Section headline ("One offer. Three steps. The first one is free...")
+ *   2. Three step cards (Free Map / Recovery Playbook / Intelligence Desk) with middle card highlighted
+ *      Each card: price, name, body, stacked bonuses list, CTA
+ *   3. Section closer (guarantee summary line)
+ *   4. Three guarantee cards row ("Three guarantees, in order")
+ *   5. FAQ accordion (preserved from v1 — Task 4 handles additions)
+ *   6. Final CTA
  *
  * No fabricated testimonials. No phantom customer quotes.
  */
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle2, Shield, Calendar } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -34,35 +36,54 @@ interface Step {
   priceSublabel: string;
   body: string;
   ctaLabel: string;
+  bonuses: string[];
   highlighted: boolean;
 }
 
 const steps: Step[] = [
   {
     stepLabel: "Step 1 of 3",
-    name: "Free Revenue Recovery Audit",
+    name: "The 48-Hour Leakage Map",
     priceLabel: "$0",
     priceSublabel: "free, no commitment",
-    body: "You send us a CSV export from Zenoti, Boulevard, or Mangomint. We send back a 4-page report in 48 hours showing where you're leaking revenue, ranked by dollar size. No call. No commitment. Yours to keep.",
-    ctaLabel: "Get Your Free Audit",
+    body: "You send a CSV export from Zenoti, Boulevard, or Mangomint. We send back a 4-page Leakage Map in 48 hours: every dollar leak, ranked by size, with the cause. No call. No commitment. Yours to keep even if you walk.",
+    ctaLabel: "Claim Your Free Map",
+    bonuses: [
+      "The Leakage Map PDF (4 pages, dollar-ranked)",
+      "Cross-location benchmark scorecard against the AmSpa median",
+      "A 2-minute Loom from Jim walking through your top 3 leaks",
+    ],
     highlighted: false,
   },
   {
     stepLabel: "Step 2 of 3",
-    name: "Deep Audit + 60-Day Recovery Plan",
+    name: "The 60-Day Recovery Playbook",
     priceLabel: "$3,500",
-    priceSublabel: "one-time",
-    body: "If the free audit hits a nerve, we go deep. Two-week engagement. We map every leak across every location, build a prioritized 60-day recovery plan, and run a 90-minute strategy session with you to walk through it. You leave with a plan you can execute with or without us.",
-    ctaLabel: "Book Deep Audit",
+    priceSublabel: "one-time, money-back if we don't find $50K/loc",
+    body: "If the free Map hits a nerve, we go deep. Two-week engagement. We map every leak across every location, build your prioritized 60-day Recovery Playbook, and run a 90-minute strategy session walking through it. You leave with a plan you can run with or without us.",
+    ctaLabel: "Book the Playbook",
+    bonuses: [
+      "The 60-Day Recovery Playbook (location-by-location SOPs)",
+      "90-minute strategy session with Jim, recorded for your COO",
+      "The PE Readiness Scorecard: where you sit on the 3x-to-10x EBITDA curve",
+      "30 days of email follow-up while you execute",
+    ],
     highlighted: true,
   },
   {
     stepLabel: "Step 3 of 3",
-    name: "Recovery Retainer",
+    name: "The Operator's Intelligence Desk",
     priceLabel: "$2,000",
     priceSublabel: "per location per month",
-    body: "We run the recovery plan with you. Weekly anomaly reports, monthly strategy calls, an analyst on call when Sunday-night questions hit. Most clients recover 5 to 10x the retainer fee in the first 90 days. Cancel anytime after month 3.",
-    ctaLabel: "Talk to Jim About a Retainer",
+    body: "We run the Recovery Playbook with you. Weekly anomaly reports, monthly strategy calls, and an analyst on call when Sunday-night questions hit. Most clients recover 5 to 10x the retainer in the first 90 days. Cancel anytime after month 3.",
+    ctaLabel: "Talk to Jim About a Desk",
+    bonuses: [
+      "Weekly anomaly report every Monday by 9am",
+      "Monthly 60-minute strategy review with Jim",
+      "On-call analyst response within one business day",
+      "Quarterly PE Readiness refresh as you prep for a future exit",
+      "Direct Slack channel with Jim",
+    ],
     highlighted: false,
   },
 ];
@@ -94,6 +115,30 @@ const faqs = [
   },
 ];
 
+interface GuaranteeCard {
+  icon: React.ElementType;
+  title: string;
+  body: string;
+}
+
+const guarantees: GuaranteeCard[] = [
+  {
+    icon: CheckCircle2,
+    title: "The 48-Hour Promise",
+    body: "Free Map only. If you don't see your Leakage Map in 48 hours, you don't owe a thing. The free tier is free.",
+  },
+  {
+    icon: Shield,
+    title: "The $50K Guarantee",
+    body: "Recovery Playbook only. If the Playbook doesn't identify at least $50,000/year of recoverable revenue per location, we refund the full $3,500. Every audit goes through Jim personally, which is why we can make this promise.",
+  },
+  {
+    icon: Calendar,
+    title: "The Month-3 Walk",
+    body: "Intelligence Desk only. Cancel anytime after month 3. Most clients recover 5 to 10x the monthly retainer in their first quarter. If you don't, you walk.",
+  },
+];
+
 export default function EarlyAdopterSection() {
   const { ref, inView } = useRevealAnimation<HTMLElement>({ threshold: 0.15 });
   const { hasInteracted, result } = useCalculator();
@@ -119,7 +164,7 @@ export default function EarlyAdopterSection() {
         >
           <p className="section-label">THE OFFER</p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.05] mb-0">
-            One offer. Three steps. 60 days to recovered revenue.
+            One offer. Three steps. The first one is free, the second pays for itself, the third is what PE buyers ask if you have.
           </h2>
         </div>
 
@@ -143,18 +188,44 @@ export default function EarlyAdopterSection() {
 
         {/* Section closer */}
         <div
-          className={`max-w-2xl mx-auto text-center mb-16 transition-all duration-[var(--duration-reveal)] delay-200 ${
+          className={`max-w-2xl mx-auto text-center mb-12 transition-all duration-[var(--duration-reveal)] delay-200 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Most medspa software charges you for dashboards. We charge you for recovered revenue. If you don't see the report in 48 hours, you don't owe a thing.
+            Most medspa software charges you for dashboards. We charge you for recovered revenue and a higher exit multiple. The free Map is yours in 48 hours or you owe nothing. The Playbook is refunded if we don't surface $50K/location. The Desk you cancel after month 3 if it isn't paying for itself.
           </p>
+        </div>
+
+        {/* Three Guarantees Row */}
+        <div
+          className={`max-w-5xl mx-auto mb-16 transition-all duration-[var(--duration-reveal)] delay-250 ${
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          <p className="section-label text-center mb-6">THREE GUARANTEES, IN ORDER</p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+            {guarantees.map((g) => {
+              const Icon = g.icon;
+              return (
+                <div
+                  key={g.title}
+                  className="rounded-xl border border-border bg-white/60 p-6"
+                >
+                  <Icon className="w-5 h-5 text-primary mb-3 flex-shrink-0" />
+                  <h3 className="font-semibold text-foreground text-base mb-2 leading-snug">
+                    {g.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{g.body}</p>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* FAQ */}
         <div
-          className={`max-w-3xl mx-auto mb-14 transition-all duration-[var(--duration-reveal)] delay-250 ${
+          className={`max-w-3xl mx-auto mb-14 transition-all duration-[var(--duration-reveal)] delay-300 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -181,7 +252,7 @@ export default function EarlyAdopterSection() {
 
         {/* Final CTA */}
         <div
-          className={`text-center transition-all duration-[var(--duration-reveal)] delay-300 ${
+          className={`text-center transition-all duration-[var(--duration-reveal)] delay-350 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
@@ -245,7 +316,22 @@ function StepCard({ step, personalizedCtaLabel }: StepCardProps) {
         {step.name}
       </h3>
 
-      <p className="text-sm text-muted-foreground mb-7 leading-relaxed flex-1">{step.body}</p>
+      <p className="text-sm text-muted-foreground mb-5 leading-relaxed">{step.body}</p>
+
+      {/* Stacked bonuses */}
+      <div className="mb-7 flex-1">
+        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+          What's included:
+        </p>
+        <ul className="space-y-1.5">
+          {step.bonuses.map((bonus) => (
+            <li key={bonus} className="flex items-start gap-2 text-sm text-muted-foreground">
+              <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+              <span>{bonus}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="block">
         <Button

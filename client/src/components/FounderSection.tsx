@@ -126,7 +126,7 @@ export default function FounderSection() {
 
             <div className="space-y-4 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
               <p>
-                I spent eight years selling revenue intelligence to Fortune 500 operators. President's Club, multiple years. I started Etienne after my wife's medspa providers couldn't tell her which location was bleeding cash on a Tuesday. The booking software they paid for couldn't tell them either.
+                I spent eight years building and selling revenue analytics for Fortune 500 retail and hospitality groups, the same tools that cost those companies $400K a year and need an in-house analyst to operate. President's Club, multiple years. I started Etienne after my wife's medspa providers couldn't tell her which of their three locations was bleeding cash on a Tuesday. The booking software they paid $40K/year for couldn't tell them either. So I built the F500 playbook into a 4-page PDF, priced for a multi-location medspa, delivered by me.
               </p>
               <p>
                 Every audit, every report, every recovery plan goes through me personally. I run the model. I write the report. I take the call. When you hire Etienne, you hire me. Not an account manager, not a customer success team, not a dashboard.

@@ -14,7 +14,7 @@
 
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, Mail, Calendar, Sparkles, FileText, Video } from "lucide-react";
+import { ArrowRight, CheckCircle2, Mail, Sparkles } from "lucide-react";
 import { useCalculator } from "@/context/CalculatorContext";
 import { formatCurrencyCompact } from "@shared/leakage";
 import FloatingDustMotes from "@/components/FloatingDustMotes";
@@ -22,6 +22,9 @@ import MagneticButton from "@/components/MagneticButton";
 import { trackCTAClick, trackFormSubmit } from "@/lib/analytics";
 import { CALENDLY_URL } from "@/const";
 import { useRevealAnimation } from "@/hooks/useRevealAnimation";
+import { IsometricIcon } from "@/components/ui/isometric-icon";
+
+type WalkthroughIcon = "email" | "video" | "report" | "magic" | "calendar";
 
 type SubmitState = "idle" | "loading" | "success" | "error";
 
@@ -163,33 +166,28 @@ export default function TwoStepClose() {
               What happens next
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 text-left max-w-5xl mx-auto">
-              {STEPS.map((step, i) => {
-                const Icon = step.icon;
-                return (
-                  <div
-                    key={i}
-                    className={`transition-all duration-[var(--duration-reveal)] ease-out ${
-                      stepsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                    }`}
-                    style={{ transitionDelay: `${i * 150}ms` }}
-                  >
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center">
-                        <Icon className="w-3.5 h-3.5 text-primary" />
-                      </div>
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-primary">
-                        Step {i + 1}
-                      </span>
-                    </div>
-                    <h3 className="font-display text-lg text-white leading-snug mb-2">
-                      {step.title}
-                    </h3>
-                    <p className="text-sm text-white/60 leading-relaxed">
-                      {step.description}
-                    </p>
+              {STEPS.map((step, i) => (
+                <div
+                  key={i}
+                  className={`transition-all duration-[var(--duration-reveal)] ease-out ${
+                    stepsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                  }`}
+                  style={{ transitionDelay: `${i * 150}ms` }}
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <IsometricIcon name={step.icon} className="w-10 h-10" />
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-primary">
+                      Step {i + 1}
+                    </span>
                   </div>
-                );
-              })}
+                  <h3 className="font-display text-lg text-white leading-snug mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-white/60 leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -198,33 +196,33 @@ export default function TwoStepClose() {
   );
 }
 
-const STEPS = [
+const STEPS: { icon: WalkthroughIcon; title: string; description: string }[] = [
   {
-    icon: Mail,
+    icon: "email",
     title: "Submit your email",
     description:
       "Enter your work email above. That's the only thing we ask right now.",
   },
   {
-    icon: Video,
+    icon: "video",
     title: "We send a 2-min Loom",
     description:
       "A short screen recording showing exactly how to export your booking data CSV from your software.",
   },
   {
-    icon: FileText,
+    icon: "report",
     title: "You email back the CSV",
     description:
       "One file, one reply. Takes about 2 minutes on your end.",
   },
   {
-    icon: Sparkles,
+    icon: "magic",
     title: "Audit PDF in 48 hours",
     description:
       "A 4-page Revenue Recovery Audit lands in your inbox. Real numbers, real gaps, real recommendations.",
   },
   {
-    icon: Calendar,
+    icon: "calendar",
     title: "Optional: book 20 min with Jim",
     description:
       "Walk through the audit live. Jim himself, no BDR, no pitch deck. You decide what to do next.",

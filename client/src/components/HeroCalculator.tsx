@@ -125,6 +125,9 @@ export default function HeroCalculator() {
             on specific operations.
           </span>
         </p>
+        <p className="text-xs text-white/60 mt-3">
+          That's annual recovered revenue. At a 7x EBITDA multiple, it's also roughly the lift to your exit valuation.
+        </p>
         <p className="text-xs text-white/60 mt-3 border-t border-white/10 pt-3">
           That's an estimate. Send us a CSV from your booking system and we'll show you the exact number, broken down by location, provider, and day of week. Free.
         </p>
@@ -148,7 +151,7 @@ export default function HeroCalculator() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </a>
-            <span className="text-xs text-white/50">5 spots remaining this week</span>
+            <span className="text-xs text-white/50">Jim takes 4 audits per week. 2 slots left this week.</span>
           </div>
         </MagneticButton>
         <Link href="/calculator">

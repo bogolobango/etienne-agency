@@ -13,10 +13,12 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { trackCTAClick } from "@/lib/analytics";
 import { useRevealAnimation } from "@/hooks/useRevealAnimation";
+import { IsometricIcon } from "@/components/ui/isometric-icon";
 
 interface Step {
   id: string;
   icon: ComponentType<{ className?: string }>;
+  isometricName: "export" | "analyze" | "report";
   label: string;
   title: string;
   description: string;
@@ -28,6 +30,7 @@ const steps: Step[] = [
   {
     id: "export",
     icon: Download,
+    isometricName: "export",
     label: "Step 1: Export the CSV",
     title: "Export the CSV in 5 minutes",
     description:
@@ -38,6 +41,7 @@ const steps: Step[] = [
   {
     id: "analyze",
     icon: BarChart3,
+    isometricName: "analyze",
     label: "Step 2: We analyze + benchmark",
     title: "We run your numbers against industry benchmarks",
     description:
@@ -48,6 +52,7 @@ const steps: Step[] = [
   {
     id: "pdf",
     icon: FileText,
+    isometricName: "report",
     label: "Step 3: Get the 4-page PDF",
     title: "You get a 4-page PDF report",
     description:
@@ -126,7 +131,6 @@ export default function InteractiveSolutions() {
 }
 
 function StepPanel({ step }: { step: Step }) {
-  const Icon = step.icon;
   return (
     <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 items-start">
       <div className="lg:col-span-2">
@@ -139,9 +143,7 @@ function StepPanel({ step }: { step: Step }) {
       </div>
       <div className="lg:col-span-3">
         <div className="rounded-2xl border border-border/60 bg-white shadow-sm overflow-hidden min-h-[320px] flex flex-col items-center justify-center p-10 text-center bg-gradient-to-br from-white to-[#F5FDFB]">
-          <div className="icon-container-lg mb-5">
-            <Icon className="w-6 h-6 text-primary" />
-          </div>
+          <IsometricIcon name={step.isometricName} className="w-20 h-20 mb-5" />
           <p className="text-[10px] uppercase tracking-widest text-muted-foreground/60 mb-3 font-semibold">
             Timeframe
           </p>

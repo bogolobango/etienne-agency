@@ -4,8 +4,8 @@
  * + Social Proof Section — "Built for Operators Who Run 3-25 Locations"
  */
 
-import { CheckCircle2 } from "lucide-react";
 import { useRevealAnimation } from "@/hooks/useRevealAnimation";
+import { IsometricIcon } from "@/components/ui/isometric-icon";
 
 export default function IndustriesSection() {
   const { ref, inView } = useRevealAnimation<HTMLElement>({ threshold: 0.1 });
@@ -20,8 +20,8 @@ export default function IndustriesSection() {
   ];
 
   const credibility = [
-    "Built by a team with Fortune 500 AI deployment experience, applied to the $21B medical aesthetics market.",
-    "Designed for multi-location operators managing $1M\u2013$20M in annual revenue across 3\u201325 centers.",
+    "Built specifically for multi-location medspa operators on Zenoti, Boulevard, and Mangomint. No enterprise consultants. No integrations. No learning curve.",
+    "Designed for multi-location operators managing $1M-$20M in annual revenue across 3-25 centers.",
     "Works with the booking systems 30,000+ med spas already use: Zenoti, Boulevard, Mangomint.",
   ];
 
@@ -116,10 +116,8 @@ export default function IndustriesSection() {
           <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {credibility.map((text, i) => (
               <div key={i} className="card-premium p-6 sm:p-8">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
-                </div>
+                <IsometricIcon name="verified" className="w-12 h-12 mb-4" />
+                <p className="text-sm text-muted-foreground leading-relaxed">{text}</p>
               </div>
             ))}
           </div>

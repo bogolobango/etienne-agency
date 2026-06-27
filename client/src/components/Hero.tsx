@@ -45,12 +45,12 @@ export default function Hero() {
           style={{ transitionDelay: `${HERO_STAGGER_MS[0]}ms` }}
         >
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] mb-6 tracking-tight">
-            Multi-location medspas are leaking $200K to $500K a year.{" "}
-            <span className="text-primary">We find it and recover it in 60 days.</span>
+            Your medspa exit is worth 3x EBITDA.{" "}
+            <span className="text-primary">With centralized intelligence, it's worth 10x. We build that intelligence in 60 days.</span>
           </h1>
 
           <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-6">
-            Built for owners of 5 to 25 location medspas running Zenoti, Boulevard, or Mangomint. We pull your data, build the report your booking system won't, and run the recovery playbook with you. Done-for-you, not done-by-you.
+            For owners of 5 to 25 location medspas on Zenoti, Boulevard, or Mangomint. We pull your data, find the $200K to $500K/yr you're leaking, and turn your operations into the kind of centralized, SOP-driven asset PE pays a premium for. Done-for-you, not done-by-you.
           </p>
 
           <div className="flex flex-col items-center gap-2 mb-10">
@@ -67,10 +67,10 @@ export default function Hero() {
                   Get Your Free Revenue Audit
                 </Button>
               </a>
-              <span className="text-xs text-white/50 mt-0.5">48-hour delivery</span>
+              <span className="text-xs text-white/50 mt-0.5">48-hour delivery. Yours to keep whether or not we ever talk.</span>
             </div>
             <p className="text-xs text-white/50">
-              No call required. Send a CSV from your booking system, get a 4-page report back in 48 hours.
+              No call required. Send a CSV from your booking system, get a 4-page Leakage Map back in 48 hours.
             </p>
           </div>
         </div>
@@ -84,10 +84,10 @@ export default function Hero() {
         >
           <div className="max-w-2xl mx-auto text-center mb-5">
             <h2 className="font-display text-2xl sm:text-3xl text-white mb-2">
-              Estimate what you're leaking in 30 seconds.
+              Two minutes. Three numbers. One range.
             </h2>
             <p className="text-sm text-white/60">
-              Three numbers from your last 30 days. Real benchmarks, not industry fluff.
+              Punch in your last 30 days. We use the same benchmark model your future buyer's diligence team will run on you.
             </p>
           </div>
           <HeroCalculator />

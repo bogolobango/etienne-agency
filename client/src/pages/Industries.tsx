@@ -1,6 +1,6 @@
 /**
- * For Multi-Location Med Spas - ICP-qualification landing page
- * Outcome repositioning: who we are for, what we deliver, who we are NOT for.
+ * For Multi-Location Med Spas - ICP-qualification landing page.
+ * Exit-led repositioning: who we are for, what we deliver, who we are NOT for.
  */
 
 import Header from "@/components/Header";
@@ -28,35 +28,35 @@ export default function Industries() {
 
   const isFor = [
     "Med spa groups running 5 to 25 locations on Zenoti, Boulevard, or Mangomint",
-    "Owners, COOs, and Operations Directors who need to know where revenue is leaking across locations",
-    "PE-backed aesthetics practices that need consolidated performance data they can act on",
-    "Regional chains growing through acquisition that need to compare performance across newly integrated centers",
+    "Owners, COOs, and Operations Directors who need to close the gap between insight and execution",
+    "PE-backed aesthetics practices that need a diligence-grade operating cadence across sites",
+    "Regional chains growing through acquisition that need consistent SOPs across newly integrated centers",
   ];
 
   const isNotFor = [
-    "Single-location practices (the cross-location analysis does not apply yet)",
+    "Single-location practices (the cross-location cadence does not apply yet)",
     "Plastic surgery practices with one attached medspa (different patient mix and billing model)",
-    "Enterprise groups at 50-plus locations (you need a different sales motion and likely a dedicated analytics team)",
+    "Enterprise groups at 30-plus locations (the Engine cadence needs more than one analyst at that scale)",
   ];
 
   const offer = [
     {
       label: "Free",
       price: "$0",
-      title: "Free Revenue Recovery Audit",
-      desc: "Send us a CSV from your booking system. We run the analysis. You get a 4-page PDF in 48 hours. No call required. Yours to keep.",
+      title: "The 48-Hour Leakage Map",
+      desc: "Send us one CSV from your booking system. We run the analysis. Your Leakage Map comes back in 48 hours: every dollar leak across every location, ranked by size, with the cause named. No call required. Yours to keep.",
     },
     {
-      label: "One-time",
-      price: "$3,500",
-      title: "Deep Audit + 60-Day Recovery Plan",
-      desc: "A two-week engagement. We map every revenue leak across every location. You leave with a complete recovery plan and a 90-minute walkthrough with your team.",
+      label: "90-day engagement",
+      price: "$7,500 base + 15% of measured recovery",
+      title: "The Exit Engine",
+      desc: "The working relationship. Your team executes. We lock the baseline, write the fixes, run the Monday numbers, and count the money against your own booking data. You pay performance only on dollars we can prove.",
     },
     {
-      label: "Monthly",
-      price: "$2,000/location/month",
-      title: "Recovery Retainer",
-      desc: "We run the recovery plan with you. Weekly anomaly reports, monthly strategy calls, and a named analyst available when questions come up between sessions.",
+      label: "Continuity",
+      price: "$3,500/month, group-wide",
+      title: "The Operator's Desk",
+      desc: "Available only after the Engine. Keeps the Monday numbers coming, the baseline current, and the data room warm. Weekly numbers, monthly review with Jim, quarterly exit-readiness refresh.",
     },
   ];
 
@@ -82,17 +82,17 @@ export default function Industries() {
             }`}
           >
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-6">
-              Revenue recovery for multi-location medspas
+              Exit-ready operations for multi-location medspas
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-10">
-              Built for owners of 5 to 25 location medspas running Zenoti, Boulevard, or Mangomint. Done-for-you analysis. No platform to log into.
+              Built for owners of 5 to 25 location medspas running Zenoti, Boulevard, or Mangomint. Your team executes. We run the system that makes execution happen and gets counted.
             </p>
             <a href="/#early-adopter-section">
               <Button
                 className="rounded-full px-8 py-6 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
-                onClick={() => trackCTAClick("Get Your Free Audit", "Industries", "primary")}
+                onClick={() => trackCTAClick("Get Your Free Leakage Map", "Industries", "primary")}
               >
-                Get Your Free Audit <ArrowRight className="ml-2 h-4 w-4" />
+                Get Your Free Leakage Map <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </a>
           </div>
@@ -143,7 +143,7 @@ export default function Industries() {
         </div>
       </section>
 
-      {/* What you get - 3-step offer summary */}
+      {/* What you get - 3-tier offer summary */}
       <section className="relative py-20 md:py-28 lg:py-36 section-gradient-alt overflow-hidden">
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto">
@@ -183,7 +183,7 @@ export default function Industries() {
 
             <div className="text-center mt-12">
               <p className="text-sm text-muted-foreground mb-6">
-                See the full breakdown of each step on the How It Works page.
+                See the full breakdown of each tier on the How It Works page.
               </p>
               <a href="/how-it-works">
                 <Button
@@ -215,10 +215,10 @@ export default function Industries() {
                 Important distinction
               </p>
               <p className="font-display text-xl md:text-2xl text-foreground mb-4">
-                We are a done-for-you service. Not a software product.
+                We're an operating system, run by a person. Not a software product.
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                There is no dashboard to log into. No platform to learn. You send us your booking data, we do the analysis, and you get a written report. If you want a SaaS tool, this is not it. If you want a team that does the work for you and shows you exactly where the revenue went, that is what we do.
+                There is no dashboard to log into. No platform to learn. Your team executes the fixes in their own locations. Jim locks the baseline, writes the fixes word for word, runs the Monday numbers, and asks why any fix that stalled, stalled. If you want a SaaS tool, this isn't it. If you want the accountability structure a diligence team will pay a premium for, that's what we do.
               </p>
             </div>
           </div>
@@ -231,17 +231,17 @@ export default function Industries() {
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">
-              Start with the free audit.
+              Start with the free Map.
             </h2>
             <p className="text-base sm:text-lg text-white/70 leading-relaxed mb-10 max-w-xl mx-auto">
-              Send your CSV. Get the 4-page PDF in 48 hours. No call required. No commitment.
+              Send your CSV. Get your Leakage Map in 48 hours. No call required. No commitment.
             </p>
             <a href="/#early-adopter-section">
               <Button
                 className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill"
-                onClick={() => trackCTAClick("Get Your Free Audit", "Industries", "primary")}
+                onClick={() => trackCTAClick("Get Your Free Leakage Map", "Industries", "primary")}
               >
-                Get Your Free Audit <ArrowRight className="ml-2 h-5 w-5" />
+                Get Your Free Leakage Map <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </a>
             <p className="text-sm text-white/40 mt-6">

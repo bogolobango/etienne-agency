@@ -94,25 +94,25 @@ export default function SundayProblemSection() {
           </p>
 
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.05] mb-10 tracking-tight">
-            You're in Excel again, pulling reports from three screens, looking for the number you know is there.
+            You're in Excel again, hunting a number you already know is there.
           </h2>
 
           <div className="space-y-5 text-base sm:text-lg text-white/70 leading-relaxed max-w-2xl">
             <p>
-              Williamsburg is down. You can feel it. You just can't prove it — not without exporting the no-show report, crossing it against rebooking rates, re-running the pivot, and squinting at a chart your booking system was never designed to make.
+              Williamsburg is down. You can feel it. You just can't prove it without exporting the no-show data, crossing it against rebooking, and squinting at a pivot your booking system was never designed to build.
             </p>
             <p>
-              By the time you find the answer, Monday's already on top of you. The call happens. The next week starts. The number you were going to act on sits in a spreadsheet you never open again.
+              Here's the part that should bother you more than the lost Sunday: a PE associate will find that number in twenty minutes during diligence. And every month it sat unfixed, it wasn't just costing you revenue. It was proof, on paper, that the business runs on you instead of on systems.
             </p>
             <p className="text-white font-semibold text-lg sm:text-xl font-display leading-snug mt-8">
-              This is the part of the job nobody sold you. And it's the part that's quietly costing you six figures a year.
+              That proof is the difference between a 4x offer and a 9x offer.
             </p>
           </div>
 
           <div className="mt-10">
-            <Link href="#problem-section">
+            <Link href="#valuation-section">
               <span className="text-sm text-primary/90 hover:text-primary cursor-pointer link-underline">
-                See what it's actually costing ↓
+                See the exit math &darr;
               </span>
             </Link>
           </div>

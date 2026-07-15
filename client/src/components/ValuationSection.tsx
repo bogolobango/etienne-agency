@@ -39,7 +39,7 @@ export default function ValuationSection() {
         >
           <p className="section-label">THE EXIT MATH</p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1] mb-6">
-            Recovered revenue is the small win. A higher exit multiple is the big one.
+            Recovered revenue is the small win. The multiple is the big one.
           </h2>
         </div>
 
@@ -52,13 +52,13 @@ export default function ValuationSection() {
           {/* Left: body copy */}
           <div className="space-y-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
             <p>
-              A single-location medspa exits at 3-6x EBITDA. A 5-location group with centralized administrative functions, consistent SOPs across sites, and proprietary data intelligence exits at 7-12x. Platform-quality groups clear 10-14x.
+              A single-location medspa exits at 3 to 6x EBITDA. A multi-location group with centralized operations, consistent SOPs across sites, and a measurable operating cadence exits at 7 to 12x. Platform-quality groups clear 10 to 14x.
             </p>
             <p>
-              If you do $2M of EBITDA today, the gap between "5 locations on Zenoti" and "5 locations with centralized intelligence" is roughly $10M of personal wealth at exit. PE buyers do not pay a premium for booking software. They pay a premium for proof that the business runs on systems, not on you.
+              If you run $2M of EBITDA, the gap between "5 locations on Zenoti" and "5 locations run on systems" is roughly $10M of personal wealth at exit. PE buyers don't pay a premium for booking software. They pay a premium for proof the business runs without you in the room.
             </p>
             <p>
-              That is what Etienne builds, on top of the booking software you already own. The weekly anomaly report, the cross-location benchmark scorecard, the SOPs that come out of the 60-Day Recovery Playbook: every deliverable doubles as a diligence artifact. The same work that recovers $300K/year of leakage is what moves you from 5x to 9x when a buyer walks in.
+              That proof doesn't come from a strategy document. It comes from a paper trail: a locked baseline, a fix log with owners and dates, weekly numbers showing each leak closed and staying closed, SOPs your managers actually follow. Everything the Exit Engine produces is built to sit in a data room. The same 90 days that recover $300K of leakage are the 90 days that move you from 5x to 9x when the buyer walks in.
             </p>
           </div>
 
@@ -139,7 +139,7 @@ export default function ValuationSection() {
               href="/#early-adopter-section"
               className="text-primary underline underline-offset-2 hover:text-[#00BF99] transition-colors"
             >
-              The PE Readiness Scorecard is included in the Recovery Playbook &rarr;
+              The Exit Engine builds the paper trail that moves the number &rarr;
             </a>
           </p>
         </div>

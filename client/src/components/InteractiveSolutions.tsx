@@ -1,10 +1,9 @@
 /**
- * InteractiveSolutions — three-step walkthrough of the Free Audit process.
- * Replaces the old EIP platform-feature tab explorer.
+ * InteractiveSolutions — three-step walkthrough of the Free Leakage Map process.
  *
  * Step 1: Export the CSV
  * Step 2: We analyze + benchmark
- * Step 3: Get the 4-page PDF
+ * Step 3: Get the Leakage Map
  */
 
 import type { ComponentType } from "react";
@@ -34,7 +33,7 @@ const steps: Step[] = [
     label: "Step 1: Export the CSV",
     title: "Export the CSV in 5 minutes",
     description:
-      "We send you a 2-minute Loom showing exactly where the export button is in your booking system. Zenoti, Boulevard, Mangomint, or Mindbody. You do not install anything. No API keys. No integration. Just a CSV.",
+      "We send you a 2-minute Loom showing exactly where the export button is in your booking system. Zenoti, Boulevard, Mangomint, or Mindbody. You install nothing. No API keys. No integration. Just a CSV.",
     timeframe: "5 minutes",
     subNote: "From sending you the Loom to us having your CSV in hand.",
   },
@@ -47,16 +46,16 @@ const steps: Step[] = [
     description:
       "Within 48 hours we analyze your data against multi-location medspa benchmarks from AmSpa, Mindbody, and Zenoti. We find the leaks worth chasing: no-show rate gaps, utilization holes, rebooking rate drops. Every finding is dollar-quantified.",
     timeframe: "48 hours",
-    subNote: "From receiving your CSV to delivering the completed PDF.",
+    subNote: "From receiving your CSV to delivering your Leakage Map.",
   },
   {
     id: "pdf",
     icon: FileText,
     isometricName: "report",
-    label: "Step 3: Get the 4-page PDF",
-    title: "You get a 4-page PDF report",
+    label: "Step 3: Get your Leakage Map",
+    title: "You get your Leakage Map",
     description:
-      "The report is yours to keep. It shows your revenue leaks ranked by size, what is driving each one, and a 60-day recovery roadmap. No dashboard to log into. No subscription to start. Just a document you can act on.",
+      "Yours to keep. Every dollar leak across every location, ranked by size, with the cause named per finding. No dashboard to log into. No subscription to start. Just a document you can act on.",
     timeframe: "Delivered same day",
     subNote: "No recurring charge. No follow-up required to claim it.",
   },
@@ -73,9 +72,9 @@ export default function InteractiveSolutions() {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <p className="section-label">HOW THE FREE AUDIT WORKS</p>
+          <p className="section-label">HOW THE FREE MAP WORKS</p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.05] mb-6">
-            Three steps. 48 hours. A PDF with your revenue leaks ranked by size.
+            Three steps. 48 hours. Every leak ranked by size.
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
             No integration. No demo call to unlock it. No software to learn.
@@ -116,10 +115,10 @@ export default function InteractiveSolutions() {
             <Button
               asChild
               className="rounded-full px-8 py-4 text-base"
-              onClick={() => trackCTAClick("Get Your Free Audit", "Interactive Solutions", "primary")}
+              onClick={() => trackCTAClick("Get Your Free Leakage Map", "Interactive Solutions", "primary")}
             >
               <a href="#early-adopter-section">
-                Get Your Free Audit
+                Get Your Free Leakage Map
                 <ArrowRight className="ml-2 w-4 h-4" />
               </a>
             </Button>

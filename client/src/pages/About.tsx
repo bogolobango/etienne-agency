@@ -1,5 +1,5 @@
 /**
- * About Page - Founder story + done-for-you service positioning
+ * About Page - Founder story + operating-system-with-a-person-behind-it positioning
  */
 
 import Header from "@/components/Header";
@@ -81,16 +81,16 @@ export default function About() {
               }}
             >
               <p>
-                Jim spent eight years selling revenue intelligence to Fortune 500 manufacturers and retailers. He closed deals that put reporting in front of operators who had never seen their numbers laid out that clearly before. Multiple President's Club finishes. He knew what it felt like to hand someone a document that changed how they ran their business.
+                Jim spent eight years selling revenue analytics to Fortune 500 manufacturers and retailers. Multiple President's Club finishes. He learned this the hard way: the analysis never saved anyone. The companies that recovered the money were the ones where somebody checked the number every single week and asked, out loud, why the fix hadn't shipped.
               </p>
               <p>
                 Then his wife started going to a multi-location medspa. One of her providers left. She asked the front desk about it and got a shrug.
               </p>
               <p>
-                The location near their home felt slower every month. The medspa owners were paying thousands a month for booking software that could not tell them which location was bleeding cash or why.
+                The location near their home felt slower every month. The owners were paying thousands a month for booking software that could not tell them which location was bleeding cash or why. And even when they suspected, nobody was closing the loop.
               </p>
               <p className="font-semibold text-foreground">
-                He built Etienne to fix that gap.
+                He built Etienne to be the somebody who closes the loop.
               </p>
             </div>
           </div>
@@ -111,7 +111,7 @@ export default function About() {
                 transitionDelay: "100ms",
               }}
             >
-              Not software. A service.
+              Not software. An operating system, run by a person.
             </h2>
             <div
               className="space-y-6 text-base sm:text-lg text-muted-foreground leading-relaxed"
@@ -123,13 +123,13 @@ export default function About() {
               }}
             >
               <p>
-                Etienne is done-for-you revenue recovery for multi-location medspas. You send a CSV export from your booking system. We deliver a 4-page audit in 48 hours and run the recovery playbook with you.
+                Etienne is revenue recovery and exit readiness for multi-location medspas. Start free with a Leakage Map. Then run the 90-day Exit Engine: your team executes the fixes, Jim runs the system that makes execution happen and gets counted against a locked baseline. The paper trail sits in your future data room.
               </p>
               <p>
-                There is no platform to log into. No dashboard to learn. No onboarding call with an account manager who hands you off to a success team. When you hire Etienne, you hire Jim. Every audit, every report, and every recovery plan goes through him directly.
+                There is no platform to log into. No dashboard to learn. No account manager who hands you off to a success team. When you hire Etienne, you hire Jim. He locks the baseline, writes the fixes, runs the Monday numbers, and asks why any fix that stalled, stalled.
               </p>
               <p>
-                Your booking software is good at what it does. Etienne handles what it was never designed to do: tell you exactly where revenue is leaking, by location, by dollar amount, and what to do about it.
+                Your booking software is good at what it does. Etienne handles what it was never designed to do: turn the same operations that recover $300K/year of leakage into the operating cadence PE buyers pay a premium for.
               </p>
             </div>
           </div>
@@ -153,10 +153,10 @@ export default function About() {
               <h3 className="font-display text-2xl text-foreground mb-1">Jim Stephen</h3>
               <p className="text-sm text-primary font-semibold mb-6">Founder &amp; CEO</p>
               <p className="text-base text-muted-foreground leading-relaxed mb-4">
-                Eight years closing enterprise deals with Fortune 500 manufacturers and retailers, including multiple President's Club finishes, before building Etienne to bring that same level of revenue analysis to the medical aesthetics market.
+                Eight years closing enterprise deals with Fortune 500 manufacturers and retailers, including multiple President's Club finishes, before building Etienne to bring that same discipline to the medical aesthetics market.
               </p>
               <p className="text-base text-muted-foreground leading-relaxed">
-                Jim runs every engagement personally. He reads your data, writes your audit, and runs the recovery sessions. There is no junior analyst doing the work between calls. You have direct access to the person who built this.
+                Jim runs every engagement personally. He locks the baseline, writes the fixes, and runs the Monday numbers. There is no junior analyst doing the work between calls. You have direct access to the person who built this.
               </p>
             </div>
           </div>
@@ -169,17 +169,17 @@ export default function About() {
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">
-              Get Your Free Audit
+              Get Your Free Leakage Map
             </h2>
             <p className="text-base sm:text-lg text-white/70 leading-relaxed mb-10 max-w-xl mx-auto">
-              Send your CSV. Get the 4-page PDF in 48 hours. No call required. No commitment.
+              Send your CSV. Get your Leakage Map in 48 hours. No call required. No commitment.
             </p>
             <a href="/#early-adopter-section">
               <Button
                 className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill"
-                onClick={() => trackCTAClick("Get Your Free Audit", "About", "primary")}
+                onClick={() => trackCTAClick("Get Your Free Leakage Map", "About", "primary")}
               >
-                Get Your Free Audit <ArrowRight className="ml-2 h-5 w-5" />
+                Get Your Free Leakage Map <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </a>
             <p className="text-sm text-white/40 mt-6">

@@ -1,16 +1,13 @@
 /**
- * Offer Section — 3-step outcome-based offer replacing the old Early Adopter pricing block.
+ * Offer Section — exit-led three-tier offer.
  *
  * Structure:
- *   1. Section headline ("One offer. Three steps. The first one is free...")
- *   2. Three step cards (Free Map / Recovery Playbook / Intelligence Desk) with middle card highlighted
- *      Each card: price, name, body, stacked bonuses list, CTA
- *   3. Section closer (guarantee summary line)
- *   4. Three guarantee cards row ("Three guarantees, in order")
- *   5. FAQ accordion (preserved from v1 — Task 4 handles additions)
+ *   1. Section headline ("One free look. One 90-day engine. One standing desk.")
+ *   2. Three step cards (Free Map / Exit Engine / Operator's Desk) with middle card highlighted
+ *   3. Section closer
+ *   4. Three guarantee cards row
+ *   5. FAQ accordion (8 questions)
  *   6. Final CTA
- *
- * No fabricated testimonials. No phantom customer quotes.
  */
 
 import { Button } from "@/components/ui/button";
@@ -46,43 +43,44 @@ const steps: Step[] = [
     name: "The 48-Hour Leakage Map",
     priceLabel: "$0",
     priceSublabel: "free, no commitment",
-    body: "You send a CSV export from Zenoti, Boulevard, or Mangomint. We send back a 4-page Leakage Map in 48 hours: every dollar leak, ranked by size, with the cause. No call. No commitment. Yours to keep even if you walk.",
+    body: "You export one CSV from Zenoti, Boulevard, or Mangomint. We send back your Leakage Map in 48 hours: every dollar leak across every location, ranked by size, with the cause named. No call. No pitch. Yours to keep even if we never speak.",
     ctaLabel: "Claim Your Free Map",
     bonuses: [
-      "The Leakage Map PDF (4 pages, dollar-ranked)",
-      "Cross-location benchmark scorecard against the AmSpa median",
-      "A 2-minute Loom from Jim walking through your top 3 leaks",
+      "The Leakage Map, dollar-ranked by location, provider, and day of week",
+      "Your numbers against the AmSpa median and top-quartile operators",
+      "A 2-minute Loom from Jim walking your top 3 leaks",
     ],
     highlighted: false,
   },
   {
     stepLabel: "Step 2 of 3",
-    name: "The 60-Day Recovery Playbook",
-    priceLabel: "$3,500",
-    priceSublabel: "one-time, money-back if we don't find $50K/loc",
-    body: "If the free Map hits a nerve, we go deep. Two-week engagement. We map every leak across every location, build your prioritized 60-day Recovery Playbook, and run a 90-minute strategy session walking through it. You leave with a plan you can run with or without us.",
-    ctaLabel: "Book the Playbook",
+    name: "The Exit Engine",
+    priceLabel: "$7,500 + 15%",
+    priceSublabel: "base plus 15% of measured recovery. 90-day engagement. Performance fee only on dollars we can show against your locked baseline.",
+    body: "The working relationship. Your team executes. We run the system that makes sure execution actually happens and gets counted.",
+    ctaLabel: "Start With the Free Map",
     bonuses: [
-      "The 60-Day Recovery Playbook (location-by-location SOPs)",
-      "90-minute strategy session with Jim, recorded for your COO",
-      "The PE Readiness Scorecard: where you sit on the 3x-to-10x EBITDA curve",
-      "30 days of email follow-up while you execute",
+      "Locked baseline by location, provider, and day of week: first artifact in your data room",
+      "Fix queue: every leak becomes a scheduled fix with a named owner on your team and a date",
+      "Every fix written for you: deposit policy, rebooking script, provider schedule change, word for word",
+      "Weekly Monday-9am numbers against baseline: what moved, what didn't, which location skipped",
+      "Monthly recovered-revenue statement, measured against baseline",
+      "Data room built as we go: fix log, SOPs, baseline, recovery statements",
     ],
     highlighted: true,
   },
   {
     stepLabel: "Step 3 of 3",
-    name: "The Operator's Intelligence Desk",
-    priceLabel: "$2,000",
-    priceSublabel: "per location per month",
-    body: "We run the Recovery Playbook with you. Weekly anomaly reports, monthly strategy calls, and an analyst on call when Sunday-night questions hit. Most clients recover 5 to 10x the retainer in the first 90 days. Cancel anytime after month 3.",
-    ctaLabel: "Talk to Jim About a Desk",
+    name: "The Operator's Desk",
+    priceLabel: "$3,500",
+    priceSublabel: "per month, group-wide. Available only after the Engine.",
+    body: "The Engine ends. The cadence shouldn't. The Desk keeps the Monday numbers coming, the baseline current, and the data room warm.",
+    ctaLabel: "Talk to Jim About the Desk",
     bonuses: [
-      "Weekly anomaly report every Monday by 9am",
-      "Monthly 60-minute strategy review with Jim",
-      "On-call analyst response within one business day",
-      "Quarterly PE Readiness refresh as you prep for a future exit",
-      "Direct Slack channel with Jim",
+      "Weekly numbers against baseline, every Monday by 9am",
+      "Monthly 60-minute operating review with Jim",
+      "Quarterly exit-readiness refresh: where you sit on the 3x-to-10x curve now",
+      "Direct Slack channel, one-business-day response",
     ],
     highlighted: false,
   },
@@ -90,28 +88,36 @@ const steps: Step[] = [
 
 const faqs = [
   {
-    q: "Is this a software platform I log into?",
-    a: "No. We deliver the report and the recovery work to you. You can log into Zenoti or Boulevard for your booking. We sit on top, find what's broken, and fix it with you. A real platform comes later. Right now, you get the outcome without the implementation.",
+    q: "Couldn't my ops person do this with AI tools?",
+    a: "The analysis, maybe some of it. But the analysis was never what recovers the money. What recovers the money is a locked baseline nobody can argue with, a fix with a named owner and a date, and someone outside the building checking the number every Monday and asking why it didn't move. That's a cadence and an accountability structure, not an output. It's also what a diligence team wants to see, and 'our ops person ran some prompts' doesn't hold up in a data room.",
   },
   {
-    q: "What does the free audit actually include?",
-    a: "A 4-page PDF with: (1) your dollar-quantified revenue leaks ranked by size, (2) what's causing each one based on your CSV data, (3) a 60-day recovery roadmap, (4) the benchmark comparison against multi-location medspas your size. Delivered in 48 hours from when you send the export.",
+    q: "What if my team doesn't execute the fixes?",
+    a: "Then Monday's numbers say so, with the location and the owner named, and we address it on the call that week. That pressure is most of what you're paying for. If a fix stalls three weeks running, we escalate to you directly with the cost of the delay in dollars. What we don't do is quietly let it slide and send another document.",
   },
   {
-    q: "Do I need to give you access to my Zenoti / Boulevard account?",
-    a: "Not for the free audit. You export a CSV (we send a 2-minute Loom showing exactly how). For paid retainers, we set up a read-only data connection so reports run weekly without you exporting anything.",
+    q: "Is this consulting? Who actually does the work?",
+    a: "Your team executes and we run the system that makes execution happen. We lock the baseline, write every fix word for word, set the weekly queue, and check the numbers every Monday. Your managers deploy the fixes in their locations. That split is deliberate: fixes your own team ships are the ones that survive, and they're the ones a buyer believes.",
   },
   {
-    q: "How long until I see recovered revenue?",
-    a: "Most clients see the first dollar recovery in week 2. Material recovery (5-figures per location) in 30-60 days. The full 60-day plan typically recovers 5-10x the retainer fee.",
+    q: "What does the free Leakage Map actually include?",
+    a: "Your dollar leaks ranked by size, per location and per provider and per day of week. The cause behind each leak, drawn from your own CSV data. Your numbers against the AmSpa median and top-quartile benchmarks. A 2-minute Loom from Jim walking your top three leaks. Delivered in 48 hours from when we get your export.",
+  },
+  {
+    q: "How do you measure 'recovered revenue' for the performance fee?",
+    a: "Against the baseline we lock in the first two weeks, from your own booking data, location by location. The monthly recovery statement shows the delta. You see the math before any performance invoice. If a gain came from something outside the fix queue, like a new location opening, it's excluded. The measurement rules are in the agreement in plain English.",
+  },
+  {
+    q: "Do I need to give you access to my Zenoti / Boulevard / Mangomint account?",
+    a: "No. The free Map runs on one CSV export. Inside the Engine, most clients share a read-only export cadence or a report login. We read your data. We never change it.",
   },
   {
     q: "What if I'm not on Zenoti, Boulevard, or Mangomint?",
-    a: "Email Jim direct (jim@etienneagency.com). If you're on Pabau, Mindbody, or anything similar, we can still run the audit. The leakage model is the same.",
+    a: "If your system exports appointments, providers, and invoices to CSV, we can almost certainly work with it. Mindbody and Pabau both work today. Send the export and we'll confirm within a day. Email Jim direct at jim@etienneagency.com.",
   },
   {
     q: "What if I have 30+ locations?",
-    a: "Talk to us. We handle data residency, custom pipelines, volume pricing, and dedicated solutions architecture for groups above 25 locations. The free audit works regardless of size.",
+    a: "The Engine is built for 5 to 25. Above that, the cadence needs more than one analyst and we'd rather tell you that up front. Book a call and we'll either scope it honestly or point you to a better fit.",
   },
 ];
 
@@ -125,17 +131,17 @@ const guarantees: GuaranteeCard[] = [
   {
     icon: CheckCircle2,
     title: "The 48-Hour Promise",
-    body: "Free Map only. If you don't see your Leakage Map in 48 hours, you don't owe a thing. The free tier is free.",
+    body: "Free Map only. If your Leakage Map isn't in your inbox in 48 hours, you'll never get a follow-up email from us. The free tier is free.",
   },
   {
     icon: Shield,
-    title: "The $50K Guarantee",
-    body: "Recovery Playbook only. If the Playbook doesn't identify at least $50,000/year of recoverable revenue per location, we refund the full $3,500. Every audit goes through Jim personally, which is why we can make this promise.",
+    title: "The $50K Floor",
+    body: "Exit Engine only. If the locked baseline doesn't surface at least $50,000 per location in year-one recoverable revenue within the first 30 days, we refund the full $7,500 base and part ways. Every baseline goes through Jim personally, which is why we can make this promise.",
   },
   {
     icon: Calendar,
-    title: "The Month-3 Walk",
-    body: "Intelligence Desk only. Cancel anytime after month 3. Most clients recover 5 to 10x the monthly retainer in their first quarter. If you don't, you walk.",
+    title: "The Zero-Movement Clause",
+    body: "Exit Engine only. The performance fee is 15% of measured recovery above your locked baseline. Measured means shown in your own booking data, month over month. If the number doesn't move, you owe nothing beyond the base.",
   },
 ];
 
@@ -164,7 +170,7 @@ export default function EarlyAdopterSection() {
         >
           <p className="section-label">THE OFFER</p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.05] mb-0">
-            One offer. Three steps. The first one is free, the second pays for itself, the third is what PE buyers ask if you have.
+            One free look. One 90-day engine. One standing desk.
           </h2>
         </div>
 
@@ -193,7 +199,7 @@ export default function EarlyAdopterSection() {
           }`}
         >
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Most medspa software charges you for dashboards. We charge you for recovered revenue and a higher exit multiple. The free Map is yours in 48 hours or you owe nothing. The Playbook is refunded if we don't surface $50K/location. The Desk you cancel after month 3 if it isn't paying for itself.
+            Software charges you for dashboards. We charge a base to run the system and a percentage of what actually moves. If the number doesn't move, the percentage is zero.
           </p>
         </div>
 
@@ -262,19 +268,19 @@ export default function EarlyAdopterSection() {
                 className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill"
                 onClick={() =>
                   trackCTAClick(
-                    personalizedCtaLabel ?? "Get Your Free Audit",
+                    personalizedCtaLabel ?? "Claim Your Free Map",
                     "Early Adopter",
                     "primary"
                   )
                 }
               >
-                {personalizedCtaLabel ?? "Get Your Free Audit"}
+                {personalizedCtaLabel ?? "Claim Your Free Map"}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </a>
           </MagneticButton>
           <p className="text-sm text-muted-foreground mt-4">
-            Start with the free audit. No call required. 48-hour turnaround.
+            Start with the free Map. No call required. 48-hour turnaround.
           </p>
         </div>
       </div>

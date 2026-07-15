@@ -63,7 +63,7 @@ export default function ScrollCTA() {
       <div className="bg-card/95 backdrop-blur-md border-t border-border shadow-lg">
         <div className="container py-3 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
           <p className="text-sm text-foreground font-medium text-center sm:text-left">
-            Get your free 4-page audit. 48-hour delivery.
+            Get your free Leakage Map. 48-hour delivery.
           </p>
           <div className="flex items-center gap-3 flex-shrink-0">
             <a href="#hero-calculator">

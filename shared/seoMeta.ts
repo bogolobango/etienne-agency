@@ -14,24 +14,24 @@ export interface PageMeta {
 
 const staticRoutes: Record<string, PageMeta> = {
   "/": {
-    title: "Done-for-You Revenue Recovery for Medspas | Etienne",
+    title: "Exit-Ready Operations for Multi-Location Medspas | Etienne",
     description:
-      "Etienne finds where your medspa locations are losing revenue and hands you a 4-page audit in 48 hours. Built for owners running 3-25 centers.",
+      "Etienne finds the $200K to $500K/yr your medspa group is leaking, runs the 90-day system that closes it with your team, and builds the paper trail PE buyers pay a premium for. Free 48-hour Leakage Map.",
   },
   "/how-it-works": {
-    title: "How Etienne Works | Revenue Recovery for Medspas",
+    title: "How Etienne Works | Exit-Ready Ops for Medspas",
     description:
-      "Three steps: share your booking data, get a 4-page audit in 48 hours, act on clear findings. Done-for-you revenue recovery for multi-location medspa operators.",
+      "Three tiers: free 48-hour Leakage Map, the 90-day Exit Engine, and the Operator's Desk for continuity. Your team executes. We run the system that makes execution happen.",
   },
   "/med-spas": {
-    title: "Built for Multi-Location Medspas | Etienne Revenue Recovery",
+    title: "Built for Multi-Location Medspas | Etienne",
     description:
-      "Running 3-25 medspa locations? Etienne delivers a done-for-you audit showing exactly where you're losing revenue to no-shows, rebooking gaps, and missed calls.",
+      "Running 5 to 25 medspa locations? Etienne finds every dollar leak, closes it with your team in 90 days, and builds the operating cadence PE buyers pay a premium for.",
   },
   "/industries": {
-    title: "Built for Multi-Location Medspas | Etienne Revenue Recovery",
+    title: "Built for Multi-Location Medspas | Etienne",
     description:
-      "Running 3-25 medspa locations? Etienne delivers a done-for-you audit showing exactly where you're losing revenue to no-shows, rebooking gaps, and missed calls.",
+      "Running 5 to 25 medspa locations? Etienne finds every dollar leak, closes it with your team in 90 days, and builds the operating cadence PE buyers pay a premium for.",
   },
   "/calculator": {
     title: "Revenue Gap Calculator for Multi-Location Medspas | Etienne",
@@ -39,14 +39,14 @@ const staticRoutes: Record<string, PageMeta> = {
       "See how much revenue your medspa locations are losing to no-shows, utilization gaps, and missed rebookings. Free, based on AmSpa and Zenoti benchmarks.",
   },
   "/contact": {
-    title: "Get in Touch | Etienne Revenue Recovery",
+    title: "Get in Touch | Etienne",
     description:
-      "Talk to the Etienne team. We'll walk you through what a done-for-you audit would surface from your booking data. No pitch deck. No commitment.",
+      "Talk to Jim. We'll walk you through what a free Leakage Map would surface from your booking data. No pitch deck. No commitment.",
   },
   "/about": {
-    title: "About Etienne | Done-for-You Revenue Recovery",
+    title: "About Etienne | Exit-Ready Operations for Medspas",
     description:
-      "Etienne delivers done-for-you revenue recovery audits for multi-location medspa operators. A 4-page report in 48 hours showing exactly where revenue is leaking.",
+      "Etienne runs the operating system that turns multi-location medspa groups into the kind of business PE buyers pay a premium for. Free 48-hour Leakage Map to start.",
   },
   "/privacy": {
     title: "Privacy Policy | Etienne",
@@ -57,9 +57,9 @@ const staticRoutes: Record<string, PageMeta> = {
     description: "Read the Etienne Agency terms of service and conditions of use.",
   },
   "/sample-audit": {
-    title: "Sample Revenue Recovery Audit | See What You Get | Etienne",
+    title: "Sample Leakage Map | See What You Get | Etienne",
     description:
-      "See a real 4-page Revenue Recovery Audit before you send a CSV. Yours arrives in 48 hours with your actual numbers.",
+      "See a real Leakage Map before you send a CSV. Yours arrives in 48 hours with your actual numbers.",
   },
 };
 
@@ -76,7 +76,7 @@ const breadcrumbLabels: Record<string, string> = {
   "/about": "About",
   "/privacy": "Privacy Policy",
   "/terms": "Terms of Service",
-  "/sample-audit": "Sample Audit",
+  "/sample-audit": "Sample Leakage Map",
 };
 
 export function getBreadcrumbJsonLd(pathname: string): object | null {

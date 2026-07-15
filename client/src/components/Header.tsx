@@ -1,6 +1,6 @@
 /**
- * Header Component — Revenue Recovery positioning
- * Minimal sticky nav: Logo | How It Works · Med Spas · About | [Get Your Free Audit]
+ * Header Component — Exit-ready operations positioning
+ * Minimal sticky nav: Logo | How It Works · Med Spas · About | [Get Your Free Leakage Map]
  */
 
 import { Button } from "@/components/ui/button";
@@ -187,9 +187,9 @@ export default function Header() {
               <Button
                 className="hidden md:inline-flex rounded-full px-6 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                 size="default"
-                onClick={() => trackCTAClick('Get Your Free Audit', 'Header', 'primary')}
+                onClick={() => trackCTAClick('Get Your Free Leakage Map', 'Header', 'primary')}
               >
-                Get Your Free Audit
+                Get Your Free Leakage Map
               </Button>
             </a>
 
@@ -288,9 +288,9 @@ export default function Header() {
               <Button
                 className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold"
                 size="lg"
-                onClick={() => trackCTAClick('Get Your Free Audit', 'Header', 'primary')}
+                onClick={() => trackCTAClick('Get Your Free Leakage Map', 'Header', 'primary')}
               >
-                Get Your Free Audit
+                Get Your Free Leakage Map
               </Button>
             </a>
           </div>

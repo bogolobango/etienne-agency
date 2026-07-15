@@ -1,5 +1,5 @@
 /**
- * Home Page — Revenue Recovery for Multi-Location Medspas
+ * Home Page — Exit-Ready Operations for Multi-Location Medspas
  */
 
 import { useEffect } from "react";
@@ -10,7 +10,6 @@ import ProblemSection from "@/components/ProblemSection";
 import InteractiveSolutions from "@/components/InteractiveSolutions";
 import EarlyAdopterSection from "@/components/EarlyAdopterSection";
 import SocialProofSection from "@/components/SocialProofSection";
-import IndustriesSection from "@/components/IndustriesSection";
 import FounderSection from "@/components/FounderSection";
 import ValuationSection from "@/components/ValuationSection";
 import TwoStepClose from "@/components/TwoStepClose";
@@ -25,8 +24,8 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Etienne Revenue Recovery",
-    serviceType: "Revenue recovery consulting for multi-location medspas",
+    name: "Etienne Exit Engine",
+    serviceType: "Exit-ready operations for multi-location medspas",
     provider: {
       "@type": "Organization",
       name: "Etienne Agency",
@@ -34,7 +33,7 @@ const jsonLd = [
     },
     areaServed: { "@type": "Country", name: "US" },
     description:
-      "Done-for-you revenue recovery for multi-location medspas. We pull your data, deliver a 4-page audit in 48 hours, and run the recovery playbook with you.",
+      "Etienne finds the $200K to $500K/yr your medspa group is leaking, runs the 90-day system that closes it with your team, and builds the paper trail PE buyers pay a premium for. Free 48-hour Leakage Map.",
   },
   {
     "@context": "https://schema.org",
@@ -44,7 +43,7 @@ const jsonLd = [
     logo: "https://etienneagency.com/images/logo.png",
     email: "jim@etienneagency.com",
     description:
-      "Revenue recovery for multi-location medspas. Done for you.",
+      "Revenue recovery and exit readiness for multi-location medspas. Your team runs it. We make sure it runs on systems.",
     areaServed: { "@type": "Country", name: "US" },
     sameAs: [],
   },
@@ -73,34 +72,31 @@ export default function Home() {
       <div id="main-content" className="min-h-screen">
         <Header />
 
-        {/* 1 — Recognition: hero with personalized calculator */}
+        {/* 1 — Hero + estimator */}
         <Hero />
 
-        {/* 2 — Empathy: the Sunday problem */}
+        {/* 2 — Sunday Night: emotional hook to exit stakes */}
         <SundayProblemSection />
 
-        {/* 3 — Quantification: industry benchmarks + personalized projection */}
+        {/* 3 — The Execution Gap */}
         <ProblemSection />
 
-        {/* 4 — Intelligence layer: 3 interactive module demos */}
-        <InteractiveSolutions />
-
-        {/* 5 — Flagship playground: interactive dashboard (dark section) */}
-        <SocialProofSection />
-
-        {/* 6 — Integrations + differentiation (industries section) */}
-        <IndustriesSection />
-
-        {/* 7 — Founder POV: the only real face on the site */}
-        <FounderSection />
-
-        {/* 8 — Exit math: PE multiple reframe before the offer */}
+        {/* 4 — The Exit Math: spine of the page */}
         <ValuationSection />
 
-        {/* 9 — The deal: Early Access Program with personalized CTA */}
+        {/* 5 — The Offer: three tiers */}
         <EarlyAdopterSection />
 
-        {/* 9 — Final close: two-step email-gated CTA with walkthrough */}
+        {/* 6 — How the Free Map Works */}
+        <InteractiveSolutions />
+
+        {/* 7 — Sample Map (dark section) */}
+        <SocialProofSection />
+
+        {/* 8 — Founder POV */}
+        <FounderSection />
+
+        {/* 9 — Final CTA */}
         <TwoStepClose />
 
         <Footer />

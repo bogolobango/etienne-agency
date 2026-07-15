@@ -1,5 +1,5 @@
 /**
- * How It Works Page — 3-step outcome walkthrough (Free Audit, Deep Audit, Recovery Retainer)
+ * How It Works Page — 3-tier walkthrough (Free Map, Exit Engine, Operator's Desk)
  */
 
 import Header from "@/components/Header";
@@ -29,69 +29,69 @@ export default function HowItWorks() {
       icon: FileText,
       label: "Free",
       price: "$0",
-      title: "The Free Revenue Recovery Audit",
+      title: "The 48-Hour Leakage Map",
       intro:
-        "Send us a CSV export from your booking system. We do the analysis. You get a 4-page PDF back in 48 hours. Yours to keep. No call required.",
+        "Send us one CSV from your booking system. We do the analysis. Your Leakage Map comes back in 48 hours. Yours to keep. No call required.",
       howItWorks: [
         "Export your last 90 days of appointment data from Zenoti, Boulevard, or Mangomint. Takes about 2 minutes. We have a short Loom showing exactly which fields to include.",
-        "We run your numbers against five industry benchmarks: no-show rate (median 15%), provider utilization (median 62%), rebooking at checkout (median 48%), inbound call answer rate (median 78%), and cross-location variance.",
-        "You get a 4-page PDF within 48 hours. Page 1 is your estimated annual revenue leak. Page 2 is the leakage map by location. Page 3 is how you compare to multi-location peers. Page 4 is your 60-day recovery roadmap.",
+        "We run your numbers against the AmSpa median and top-quartile operators. Every dollar leak is ranked by location, provider, and day of week. Every cause is named.",
+        "You get your Leakage Map within 48 hours, plus a 2-minute Loom from Jim walking your top three leaks.",
       ],
       pdfContents: [
-        "Estimated annual revenue leak (dollar amount, not a range)",
-        "Location-by-location breakdown of every identified gap",
-        "Benchmark comparison with sourced industry data",
-        "A 60-day roadmap with specific steps, named owners, and timelines",
+        "Every dollar leak, ranked by size, per location and per provider",
+        "Your numbers against the AmSpa median and top-quartile benchmarks",
+        "The cause behind each leak, drawn from your own CSV data",
+        "A 2-minute Loom from Jim walking your top three findings",
       ],
       callout:
-        "Most audits surface between $80,000 and $220,000 in recoverable annual revenue. That number comes from your data, not an industry estimate.",
+        "Most Maps surface between $80,000 and $220,000 in annual recoverable revenue per location. That number comes from your data, not an industry estimate.",
     },
     {
       num: "02",
       icon: BarChart3,
-      label: "One-time",
-      price: "$3,500",
-      title: "The Deep Audit + 60-Day Recovery Plan",
+      label: "90-day engagement",
+      price: "$7,500 base + 15% of measured recovery",
+      title: "The Exit Engine",
       intro:
-        "A two-week engagement. We map every revenue leak across every location, not just the top four. You leave with a complete recovery plan and a 90-minute walkthrough with your team.",
+        "The working relationship. Your team executes. We run the system that makes execution actually happen and gets counted against a locked baseline.",
       howItWorks: [
-        "Week 1: We pull your full data set. We map provider utilization by room, by hour, and by day across all locations. We model the demand imbalance between your highest- and lowest-performing centers.",
-        "Week 2: We build the prioritized recovery plan. Every finding gets a dollar impact, a fix-complexity rating, and a named owner. The plan is designed so your VP of Operations can run it without us.",
-        "At the end of week 2: a 90-minute strategy session with you and whoever owns execution. We walk through each finding, answer questions, and hand off the plan.",
+        "Weeks 1-2: We lock the baseline. Location by location, provider by provider, from your own booking data. This is the number every recovered dollar is measured against, and the first artifact in your future data room.",
+        "Ongoing: The fix queue. Every leak from the Map becomes a scheduled fix with a named owner on your team and a date. We write the deposit policy, the rebooking script, the schedule change, word for word.",
+        "Every Monday by 9am: The numbers against baseline. What moved, what didn't, which location skipped the fix. We get on the call and ask why.",
+        "Every month: A recovered-revenue statement measured against baseline. That's what the performance fee is calculated on, and it's the exact document a diligence team asks for.",
       ],
       whatYouGet: [
-        "Full leakage model across all locations (not capped at 4 findings)",
-        "Provider-level utilization analysis",
-        "After-hours call miss rate by location",
-        "A written 60-day execution plan with weekly milestones",
-        "90-minute recorded strategy session",
-        "30-day email access to ask follow-up questions",
+        "Locked baseline (first artifact in your data room)",
+        "Fix queue with named owners and dates for every leak",
+        "Every fix written for you, word for word",
+        "Weekly Monday-9am numbers against baseline",
+        "Monthly recovered-revenue statement",
+        "Data room built as we go: fix log, SOPs, baseline, recovery statements",
       ],
       callout:
-        "This is a one-time engagement. No subscription. No platform. You own everything we deliver.",
+        "You never pay performance on a dollar we can't show you against your own baseline. If the number doesn't move, you owe nothing beyond the base.",
     },
     {
       num: "03",
       icon: PhoneCall,
-      label: "Monthly",
-      price: "$2,000/location/month",
-      title: "The Recovery Retainer",
+      label: "Continuity",
+      price: "$3,500/month, group-wide",
+      title: "The Operator's Desk",
       intro:
-        "We run the recovery plan with you. Weekly anomaly reports, monthly strategy calls, and an analyst available when questions come up between sessions.",
+        "The Engine ends. The cadence shouldn't. Available only after the Engine. Keeps the Monday numbers coming, the baseline current, and the data room warm.",
       howItWorks: [
-        "Week 1 of every month: we pull fresh data and send you an anomaly report. If something moved since last month, we flag it before you have to ask.",
-        "Once a month: a 60-minute strategy call. We review what recovered, what is still leaking, and what to prioritize next.",
-        "Between calls: you can reach your analyst directly. Not a support ticket. Not a forum. An actual person who knows your data.",
+        "Every Monday by 9am: Your numbers against baseline for every location on the Desk. What moved, what stalled, what needs attention.",
+        "Once a month: A 60-minute operating review with Jim. We walk what recovered, what's still leaking, and what to prioritize next.",
+        "Every quarter: A refreshed exit-readiness snapshot. Where you sit on the 3x-to-10x curve now, and what closes the remaining gap.",
       ],
       whatYouGet: [
-        "Weekly anomaly report for every location on the retainer",
-        "Monthly strategy call (60 min, recorded)",
-        "Direct analyst access between sessions",
-        "Updated recovery roadmap every quarter",
-        "Cancel anytime after month 3",
+        "Weekly numbers against baseline, every Monday by 9am",
+        "Monthly 60-minute operating review with Jim",
+        "Quarterly exit-readiness refresh",
+        "Direct Slack channel, one-business-day response",
       ],
       callout:
-        "Most retainer clients recover 5 to 10 times the monthly fee in the first 90 days. The retainer is month-to-month after the initial 3-month term.",
+        "Flat $3,500/month regardless of location count. Available only to groups that have run the Engine.",
     },
   ];
 
@@ -121,16 +121,16 @@ export default function HowItWorks() {
               How Etienne Works
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-10">
-              Done-for-you revenue recovery in 3 steps. No platform to learn. No software to log into. You send a CSV. We send back a plan.
+              One free look. One 90-day engine. One standing desk. Your team runs it. We make sure it runs on systems.
             </p>
             <a href="/#early-adopter-section">
               <Button
                 className="rounded-full px-8 py-6 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
                 onClick={() =>
-                  trackCTAClick("Get Your Free Audit", "How It Works", "primary")
+                  trackCTAClick("Get Your Free Leakage Map", "How It Works", "primary")
                 }
               >
-                Get Your Free Audit <ArrowRight className="ml-2 h-4 w-4" />
+                Get Your Free Leakage Map <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </a>
           </div>
@@ -202,7 +202,7 @@ export default function HowItWorks() {
                     {(step.pdfContents ?? step.whatYouGet) && (
                       <div className="mb-8">
                         <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">
-                          {step.pdfContents ? "What is in the PDF" : "What you get"}
+                          {step.pdfContents ? "What's in the Leakage Map" : "What you get"}
                         </h3>
                         <ul className="space-y-2">
                           {(step.pdfContents ?? step.whatYouGet ?? []).map(
@@ -235,13 +235,13 @@ export default function HowItWorks() {
                           className="rounded-full px-8 py-6 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
                           onClick={() =>
                             trackCTAClick(
-                              "Get Your Free Audit",
+                              "Get Your Free Leakage Map",
                               "How It Works",
                               "primary"
                             )
                           }
                         >
-                          Get Your Free Audit <ArrowRight className="ml-2 h-4 w-4" />
+                          Get Your Free Leakage Map <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                       </a>
                     </div>
@@ -259,23 +259,23 @@ export default function HowItWorks() {
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">
-              Start with the free audit.
+              Start with the free Map.
             </h2>
             <p className="text-base sm:text-lg text-white/70 leading-relaxed mb-10 max-w-xl mx-auto">
-              Send your CSV. Get the 4-page PDF in 48 hours. No call required. No commitment.
+              Send your CSV. Get your Leakage Map in 48 hours. No call required. No commitment.
             </p>
             <a href="/#early-adopter-section">
               <Button
                 className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill"
                 onClick={() =>
                   trackCTAClick(
-                    "Get Your Free Audit",
+                    "Get Your Free Leakage Map",
                     "How It Works",
                     "primary"
                   )
                 }
               >
-                Get Your Free Audit <ArrowRight className="ml-2 h-5 w-5" />
+                Get Your Free Leakage Map <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </a>
             <p className="text-sm text-white/40 mt-6">

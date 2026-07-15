@@ -1,11 +1,9 @@
 /**
- * Problem Section — "You Have the Data. You Don't Have the Answers."
+ * Execution Gap Section — "Finding the leaks was never the hard part."
  *
- * This revision replaces the three bare stat cards with small comparison
- * charts that visualize each gap against published industry benchmarks.
- * The rule: if we claim a number, show the number. Static stat cards
- * are table stakes for a revenue-intelligence product — charts signal
- * "we actually handle data."
+ * Three comparison charts visualize each leak against published industry
+ * benchmarks. Static stat cards are table stakes; charts signal we
+ * actually handle data.
  */
 
 import { BarChart, Bar, XAxis, YAxis, Cell, ResponsiveContainer, LabelList } from "recharts";
@@ -70,9 +68,9 @@ export default function ProblemSection() {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <p className="section-label">THE INTELLIGENCE GAP</p>
+          <p className="section-label">THE EXECUTION GAP</p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1] mb-6">
-            You have the data. You don't have the answers.
+            Finding the leaks was never the hard part. Fixing them, and proving they stay fixed, is.
           </h2>
         </div>
 
@@ -83,15 +81,21 @@ export default function ProblemSection() {
         >
           <div className="space-y-5 text-base sm:text-lg text-muted-foreground leading-relaxed">
             <p>
-              Your booking platform tracks every appointment, every no-show, and every invoice. But when you want to know why Williamsburg is underperforming, or how much your White Plains no-show rate is actually costing you, or which provider has the worst rebooking rate — you're pulling reports from three different screens, exporting to Excel, and spending your Sunday doing math.
+              Every multi-location operator we talk to already suspects where the money goes. No-shows at one location. A provider whose Tuesdays are half empty. Rebooking that died when a front desk lead left. The problem isn't awareness.
             </p>
             <p>
-              The data exists. It's sitting inside Zenoti, Boulevard, or Mangomint right now. But no one is connecting it across locations, quantifying what it's costing you, or telling you what to do about it.
+              The problem is that nobody owns the fix. The deposit policy never gets written. The rebooking script never gets enforced. The number never gets checked the following Monday, so nobody knows if the fix worked, and by next quarter the leak is back and bigger.
             </p>
             <p className="font-semibold text-foreground">
-              You don't have a software problem. You have an intelligence problem.
+              Your booking software can't fix that. Another analysis can't fix that. A weekly cadence with a locked baseline, a named owner for every fix, and someone outside your building checking the numbers every Monday morning: that fixes it.
             </p>
           </div>
+        </div>
+
+        <div className="max-w-5xl mx-auto mb-8 text-center">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            The three leaks we close first
+          </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">

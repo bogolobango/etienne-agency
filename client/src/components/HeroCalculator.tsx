@@ -11,9 +11,9 @@
  *  - Result is a RANGE ($X–$Y/yr recovery) to signal honesty about
  *    uncertainty. Point estimates read as false precision.
  *  - Primary CTA changes copy once the visitor has personalized their
- *    number: pre-interact is "Get Your Free Revenue Audit", post-interact
- *    is "Claim Your Free Audit Slot". The dollar figure is no longer in
- *    the CTA text.
+ *    number: pre-interact is "Get Your Free Leakage Map", post-interact
+ *    is "Claim Your Free Map". The dollar figure is no longer in the
+ *    CTA text.
  *  - Secondary link goes to the full /calculator page, not another marketing
  *    page — keeps the funnel tight.
  *  - Mobile: inputs stack vertically, result + CTA compress below.
@@ -61,8 +61,8 @@ export default function HeroCalculator() {
   const annualLow = result.recoveryAnnual.low;
   const annualHigh = result.recoveryAnnual.high;
   const ctaLabel = hasInteracted
-    ? "Claim Your Free Audit Slot"
-    : "Get Your Free Revenue Audit";
+    ? "Claim Your Free Map"
+    : "Get Your Free Leakage Map";
 
   return (
     <div
@@ -71,7 +71,7 @@ export default function HeroCalculator() {
     >
       <div className="flex items-center justify-between mb-4">
         <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-          Revenue Gap Estimator
+          Where we'd start
         </p>
         <span className="text-[10px] text-white/40 uppercase tracking-wide">
           Industry-benchmark model
@@ -126,10 +126,10 @@ export default function HeroCalculator() {
           </span>
         </p>
         <p className="text-xs text-white/60 mt-3">
-          That's annual recovered revenue. At a 7x EBITDA multiple, it's also roughly the lift to your exit valuation.
+          That's the annual leak. At a 7x multiple, it's also roughly the lift to your exit price.
         </p>
         <p className="text-xs text-white/60 mt-3 border-t border-white/10 pt-3">
-          That's an estimate. Send us a CSV from your booking system and we'll show you the exact number, broken down by location, provider, and day of week. Free.
+          And it's an estimate. Send us one CSV and we'll show you the exact number, broken down by location, provider, and day of week. Free.
         </p>
       </div>
 
@@ -151,7 +151,7 @@ export default function HeroCalculator() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </a>
-            <span className="text-xs text-white/50">Jim takes 4 audits per week. 2 slots left this week.</span>
+            <span className="text-xs text-white/50">Jim takes 4 Maps per week. 2 slots left this week.</span>
           </div>
         </MagneticButton>
         <Link href="/calculator">

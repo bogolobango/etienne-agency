@@ -1,13 +1,9 @@
 /**
  * FounderSection — direct-address from Jim. The only real face on the site.
  *
- * Designed to work gracefully whether or not the headshot image exists at
- * /images/jim-stephen.png — if it fails to load, we show an initials
- * fallback tile so the section stays visually complete.
- *
- * Founder-as-the-service positioning. You talk to Jim every time.
- * No account manager, no dashboard. Every audit and recovery plan goes through him.
- * CTA leads to direct booking.
+ * Founder-as-the-service positioning. Jim locks the baseline, writes the fixes,
+ * runs the Monday numbers. If headshot at /images/jim-stephen.png fails to load,
+ * an initials fallback keeps the section visually complete.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -126,10 +122,13 @@ export default function FounderSection() {
 
             <div className="space-y-4 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
               <p>
-                I spent eight years building and selling revenue analytics for Fortune 500 retail and hospitality groups, the same tools that cost those companies $400K a year and need an in-house analyst to operate. President's Club, multiple years. I started Etienne after my wife's medspa providers couldn't tell her which of their three locations was bleeding cash on a Tuesday. The booking software they paid $40K/year for couldn't tell them either. So I built the F500 playbook into a 4-page PDF, priced for a multi-location medspa, delivered by me.
+                I spent eight years selling revenue analytics to Fortune 500 retail and hospitality groups. President's Club, multiple years. The tools cost $400K a year and needed an in-house analyst to run. I started Etienne after my wife's medspa providers couldn't tell her which of their three locations was bleeding cash on a Tuesday, and the booking software they paid $40K a year for couldn't tell them either.
               </p>
               <p>
-                Every audit, every report, every recovery plan goes through me personally. I run the model. I write the report. I take the call. When you hire Etienne, you hire me. Not an account manager, not a customer success team, not a dashboard.
+                Here's what those eight years taught me: the analysis never saved anyone. The companies that recovered the money were the ones where somebody checked the number every single week and asked, out loud, why the fix hadn't shipped. That somebody is me. I lock the baseline, I write the fixes, I run the Monday numbers, and I'm the one asking your Williamsburg manager why the deposit policy isn't live yet.
+              </p>
+              <p className="text-foreground font-semibold">
+                When you hire Etienne, you hire me. Not an account manager, not a dashboard.
               </p>
             </div>
 

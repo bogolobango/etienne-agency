@@ -1,5 +1,5 @@
 /**
- * Contact page - outcome-positioned hero, primary audit CTA, Calendly embed for direct booking
+ * Contact page - exit-positioned hero, primary Leakage Map CTA, Calendly embed for direct booking
  */
 
 import { useEffect } from "react";
@@ -53,7 +53,7 @@ export default function Contact() {
               Get in touch with Jim
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-4">
-              The fastest path is the free Revenue Recovery Audit. Send a CSV, get a 4-page PDF back in 48 hours. No call required.
+              The fastest path is the free Leakage Map. Send a CSV, get it back in 48 hours. No call required.
             </p>
             <p className="text-sm text-white/40">
               If you'd rather talk first, book a 20-minute call below.
@@ -78,14 +78,14 @@ export default function Contact() {
               }}
             >
               <p className="text-sm text-muted-foreground mb-5">
-                Most visitors start here. CSV in, PDF out, 48 hours.
+                Most visitors start here. CSV in, Leakage Map out, 48 hours.
               </p>
               <a href="/#early-adopter-section">
                 <Button
                   className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill"
-                  onClick={() => trackCTAClick("Get Your Free Audit", "Contact", "primary")}
+                  onClick={() => trackCTAClick("Get Your Free Leakage Map", "Contact", "primary")}
                 >
-                  Get Your Free Audit <ArrowRight className="ml-2 h-5 w-5" />
+                  Get Your Free Leakage Map <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </a>
             </div>

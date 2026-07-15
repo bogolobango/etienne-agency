@@ -412,22 +412,22 @@ export default function Calculator() {
                 </div>
               </div>
 
-              {/* CTA to Audit */}
+              {/* CTA to Leakage Map */}
               <div className="text-center">
                 <p className="text-muted-foreground mb-6 text-lg">
-                  These are estimates. Want to know your <span className="font-semibold text-foreground">actual</span> numbers from real booking data?
+                  These are estimates. Want your <span className="font-semibold text-foreground">actual</span> number from real booking data?
                 </p>
                 <a href="/#early-adopter-section">
                   <Button
                     className="rounded-full px-10 py-7 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill"
-                    onClick={() => trackCTAClick("Get Your Free Audit", "Calculator", "primary")}
+                    onClick={() => trackCTAClick("Get Your Free Leakage Map", "Calculator", "primary")}
                   >
-                    Get Your Free Audit
+                    Get Your Free Leakage Map
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </a>
                 <p className="text-sm text-muted-foreground mt-4">
-                  20 minutes. We'll show you exactly what Etienne would surface from your booking data.<br />
+                  Send one CSV. Your Leakage Map lands in 48 hours, broken down by location, provider, and day of week.<br />
                   No pitch deck. No commitment.
                 </p>
                 <div className="mt-4">

@@ -1,5 +1,5 @@
 /**
- * Footer Component — Revenue Recovery positioning
+ * Footer Component — Exit-ready operations positioning
  * Product, Company, Connect columns
  */
 
@@ -26,7 +26,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Revenue recovery for multi-location medspas. Done for you.
+              Revenue recovery and exit readiness for multi-location medspas. Your team runs it. We make sure it runs on systems.
             </p>
           </div>
 

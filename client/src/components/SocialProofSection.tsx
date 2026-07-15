@@ -1,7 +1,6 @@
 /**
- * Sample Audit Section — Dark background, static PDF preview mockup.
- * Shows what the first page of the 4-page audit report looks like.
- * Replaces the old interactive PlaygroundDashboard / EIP showcase.
+ * Sample Leakage Map Section — Dark background, static preview mockup.
+ * Shows what the first page of the Leakage Map looks like.
  */
 
 import { TrendingDown, AlertCircle, CheckCircle2, ArrowRight } from "lucide-react";
@@ -23,13 +22,12 @@ export default function SocialProofSection() {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <p className="section-label" style={{ color: "rgba(255,255,255,0.5)" }}>SAMPLE AUDIT</p>
+          <p className="section-label" style={{ color: "rgba(255,255,255,0.5)" }}>SAMPLE MAP</p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] mb-6">
-            Here is what the report looks like
+            Here's what your Leakage Map looks like
           </h2>
           <p className="text-base sm:text-lg text-white/70 leading-relaxed max-w-2xl mx-auto">
-            A 4-page PDF. Dollar-quantified leaks ranked by size. A 60-day recovery roadmap.
-            Yours to keep after a 5-minute CSV export.
+            Dollar leaks ranked by location, provider, and day of week. Cause named per finding. Yours to keep after a 5-minute CSV export.
           </p>
         </div>
 
@@ -46,8 +44,8 @@ export default function SocialProofSection() {
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {[
             { title: "No integration required", description: "A CSV export from your booking system is all we need. Nothing to install. No API access." },
-            { title: "Benchmarked against real data", description: "We compare your numbers to AmSpa, Mindbody, and Zenoti industry benchmarks for your market segment." },
-            { title: "Done for you", description: "You export the file. We do the analysis. You get a PDF with ranked, dollar-quantified findings." },
+            { title: "Benchmarked against real data", description: "We compare your numbers to AmSpa, Mindbody, and Zenoti benchmarks for your market segment." },
+            { title: "We do the analysis", description: "You export the file. We rank every leak by size, name the cause, and hand you back a Leakage Map you can act on." },
           ].map((f, i) => (
             <div
               key={i}
@@ -75,10 +73,10 @@ export default function SocialProofSection() {
           <Button
             asChild
             className="rounded-full px-8 py-4 text-base"
-            onClick={() => trackCTAClick("Get Your Free Audit", "Sample Audit", "primary")}
+            onClick={() => trackCTAClick("Get Your Free Leakage Map", "Sample Map", "primary")}
           >
             <a href="#early-adopter-section">
-              Get Your Free Audit
+              Get Your Free Leakage Map
               <ArrowRight className="ml-2 w-4 h-4" />
             </a>
           </Button>
@@ -88,7 +86,7 @@ export default function SocialProofSection() {
   );
 }
 
-/** Static mockup of Page 1 of the 4-page audit PDF */
+/** Static mockup of the Leakage Map preview */
 function AuditPDFPreview() {
   const findings = [
     { rank: 1, label: "No-show rate at Williamsburg", impact: "$34K/mo", severity: "high", note: "28% vs. 14% group benchmark. Deposit policy gap." },
@@ -105,7 +103,7 @@ function AuditPDFPreview() {
         <div className="flex items-center gap-3">
           <IsometricIcon name="report" className="w-9 h-9" />
           <div>
-            <p className="text-xs font-semibold text-foreground">Revenue Leak Audit</p>
+            <p className="text-xs font-semibold text-foreground">Leakage Map</p>
             <p className="text-[10px] text-muted-foreground">Confidential - Prepared by Etienne Agency</p>
           </div>
         </div>
@@ -163,7 +161,7 @@ function AuditPDFPreview() {
           ))}
         </div>
         <p className="text-[10px] text-muted-foreground/60 mt-4 italic">
-          Pages 2-4 include root-cause analysis per finding, benchmark comparisons, and a 60-day recovery roadmap.
+          Pages 2-4 include root-cause analysis per finding, benchmark comparisons, and a prioritized fix queue.
         </p>
       </div>
 

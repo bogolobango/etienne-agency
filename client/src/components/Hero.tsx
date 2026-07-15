@@ -45,12 +45,12 @@ export default function Hero() {
           style={{ transitionDelay: `${HERO_STAGGER_MS[0]}ms` }}
         >
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] mb-6 tracking-tight">
-            Your medspa exit is worth 3x EBITDA.{" "}
-            <span className="text-primary">With centralized intelligence, it's worth 10x. We build that intelligence in 60 days.</span>
+            Your group is worth 4x EBITDA today.{" "}
+            <span className="text-primary">Run on systems, the same business sells for 9x. We close that gap in 90 days.</span>
           </h1>
 
           <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-6">
-            For owners of 5 to 25 location medspas on Zenoti, Boulevard, or Mangomint. We pull your data, find the $200K to $500K/yr you're leaking, and turn your operations into the kind of centralized, SOP-driven asset PE pays a premium for. Done-for-you, not done-by-you.
+            For owners of 5 to 25 location medspas on Zenoti, Boulevard, or Mangomint. We find the $200K to $500K a year you're leaking, put the fixes in your team's hands week by week, and turn every fix into the paper trail a PE buyer pays a premium for. Your people run the business. We make sure it runs on systems.
           </p>
 
           <div className="flex flex-col items-center gap-2 mb-10">
@@ -62,15 +62,15 @@ export default function Hero() {
               >
                 <Button
                   className="rounded-full px-8 py-4 text-base sm:text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill transition-colors"
-                  onClick={() => trackCTAClick("Get Your Free Revenue Audit", "Hero", "primary")}
+                  onClick={() => trackCTAClick("Get Your Free Leakage Map", "Hero", "primary")}
                 >
-                  Get Your Free Revenue Audit
+                  Get Your Free Leakage Map
                 </Button>
               </a>
-              <span className="text-xs text-white/50 mt-0.5">48-hour delivery. Yours to keep whether or not we ever talk.</span>
+              <span className="text-xs text-white/50 mt-0.5">48-hour delivery. No call required. Yours to keep either way.</span>
             </div>
             <p className="text-xs text-white/50">
-              No call required. Send a CSV from your booking system, get a 4-page Leakage Map back in 48 hours.
+              Works with Zenoti, Boulevard, and Mangomint. One CSV export. Nothing to install.
             </p>
           </div>
         </div>
@@ -84,10 +84,10 @@ export default function Hero() {
         >
           <div className="max-w-2xl mx-auto text-center mb-5">
             <h2 className="font-display text-2xl sm:text-3xl text-white mb-2">
-              Two minutes. Three numbers. One range.
+              Two minutes. Three numbers. The size of your gap.
             </h2>
             <p className="text-sm text-white/60">
-              Punch in your last 30 days. We use the same benchmark model your future buyer's diligence team will run on you.
+              Punch in your last 30 days. This is the same benchmark model a buyer's diligence team will run on you. Better you see the number first.
             </p>
           </div>
           <HeroCalculator />
@@ -102,11 +102,11 @@ export default function Hero() {
         >
           <Link href="/sample-audit">
             <span className="text-sm text-white/60 hover:text-white underline-offset-4 hover:underline cursor-pointer">
-              See what a Recovery Audit looks like
+              See what a Leakage Map looks like
             </span>
           </Link>
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs text-white/40 mt-8">
-            <span>Revenue intelligence for multi-location med spas</span>
+            <span>Exit-ready operations for multi-location med spas</span>
             <span className="hidden sm:inline">&middot;</span>
             <span>Works with Zenoti, Boulevard &amp; Mangomint</span>
           </div>

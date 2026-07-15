@@ -2,14 +2,12 @@
  * TwoStepClose — the home-page final CTA.
  *
  * Two-step micro-commitment:
- *   1. Visitor enters their email to get their free 4-page Revenue Recovery Audit.
+ *   1. Visitor enters their email to get their free Leakage Map.
  *   2. Success screen reveals the Calendly link + 5-step "what happens next" walkthrough.
  *
- * The walkthrough is scroll-revealed at the bottom either way.
- *
- * Uses CalculatorContext so the audit reflects whatever the visitor
- * entered in the hero calculator. If they never touched it, the report
- * uses industry-median defaults.
+ * The walkthrough is scroll-revealed at the bottom either way. Uses
+ * CalculatorContext so the Map reflects whatever the visitor entered in
+ * the hero calculator; industry-median defaults otherwise.
  */
 
 import { useState, type FormEvent } from "react";
@@ -92,17 +90,17 @@ export default function TwoStepClose() {
       <div className="container relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <p className="section-label mb-5" style={{ color: "rgba(94, 236, 200, 0.85)" }}>
-            FREE REVENUE AUDIT
+            FREE LEAKAGE MAP
           </p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.05] mb-6 tracking-tight">
             {state === "success"
-              ? "Audit on its way. Book 20 minutes with Jim."
-              : "Get your 4-page Revenue Recovery Audit."}
+              ? "Map on its way. Book 20 minutes with Jim."
+              : "Start with the number. It's free and it's yours."}
           </h2>
 
           {state !== "success" && (
             <p className="text-base sm:text-lg text-white/70 leading-relaxed max-w-2xl mx-auto mb-10">
-              Enter your email. We send a 2-minute Loom showing you how to export your booking data, you send it back, and we deliver a 4-page audit PDF in 48 hours. No sales call required.
+              Enter your email. We send a 2-minute Loom showing the export, you reply with the CSV, and your Leakage Map lands in 48 hours. No call required. What you do with it after that is up to you.
             </p>
           )}
 
@@ -136,13 +134,13 @@ export default function TwoStepClose() {
                     type="submit"
                     disabled={state === "loading"}
                     className="w-full rounded-full px-8 py-4 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
-                    onClick={() => trackCTAClick("Get My Free Audit", "TwoStepClose", "primary")}
+                    onClick={() => trackCTAClick("Get My Free Leakage Map", "TwoStepClose", "primary")}
                   >
                     {state === "loading" ? (
                       <>Sending…</>
                     ) : (
                       <>
-                        Get My Free Audit
+                        Get My Free Leakage Map
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </>
                     )}
@@ -153,7 +151,7 @@ export default function TwoStepClose() {
                 <p className="mt-3 text-sm text-[#FCA5A5]">{errorMessage}</p>
               )}
               <p className="mt-4 text-xs text-white/40 text-center">
-                We'll email you the Loom from{" "}
+                We'll email you from{" "}
                 <span className="text-white/60">jim@etienneagency.com</span>.
                 No spam. No list. One email.
               </p>
@@ -217,15 +215,15 @@ const STEPS: { icon: WalkthroughIcon; title: string; description: string }[] = [
   },
   {
     icon: "magic",
-    title: "Audit PDF in 48 hours",
+    title: "Leakage Map in 48 hours",
     description:
-      "A 4-page Revenue Recovery Audit lands in your inbox. Real numbers, real gaps, real recommendations.",
+      "Your Leakage Map lands in your inbox. Real numbers, real gaps, real fixes.",
   },
   {
     icon: "calendar",
     title: "Optional: book 20 min with Jim",
     description:
-      "Walk through the audit live. Jim himself, no BDR, no pitch deck. You decide what to do next.",
+      "Walk through the Map live. Jim himself, no BDR, no pitch deck. You decide what to do next.",
   },
 ];
 
@@ -240,7 +238,7 @@ function SuccessPanel({ result }: { result: ReturnType<typeof useCalculator>["re
           Loom on its way.
         </p>
         <p className="text-sm text-white/60">
-          Check your inbox. We'll send a 2-minute Loom showing how to export your CSV. Reply with the file and your 4-page audit arrives within 48 hours.
+          Check your inbox. We'll send a 2-minute Loom showing how to export your CSV. Reply with the file and your Leakage Map arrives within 48 hours.
         </p>
         {result.recoveryAnnual.expected > 0 && (
           <div className="mt-5 pt-5 border-t border-white/10 text-center">

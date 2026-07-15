@@ -1,7 +1,7 @@
 /**
- * Sample Audit Page - /sample-audit
+ * Sample Leakage Map Page - /sample-audit
  *
- * Shows a visitor the actual 4-page audit deliverable format
+ * Shows a visitor the actual Leakage Map format across 4 pages
  * populated with clearly-labeled SAMPLE data (Sample Medspa Co.).
  * Conversion goal: visitor understands exactly what they get before
  * committing to sending a CSV.
@@ -103,7 +103,7 @@ function Page1ExecutiveSummary() {
             <FileText className="w-4 h-4 text-primary" aria-hidden="true" />
           </div>
           <div>
-            <p className="text-xs font-semibold text-foreground">Revenue Leak Audit</p>
+            <p className="text-xs font-semibold text-foreground">Leakage Map</p>
             <p className="text-[10px] text-muted-foreground">Confidential - Prepared by Etienne Agency</p>
           </div>
         </div>
@@ -193,7 +193,7 @@ function Page1ExecutiveSummary() {
           ))}
         </div>
         <p className="text-[10px] text-muted-foreground/60 mt-4 italic">
-          Pages 2-4 include location-level leakage maps, benchmark comparisons, and a 60-day recovery roadmap.
+          Pages 2-4 include location-level breakdowns, benchmark comparisons, and a prioritized fix queue.
         </p>
       </div>
 
@@ -241,7 +241,7 @@ function Page2LeakageMap() {
             <Map className="w-4 h-4 text-primary" aria-hidden="true" />
           </div>
           <div>
-            <p className="text-xs font-semibold text-foreground">Revenue Leak Audit</p>
+            <p className="text-xs font-semibold text-foreground">Leakage Map</p>
             <p className="text-[10px] text-muted-foreground">Confidential - Prepared by Etienne Agency</p>
           </div>
         </div>
@@ -309,7 +309,7 @@ function Page2LeakageMap() {
             ))}
           </div>
           <p className="text-[10px] text-muted-foreground/60 mt-3 italic">
-            Full audit includes all 7 locations with provider-level drill-down per finding.
+            Full Map includes all 7 locations with provider-level drill-down per finding.
           </p>
         </div>
       </div>
@@ -353,7 +353,7 @@ function Page3BenchmarkComparison() {
             <BarChart3 className="w-4 h-4 text-primary" aria-hidden="true" />
           </div>
           <div>
-            <p className="text-xs font-semibold text-foreground">Revenue Leak Audit</p>
+            <p className="text-xs font-semibold text-foreground">Leakage Map</p>
             <p className="text-[10px] text-muted-foreground">Confidential - Prepared by Etienne Agency</p>
           </div>
         </div>
@@ -468,27 +468,27 @@ function Page4RecoveryRoadmap() {
       num: "01",
       label: "Self-serve",
       price: "Free",
-      title: "Use this roadmap with your team",
+      title: "Use this Map with your team",
       description:
-        "This audit is yours to keep. Run the recovery plan with your VP of Operations using the steps above. No additional engagement required.",
+        "This Map is yours to keep. Run the fixes with your VP of Operations using the steps above. No additional engagement required.",
       featured: false,
     },
     {
       num: "02",
-      label: "Deep Audit",
-      price: "$3,500",
-      title: "Full analysis across all 7 locations",
+      label: "Exit Engine",
+      price: "$7,500 + 15%",
+      title: "We run the system with your team for 90 days",
       description:
-        "We map every leak at every location, not just the top 3. You get a 90-minute recorded strategy session and 30-day analyst access for follow-up questions.",
+        "We lock the baseline, write the fixes, and check the Monday numbers. Performance fee only on dollars we can show against baseline. Every artifact sits in your future data room.",
       featured: true,
     },
     {
       num: "03",
-      label: "Retainer",
-      price: "$2,000/location/month",
-      title: "We run the recovery plan with you",
+      label: "Operator's Desk",
+      price: "$3,500/mo, group-wide",
+      title: "Continuity after the Engine",
       description:
-        "Weekly anomaly reports, monthly strategy calls, and a direct analyst to answer questions between sessions. Cancel anytime after month 3.",
+        "Weekly numbers, monthly review with Jim, quarterly exit-readiness refresh. Available only to groups that have run the Engine.",
       featured: false,
     },
   ];
@@ -502,7 +502,7 @@ function Page4RecoveryRoadmap() {
             <Compass className="w-4 h-4 text-primary" aria-hidden="true" />
           </div>
           <div>
-            <p className="text-xs font-semibold text-foreground">Revenue Leak Audit</p>
+            <p className="text-xs font-semibold text-foreground">Leakage Map</p>
             <p className="text-[10px] text-muted-foreground">Confidential - Prepared by Etienne Agency</p>
           </div>
         </div>
@@ -605,7 +605,7 @@ export default function SampleAudit() {
       label: "Page 1 of 4",
       title: "Executive Summary",
       description:
-        "The top page of every audit. Total estimated annual revenue leak, four ranked findings with dollar impacts, and complexity ratings.",
+        "The top page of every Map. Total estimated annual revenue leak, four ranked findings with dollar impacts, and complexity ratings.",
       preview: <Page1ExecutiveSummary />,
     },
     {
@@ -629,7 +629,7 @@ export default function SampleAudit() {
       label: "Page 4 of 4",
       title: "Recovery Roadmap",
       description:
-        "A 60-day plan with named steps, owners, and a choice of three paths: self-serve, deep audit, or retainer.",
+        "A prioritized fix queue with named steps, owners, and a choice of three paths forward: self-serve, Exit Engine, or Operator's Desk.",
       preview: <Page4RecoveryRoadmap />,
     },
   ];
@@ -658,27 +658,27 @@ export default function SampleAudit() {
             {/* SAMPLE label */}
             <div className="flex justify-center mb-5">
               <span className="inline-flex items-center rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold uppercase tracking-widest px-4 py-1.5 border border-amber-400/30">
-                SAMPLE AUDIT
+                SAMPLE LEAKAGE MAP
               </span>
             </div>
 
             <h1
               className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] mb-6 tracking-tight"
             >
-              This is what a Revenue Recovery Audit looks like.
+              This is what a Leakage Map looks like.
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto mb-10">
-              Below is a sample audit using illustrative numbers. Yours arrives within 48 hours of sending your CSV, with your actual data.
+              Below is a sample using illustrative numbers. Yours arrives within 48 hours of sending your CSV, with your actual data.
             </p>
 
             <div className="flex flex-col items-center gap-3">
               <a href="/#early-adopter-section">
                 <Button
                   className="rounded-full px-8 py-4 text-base sm:text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill transition-colors"
-                  onClick={() => trackCTAClick("Get Your Free Audit", "Sample Audit", "primary")}
+                  onClick={() => trackCTAClick("Get Your Free Leakage Map", "Sample Map", "primary")}
                 >
-                  Get Your Free Audit
+                  Get Your Free Leakage Map
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </a>
@@ -704,10 +704,10 @@ export default function SampleAudit() {
             <h2
               className="font-display text-3xl sm:text-4xl md:text-5xl text-foreground leading-[1.1] mb-4"
             >
-              A 4-page PDF. Yours in 48 hours.
+              Every Leakage Map follows this format. Yours in 48 hours.
             </h2>
             <p className="text-base text-muted-foreground leading-relaxed">
-              Every audit follows the same format. Dollar-quantified findings. Benchmark comparisons. A ready-to-run recovery plan. The only thing that changes is your data.
+              Dollar-quantified findings. Benchmark comparisons. A prioritized fix queue. The only thing that changes is your data.
             </p>
           </div>
 
@@ -759,10 +759,10 @@ export default function SampleAudit() {
                         <Button
                           className="rounded-full px-8 py-4 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-lg shadow-primary/25 btn-primary-pill"
                           onClick={() =>
-                            trackCTAClick("Get Your Free Audit", "Sample Audit", "primary")
+                            trackCTAClick("Get Your Free Leakage Map", "Sample Map", "primary")
                           }
                         >
-                          Get Your Free Audit
+                          Get Your Free Leakage Map
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                       </a>
@@ -807,7 +807,7 @@ export default function SampleAudit() {
                 {
                   step: "3",
                   title: "You get this back",
-                  body: "A 4-page PDF within 48 hours. The same format you see on this page, populated with your actual numbers.",
+                  body: "Your Leakage Map within 48 hours. The same format you see on this page, populated with your actual numbers.",
                 },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
@@ -848,10 +848,10 @@ export default function SampleAudit() {
                 <Button
                   className="rounded-full px-10 py-6 h-auto text-lg font-semibold bg-primary text-primary-foreground hover:bg-[#00BF99] shadow-xl shadow-primary/30 btn-primary-pill"
                   onClick={() =>
-                    trackCTAClick("Get Your Free Audit", "Sample Audit", "primary")
+                    trackCTAClick("Get Your Free Leakage Map", "Sample Map", "primary")
                   }
                 >
-                  Get Your Free Audit
+                  Get Your Free Leakage Map
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </a>

@@ -21,7 +21,10 @@ export default function HowItWorks() {
 
   // Hero is above the fold - reveal immediately, no scroll gate
   const inView = true;
-  const { ref: stepsRef, inView: stepsInView } = useRevealAnimation();
+  // threshold: 0 — the steps container is ~2500px tall (three long step blocks),
+  // and the default 25% threshold combined with rootMargin -10% never triggers on
+  // most viewport heights, leaving every step stuck at opacity 0.
+  const { ref: stepsRef, inView: stepsInView } = useRevealAnimation({ threshold: 0 });
 
   const steps = [
     {

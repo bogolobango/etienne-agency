@@ -595,7 +595,10 @@ export default function SampleAudit() {
 
   // Hero is above the fold - reveal immediately, no scroll gate
   const inView = true;
-  const { ref: previewRef, inView: previewInView } = useRevealAnimation();
+  // threshold: 0 — previewRef wraps four stacked Leakage Map page mockups (~3000px+ tall),
+  // same failure mode as HowItWorks stepsRef (PR #40): the default 25% threshold never
+  // triggers on most viewport heights and the entire preview stays at opacity 0.
+  const { ref: previewRef, inView: previewInView } = useRevealAnimation({ threshold: 0 });
   const { ref: sendRef, inView: sendInView } = useRevealAnimation();
   const { ref: closingRef, inView: closingInView } = useRevealAnimation();
 

@@ -459,6 +459,159 @@ Wishing you a strong Q{quarter}.
 — Jim
 ```
 
+### Cold call script (follow-up to Email 1)
+
+For prospects who opened Email 1 but didn't reply. Replace **[NAME]**,
+**[COMPANY]**, and **[BOOKING PLATFORM]** per prospect. Do not read
+section headers aloud.
+
+**Opening — 15 seconds**
+```
+"Hey [NAME], this is Jim Stephen with Etienne. I know I'm interrupting
+your day. Give me 30 seconds and if it's not relevant I'll hang up
+myself. Fair?"
+```
+Wait for "sure" or "go ahead." Silence past two beats = permission;
+move on.
+
+**Outcome hook — 30 seconds**
+```
+"I sent you an email earlier this week. The short version: for a
+[X]-location group your size running [BOOKING PLATFORM] at industry-
+median no-show, utilization, and rebooking rates, the recoverable
+annual leak is roughly $200,000 to $500,000. That's not a made-up
+number — it's what AmSpa, Zenoti, and Mindbody benchmarks price out
+for a group your size.
+
+Here's why I'm calling [COMPANY] specifically. The reason that number
+matters isn't the recovered revenue. It's the multiple. A single-
+location medspa exits at 5x EBITDA. A multi-location group with a
+clean paper trail — locked baseline, weekly numbers, SOPs your
+managers actually follow — exits at 9x. On $2M of EBITDA, that gap is
+$10 million in personal wealth at exit. The number I just quoted is
+the number a PE associate will pull in 20 minutes during diligence.
+I'd rather you see it first."
+```
+Every claim traces to `shared/leakage.ts` (AmSpa/Zenoti/Mindbody
+benchmarks) or `client/src/components/ValuationSection.tsx` L54–61
+(Breakwater/FOCUS multiple sourcing). Jim can defend any of it.
+
+**The pause.** Say nothing. Count to three. What they say next is
+the tell.
+
+**Objection A — "How would you know that about us?" (curiosity)**
+```
+"I don't yet. That's the offer — you export one CSV from [BOOKING
+PLATFORM], we send back your Leakage Map in 48 hours: every dollar
+leak ranked by size, broken down by location, provider, and day of
+week. Free. Yours to keep whether we ever work together after. If we
+do work together after that, the Exit Engine has a written
+$50,000-per-location guarantee against year-one recoverable revenue —
+if we don't surface it in the first 30 days you get the base back.
+Did you see the email?"
+```
+Guarantee language matches `EarlyAdopterSection.tsx` L139 verbatim.
+Route to **The ask**.
+
+**Objection B — "We're not selling / not thinking about exit"
+(most common)**
+```
+"Good — most owners I talk to aren't. But every operator eventually
+is, and the number I gave you is also the number that shows up in
+your bank account this quarter, whether or not you ever sell. The
+exit math is the second-order gain. The first-order gain is closing
+the leak, month over month, starting in about six weeks. That's still
+worth 30 minutes of your Tuesday, right?"
+```
+Route to **The ask**.
+
+**Objection C — "We already have someone doing this" (sophisticated
+buyer)** — reused from `FounderSection.tsx` L127–128, Jim's own
+writing.
+```
+"Most groups your size have someone smart looking at the reports.
+Two questions. First: how do they measure recovered revenue against a
+locked baseline, month over month? Second: who's the person outside
+your building, every Monday, asking out loud why the fix hasn't
+shipped?
+
+(pause)
+
+Because that gap — analysis to execution to measurement — is why
+$300K a year sits on the table across chains your size that already
+have someone doing this. I'm not offering to replace your ops person.
+I'm the person locking the baseline and asking, out loud, every
+Monday, why the fix hasn't shipped."
+```
+Route to **The ask**.
+
+**The ask**
+```
+"So here's what I'd suggest. Send one CSV, we send back the Leakage
+Map in 48 hours, and you decide from there whether it's worth a
+longer conversation. Two questions:
+
+One: does that sound like a fair way to see whether the number holds
+up for [COMPANY]?
+
+Two: are you the right person to send it, or should I be talking to
+your COO or CFO?"
+```
+
+**If yes → close the loop**
+```
+"Perfect. I'll drop a Calendly link in your inbox in the next 10
+minutes for a 20-minute walkthrough after your Map lands. Thursday
+morning or afternoon works better?"
+```
+Send the Calendly link within 5 minutes of hanging up. Use
+`https://calendly.com/jim-etienneagency/30min?utm_source=cold_call&utm_medium=phone&utm_campaign=leakage_map`
+— UTM tail required by §10 "Always" list.
+
+**If not now → keep the door open**
+```
+"Fair enough — I won't hound you. One last thing: can I put you on a
+90-day quarterly note? No pitch. Just what I'm seeing across the top
+and bottom quartile of chains your size. Two paragraphs, four times a
+year. Unsubscribe whenever."
+```
+Log as `quarterly_digest_optin` in Airtable.
+
+**If explicit "remove me"**
+```
+"Understood. I'll take you off the list today. Best of luck with
+[COMPANY]."
+```
+Flag as `do_not_contact` in Airtable and mean it. Specialty-medical
+peer networks are small; two burned prospects becomes six in a
+quarter.
+
+**Voicemail — 30 seconds**
+```
+"Hey [NAME], this is Jim Stephen with Etienne. I build free Leakage
+Maps for multi-location medspa groups on Zenoti, Boulevard, or
+Mangomint. I sent you an email earlier this week with the offer for
+[COMPANY]. My number's [YOUR NUMBER]. If it's not the right time, no
+worries — I won't chase. Talk soon."
+```
+- Name and callback in the first 5 seconds AND the last 5 seconds.
+- Never say "just following up" — that's a caller-tell.
+- One voicemail per prospect per week, max.
+
+**Cadence**
+- Two weeks total. One call + one voicemail per week.
+- Space cold email + LinkedIn + call by 3–4 business days each.
+  Three touches from three surfaces in one week reads as harassment;
+  three touches over three weeks reads as competent.
+- If no response after two weeks, roll to quarterly digest track
+  (assumes no explicit "remove me").
+
+**Post-call Airtable logging (required).** Every call gets one row
+with: `contact_id`, `call_date`, `outcome`
+(`yes` | `not_now` | `remove` | `voicemail` | `no_answer`),
+`objection` (A/B/C/none), `next_action_date`, `notes`. Keeps §8
+weekly self-eval accurate.
+
 ### LinkedIn content pillars (3 posts/week)
 
 **Pillar 1: The Sunday Night Post** (personal story + data)
